@@ -29,7 +29,6 @@ public class Xtrek extends JFrame {
         
         //Dimensions are in pixels, need to be mm
         xtrek.setSize(new Dimension(103, 54));
-        
         xtrek.setResizable(false);
         xtrek.validate();
         xtrek.setVisible(true);
