@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  *
  * @author sebltm
  */
-public class TurnByTurn extends JFrame  {
+public class TurnByTurn extends JFrame implements Mode  {
     static private String language = "en-GB";
     final JButton bOff = new LangButton("Off"     , null);
     final JButton bEng = new LangButton("English" , "en-GB");
@@ -26,10 +26,11 @@ public class TurnByTurn extends JFrame  {
     final JButton bJap = new LangButton("Japanese", "ja-JP");
     
     public TurnByTurn() {
-        displayLanguages();
+        displayMode();
     }
     
-    public void displayLanguages() {
+    @Override
+    public void displayMode() {
         setLocationRelativeTo(null);
         
         //Dimensions are in pixels, need to be mm
