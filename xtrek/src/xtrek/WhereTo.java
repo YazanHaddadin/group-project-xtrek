@@ -9,12 +9,11 @@ package xtrek;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.JFrame;
 import java.awt.TextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
 
@@ -23,7 +22,9 @@ import javax.swing.WindowConstants;
  * @author caleb
  */
 public class WhereTo extends JFrame implements Mode {
-    final TextField destination = new TextField(); //Textfield where the destination will go
+    
+    // Text field where dest will go.
+    final TextField destination = new TextField();
     
     //Create each letter button
     final JButton btnA = new LetterButton ("A");
@@ -53,17 +54,13 @@ public class WhereTo extends JFrame implements Mode {
     final JButton btnY = new LetterButton ("Y");
     final JButton btnZ = new LetterButton ("Z");
     
-    private class LetterButton extends JButton {
-    LetterButton( String s ) {
-      setIcon( new ImageIcon( "letter" + s + ".png" ) );
-      setBorder( null );
-      addMouseListener( new MouseAdapter() {
-          public void mouseClicked( MouseEvent me ) {
-            //Code for each letter being clicked will go here
-          }
-      });
+    // These will need to be a different type of button eventually...
+    final JButton btnSpace = new LetterButton ("Space");
+    final JButton btnChangePage = new LetterButton ("Change Page");
+    
+    public WhereTo() {
+        displayMode();  
     }
-  }
     
     @Override
     public void displayMode() {
@@ -78,11 +75,141 @@ public class WhereTo extends JFrame implements Mode {
         c.setBackground(Color.BLACK);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
+        btnA.setBackground(Color.WHITE);
+        btnA.setBounds(35, 100, 70, 70); add(btnA);
+        btnA.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnB.setBackground(Color.WHITE);
+        btnB.setBounds(105, 100, 70, 70); add(btnB);
+        btnB.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnC.setBackground(Color.WHITE);
+        btnC.setBounds(175, 100, 70, 70); add(btnC);
+        btnC.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnD.setBackground(Color.WHITE);
+        btnD.setBounds(245, 100, 70, 70); add(btnD);
+        btnD.setFont(new Font("Arial", Font.BOLD, 36));
+
+        btnE.setBackground(Color.WHITE);
+        btnE.setBounds(35, 170, 70, 70); add(btnE);
+        btnE.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnF.setBackground(Color.WHITE);
+        btnF.setBounds(105, 170, 70, 70); add(btnF);
+        btnF.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnG.setBackground(Color.WHITE);
+        btnG.setBounds(175, 170, 70, 70); add(btnG);
+        btnG.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnH.setBackground(Color.WHITE);
+        btnH.setBounds(245, 170, 70, 70); add(btnH);
+        btnH.setFont(new Font("Arial", Font.BOLD, 36));
+
+        btnI.setBackground(Color.WHITE);
+        btnI.setBounds(35, 240, 70, 70); add(btnI);
+        btnI.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnJ.setBackground(Color.WHITE);
+        btnJ.setBounds(105, 240, 70, 70); add(btnJ);
+        btnJ.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnK.setBackground(Color.WHITE);
+        btnK.setBounds(175, 240, 70, 70); add(btnK);
+        btnK.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnL.setBackground(Color.WHITE);
+        btnL.setBounds(245, 240, 70, 70); add(btnL);
+        btnL.setFont(new Font("Arial", Font.BOLD, 36));
+
+        btnM.setBackground(Color.WHITE);
+        btnM.setBounds(35, 310, 70, 70); add(btnM);
+        btnM.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnN.setBackground(Color.WHITE);
+        btnN.setBounds(105, 310, 70, 70); add(btnN);
+        btnN.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnO.setBackground(Color.WHITE);
+        btnO.setBounds(175, 310, 70, 70); add(btnO);
+        btnO.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnP.setBackground(Color.WHITE);
+        btnP.setBounds(245, 310, 70, 70); add(btnP);
+        btnP.setFont(new Font("Arial", Font.BOLD, 36));
+
+        btnQ.setBackground(Color.WHITE);
+        btnQ.setBounds(35, 380, 70, 70); add(btnQ);
+        btnQ.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnR.setBackground(Color.WHITE);
+        btnR.setBounds(105, 380, 70, 70); add(btnR);
+        btnR.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnS.setBackground(Color.WHITE);
+        btnS.setBounds(175, 380, 70, 70); add(btnS);
+        btnS.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnT.setBackground(Color.WHITE);
+        btnT.setBounds(245, 380, 70, 70); add(btnT);
+        btnT.setFont(new Font("Arial", Font.BOLD, 36));
+ 
+        btnU.setBackground(Color.WHITE);
+        btnU.setBounds(35, 450, 70, 70); add(btnU);
+        btnU.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnV.setBackground(Color.WHITE);
+        btnV.setBounds(105, 450, 70, 70); add(btnV);
+        btnV.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnW.setBackground(Color.WHITE);
+        btnW.setBounds(175, 450, 70, 70); add(btnW);
+        btnW.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnX.setBackground(Color.WHITE);
+        btnX.setBounds(245, 450, 70, 70); add(btnX);
+        btnX.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnY.setBackground(Color.WHITE);
+        btnY.setBounds(35, 520, 70, 70); add(btnY);
+        btnY.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnZ.setBackground(Color.WHITE);
+        btnZ.setBounds(105, 520, 70, 70); add(btnZ);
+        btnZ.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnSpace.setBackground(Color.WHITE);
+        btnSpace.setBounds(175, 520, 70, 70); add(btnSpace);
+        btnSpace.setFont(new Font("Arial", Font.BOLD, 36));
+        
+        btnChangePage.setBackground(Color.WHITE);
+        btnChangePage.setBounds(245, 520, 70, 70); add(btnChangePage);
+        btnChangePage.setFont(new Font("Arial", Font.BOLD, 36));
+        
         validate();
         setVisible(true);
     }
     
-    public WhereTo() {
-        displayMode();  
+    class LetterButton extends JButton {
+        private String letter;
+        
+        public LetterButton(String letter) {
+            this.letter = letter;
+            //setLetterButtonStyle();      
+        }
+        
+         public String getDisplayLabel() {
+            return this.letter;
+        }
     }
+    
+    
+    private void setLetterButtonStyle() {
+        btnA.setBackground(Color.WHITE);
+        //btnA.setBorderPainted(false);
+        btnA.setFont(new Font("Arial", Font.BOLD, 36));
+        //btnA.setHorizontalAlignment(SwingConstants.LEFT);
+        }
+    
 }
