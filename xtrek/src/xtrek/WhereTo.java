@@ -6,48 +6,52 @@
 package xtrek;
 
 //Import necessary packages for the button interface
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.WindowConstants;
 
 
 /**
  *
  * @author caleb
  */
-public class WhereTo extends JFrame {
+public class WhereTo extends JFrame implements Mode {
     final TextField destination = new TextField(); //Textfield where the destination will go
     
     //Create each letter button
-    final LetterButton btnA = new LetterButton ("A");
-    final LetterButton btnB = new LetterButton ("B");
-    final LetterButton btnC = new LetterButton ("C");
-    final LetterButton btnD = new LetterButton ("D");
-    final LetterButton btnE = new LetterButton ("E");
-    final LetterButton btnF = new LetterButton ("F");
-    final LetterButton btnG = new LetterButton ("G");
-    final LetterButton btnH = new LetterButton ("H");
-    final LetterButton btnI = new LetterButton ("I");
-    final LetterButton btnJ = new LetterButton ("J");
-    final LetterButton btnK = new LetterButton ("K");
-    final LetterButton btnL = new LetterButton ("L");
-    final LetterButton btnM = new LetterButton ("M");
-    final LetterButton btnN = new LetterButton ("N");
-    final LetterButton btnO = new LetterButton ("O");
-    final LetterButton btnP = new LetterButton ("P");
-    final LetterButton btnQ = new LetterButton ("Q");
-    final LetterButton btnR = new LetterButton ("R");
-    final LetterButton btnS = new LetterButton ("S");
-    final LetterButton btnT = new LetterButton ("T");
-    final LetterButton btnU = new LetterButton ("U");
-    final LetterButton btnV = new LetterButton ("V");
-    final LetterButton btnW = new LetterButton ("W");
-    final LetterButton btnX = new LetterButton ("X");
-    final LetterButton btnY = new LetterButton ("Y");
-    final LetterButton btnZ = new LetterButton ("Z");
+    final JButton btnA = new LetterButton ("A");
+    final JButton btnB = new LetterButton ("B");
+    final JButton btnC = new LetterButton ("C");
+    final JButton btnD = new LetterButton ("D");
+    final JButton btnE = new LetterButton ("E");
+    final JButton btnF = new LetterButton ("F");
+    final JButton btnG = new LetterButton ("G");
+    final JButton btnH = new LetterButton ("H");
+    final JButton btnI = new LetterButton ("I");
+    final JButton btnJ = new LetterButton ("J");
+    final JButton btnK = new LetterButton ("K");
+    final JButton btnL = new LetterButton ("L");
+    final JButton btnM = new LetterButton ("M");
+    final JButton btnN = new LetterButton ("N");
+    final JButton btnO = new LetterButton ("O");
+    final JButton btnP = new LetterButton ("P");
+    final JButton btnQ = new LetterButton ("Q");
+    final JButton btnR = new LetterButton ("R");
+    final JButton btnS = new LetterButton ("S");
+    final JButton btnT = new LetterButton ("T");
+    final JButton btnU = new LetterButton ("U");
+    final JButton btnV = new LetterButton ("V");
+    final JButton btnW = new LetterButton ("W");
+    final JButton btnX = new LetterButton ("X");
+    final JButton btnY = new LetterButton ("Y");
+    final JButton btnZ = new LetterButton ("Z");
     
     private class LetterButton extends JButton {
     LetterButton( String s ) {
@@ -61,8 +65,24 @@ public class WhereTo extends JFrame {
     }
   }
     
-    public WhereTo() {
-        setTitle("Where To?");     
+    @Override
+    public void displayMode() {
+        Container c = getContentPane();
+        setLocationRelativeTo(null);
         
+        setSize(new Dimension(350, 650));
+        setResizable(false);
+        
+        setTitle("Where To?");
+        setLayout(null);
+        c.setBackground(Color.BLACK);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        validate();
+        setVisible(true);
+    }
+    
+    public WhereTo() {
+        displayMode();  
     }
 }
