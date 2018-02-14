@@ -5,33 +5,21 @@
  */
 package xtrek;
 
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import javax.swing.JFrame;
-
 /**
  *
  * @author sebltm
  */
-public class Xtrek extends JFrame {
+public class Xtrek {
 
     /**
      * @param args the command line arguments
      */
     public void Xtrek() {
-        setTitle("XTrek");
-        setLayout(null); //GridBagLayout ?
+        
     }
     
-    public static void main(String[] args) {
-        JFrame xtrek = new Xtrek();
-        xtrek.setLocationRelativeTo(null);
-        
-        //Dimensions are in pixels, need to be mm
-        xtrek.setSize(new Dimension(103, 54));
-        xtrek.setResizable(false);
-        xtrek.validate();
-        xtrek.setVisible(true);
+    public static void main(String[] args) {        
+        /*Start the "Turn by Turn" interface : Speech tbtGUI = new TurnByTurn();*/
     }
     
 }
