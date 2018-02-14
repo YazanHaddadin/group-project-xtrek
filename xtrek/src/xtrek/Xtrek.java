@@ -14,12 +14,14 @@ public class Xtrek {
     /**
      * @param args the command line arguments
      */
+    Mode currentView;
+    
     public void Xtrek() {
-        
+        /*currentView = new Menu(); or whatever Yazan's class is*/
     }
     
-    public static void main(String[] args) {        
-        /*Start the "Turn by Turn" interface : Speech tbtGUI = new TurnByTurn();*/
+    public static void main(String[] args) {    
+        
     }
     
 }
