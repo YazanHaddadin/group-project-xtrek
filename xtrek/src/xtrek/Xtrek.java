@@ -21,7 +21,7 @@ public class Xtrek {
     }
     
     public static void main(String[] args) {    
-        currentView = new TurnByTurn();
+        currentView = new MainMenu();
     }
     
 }
