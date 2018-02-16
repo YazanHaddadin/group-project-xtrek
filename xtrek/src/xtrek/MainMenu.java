@@ -19,7 +19,6 @@ import javax.swing.WindowConstants;
  * @author Yazan
  */
 public class MainMenu extends JFrame implements Mode {
-    static private String currentOP = "?";
     
     final JButton onOff        = new OperatorButton ("On/Off", "onoffbutton");
     final JButton plusMinus    = new OperatorButton("+/-","plusMinusbutton");
@@ -27,11 +26,11 @@ public class MainMenu extends JFrame implements Mode {
     final JButton menu         = new OperatorButton("Menu","menuButton");
     
     final JButton whereTo      = new DestinationButton("Where To?","wheretobutton");
-    final JButton tripComputer = new DestinationButton("Trip Computer","wheretobutton");
-    final JButton map          = new DestinationButton("Map","wheretobutton");
-    final JButton speech       = new DestinationButton("Speech","wheretobutton");
-    final JButton satellite    = new DestinationButton("Sattelite","wheretobutton");
-    final JButton about        = new DestinationButton("About","wheretobutton");
+    final JButton tripComputer = new DestinationButton("Trip Computer","tripbutton");
+    final JButton map          = new DestinationButton("Map","mapbutton");
+    final JButton speech       = new DestinationButton("Speech","speechbutton");
+    final JButton satellite    = new DestinationButton("Sattelite","sattellitebutton");
+    final JButton about        = new DestinationButton("About","aboutbutton");
     
     public MainMenu(){
         displayMode();
@@ -63,13 +62,13 @@ public class MainMenu extends JFrame implements Mode {
     }
     
     private class OperatorButton extends JButton{
-        String currentD;
+        private final String currentD;
         private SelectButton select = new SelectButton();
         
-        OperatorButton(String display, String s){
+        OperatorButton(String display, String currentD){
            super(display);
            //setIcon( new ImageIcon( s + ".png" ) );
-           currentD = s;
+           this.currentD = currentD;
            setOperatorStyle();
         }
         
@@ -81,13 +80,13 @@ public class MainMenu extends JFrame implements Mode {
     }
     
     private class DestinationButton extends JButton {
-        String currentD;
+        private final String currentD;
         private SelectButton select = new SelectButton();
         
-        DestinationButton(String display, String s){
+        DestinationButton(String display, String currentD){
             super(display);
             //setIcon( new ImageIcon( s + ".png" ) );
-            currentD = s;
+            this.currentD = currentD;
             setDestinationStyle();
         }
 
