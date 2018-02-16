@@ -22,7 +22,6 @@ import java.io.InputStreamReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,17 +76,18 @@ public class TurnByTurn extends JFrame implements Mode  {
     }
     
     class LangButton extends JButton implements SelectedListener {
-        private String language;
-        private String name;
-        private String gender;
-        private SelectButton select = new SelectButton();
+        private final String NAME;
+        private final String GENDER;
+        private final String LANGUAGE;
+        private final SelectButton SELECT = new SelectButton();
         
         public LangButton(String display, String language, String gender, String name) {
             super(display);
-            this.language = language;
-            this.gender = gender;
-            this.name = name;
+            
             setStyle();
+            this.NAME = name;
+            this.GENDER = gender;
+            this.LANGUAGE = language;
             
             /*THE MOUSE LISTENER WILL GET REMOVED WHEN THE BUTTONS ARE PROPERLY
             IMPLEMENTED. THIS IS ONLY FOR TESTING PURPOSE ATM
@@ -121,10 +121,13 @@ public class TurnByTurn extends JFrame implements Mode  {
                 }
             });
             
-            select.setSelectedListener(this);
+            SELECT.setSelectedListener(this);
         }
         
-        private void getNextSegment(String segment, String KEY1) {
+        private byte[] getNextSegment(String segment, String KEY1) {
+            
+            ByteArrayOutputStream response = new ByteArrayOutputStream();
+            
             try {
                 String token = renewAccessToken(KEY1);
                 HashMap<String, String> requestProp = new HashMap<String, String>() {};
@@ -136,12 +139,11 @@ public class TurnByTurn extends JFrame implements Mode  {
                                 "https://speech.platform.bing.com/synthesize", 
                                 "POST", 
                                 requestProp, 
-                                "<speak version='1.0' xml:lang='en-US'><voice xml:lang='"+language+"' xml:gender='"+gender+"' name='Microsoft Server Speech Text to Speech Voice ("+language+", "+name+")'>Microsoft Bing Voice Output API</voice></speak>");
+                                "<speak version='1.0' xml:lang='en-US'><voice xml:lang='"+LANGUAGE+"' xml:gender='"+GENDER+"' name='Microsoft Server Speech Text to Speech Voice ("+LANGUAGE+", "+NAME+")'>"+segment+"</voice></speak>");
                 
                 DataInputStream is = new DataInputStream(conn.getInputStream());
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is));
                 byte[] line = new byte[1000000]; //1MB
-                ByteArrayOutputStream response = new ByteArrayOutputStream(); 
                 while(true) {
                   int n = is.read(line);
                   if(n > 0) {
@@ -155,6 +157,8 @@ public class TurnByTurn extends JFrame implements Mode  {
             } catch (IOException e) {
                 //What do we do ?
             }
+            
+            return response.toByteArray();
         }
         
         private String renewAccessToken(String key1) {
@@ -178,7 +182,6 @@ public class TurnByTurn extends JFrame implements Mode  {
                 }
                 rd.close();
                 conn.disconnect();
-                System.out.println(response.toString());
                 return response.toString();
                 
                 //return new String( response );
@@ -248,6 +251,8 @@ public class TurnByTurn extends JFrame implements Mode  {
         @Override
         public void selected() {
             TurnByTurn.language = language;
+            byte[] speech = getNextSegment("Hello, this is a sample sentence in "+language, KEY1);
+            writeData(speech, "speech.wav");
             System.out.println(language); //TEST PURPOSES
         }
         
