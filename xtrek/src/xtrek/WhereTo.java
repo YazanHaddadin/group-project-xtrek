@@ -6,15 +6,9 @@
 package xtrek;
 
 //Import necessary packages for the button interface
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.JFrame;
-import java.awt.TextField;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
+
+import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -60,6 +54,8 @@ public class WhereTo extends Mode {
     
     public WhereTo(JFrame frame) {
         super(frame);
+
+        displayMode();
     }
     
     @Override
