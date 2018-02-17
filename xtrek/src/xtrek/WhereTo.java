@@ -54,7 +54,6 @@ public class WhereTo extends Mode {
     
     public WhereTo(JFrame frame) {
         super(frame);
-
         displayMode();
     }
     
