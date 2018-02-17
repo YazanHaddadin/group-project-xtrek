@@ -27,7 +27,7 @@ public class TurnByTurn extends Mode  {
     final static private String KEY1 = "10d30eade54847f881f88da8da8ac8ea";
     final static private String KEY2 = "7277a9230ab04d8ea7f4ed2384077c25";
     
-    public TurnByTurn(JFrame frame) {
+    private TurnByTurn(JFrame frame) {
         super(frame);
 
         displayMode();
@@ -100,7 +100,7 @@ public class TurnByTurn extends Mode  {
         }
         
         private void getNextSegment(String segment) {
-            String token = renewAccessToken(TurnByTurn.KEY1);
+            String token = renewAccessToken();
             HashMap<String, String> requestProp = new HashMap<>();
             requestProp.put("Content-Type", "application/ssml+xml");
             requestProp.put("X-Microsoft-OutputFormat", "riff-16khz-16bit-mono-pcm");
@@ -119,10 +119,10 @@ public class TurnByTurn extends Mode  {
             conn.writeData(response);
         }
         
-        private String renewAccessToken(String key1) {
+        private String renewAccessToken() {
             HashMap<String, String> requestProp = new HashMap<String, String>() {
             };
-            requestProp.put("Ocp-Apim-Subscription-Key", key1);
+            requestProp.put("Ocp-Apim-Subscription-Key", TurnByTurn.KEY1);
             HttpConnection conn = new HttpConnection(
                     "https://api.cognitive.microsoft.com/sts/v1.0/issueToken",
                     requestProp,
