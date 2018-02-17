@@ -106,19 +106,16 @@ public class MainMenu extends Mode {
                 MainMenu.this.hide();
 
                 frame.remove(getPanel());
+
+                @SuppressWarnings("unchecked")
                 Mode newMode = (Mode)currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
+
                 newMode.makeVisible();
                 frame.add(getPanel());
                 frame.revalidate();
                 frame.repaint();
 
-            } catch (java.lang.NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (java.lang.IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (java.lang.InstantiationException e) {
-                e.printStackTrace();
-            } catch (java.lang.reflect.InvocationTargetException e) {
+            } catch (NoSuchMethodException | java.lang.InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
                 e.printStackTrace();
             }
         }

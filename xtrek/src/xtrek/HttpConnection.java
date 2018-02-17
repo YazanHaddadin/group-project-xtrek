@@ -5,6 +5,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ *
+ * @author sebltm
+ */
 class HttpConnection {
     private byte[] response;
 
@@ -20,7 +24,6 @@ class HttpConnection {
             for(Map.Entry<String, String> e : requestProp.entrySet()) {
                 String key = e.getKey();
                 String value = e.getValue();
-                System.out.println(key + " " + value);
                 conn.addRequestProperty(key, value);
             }
 

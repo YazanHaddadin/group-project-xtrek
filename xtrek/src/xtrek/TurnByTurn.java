@@ -27,7 +27,7 @@ public class TurnByTurn extends Mode  {
     final static private String KEY1 = "10d30eade54847f881f88da8da8ac8ea";
     final static private String KEY2 = "7277a9230ab04d8ea7f4ed2384077c25";
     
-    private TurnByTurn(JFrame frame) {
+    TurnByTurn(JFrame frame) {
         super(frame);
 
         displayMode();
@@ -38,8 +38,7 @@ public class TurnByTurn extends Mode  {
 
         frame.setTitle("Turn-By-Turn");
         
-        bOff.setBounds(20,  10, 310, 90);
-        panel.add(bOff);
+        bOff.setBounds(20,  10, 310, 90); panel.add(bOff);
         bEng.setBounds(20, 110, 310, 90); panel.add(bEng);
         bFre.setBounds(20, 210, 310, 90); panel.add(bFre);
         bGer.setBounds(20, 310, 310, 90); panel.add(bGer);
@@ -102,7 +101,7 @@ public class TurnByTurn extends Mode  {
         private void getNextSegment(String segment) {
             String token = renewAccessToken();
             HashMap<String, String> requestProp = new HashMap<>();
-            requestProp.put("Content-Type", "application/ssml+xml");
+            String put = requestProp.put("Content-Type", "application/ssml+xml");
             requestProp.put("X-Microsoft-OutputFormat", "riff-16khz-16bit-mono-pcm");
             requestProp.put("Authorization", "Bearer "+token);
             HttpConnection conn = new HttpConnection(
@@ -128,8 +127,7 @@ public class TurnByTurn extends Mode  {
                     requestProp,
                     "");
 
-            String token = new String(conn.getResponse());
-            return token;
+            return new String(conn.getResponse());
         }
         
         private void focusGained() {
@@ -149,8 +147,7 @@ public class TurnByTurn extends Mode  {
         
         @Override
         public void selected() {
-            getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE);
-            System.out.println(this.LANGUAGE); //TEST PURPOSES
+            getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE); //
         }
     }
 
