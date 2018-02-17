@@ -19,11 +19,11 @@ import java.util.HashMap;
  */
 public class TurnByTurn extends Mode  {
     final private JButton bOff = new LangButton("Off"     , null, null, null);
-    final private JButton bEng = new LangButton("English" , "en-GB", "Male", "(en-GB, George, Apollo)");
-    final private JButton bFre = new LangButton("French"  , "fr-FR", "Female", "(fr-FR, Julie, Apollo)");
-    final private JButton bGer = new LangButton("German"  , "de-DE", "Male", "(de-DE, Stefan, Apollo)");
-    final private JButton bIta = new LangButton("Italian" , "it-IT", "Male", "(it-IT, Cosimo, Apollo)");
-    final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male", "(ja-JP, EkaterinaRUS)");
+    final private JButton bEng = new LangButton("English" , "en-GB", "Male",  "(en-GB, George, Apollo)");
+    final private JButton bFre = new LangButton("French"  , "fr-FR", "Female","(fr-FR, Julie, Apollo)");
+    final private JButton bGer = new LangButton("German"  , "de-DE", "Male",  "(de-DE, Stefan, Apollo)");
+    final private JButton bIta = new LangButton("Italian" , "it-IT", "Male",  "(it-IT, Cosimo, Apollo)");
+    final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male",  "(ja-JP, Ichiro, Apollo)");
     final static private String KEY1 = "10d30eade54847f881f88da8da8ac8ea";
     final static private String KEY2 = "7277a9230ab04d8ea7f4ed2384077c25";
     
