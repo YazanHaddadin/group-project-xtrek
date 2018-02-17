@@ -1,33 +1,28 @@
 package xtrek;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 
 /**
  *
  * @author Yazan
  */
 public class MainMenu extends Mode {
-    private Mode currentClass = this;
+    private Class currentClass = this.getClass();
     
 //    final JButton onOff        = new OperatorButton ("On/Off", "onoffbutton");
 //    final JButton plusMinus    = new OperatorButton("+/-","plusMinusbutton");
 //    final JButton select       = new OperatorButton("Select","selectbutton");
 //    final JButton menu         = new OperatorButton("Menu","menuButton");
     
-    final JButton whereTo      = new OperatorButton("Where To?", new WhereTo(frame));
+    final JButton whereTo      = new OperatorButton("Where To?", WhereTo.class);
 //    final JButton tripComputer = new OperatorButton("Trip Computer","tripbutton");
 //    final JButton map          = new OperatorButton("Map","mapbutton");
-    final JButton speech       = new OperatorButton("Speech", new TurnByTurn(frame));
+    final JButton speech       = new OperatorButton("Speech", TurnByTurn.class);
 //    final JButton satellite    = new OperatorButton("Sattelite","sattellitebutton");
 //    final JButton about        = new OperatorButton("About","aboutbutton");
     
@@ -53,10 +48,10 @@ public class MainMenu extends Mode {
     }
     
     private class OperatorButton extends JButton {
-        private final Mode currentClass;
+        private final Class currentClass;
         private final SelectButton select = new SelectButton();
         
-        OperatorButton(String display, Mode currentClass){
+        OperatorButton(String display, Class currentClass){
             super(display);
             //setIcon( new ImageIcon( s + ".png" ) );
             this.currentClass = currentClass;
@@ -108,13 +103,22 @@ public class MainMenu extends Mode {
         }
 
         public void selected() {
-            frame.getContentPane().remove(currentClass.getPanel());
-            currentClass.hide();
-            MainMenu.this.currentClass = currentClass;
-            currentClass.makeVisible();
-            frame.getContentPane().add(currentClass.getPanel());
-            frame.revalidate();
-            frame.repaint();
+            Mode currentMode;
+            try {
+                 currentMode = (Mode) currentClass.newInstance();
+
+                frame.getContentPane().remove(getPanel());
+                currentMode.hide();
+                MainMenu.this.currentClass = currentClass;
+                currentMode.makeVisible();
+                frame.getContentPane().add(getPanel());
+                frame.revalidate();
+                frame.repaint();
+            } catch (java.lang.InstantiationException e) {
+                e.printStackTrace();
+            } catch (java.lang.IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
     public static void main(String[] args) {
@@ -132,7 +136,7 @@ public class MainMenu extends Mode {
 
         Mode currentView = new MainMenu(frame);
         currentView.displayMode();
-        frame.getContentPane().add(currentView.getPanel());
+        frame.getContentPane().add(getPanel());
         frame.pack();
 
         frame.validate();
