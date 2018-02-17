@@ -48,8 +48,8 @@ public class WhereTo extends Mode {
     final JButton btnX = new LetterButton ("X");
     final JButton btnY = new LetterButton ("Y");
     final JButton btnZ = new LetterButton ("Z");
-    final JButton btnSpace = new LetterButton ("_");
     
+    final JButton btnSpace = new ActionButton ("_");
     final JButton btnChangePage = new ActionButton ("->");
     
     public WhereTo(JFrame frame) {
