@@ -182,6 +182,7 @@ public class WhereTo extends Mode {
         private String letter;
         
         public LetterButton(String letter) {
+            super(letter);
             this.letter = letter;
             //setLetterButtonStyle();      
         }
