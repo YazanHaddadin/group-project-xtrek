@@ -5,31 +5,13 @@
  */
 package xtrek;
 
-import com.sun.java.accessibility.util.GUIInitializedListener;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.net.ContentHandler;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import javax.net.ssl.HttpsURLConnection;
-import javax.swing.*;
-import javax.xml.crypto.Data;
 
 /**
  *
@@ -118,142 +100,37 @@ public class TurnByTurn extends Mode  {
             SELECT.setSelectedListener(this);
         }
         
-        private byte[] getNextSegment(String segment, String KEY1) {
-            ByteArrayOutputStream response = new ByteArrayOutputStream();
-            try {
-                String token = renewAccessToken(KEY1);
-                HashMap<String, String> requestProp = new HashMap<>();
-                requestProp.put("Content-Type", "application/ssml+xml");
-                requestProp.put("X-Microsoft-OutputFormat", "riff-16khz-16bit-mono-pcm");
-                requestProp.put("Authorization", "Bearer "+token);
-                HttpURLConnection conn =
-                        setupConnection(
-                                "https://speech.platform.bing.com/synthesize",
-                                requestProp, 
-                                "<speak version='1.0' xml:lang='en-us'>" +
-                                        "<voice xml:lang='"+this.LANGUAGE+"' " +
-                                        "xml:gender='"+GENDER+"' " +
-                                        "name='Microsoft Server Speech Text to Speech Voice ("+this.LANGUAGE+", "+NAME+")'>"
-                                        +segment+
-                                        "</voice></speak>");
+        private void getNextSegment(String segment, String KEY1) {
+            String token = renewAccessToken(KEY1);
+            HashMap<String, String> requestProp = new HashMap<>();
+            requestProp.put("Content-Type", "application/ssml+xml");
+            requestProp.put("X-Microsoft-OutputFormat", "riff-16khz-16bit-mono-pcm");
+            requestProp.put("Authorization", "Bearer "+token);
+            HttpConnection conn = new HttpConnection(
+                            "https://speech.platform.bing.com/synthesize",
+                            requestProp,
+                            "<speak version='1.0' xml:lang='en-us'>" +
+                                    "<voice xml:lang='"+this.LANGUAGE+"' " +
+                                    "xml:gender='"+GENDER+"' " +
+                                    "name='Microsoft Server Speech Text to Speech Voice ("+this.LANGUAGE+", "+NAME+")'>"
+                                    +segment+
+                                    "</voice></speak>");
 
-                DataInputStream is = new DataInputStream(conn.getInputStream());
-                byte[] line = new byte[1000000]; //1MB
-                while(true) {
-                  int n = is.read(line);
-                  if(n > 0) {
-                      response.write(line, 0, n);
-                  } else {
-                      break;
-                  }
-                }
-                is.close();
-                conn.disconnect();
-            } catch (IOException e) {
-                e.printStackTrace();
-                //What do we do ?
-            }
-            
-            return response.toByteArray();
+            byte[] response = conn.getResponse();
+            conn.writeData(response);
         }
         
         private String renewAccessToken(String key1) {
-            try {
-                HashMap<String, String> requestProp = new HashMap<String, String>() {};
-                requestProp.put("Ocp-Apim-Subscription-Key", key1);
-                HttpsURLConnection conn = 
-                        setupConnection(
-                                "https://api.cognitive.microsoft.com/sts/v1.0/issueToken",
-                                requestProp, 
-                                "");
+            HashMap<String, String> requestProp = new HashMap<String, String>() {
+            };
+            requestProp.put("Ocp-Apim-Subscription-Key", key1);
+            HttpConnection conn = new HttpConnection(
+                    "https://api.cognitive.microsoft.com/sts/v1.0/issueToken",
+                    requestProp,
+                    "");
 
-                //Get Response
-                InputStream is = conn.getInputStream();
-                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-                String line;
-                StringBuilder response = new StringBuilder();
-                while((line = rd.readLine()) != null) {
-                  response.append(line);
-                }
-                rd.close();
-                conn.disconnect();
-                return response.toString();
-                
-                //return new String( response );
-            } catch (IOException e) {
-                //What do we do ?
-            }
-            
-            return null;
-          }
-        
-        private HttpsURLConnection setupConnection(String u, Map<String, String> requestProp, String body) {
-            HttpsURLConnection conn = null;
-            try {
-                URL url = new URL(u);
-                conn = (HttpsURLConnection) url.openConnection();
-                
-                conn.setRequestMethod("POST");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-                
-                for(Map.Entry<String, String> e : requestProp.entrySet()) {
-                    String key = e.getKey();
-                    String value = e.getValue();
-                    System.out.println(key + " " + value);
-                    conn.addRequestProperty(key, value);
-                }
-
-                System.out.println("Content is " + String.valueOf(body.getBytes().length));
-                File file = new File("bodyBytes.txt");
-                FileOutputStream fileos = new FileOutputStream(file);
-                DataOutputStream dos = new DataOutputStream(fileos);
-                dos.write(body.getBytes());
-                dos.flush();
-                dos.close();
-
-                conn.addRequestProperty("Content-Length", String.valueOf(body.getBytes().length));
-                conn.connect();
-
-                DataOutputStream out = new DataOutputStream (conn.getOutputStream ());
-                out.write(body.getBytes());
-                out.flush();
-                out.close();
-
-                int status = conn.getResponseCode();
-                if(status >= 200 && status < 400) {
-                    return conn;
-                } else {
-                    System.out.println("Error : " + status);
-                    InputStream is = conn.getErrorStream();
-                    String line;
-                    BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-                    while((line = bf.readLine()) != null) {
-                        System.out.println("WHAT");
-                        System.out.println(line);
-                    }
-                    System.out.println("After loop");
-
-                }
-
-            } catch (Exception e) {
-                //e.printStackTrace();
-            }
-            
-            return conn;
-        }
-        
-        private void writeData( byte[] buffer ) {
-            try {
-                File             file = new File( "speech.wav" );
-                FileOutputStream fos  = new FileOutputStream( file );
-                DataOutputStream dos  = new DataOutputStream( fos ); 
-                dos.write( buffer );
-                dos.flush();
-                dos.close();
-            } catch ( Exception ex ) {
-                System.exit( 1 );
-            }
+            String token = conn.getResponse().toString();
+            return token;
         }
         
         private void focusGained() {
@@ -274,8 +151,7 @@ public class TurnByTurn extends Mode  {
         @Override
         public void selected() {
             TurnByTurn.language = this.LANGUAGE;
-            byte[] speech = getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE, KEY1);
-            writeData(speech);
+            getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE, KEY1);
             System.out.println(this.LANGUAGE); //TEST PURPOSES
         }
     }
@@ -295,7 +171,7 @@ public class TurnByTurn extends Mode  {
 
         Mode currentView = new TurnByTurn(frame);
         currentView.displayMode();
-        frame.getContentPane().add(currentView.getPanel());
+        frame.getContentPane().add(getPanel());
         frame.pack();
 
         frame.validate();
