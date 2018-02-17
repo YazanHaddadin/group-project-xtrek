@@ -1,8 +1,6 @@
 package xtrek;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
@@ -18,55 +16,47 @@ import javax.swing.WindowConstants;
  *
  * @author Yazan
  */
-public class MainMenu extends JFrame implements Mode {
-    static private Class currentClass = MainMenu.class;
+public class MainMenu extends Mode {
+    private Mode currentClass = this;
     
 //    final JButton onOff        = new OperatorButton ("On/Off", "onoffbutton");
 //    final JButton plusMinus    = new OperatorButton("+/-","plusMinusbutton");
 //    final JButton select       = new OperatorButton("Select","selectbutton");
 //    final JButton menu         = new OperatorButton("Menu","menuButton");
     
-    final JButton whereTo      = new OperatorButton("Where To?",WhereTo.class);
+    final JButton whereTo      = new OperatorButton("Where To?", new WhereTo(frame));
 //    final JButton tripComputer = new OperatorButton("Trip Computer","tripbutton");
 //    final JButton map          = new OperatorButton("Map","mapbutton");
-    final JButton speech       = new OperatorButton("Speech",TurnByTurn.class);
+    final JButton speech       = new OperatorButton("Speech", new TurnByTurn(frame));
 //    final JButton satellite    = new OperatorButton("Sattelite","sattellitebutton");
 //    final JButton about        = new OperatorButton("About","aboutbutton");
     
-    public MainMenu(){
-        displayMode();
+    public MainMenu(JFrame frame){
+        super(frame);
     }
    
     @Override
     public void displayMode() {
-        Container c = getContentPane();
-        setLocationRelativeTo(null);
-       
-        setSize(274,440);
-        setResizable(false);
-        
-        setTitle("Main Menu");
-        setLayout(null);
-        c.setBackground(Color.BLACK);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setTitle("Main Menu");
+        panel.setBackground(Color.BLACK);
         
 //        onOff.setBounds(195,25,35,35); add(onOff);
         
-        whereTo.setBounds(45, 100, 80, 80); add(whereTo);
+        whereTo.setBounds(45, 100, 80, 80); panel.add(whereTo);
 //        tripComputer.setBounds(150, 100, 80, 80);add(tripComputer);
 //        map.setBounds(45, 195, 80, 80);add(map);
-        speech.setBounds(150, 195, 80, 80);add(speech);
+        speech.setBounds(150, 195, 80, 80); panel.add(speech);
 //        satellite.setBounds(45, 290, 80, 80);add(satellite);
 //        about.setBounds(150, 290, 80, 80);add(about);
-        validate();
-        setVisible(true);
+        panel.validate();
+        panel.setVisible(false);
     }
     
     private class OperatorButton extends JButton {
-        private final Class currentClass;
+        private final Mode currentClass;
         private final SelectButton select = new SelectButton();
         
-        OperatorButton(String display, Class currentClass){
+        OperatorButton(String display, Mode currentClass){
             super(display);
             //setIcon( new ImageIcon( s + ".png" ) );
             this.currentClass = currentClass;
@@ -118,15 +108,34 @@ public class MainMenu extends JFrame implements Mode {
         }
 
         public void selected() {
-            MainMenu.currentClass = currentClass;
-            System.out.println(currentClass);
-        }
-
-        public Class getDisplayLabel() {
-            return currentClass;
+            frame.getContentPane().remove(currentClass.getPanel());
+            currentClass.hide();
+            MainMenu.this.currentClass = currentClass;
+            currentClass.makeVisible();
+            frame.getContentPane().add(currentClass.getPanel());
+            frame.revalidate();
+            frame.repaint();
         }
     }
     public static void main(String[] args) {
-        Mode myTest = new MainMenu();
+        JFrame frame = new JFrame();
+        Container c = frame.getContentPane();
+        frame.setLocationRelativeTo(null);
+
+        //Dimensions are in pixels, need to be mm
+        frame.setSize(new Dimension(350, 650));
+        frame.setResizable(true);
+
+        frame.setLayout(null);
+        c.setBackground(Color.BLACK);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        Mode currentView = new MainMenu(frame);
+        currentView.displayMode();
+        frame.getContentPane().add(currentView.getPanel());
+        frame.pack();
+
+        frame.validate();
+        frame.setVisible(true);
     }
 }

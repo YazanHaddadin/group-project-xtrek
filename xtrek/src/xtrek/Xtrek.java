@@ -5,23 +5,45 @@
  */
 package xtrek;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  *
  * @author sebltm
  */
-public class Xtrek {
+public class Xtrek extends JFrame {
 
     /**
      * @param args the command line arguments
      */
     public static Mode currentView;
+    public static Container c;
     
-    public void Xtrek() {
-        currentView = new MainMenu();
+    public Xtrek() {
+        c = this.getContentPane();
+        this.setLocationRelativeTo(null);
+
+        //Dimensions are in pixels, need to be mm
+        this.setSize(new Dimension(350, 650));
+        this.setResizable(true);
+
+        this.setLayout(null);
+        c.setBackground(Color.BLACK);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        currentView = new MainMenu(this);
+        currentView.displayMode();
+        currentView.makeVisible();
+        this.getContentPane().add(currentView.getPanel());
+        this.pack();
+
+        this.validate();
+        this.setVisible(true);
     }
     
-    public static void main(String[] args) {    
-        currentView = new MainMenu();
+    public static void main(String[] args) {
+        Xtrek xtrek = new Xtrek();
     }
     
 }

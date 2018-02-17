@@ -5,10 +5,44 @@
  */
 package xtrek;
 
+import javafx.scene.layout.Pane;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.jar.JarEntry;
+
 /**
  *
  * @author sebltm
  */
-public interface Mode {
-    public void displayMode();
+public abstract class Mode {
+    JFrame frame;
+    static JPanel panel;
+
+    public Mode(JFrame frame) {
+        this.frame = frame;
+
+        panel = new JPanel();
+
+        //Dimensions are in pixels, need to be mm
+        panel.setSize(new Dimension(350, 650));
+
+        panel.setLayout(null);
+        panel.setBackground(Color.BLACK);
+
+    }
+
+    public void makeVisible() {
+        panel.setVisible(true);
+    }
+
+    public void hide() {
+        panel.setVisible(false);
+    }
+
+    public static JPanel getPanel() {
+        return panel;
+    }
+
+    public abstract void displayMode();
 }
