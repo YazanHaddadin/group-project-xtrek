@@ -12,15 +12,15 @@ import java.awt.*;
  *
  * @author sebltm
  */
-public class Xtrek extends JFrame {
+class Xtrek extends JFrame {
 
     /**
      * @param args the command line arguments
      */
-    public static Mode currentView;
-    public static Container c;
+    private static Mode currentView;
+    private static Container c;
     
-    public Xtrek() {
+    private Xtrek() {
         c = this.getContentPane();
         this.setLocationRelativeTo(null);
 
