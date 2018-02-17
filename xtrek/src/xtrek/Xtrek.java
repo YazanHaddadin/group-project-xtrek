@@ -17,7 +17,7 @@ public class Xtrek {
     public static Mode currentView;
     
     public void Xtrek() {
-        /*currentView = new Menu(); or whatever Yazan's class is*/
+        currentView = new MainMenu();
     }
     
     public static void main(String[] args) {    
