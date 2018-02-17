@@ -9,6 +9,6 @@ package xtrek;
  *
  * @author sebltm
  */
-public interface SelectedListener {
-    public void selected();
+interface SelectedListener {
+    void selected();
 }

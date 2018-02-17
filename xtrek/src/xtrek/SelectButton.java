@@ -11,8 +11,8 @@ import java.util.ArrayList;
  *
  * @author sebltm
  */
-public class SelectButton {
-    private ArrayList<SelectedListener> listeners = new ArrayList<SelectedListener>();
+class SelectButton {
+    private final ArrayList<SelectedListener> listeners = new ArrayList<>();
     
     public void setSelectedListener(SelectedListener listener) {
         listeners.add(listener);

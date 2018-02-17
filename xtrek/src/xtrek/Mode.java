@@ -5,21 +5,18 @@
  */
 package xtrek;
 
-import javafx.scene.layout.Pane;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.jar.JarEntry;
 
 /**
  *
  * @author sebltm
  */
 public abstract class Mode {
-    JFrame frame;
+    final JFrame frame;
     static JPanel panel;
 
-    public Mode(JFrame frame) {
+    Mode(JFrame frame) {
         this.frame = frame;
 
         panel = new JPanel();
@@ -36,7 +33,7 @@ public abstract class Mode {
         panel.setVisible(true);
     }
 
-    public void hide() {
+    void hide() {
         panel.setVisible(false);
     }
 

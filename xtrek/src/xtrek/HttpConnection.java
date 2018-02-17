@@ -5,14 +5,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-public class HttpConnection {
-    private HttpURLConnection conn = null;
+class HttpConnection {
     private byte[] response;
 
     public HttpConnection(String u, Map<String, String> requestProp, String body) {
         try {
             URL url = new URL(u);
-            conn = (HttpURLConnection) url.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
@@ -40,7 +39,7 @@ public class HttpConnection {
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
                 byte[] buffer = new byte[1000000]; //Maybe too much ?
-                for (;;) {
+                while(true) {
                     int n = is.read(buffer);
                     if ( n > 0 ) {
                         os.write( buffer, 0, n );

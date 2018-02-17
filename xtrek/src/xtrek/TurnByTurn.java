@@ -18,13 +18,12 @@ import java.util.HashMap;
  * @author sebltm
  */
 public class TurnByTurn extends Mode  {
-    static private String language = "en-GB";
     final private JButton bOff = new LangButton("Off"     , null, null, null);
-    final private JButton bEng = new LangButton("English" , "en-GB", "Male", "George");
-    final private JButton bFre = new LangButton("French"  , "fr-FR", "Female", "Julie");
-    final private JButton bGer = new LangButton("German"  , "de-DE", "Male", "Stefan");
-    final private JButton bIta = new LangButton("Italian" , "it-IT", "Male", "Cosimo");
-    final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male", "EkaterinaRUS");
+    final private JButton bEng = new LangButton("English" , "en-GB", "Male", "(en-GB, George, Apollo)");
+    final private JButton bFre = new LangButton("French"  , "fr-FR", "Female", "(fr-FR, Julie, Apollo)");
+    final private JButton bGer = new LangButton("German"  , "de-DE", "Male", "(de-DE, Stefan, Apollo)");
+    final private JButton bIta = new LangButton("Italian" , "it-IT", "Male", "(it-IT, Cosimo, Apollo)");
+    final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male", "(ja-JP, EkaterinaRUS)");
     final static private String KEY1 = "10d30eade54847f881f88da8da8ac8ea";
     final static private String KEY2 = "7277a9230ab04d8ea7f4ed2384077c25";
     
@@ -100,8 +99,8 @@ public class TurnByTurn extends Mode  {
             SELECT.setSelectedListener(this);
         }
         
-        private void getNextSegment(String segment, String KEY1) {
-            String token = renewAccessToken(KEY1);
+        private void getNextSegment(String segment) {
+            String token = renewAccessToken(TurnByTurn.KEY1);
             HashMap<String, String> requestProp = new HashMap<>();
             requestProp.put("Content-Type", "application/ssml+xml");
             requestProp.put("X-Microsoft-OutputFormat", "riff-16khz-16bit-mono-pcm");
@@ -112,7 +111,7 @@ public class TurnByTurn extends Mode  {
                             "<speak version='1.0' xml:lang='en-us'>" +
                                     "<voice xml:lang='"+this.LANGUAGE+"' " +
                                     "xml:gender='"+GENDER+"' " +
-                                    "name='Microsoft Server Speech Text to Speech Voice ("+this.LANGUAGE+", "+NAME+")'>"
+                                    "name='Microsoft Server Speech Text to Speech Voice "+NAME+"'>"
                                     +segment+
                                     "</voice></speak>");
 
@@ -129,7 +128,7 @@ public class TurnByTurn extends Mode  {
                     requestProp,
                     "");
 
-            String token = conn.getResponse().toString();
+            String token = new String(conn.getResponse());
             return token;
         }
         
@@ -150,8 +149,7 @@ public class TurnByTurn extends Mode  {
         
         @Override
         public void selected() {
-            TurnByTurn.language = this.LANGUAGE;
-            getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE, KEY1);
+            getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE);
             System.out.println(this.LANGUAGE); //TEST PURPOSES
         }
     }
