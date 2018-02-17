@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
  * @author Yazan
  */
 public class MainMenu extends Mode {
-    private Class currentClass = this.getClass();
     
 //    final JButton onOff        = new OperatorButton ("On/Off", "onoffbutton");
 //    final JButton plusMinus    = new OperatorButton("+/-","plusMinusbutton");
@@ -103,20 +102,23 @@ public class MainMenu extends Mode {
         }
 
         public void selected() {
-            Mode currentMode;
             try {
-                 currentMode = (Mode) currentClass.newInstance();
+                MainMenu.this.hide();
 
-                frame.getContentPane().remove(getPanel());
-                currentMode.hide();
-                MainMenu.this.currentClass = currentClass;
-                currentMode.makeVisible();
-                frame.getContentPane().add(getPanel());
+                frame.remove(getPanel());
+                Mode newMode = (Mode)currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
+                newMode.makeVisible();
+                frame.add(getPanel());
                 frame.revalidate();
                 frame.repaint();
-            } catch (java.lang.InstantiationException e) {
+
+            } catch (java.lang.NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (java.lang.IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (java.lang.InstantiationException e) {
+                e.printStackTrace();
+            } catch (java.lang.reflect.InvocationTargetException e) {
                 e.printStackTrace();
             }
         }
