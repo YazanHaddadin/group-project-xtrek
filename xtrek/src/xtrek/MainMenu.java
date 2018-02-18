@@ -38,8 +38,14 @@ public class MainMenu extends Mode {
         frame.setTitle("Main Menu");
         panel.setBackground(Color.BLACK);
         
+        JPanel display = new JPanel();
+        display.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.GRAY));
+        display.setBounds(32,10,281,600);
+        display.setOpaque(false);
+        panel.add(display);
+        
         onOff.setBounds(244,25,55,55); panel.add(onOff);
-        menu.setBounds(310,150,30,65); panel.add(menu);
+        menu.setBounds(313,150,20,55); panel.add(menu);
         plus.setBounds(12,150,20,30); panel.add(plus);
         minus.setBounds(12,205,20,30); panel.add(minus);
         select.setBounds(12,325,20,65); panel.add(select);
@@ -58,7 +64,6 @@ public class MainMenu extends Mode {
             select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
             minus.setEnabled(false);select.setEnabled(false);       
         }
-        
         panel.validate();
         panel.setVisible(true);
     }
