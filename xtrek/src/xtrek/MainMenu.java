@@ -55,7 +55,8 @@ public class MainMenu extends Mode {
             whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
             speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
             menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
-            select.setBackground(Color.GRAY);           
+            select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
+            minus.setEnabled(false);select.setEnabled(false);       
         }
         
         panel.validate();
@@ -82,11 +83,16 @@ public class MainMenu extends Mode {
                                   menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
                                   select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
                                   minus.setEnabled(false);select.setEnabled(false);isOn = false;
-                                  //still need to work on disabling the buttons that are in OFF mode!!
                               };break;
-            case "+"        :  System.out.println(control + isOn); break;
-            case "-"        :   break;
-            case "Select"   :   break;
+            case "+"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
+                               else if(isOn == false){plus.setEnabled(false);};
+                               break;
+            case "-"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
+                               else if(isOn == false){plus.setEnabled(false);};
+                               break;
+            case "Select"   :  if (isOn == true){System.out.println(control);} // select button
+                               else if(isOn == false){plus.setEnabled(false);};
+                               break;
             case "M"        :  MainMenu.this.makeVisible(); frame.add(getPanel()); frame.revalidate(); frame.repaint(); break;
             }
           }
@@ -110,8 +116,9 @@ public class MainMenu extends Mode {
                 public void focusLost(FocusEvent e) {
                     ControlButton.this.focusLost();
                 }
+            
             });
-        }    
+        }
         
         private void setStyle() {
             setBackground(Color.WHITE);
@@ -121,11 +128,15 @@ public class MainMenu extends Mode {
         }
         
         private void focusGained() {
-            setBackground(Color.ORANGE);
+            if (isOn == true){
+                setBackground(Color.ORANGE);
+            }
         }
 
         private void focusLost() {
+             if (isOn == true){
             setBackground(Color.WHITE);
+             }
         }
     }
     
