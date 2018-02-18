@@ -54,7 +54,20 @@ public class WhereTo extends Mode {
     final JButton btnZ = new KeyboardButton ("Z");
     
     final JButton btnSpace = new KeyboardButton ("_");
-    final JButton btnChangePage = new KeyboardButton (">");
+    final JButton btnNextPage = new KeyboardButton (">");
+    
+    final JButton btn1 = new KeyboardButton ("1");
+    final JButton btn2 = new KeyboardButton ("2");
+    final JButton btn3 = new KeyboardButton ("3");
+    final JButton btn4 = new KeyboardButton ("4");
+    final JButton btn5 = new KeyboardButton ("5");
+    final JButton btn6 = new KeyboardButton ("6");
+    final JButton btn7 = new KeyboardButton ("7");
+    final JButton btn8 = new KeyboardButton ("8");
+    final JButton btn9 = new KeyboardButton ("9");
+    final JButton btn0 = new KeyboardButton ("0");
+    final JButton btnBackPage = new KeyboardButton ("<");
+    final JButton btnDel = new KeyboardButton ("DEL");
     
     public WhereTo(JFrame frame) {
         super(frame);
@@ -205,10 +218,87 @@ public class WhereTo extends Mode {
         btnSpace.setFont(new Font("Arial", Font.BOLD, 36));
         btnSpace.setBorder(new LineBorder(Color.BLACK));
         
-        btnChangePage.setBackground(Color.WHITE);
-        btnChangePage.setBounds(245, 520, 70, 70); panel.add(btnChangePage);
-        btnChangePage.setFont(new Font("Arial", Font.BOLD, 36));
-        btnChangePage.setBorder(new LineBorder(Color.BLACK));
+        btnNextPage.setBackground(Color.WHITE);
+        btnNextPage.setBounds(245, 520, 70, 70); panel.add(btnNextPage);
+        btnNextPage.setFont(new Font("Arial", Font.BOLD, 36));
+        btnNextPage.setBorder(new LineBorder(Color.BLACK));
+        
+        
+        
+        
+        
+        //Numeric keyboard
+        btn1.setBackground(Color.WHITE);
+        btn1.setBounds(35, 100, 93, 98); panel.add(btn1);
+        btn1.setFont(new Font("Arial", Font.BOLD, 36));
+        btn1.setBorder(new LineBorder(Color.BLACK));
+        btn1.setVisible(false);
+        
+        btn2.setBackground(Color.WHITE);
+        btn2.setBounds(128, 100, 93, 98); panel.add(btn2);
+        btn2.setFont(new Font("Arial", Font.BOLD, 36));
+        btn2.setBorder(new LineBorder(Color.BLACK));
+        btn2.setVisible(false);
+        
+        btn3.setBackground(Color.WHITE);
+        btn3.setBounds(221, 100, 93, 98); panel.add(btn3);
+        btn3.setFont(new Font("Arial", Font.BOLD, 36));
+        btn3.setBorder(new LineBorder(Color.BLACK));
+        btn3.setVisible(false);
+        
+        btn4.setBackground(Color.WHITE);
+        btn4.setBounds(35, 198, 93, 98); panel.add(btn4);
+        btn4.setFont(new Font("Arial", Font.BOLD, 36));
+        btn4.setBorder(new LineBorder(Color.BLACK));
+        btn4.setVisible(false);
+        
+        btn5.setBackground(Color.WHITE);
+        btn5.setBounds(128, 198, 93, 98); panel.add(btn5);
+        btn5.setFont(new Font("Arial", Font.BOLD, 36));
+        btn5.setBorder(new LineBorder(Color.BLACK));
+        btn5.setVisible(false);
+        
+        btn6.setBackground(Color.WHITE);
+        btn6.setBounds(221, 198, 93, 98); panel.add(btn6);
+        btn6.setFont(new Font("Arial", Font.BOLD, 36));
+        btn6.setBorder(new LineBorder(Color.BLACK));
+        btn6.setVisible(false);
+        
+        btn7.setBackground(Color.WHITE);
+        btn7.setBounds(35, 296, 93, 98); panel.add(btn7);
+        btn7.setFont(new Font("Arial", Font.BOLD, 36));
+        btn7.setBorder(new LineBorder(Color.BLACK));
+        btn7.setVisible(false);
+        
+        btn8.setBackground(Color.WHITE);
+        btn8.setBounds(128, 296, 93, 98); panel.add(btn8);
+        btn8.setFont(new Font("Arial", Font.BOLD, 36));
+        btn8.setBorder(new LineBorder(Color.BLACK));
+        btn8.setVisible(false);
+        
+        btn9.setBackground(Color.WHITE);
+        btn9.setBounds(221, 296, 93, 98); panel.add(btn9);
+        btn9.setFont(new Font("Arial", Font.BOLD, 36));
+        btn9.setBorder(new LineBorder(Color.BLACK));
+        btn9.setVisible(false);
+        
+        btn0.setBackground(Color.WHITE);
+        btn0.setBounds(35, 394, 93, 98); panel.add(btn0);
+        btn0.setFont(new Font("Arial", Font.BOLD, 36));
+        btn0.setBorder(new LineBorder(Color.BLACK));
+        btn0.setVisible(false);
+        
+        btnBackPage.setBackground(Color.WHITE);
+        btnBackPage.setBounds(35, 492, 93, 98); panel.add(btnBackPage);
+        btnBackPage.setFont(new Font("Arial", Font.BOLD, 36));
+        btnBackPage.setBorder(new LineBorder(Color.BLACK));
+        btnBackPage.setVisible(false);
+        
+        btnDel.setBackground(Color.WHITE);
+        btnDel.setBounds(128, 394, 186, 196); panel.add(btnDel);
+        btnDel.setFont(new Font("Arial", Font.BOLD, 36));
+        btnDel.setBorder(new LineBorder(Color.BLACK));
+        btnDel.setVisible(false);
         
         panel.validate();
         panel.setVisible(true);
@@ -271,7 +361,103 @@ public class WhereTo extends Mode {
             else if(">".equals(letter)) {
                 // Code for going to the next page...
                 System.out.println("Go to next page");
+                
+                //Hide all buttons for the main letter keyboard
+                btnA.setVisible(false);
+                btnB.setVisible(false);
+                btnC.setVisible(false);
+                btnD.setVisible(false);
+                btnE.setVisible(false);
+                btnF.setVisible(false);
+                btnG.setVisible(false);
+                btnH.setVisible(false);
+                btnI.setVisible(false);
+                btnJ.setVisible(false);
+                btnK.setVisible(false);
+                btnL.setVisible(false);
+                btnM.setVisible(false);
+                btnN.setVisible(false);
+                btnO.setVisible(false);
+                btnP.setVisible(false);
+                btnQ.setVisible(false);
+                btnR.setVisible(false);
+                btnS.setVisible(false);
+                btnT.setVisible(false);
+                btnU.setVisible(false);
+                btnV.setVisible(false);
+                btnW.setVisible(false);
+                btnX.setVisible(false);
+                btnY.setVisible(false);
+                btnZ.setVisible(false);
+                btnSpace.setVisible(false);
+                btnNextPage.setVisible(false);
+                
+                //Show all numeric keyboard buttons
+                btn1.setVisible(true);
+                btn2.setVisible(true);
+                btn3.setVisible(true);
+                btn4.setVisible(true);
+                btn5.setVisible(true);
+                btn6.setVisible(true);
+                btn7.setVisible(true);
+                btn8.setVisible(true);
+                btn9.setVisible(true);
+                btn0.setVisible(true);
+                btnDel.setVisible(true);
+                btnBackPage.setVisible(true); 
             }
+            
+            else if ("DEL".equals(letter)) {
+                System.out.println("Delete button pressed");
+                // Delete a letter from the text field
+            }
+            
+            else if ("<".equals(letter)) {
+                //Show all buttons for the main letter keyboard
+                btnA.setVisible(true);
+                btnB.setVisible(true);
+                btnC.setVisible(true);
+                btnD.setVisible(true);
+                btnE.setVisible(true);
+                btnF.setVisible(true);
+                btnG.setVisible(true);
+                btnH.setVisible(true);
+                btnI.setVisible(true);
+                btnJ.setVisible(true);
+                btnK.setVisible(true);
+                btnL.setVisible(true);
+                btnM.setVisible(true);
+                btnN.setVisible(true);
+                btnO.setVisible(true);
+                btnP.setVisible(true);
+                btnQ.setVisible(true);
+                btnR.setVisible(true);
+                btnS.setVisible(true);
+                btnT.setVisible(true);
+                btnU.setVisible(true);
+                btnV.setVisible(true);
+                btnW.setVisible(true);
+                btnX.setVisible(true);
+                btnY.setVisible(true);
+                btnZ.setVisible(true);
+                btnSpace.setVisible(true);
+                btnNextPage.setVisible(true);
+                
+                //Hide all numeric keyboard buttons
+                btn1.setVisible(false);
+                btn2.setVisible(false);
+                btn3.setVisible(false);
+                btn4.setVisible(false);
+                btn5.setVisible(false);
+                btn6.setVisible(false);
+                btn7.setVisible(false);
+                btn8.setVisible(false);
+                btn9.setVisible(false);
+                btn0.setVisible(false);
+                btnDel.setVisible(false);
+                btnBackPage.setVisible(false);
+            }
+            
             else {
                 destination.setText(destination.getText() + letter);
             }
