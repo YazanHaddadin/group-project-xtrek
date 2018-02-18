@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 public class WhereTo extends Mode {
     
     // Text field where destination will go.
-    final TextField destination = new TextField("EXETER");
+    final JTextField destination = new JTextField("EXETER");
     
     //Create each letter button
     final JButton btnA = new LetterButton ("A");
@@ -64,6 +64,7 @@ public class WhereTo extends Mode {
         destination.setBounds(35, 10, 280, 80);
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font("Arial", Font.BOLD, 36));
+        destination.setHorizontalAlignment(JTextField.CENTER);
         
         btnA.setBackground(Color.WHITE);
         btnA.setBounds(35, 100, 70, 70); panel.add(btnA);
