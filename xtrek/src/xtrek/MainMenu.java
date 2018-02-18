@@ -13,7 +13,7 @@ import javax.swing.border.Border;
  * @author Yazan
  */
 public class MainMenu extends Mode {
-    private static Class now;
+    private static boolean isOn=false;
     
     final JButton onOff        = new ControlButton ("PWR");
     final JButton plus         = new ControlButton("+");
@@ -30,6 +30,7 @@ public class MainMenu extends Mode {
     
     public MainMenu(JFrame frame){
         super(frame);
+        displayMode();
     }
    
     @Override
@@ -49,8 +50,16 @@ public class MainMenu extends Mode {
         speech.setBounds(180, 300, 120, 120); panel.add(speech);
         satellite.setBounds(45, 450, 120, 120);panel.add(satellite);
         about.setBounds(180, 450, 120, 120);panel.add(about);
+        
+        if (isOn==false){
+            whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
+            speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
+            menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
+            select.setBackground(Color.GRAY);           
+        }
+        
         panel.validate();
-        panel.setVisible(false);
+        panel.setVisible(true);
     }
     
     private class ControlButton extends JButton {
@@ -62,11 +71,22 @@ public class MainMenu extends Mode {
           addMouseListener( new MouseAdapter() {
           public void mouseClicked( MouseEvent me ) {
             switch ( control ) {
-            case "PWR"      :  MainMenu.this.hide(); frame.remove(getPanel()); break;
-            case "+"        :   break;
+            case "PWR"      : if (isOn == false){
+                                  whereTo.setVisible(true); tripComputer.setVisible(true); map.setVisible(true);
+                                  speech.setVisible(true);satellite.setVisible(true);about.setVisible(true);
+                                  menu.setBackground(Color.WHITE);plus.setBackground(Color.WHITE);minus.setBackground(Color.WHITE);
+                                  select.setBackground(Color.WHITE);isOn = true;
+                              } else if(isOn == true){
+                                  whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
+                                  speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
+                                  menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
+                                  select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
+                                  minus.setEnabled(false);select.setEnabled(false);isOn = false;
+                              };break;
+            case "+"        :  System.out.println(control + isOn); break;
             case "-"        :   break;
             case "Select"   :   break;
-            case "M"     :  MainMenu.this.makeVisible(); frame.add(getPanel()); frame.revalidate(); frame.repaint(); break;
+            case "M"        :  MainMenu.this.makeVisible(); frame.add(getPanel()); frame.revalidate(); frame.repaint(); break;
             }
           }
             @Override
@@ -164,7 +184,6 @@ public class MainMenu extends Mode {
 
         public void selected() {
             try {
-                now = currentClass;
                 MainMenu.this.hide();
 
                 frame.remove(getPanel());
@@ -181,27 +200,5 @@ public class MainMenu extends Mode {
                 e.printStackTrace();
             }
         }
-    }
-    
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        Container c = frame.getContentPane();
-        frame.setLocationRelativeTo(null);
-
-        //Dimensions are in pixels, need to be mm
-        frame.setSize(new Dimension(350, 650));
-        frame.setResizable(true);
-
-        frame.setLayout(null);
-        c.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        Mode currentView = new MainMenu(frame);
-        currentView.displayMode();
-        frame.getContentPane().add(getPanel());
-        frame.pack();
-
-        frame.validate();
-        frame.setVisible(true);
     }
 }
