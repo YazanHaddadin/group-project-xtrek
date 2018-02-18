@@ -358,10 +358,9 @@ public class WhereTo extends Mode {
             if("_".equals(letter)) {
                 destination.setText(destination.getText() + " ");
             }
+            
+            //Next page button pressed
             else if(">".equals(letter)) {
-                // Code for going to the next page...
-                System.out.println("Go to next page");
-                
                 //Hide all buttons for the main letter keyboard
                 btnA.setVisible(false);
                 btnB.setVisible(false);
@@ -407,11 +406,13 @@ public class WhereTo extends Mode {
                 btnBackPage.setVisible(true); 
             }
             
+            //Delete button pressed
             else if ("DEL".equals(letter)) {
-                System.out.println("Delete button pressed");
-                // Delete a letter from the text field
+                //Delete a letter from the text field
+                destination.setText(destination.getText().substring(0, destination.getText ().length() - 1));
             }
             
+            //Previous page button has been pressed
             else if ("<".equals(letter)) {
                 //Show all buttons for the main letter keyboard
                 btnA.setVisible(true);
@@ -458,6 +459,7 @@ public class WhereTo extends Mode {
                 btnBackPage.setVisible(false);
             }
             
+            //An ordinary letter or number button has been pressed
             else {
                 destination.setText(destination.getText() + letter);
             }
