@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 public class WhereTo extends Mode {
     
     // Text field where destination will go.
-    final TextField destination = new TextField();
+    final TextField destination = new TextField("EXETER");
     
     //Create each letter button
     final JButton btnA = new LetterButton ("A");
@@ -59,7 +59,11 @@ public class WhereTo extends Mode {
     
     @Override
     public void displayMode() {
-        frame.setTitle("Trip Computer");
+        frame.setTitle("Where To?");
+        
+        destination.setBounds(35, 10, 280, 80);
+        destination.setBackground(Color.WHITE);
+        destination.setFont(new Font("Arial", Font.BOLD, 36));
         
         btnA.setBackground(Color.WHITE);
         btnA.setBounds(35, 100, 70, 70); panel.add(btnA);
@@ -203,6 +207,7 @@ public class WhereTo extends Mode {
         
         panel.validate();
         panel.setVisible(true);
+        frame.add(destination);
     }
     
     class LetterButton extends JButton {
