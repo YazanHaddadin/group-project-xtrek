@@ -26,35 +26,35 @@ public class WhereTo extends Mode {
     final JTextField destination = new JTextField();
     
     //Create each letter button
-    final JButton btnA = new LetterButton ("A");
-    final JButton btnB = new LetterButton ("B");
-    final JButton btnC = new LetterButton ("C");
-    final JButton btnD = new LetterButton ("D");
-    final JButton btnE = new LetterButton ("E");
-    final JButton btnF = new LetterButton ("F");
-    final JButton btnG = new LetterButton ("G");
-    final JButton btnH = new LetterButton ("H");
-    final JButton btnI = new LetterButton ("I");
-    final JButton btnJ = new LetterButton ("J");
-    final JButton btnK = new LetterButton ("K");
-    final JButton btnL = new LetterButton ("L");
-    final JButton btnM = new LetterButton ("M");
-    final JButton btnN = new LetterButton ("N");
-    final JButton btnO = new LetterButton ("O");
-    final JButton btnP = new LetterButton ("P");
-    final JButton btnQ = new LetterButton ("Q");
-    final JButton btnR = new LetterButton ("R");
-    final JButton btnS = new LetterButton ("S");
-    final JButton btnT = new LetterButton ("T");
-    final JButton btnU = new LetterButton ("U");
-    final JButton btnV = new LetterButton ("V");
-    final JButton btnW = new LetterButton ("W");
-    final JButton btnX = new LetterButton ("X");
-    final JButton btnY = new LetterButton ("Y");
-    final JButton btnZ = new LetterButton ("Z");
+    final JButton btnA = new KeyboardButton ("A");
+    final JButton btnB = new KeyboardButton ("B");
+    final JButton btnC = new KeyboardButton ("C");
+    final JButton btnD = new KeyboardButton ("D");
+    final JButton btnE = new KeyboardButton ("E");
+    final JButton btnF = new KeyboardButton ("F");
+    final JButton btnG = new KeyboardButton ("G");
+    final JButton btnH = new KeyboardButton ("H");
+    final JButton btnI = new KeyboardButton ("I");
+    final JButton btnJ = new KeyboardButton ("J");
+    final JButton btnK = new KeyboardButton ("K");
+    final JButton btnL = new KeyboardButton ("L");
+    final JButton btnM = new KeyboardButton ("M");
+    final JButton btnN = new KeyboardButton ("N");
+    final JButton btnO = new KeyboardButton ("O");
+    final JButton btnP = new KeyboardButton ("P");
+    final JButton btnQ = new KeyboardButton ("Q");
+    final JButton btnR = new KeyboardButton ("R");
+    final JButton btnS = new KeyboardButton ("S");
+    final JButton btnT = new KeyboardButton ("T");
+    final JButton btnU = new KeyboardButton ("U");
+    final JButton btnV = new KeyboardButton ("V");
+    final JButton btnW = new KeyboardButton ("W");
+    final JButton btnX = new KeyboardButton ("X");
+    final JButton btnY = new KeyboardButton ("Y");
+    final JButton btnZ = new KeyboardButton ("Z");
     
-    final JButton btnSpace = new ActionButton ("_");
-    final JButton btnChangePage = new ActionButton ("->");
+    final JButton btnSpace = new KeyboardButton ("_");
+    final JButton btnChangePage = new KeyboardButton (">");
     
     public WhereTo(JFrame frame) {
         super(frame);
@@ -215,39 +215,39 @@ public class WhereTo extends Mode {
         frame.add(destination);
     }
     
-    class LetterButton extends JButton {
+    class KeyboardButton extends JButton {
         private String letter;
-        
-        public LetterButton(String letter) {
+                
+        public KeyboardButton(String letter) {
             super(letter);
-            this.letter = letter;  
+            this.letter = letter; 
             
             this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                LetterButton.this.selected();
+                KeyboardButton.this.selected();
             }
             
             @Override
             public void mouseEntered(MouseEvent e) {
-                LetterButton.this.focusGained();
+                KeyboardButton.this.focusGained();
             }
                
             @Override
             public void mouseExited(MouseEvent e) {
-                LetterButton.this.focusLost();
+                KeyboardButton.this.focusLost();
             }
         });
             
             this.addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
-                    LetterButton.this.focusGained();
+                    KeyboardButton.this.focusGained();
                 }
 
                 @Override
                 public void focusLost(FocusEvent e) {
-                    LetterButton.this.focusLost();
+                    KeyboardButton.this.focusLost();
                 }
             });
         }
@@ -265,7 +265,17 @@ public class WhereTo extends Mode {
         }
         
         private void selected() {
-            destination.setText(destination.getText() + letter);
+            if("_".equals(letter)) {
+                destination.setText(destination.getText() + " ");
+            }
+            else if(">".equals(letter)) {
+                // Code for going to the next page...
+                System.out.println("Go to next page");
+            }
+            else {
+                destination.setText(destination.getText() + letter);
+            }
+            
         }
          
          
@@ -273,59 +283,7 @@ public class WhereTo extends Mode {
         }
 
     
-    class ActionButton extends JButton {
-        private String actionName;
-        
-        public ActionButton(String actionName) {
-            super(actionName);
-            this.actionName = actionName; 
-            
-            this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ActionButton.this.selected();
-            }
-            
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                ActionButton.this.focusGained();
-            }
-               
-            @Override
-            public void mouseExited(MouseEvent e) {
-                ActionButton.this.focusLost();
-            }
-        });
-            
-            this.addFocusListener(new FocusListener() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    ActionButton.this.focusGained();
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    ActionButton.this.focusLost();
-                }
-            });
-        }
-        
-         public String getDisplayLabel() {
-            return this.actionName;
-        }
-         
-         private void focusGained() {
-            setBackground(Color.ORANGE);
-        }
-
-        private void focusLost() {
-            setBackground(Color.WHITE);
-        }
-        
-        private void selected() {
-            //Code for when an action button has been selected will go here.
-        }
-    }
+    
 
 }
     
