@@ -82,6 +82,7 @@ public class MainMenu extends Mode {
                                   menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
                                   select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
                                   minus.setEnabled(false);select.setEnabled(false);isOn = false;
+                                  //still need to work on disabling the buttons that are in OFF mode!!
                               };break;
             case "+"        :  System.out.println(control + isOn); break;
             case "-"        :   break;
