@@ -9,6 +9,10 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 
 
@@ -19,7 +23,7 @@ import javax.swing.border.LineBorder;
 public class WhereTo extends Mode {
     
     // Text field where destination will go.
-    final JTextField destination = new JTextField("EXETER");
+    final JTextField destination = new JTextField();
     
     //Create each letter button
     final JButton btnA = new LetterButton ("A");
@@ -216,25 +220,114 @@ public class WhereTo extends Mode {
         
         public LetterButton(String letter) {
             super(letter);
-            this.letter = letter;     
+            this.letter = letter;  
+            
+            this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LetterButton.this.selected();
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                LetterButton.this.focusGained();
+            }
+               
+            @Override
+            public void mouseExited(MouseEvent e) {
+                LetterButton.this.focusLost();
+            }
+        });
+            
+            this.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    LetterButton.this.focusGained();
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    LetterButton.this.focusLost();
+                }
+            });
         }
         
-         public String getDisplayLabel() {
-            return this.letter;
+        public String getDisplayLabel() {
+           return this.letter;
         }
-    }
+         
+        private void focusGained() {
+           setBackground(Color.ORANGE);
+        }
+
+        private void focusLost() {
+            setBackground(Color.WHITE);
+        }
+        
+        private void selected() {
+            destination.setText(destination.getText() + letter);
+        }
+         
+         
+             
+        }
+
     
     class ActionButton extends JButton {
         private String actionName;
         
         public ActionButton(String actionName) {
             super(actionName);
-            this.actionName = actionName;     
+            this.actionName = actionName; 
+            
+            this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ActionButton.this.selected();
+            }
+            
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ActionButton.this.focusGained();
+            }
+               
+            @Override
+            public void mouseExited(MouseEvent e) {
+                ActionButton.this.focusLost();
+            }
+        });
+            
+            this.addFocusListener(new FocusListener() {
+                @Override
+                public void focusGained(FocusEvent e) {
+                    ActionButton.this.focusGained();
+                }
+
+                @Override
+                public void focusLost(FocusEvent e) {
+                    ActionButton.this.focusLost();
+                }
+            });
         }
         
          public String getDisplayLabel() {
             return this.actionName;
         }
+         
+         private void focusGained() {
+            setBackground(Color.ORANGE);
+        }
+
+        private void focusLost() {
+            setBackground(Color.WHITE);
+        }
+        
+        private void selected() {
+            //Code for when an action button has been selected will go here.
+        }
     }
-    
+
 }
+    
+
+
