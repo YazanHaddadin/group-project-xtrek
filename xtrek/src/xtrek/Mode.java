@@ -27,8 +27,20 @@ public abstract class Mode {
 
         //Dimensions are in pixels, need to be mm
         panel.setSize(new Dimension(570, 710));
-
         panel.setLayout(null);
+
+        panel.setBackground(Color.BLACK);
+    }
+
+    Mode(JFrame frame, LayoutManager layout) {
+        this.frame = frame;
+
+        panel = new JPanel();
+
+        //Dimensions are in pixels, need to be mm
+        panel.setSize(new Dimension(570, 710));
+        panel.setLayout(layout);
+
         panel.setBackground(Color.BLACK);
 
     }
