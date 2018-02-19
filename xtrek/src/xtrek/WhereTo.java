@@ -5,8 +5,6 @@
  */
 package xtrek;
 
-//Import necessary packages for the button interface
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -25,7 +23,7 @@ public class WhereTo extends Mode {
     // Text field where destination will go.
     final JTextField destination = new JTextField();
     
-    //Create each letter button
+    //Create each keyboard button
     final JButton btnA = new KeyboardButton ("A");
     final JButton btnB = new KeyboardButton ("B");
     final JButton btnC = new KeyboardButton ("C");
@@ -78,226 +76,79 @@ public class WhereTo extends Mode {
     public void displayMode() {
         frame.setTitle("Where To?");
         
+        //Styling and positioning for destination text field
         destination.setBounds(35, 10, 280, 80);
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font("Arial", Font.BOLD, 36));
         destination.setHorizontalAlignment(JTextField.CENTER);
         
-        btnA.setBackground(Color.WHITE);
+        //Set co-ordinates for the buttons on the alphabetical keyboard
         btnA.setBounds(35, 100, 70, 70); panel.add(btnA);
-        btnA.setFont(new Font("Arial", Font.BOLD, 36));
-        btnA.setBorder(new LineBorder(Color.BLACK));
-        
-        btnB.setBackground(Color.WHITE);
         btnB.setBounds(105, 100, 70, 70); panel.add(btnB);
-        btnB.setFont(new Font("Arial", Font.BOLD, 36));
-        btnB.setBorder(new LineBorder(Color.BLACK));
-        
-        btnC.setBackground(Color.WHITE);
         btnC.setBounds(175, 100, 70, 70); panel.add(btnC);
-        btnC.setFont(new Font("Arial", Font.BOLD, 36));
-        btnC.setBorder(new LineBorder(Color.BLACK));
-        
-        btnD.setBackground(Color.WHITE);
         btnD.setBounds(245, 100, 70, 70); panel.add(btnD);
-        btnD.setFont(new Font("Arial", Font.BOLD, 36));
-        btnD.setBorder(new LineBorder(Color.BLACK));
-
-        btnE.setBackground(Color.WHITE);
         btnE.setBounds(35, 170, 70, 70); panel.add(btnE);
-        btnE.setFont(new Font("Arial", Font.BOLD, 36));
-        btnE.setBorder(new LineBorder(Color.BLACK));
-        
-        btnF.setBackground(Color.WHITE);
         btnF.setBounds(105, 170, 70, 70); panel.add(btnF);
-        btnF.setFont(new Font("Arial", Font.BOLD, 36));
-        btnF.setBorder(new LineBorder(Color.BLACK));
-        
-        btnG.setBackground(Color.WHITE);
         btnG.setBounds(175, 170, 70, 70); panel.add(btnG);
-        btnG.setFont(new Font("Arial", Font.BOLD, 36));
-        btnG.setBorder(new LineBorder(Color.BLACK));
-        
-        btnH.setBackground(Color.WHITE);
         btnH.setBounds(245, 170, 70, 70); panel.add(btnH);
-        btnH.setFont(new Font("Arial", Font.BOLD, 36));
-        btnH.setBorder(new LineBorder(Color.BLACK));
-
-        btnI.setBackground(Color.WHITE);
         btnI.setBounds(35, 240, 70, 70); panel.add(btnI);
-        btnI.setFont(new Font("Arial", Font.BOLD, 36));
-        btnI.setBorder(new LineBorder(Color.BLACK));
-        
-        btnJ.setBackground(Color.WHITE);
         btnJ.setBounds(105, 240, 70, 70); panel.add(btnJ);
-        btnJ.setFont(new Font("Arial", Font.BOLD, 36));
-        btnJ.setBorder(new LineBorder(Color.BLACK));
-        
-        btnK.setBackground(Color.WHITE);
         btnK.setBounds(175, 240, 70, 70); panel.add(btnK);
-        btnK.setFont(new Font("Arial", Font.BOLD, 36));
-        btnK.setBorder(new LineBorder(Color.BLACK));
-        
-        btnL.setBackground(Color.WHITE);
         btnL.setBounds(245, 240, 70, 70); panel.add(btnL);
-        btnL.setFont(new Font("Arial", Font.BOLD, 36));
-        btnL.setBorder(new LineBorder(Color.BLACK));
-
-        btnM.setBackground(Color.WHITE);
         btnM.setBounds(35, 310, 70, 70); panel.add(btnM);
-        btnM.setFont(new Font("Arial", Font.BOLD, 36));
-        btnM.setBorder(new LineBorder(Color.BLACK));
-        
-        btnN.setBackground(Color.WHITE);
         btnN.setBounds(105, 310, 70, 70); panel.add(btnN);
-        btnN.setFont(new Font("Arial", Font.BOLD, 36));
-        btnN.setBorder(new LineBorder(Color.BLACK));
-        
-        btnO.setBackground(Color.WHITE);
         btnO.setBounds(175, 310, 70, 70); panel.add(btnO);
-        btnO.setFont(new Font("Arial", Font.BOLD, 36));
-        btnO.setBorder(new LineBorder(Color.BLACK));
-        
-        btnP.setBackground(Color.WHITE);
         btnP.setBounds(245, 310, 70, 70); panel.add(btnP);
-        btnP.setFont(new Font("Arial", Font.BOLD, 36));
-        btnP.setBorder(new LineBorder(Color.BLACK));
-
-        btnQ.setBackground(Color.WHITE);
         btnQ.setBounds(35, 380, 70, 70); panel.add(btnQ);
-        btnQ.setFont(new Font("Arial", Font.BOLD, 36));
-        btnQ.setBorder(new LineBorder(Color.BLACK));
-        
-        btnR.setBackground(Color.WHITE);
         btnR.setBounds(105, 380, 70, 70); panel.add(btnR);
-        btnR.setFont(new Font("Arial", Font.BOLD, 36));
-        btnR.setBorder(new LineBorder(Color.BLACK));
-        
-        btnS.setBackground(Color.WHITE);
         btnS.setBounds(175, 380, 70, 70); panel.add(btnS);
-        btnS.setFont(new Font("Arial", Font.BOLD, 36));
-        btnS.setBorder(new LineBorder(Color.BLACK));
-        
-        btnT.setBackground(Color.WHITE);
         btnT.setBounds(245, 380, 70, 70); panel.add(btnT);
-        btnT.setFont(new Font("Arial", Font.BOLD, 36));
-        btnT.setBorder(new LineBorder(Color.BLACK));
- 
-        btnU.setBackground(Color.WHITE);
         btnU.setBounds(35, 450, 70, 70); panel.add(btnU);
-        btnU.setFont(new Font("Arial", Font.BOLD, 36));
-        btnU.setBorder(new LineBorder(Color.BLACK));
-        
-        btnV.setBackground(Color.WHITE);
         btnV.setBounds(105, 450, 70, 70); panel.add(btnV);
-        btnV.setFont(new Font("Arial", Font.BOLD, 36));
-        btnV.setBorder(new LineBorder(Color.BLACK));
-        
-        btnW.setBackground(Color.WHITE);
         btnW.setBounds(175, 450, 70, 70); panel.add(btnW);
-        btnW.setFont(new Font("Arial", Font.BOLD, 36));
-        btnW.setBorder(new LineBorder(Color.BLACK));
-        
-        btnX.setBackground(Color.WHITE);
         btnX.setBounds(245, 450, 70, 70); panel.add(btnX);
-        btnX.setFont(new Font("Arial", Font.BOLD, 36));
-        btnX.setBorder(new LineBorder(Color.BLACK));
-        
-        btnY.setBackground(Color.WHITE);
         btnY.setBounds(35, 520, 70, 70); panel.add(btnY);
-        btnY.setFont(new Font("Arial", Font.BOLD, 36));
-        btnY.setBorder(new LineBorder(Color.BLACK));
-        
-        btnZ.setBackground(Color.WHITE);
         btnZ.setBounds(105, 520, 70, 70); panel.add(btnZ);
-        btnZ.setFont(new Font("Arial", Font.BOLD, 36));
-        btnZ.setBorder(new LineBorder(Color.BLACK));
-        
-        btnSpace.setBackground(Color.WHITE);
         btnSpace.setBounds(175, 520, 70, 70); panel.add(btnSpace);
-        btnSpace.setFont(new Font("Arial", Font.BOLD, 36));
-        btnSpace.setBorder(new LineBorder(Color.BLACK));
-        
-        btnNextPage.setBackground(Color.WHITE);
         btnNextPage.setBounds(245, 520, 70, 70); panel.add(btnNextPage);
-        btnNextPage.setFont(new Font("Arial", Font.BOLD, 36));
-        btnNextPage.setBorder(new LineBorder(Color.BLACK));
         
+
         
-        
-        
-        
-        //Numeric keyboard
-        btn1.setBackground(Color.WHITE);
+        //Set co-ordinates for numeric keyboard buttons, and also make them not visible initially, until the numerical keyboard is opened
         btn1.setBounds(35, 100, 93, 98); panel.add(btn1);
-        btn1.setFont(new Font("Arial", Font.BOLD, 36));
-        btn1.setBorder(new LineBorder(Color.BLACK));
         btn1.setVisible(false);
         
-        btn2.setBackground(Color.WHITE);
         btn2.setBounds(128, 100, 93, 98); panel.add(btn2);
-        btn2.setFont(new Font("Arial", Font.BOLD, 36));
-        btn2.setBorder(new LineBorder(Color.BLACK));
         btn2.setVisible(false);
         
-        btn3.setBackground(Color.WHITE);
         btn3.setBounds(221, 100, 93, 98); panel.add(btn3);
-        btn3.setFont(new Font("Arial", Font.BOLD, 36));
-        btn3.setBorder(new LineBorder(Color.BLACK));
         btn3.setVisible(false);
-        
-        btn4.setBackground(Color.WHITE);
+
         btn4.setBounds(35, 198, 93, 98); panel.add(btn4);
-        btn4.setFont(new Font("Arial", Font.BOLD, 36));
-        btn4.setBorder(new LineBorder(Color.BLACK));
         btn4.setVisible(false);
         
-        btn5.setBackground(Color.WHITE);
         btn5.setBounds(128, 198, 93, 98); panel.add(btn5);
-        btn5.setFont(new Font("Arial", Font.BOLD, 36));
-        btn5.setBorder(new LineBorder(Color.BLACK));
         btn5.setVisible(false);
         
-        btn6.setBackground(Color.WHITE);
         btn6.setBounds(221, 198, 93, 98); panel.add(btn6);
-        btn6.setFont(new Font("Arial", Font.BOLD, 36));
-        btn6.setBorder(new LineBorder(Color.BLACK));
         btn6.setVisible(false);
         
-        btn7.setBackground(Color.WHITE);
         btn7.setBounds(35, 296, 93, 98); panel.add(btn7);
-        btn7.setFont(new Font("Arial", Font.BOLD, 36));
-        btn7.setBorder(new LineBorder(Color.BLACK));
         btn7.setVisible(false);
         
-        btn8.setBackground(Color.WHITE);
         btn8.setBounds(128, 296, 93, 98); panel.add(btn8);
-        btn8.setFont(new Font("Arial", Font.BOLD, 36));
-        btn8.setBorder(new LineBorder(Color.BLACK));
         btn8.setVisible(false);
         
-        btn9.setBackground(Color.WHITE);
         btn9.setBounds(221, 296, 93, 98); panel.add(btn9);
-        btn9.setFont(new Font("Arial", Font.BOLD, 36));
-        btn9.setBorder(new LineBorder(Color.BLACK));
         btn9.setVisible(false);
         
-        btn0.setBackground(Color.WHITE);
         btn0.setBounds(35, 394, 93, 98); panel.add(btn0);
-        btn0.setFont(new Font("Arial", Font.BOLD, 36));
-        btn0.setBorder(new LineBorder(Color.BLACK));
         btn0.setVisible(false);
         
-        btnBackPage.setBackground(Color.WHITE);
         btnBackPage.setBounds(35, 492, 93, 98); panel.add(btnBackPage);
-        btnBackPage.setFont(new Font("Arial", Font.BOLD, 36));
-        btnBackPage.setBorder(new LineBorder(Color.BLACK));
         btnBackPage.setVisible(false);
         
-        btnDel.setBackground(Color.WHITE);
         btnDel.setBounds(128, 394, 186, 196); panel.add(btnDel);
-        btnDel.setFont(new Font("Arial", Font.BOLD, 36));
-        btnDel.setBorder(new LineBorder(Color.BLACK));
         btnDel.setVisible(false);
         
         panel.validate();
@@ -311,6 +162,7 @@ public class WhereTo extends Mode {
         public KeyboardButton(String letter) {
             super(letter);
             this.letter = letter; 
+            applyKeyboardButtonStyling();
             
             this.addMouseListener(new MouseAdapter() {
             @Override
@@ -345,6 +197,13 @@ public class WhereTo extends Mode {
         public String getDisplayLabel() {
            return this.letter;
         }
+        
+        //Set the background, font and border for each button.
+        private void applyKeyboardButtonStyling() {
+            setBackground(Color.WHITE);
+            setFont(new Font("Arial", Font.BOLD, 36));
+            setBorder(new LineBorder(Color.BLACK));
+        }
          
         private void focusGained() {
            setBackground(Color.ORANGE);
@@ -355,6 +214,7 @@ public class WhereTo extends Mode {
         }
         
         private void selected() {
+            //Space button has been pressed
             if("_".equals(letter)) {
                 destination.setText(destination.getText() + " ");
             }
@@ -462,18 +322,7 @@ public class WhereTo extends Mode {
             //An ordinary letter or number button has been pressed
             else {
                 destination.setText(destination.getText() + letter);
-            }
-            
-        }
-         
-         
-             
-        }
-
-    
-    
-
+            }   
+        }    
+    }
 }
-    
-
-
