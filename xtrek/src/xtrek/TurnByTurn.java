@@ -29,7 +29,7 @@ public class TurnByTurn extends Mode  {
     
     TurnByTurn(JFrame frame) {
         super(frame);
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new GridBagLayout());
         displayMode();
     }
     
@@ -37,13 +37,32 @@ public class TurnByTurn extends Mode  {
     public void displayMode() {
 
         frame.setTitle("Turn-By-Turn");
-        
-        bOff.setBounds(20,  10, 530, 100); panel.add(bOff);
-        bEng.setBounds(20, 120, 530, 100); panel.add(bEng);
-        bFre.setBounds(20, 230, 530, 100); panel.add(bFre);
-        bGer.setBounds(20, 340, 530, 100); panel.add(bGer);
-        bIta.setBounds(20, 450, 530, 100); panel.add(bIta);
-        bJap.setBounds(20, 560, 530, 100); panel.add(bJap);
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(5, 5, 5, 5);
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+
+        c.gridx = 0;
+        c.gridy = 0;
+        panel.add(bOff, c);
+
+        c.gridy++;
+        panel.add(bEng, c);
+
+        c.gridy++;
+        panel.add(bFre,c );
+
+        c.gridy++;
+        panel.add(bGer, c);
+
+        c.gridy++;
+        panel.add(bIta, c);
+
+        c.gridy++;
+        panel.add(bJap, c);
         
         panel.validate();
         panel.setVisible(false);
