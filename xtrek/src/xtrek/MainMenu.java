@@ -6,12 +6,12 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.border.Border;
 
 /**
  *
  * @author Yazan
  */
+
 public class MainMenu extends Mode {
     private static boolean isOn=false;
     
@@ -44,21 +44,21 @@ public class MainMenu extends Mode {
         display.setOpaque(false);
         panel.add(display);
         
-        onOff.setBounds(244,25,55,55); panel.add(onOff);
-        menu.setBounds(313,150,20,55); panel.add(menu);
-        plus.setBounds(12,150,20,30); panel.add(plus);
-        minus.setBounds(12,205,20,30); panel.add(minus);
-        select.setBounds(12,325,20,65); panel.add(select);
+        onOff.setBounds (244,25,55,55) ; panel.add(onOff);
+        menu.setBounds  (313,150,20,55); panel.add(menu);
+        plus.setBounds  (12,150,20,30) ; panel.add(plus);
+        minus.setBounds (12,205,20,30) ; panel.add(minus);
+        select.setBounds(12,325,20,65) ; panel.add(select);
         
-        whereTo.setBounds(45, 150, 120, 120); panel.add(whereTo);
-        tripComputer.setBounds(180, 150, 120, 120);panel.add(tripComputer);
-        map.setBounds(45, 300, 120, 120);panel.add(map);
-        speech.setBounds(180, 300, 120, 120); panel.add(speech);
-        satellite.setBounds(45, 450, 120, 120);panel.add(satellite);
-        about.setBounds(180, 450, 120, 120);panel.add(about);
+        whereTo.setBounds     (45, 150, 120, 120) ; panel.add(whereTo);
+        tripComputer.setBounds(180, 150, 120, 120); panel.add(tripComputer);
+        map.setBounds         (45, 300, 120, 120) ; panel.add(map);
+        speech.setBounds      (180, 300, 120, 120); panel.add(speech);
+        satellite.setBounds   (45, 450, 120, 120) ; panel.add(satellite);
+        about.setBounds       (180, 450, 120, 120); panel.add(about);
         
         if (isOn==false){
-            whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
+            whereTo.setVisible(false);tripComputer.setVisible(false);map.setVisible(false);
             speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
             menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
             select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
@@ -77,18 +77,22 @@ public class MainMenu extends Mode {
           addMouseListener( new MouseAdapter() {
           public void mouseClicked( MouseEvent me ) {
             switch ( control ) {
-            case "PWR"      : if (isOn == false){
+            case "PWR"      : if       (isOn == false){
+                
                                   whereTo.setVisible(true); tripComputer.setVisible(true); map.setVisible(true);
                                   speech.setVisible(true);satellite.setVisible(true);about.setVisible(true);
                                   menu.setBackground(Color.WHITE);plus.setBackground(Color.WHITE);minus.setBackground(Color.WHITE);
                                   select.setBackground(Color.WHITE);isOn = true;
+                                  
                               } else if(isOn == true){
+                                  
                                   whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
                                   speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
                                   menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
                                   select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
                                   minus.setEnabled(false);select.setEnabled(false);isOn = false;
-                              };break;
+                              };
+                               break;
             case "+"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
                                else if(isOn == false){plus.setEnabled(false);};
                                break;
