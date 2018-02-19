@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  *
  * @author sebltm
- * An abstract that ensure all our different panels are compatible with the main frame
+ * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
  *
  * To use : extends Mode
  * Implement displayMode() which needs to include your buttons, text labels, images, etc
@@ -26,7 +26,7 @@ public abstract class Mode {
         panel = new JPanel();
 
         //Dimensions are in pixels, need to be mm
-        panel.setSize(new Dimension(350, 650));
+        panel.setSize(new Dimension(570, 710));
 
         panel.setLayout(null);
         panel.setBackground(Color.BLACK);
