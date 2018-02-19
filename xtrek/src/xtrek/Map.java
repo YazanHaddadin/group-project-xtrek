@@ -25,17 +25,18 @@ import javax.imageio.ImageIO;
  *
  * @author Alex
  */
-public class Map extends JFrame implements Mode {
+public class Map extends Mode {
    
   final static String OUTPUT    = "output.png";  /* Output file        */
-  final static String LATITUDE  = "50.7184";     /* Exeter, latitude  */
-  final static String LONGITUDE = "-3.5339";     /* Exeter, longitude */
+  final static String LATITUDE  = "50.7184";     /* Inputted latitude  */
+  final static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
   final static String ZOOM      = "5";           /* 0 .. 21           */
   final static String SIZE      = "612x612";     /* Size              */
   
-  public Map() {
-    displayMode();    
-  }
+public Map(JFrame frame){
+        super(frame);
+        displayMode();
+    }
   
   static byte[] readData( String latitude
                         , String longitude
@@ -70,7 +71,14 @@ public class Map extends JFrame implements Mode {
   
       @Override
   public void displayMode() {
-      Container c = getContentPane();
+      frame.setTitle("Main Menu");
+      panel.setBackground(Color.BLACK);
+      
+      panel.validate();
+      panel.setVisible(true);
+  }
+  
+      /*Container c = getContentPane();
       setLocationRelativeTo(null);
       
       //Dimensions are in pixels, need to be mm
@@ -93,12 +101,12 @@ public class Map extends JFrame implements Mode {
        
       validate();
       setVisible(true);
-    }
+    }*/
   
   
-  public static void main( String[] argv ) {
+  /*public static void main( String[] argv ) {
     final byte[] data = readData( LATITUDE, LONGITUDE, ZOOM, SIZE ); 
     writeData( OUTPUT, data );
     Mode mapTest = new Map();
-  }  
+  }*/  
 }
