@@ -160,7 +160,7 @@ public class TurnByTurn extends Mode  {
         frame.setSize(new Dimension(350, 650));
         frame.setResizable(true);
 
-        frame.setLayout(null);
+        
         c.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
