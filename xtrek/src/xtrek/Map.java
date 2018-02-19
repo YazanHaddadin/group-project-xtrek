@@ -73,7 +73,14 @@ public Map(JFrame frame){
   public void displayMode() {
       frame.setTitle("Main Menu");
       panel.setBackground(Color.BLACK);
-      
+      try {
+        BufferedImage mapImage = ImageIO.read(new File(OUTPUT));
+        JLabel picLabel = new JLabel(new ImageIcon(mapImage));
+        panel.add(picLabel);
+      }
+      catch (IOException ex){
+        //do whatever
+      }
       panel.validate();
       panel.setVisible(true);
   }
