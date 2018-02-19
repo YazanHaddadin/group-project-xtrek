@@ -38,12 +38,12 @@ public class TurnByTurn extends Mode  {
 
         frame.setTitle("Turn-By-Turn");
         
-        bOff.setBounds(20,  10, 310, 90); panel.add(bOff);
-        bEng.setBounds(20, 110, 310, 90); panel.add(bEng);
-        bFre.setBounds(20, 210, 310, 90); panel.add(bFre);
-        bGer.setBounds(20, 310, 310, 90); panel.add(bGer);
-        bIta.setBounds(20, 410, 310, 90); panel.add(bIta);
-        bJap.setBounds(20, 510, 310, 90); panel.add(bJap);
+        bOff.setBounds(20,  10, 530, 100); panel.add(bOff);
+        bEng.setBounds(20, 120, 530, 100); panel.add(bEng);
+        bFre.setBounds(20, 230, 530, 100); panel.add(bFre);
+        bGer.setBounds(20, 340, 530, 100); panel.add(bGer);
+        bIta.setBounds(20, 450, 530, 100); panel.add(bIta);
+        bJap.setBounds(20, 560, 530, 100); panel.add(bJap);
         
         panel.validate();
         panel.setVisible(false);
