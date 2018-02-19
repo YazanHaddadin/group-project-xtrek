@@ -11,6 +11,10 @@ import java.awt.*;
 /**
  *
  * @author sebltm
+ * An abstract that ensure all our different panels are compatible with the main frame
+ *
+ * To use : extends Mode
+ * Implement displayMode() which needs to include your buttons, text labels, images, etc
  */
 public abstract class Mode {
     final JFrame frame;
