@@ -30,6 +30,7 @@ public class MainMenu extends Mode {
     
     public MainMenu(JFrame frame){
         super(frame);
+        panel.setLayout(null);
         displayMode();
     }
    
@@ -91,17 +92,17 @@ public class MainMenu extends Mode {
                                   menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
                                   select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
                                   minus.setEnabled(false);select.setEnabled(false);isOn = false;
-                              };
-                               break;
+                              }
+                break;
             case "+"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
-                               else if(isOn == false){plus.setEnabled(false);};
-                               break;
+                               else if(isOn == false){plus.setEnabled(false);}
+                break;
             case "-"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
-                               else if(isOn == false){plus.setEnabled(false);};
-                               break;
+                               else if(isOn == false){plus.setEnabled(false);}
+                break;
             case "Select"   :  if (isOn == true){System.out.println(control);} // select button
-                               else if(isOn == false){plus.setEnabled(false);};
-                               break;
+                               else if(isOn == false){plus.setEnabled(false);}
+                break;
             case "M"        :  MainMenu.this.makeVisible(); frame.add(getPanel()); frame.revalidate(); frame.repaint(); break;
             }
           }
@@ -213,7 +214,7 @@ public class MainMenu extends Mode {
                 Mode newMode = (Mode)currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
 
                 newMode.makeVisible();
-                frame.add(getPanel());
+                frame.add(newMode.panel);
                 frame.revalidate();
                 frame.repaint();
 

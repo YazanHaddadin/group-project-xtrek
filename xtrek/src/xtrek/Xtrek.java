@@ -35,7 +35,7 @@ class Xtrek extends JFrame {
         currentView = new MainMenu(this);
         currentView.displayMode();
         currentView.makeVisible();
-        this.getContentPane().add(Mode.getPanel());
+        this.getContentPane().add(currentView.getPanel());
         this.pack();
 
         this.validate();

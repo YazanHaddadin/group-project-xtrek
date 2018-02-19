@@ -29,7 +29,7 @@ public class TurnByTurn extends Mode  {
     
     TurnByTurn(JFrame frame) {
         super(frame);
-
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         displayMode();
     }
     
@@ -166,7 +166,8 @@ public class TurnByTurn extends Mode  {
 
         Mode currentView = new TurnByTurn(frame);
         currentView.displayMode();
-        frame.getContentPane().add(getPanel());
+        currentView.makeVisible();
+        frame.getContentPane().add(currentView.panel);
         frame.pack();
 
         frame.validate();

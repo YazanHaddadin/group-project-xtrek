@@ -6,12 +6,12 @@
 package xtrek;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.border.LineBorder;
 
 
 /**
@@ -69,6 +69,7 @@ public class WhereTo extends Mode {
     
     public WhereTo(JFrame frame) {
         super(frame);
+        panel.setLayout(null);
         displayMode();
     }
     

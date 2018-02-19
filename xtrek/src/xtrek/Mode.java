@@ -18,31 +18,16 @@ import java.awt.*;
  */
 public abstract class Mode {
     final JFrame frame;
-    static JPanel panel;
+    JPanel panel = new JPanel();
 
     Mode(JFrame frame) {
         this.frame = frame;
-
-        panel = new JPanel();
-
         //Dimensions are in pixels, need to be mm
         panel.setSize(new Dimension(570, 710));
+
         panel.setLayout(null);
 
         panel.setBackground(Color.BLACK);
-    }
-
-    Mode(JFrame frame, LayoutManager layout) {
-        this.frame = frame;
-
-        panel = new JPanel();
-
-        //Dimensions are in pixels, need to be mm
-        panel.setSize(new Dimension(570, 710));
-        panel.setLayout(layout);
-
-        panel.setBackground(Color.BLACK);
-
     }
 
     public void makeVisible() {
@@ -53,7 +38,7 @@ public abstract class Mode {
         panel.setVisible(false);
     }
 
-    public static JPanel getPanel() {
+    public JPanel getPanel() {
         return panel;
     }
 
