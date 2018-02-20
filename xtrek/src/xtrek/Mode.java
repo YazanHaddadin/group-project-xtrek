@@ -23,7 +23,8 @@ public abstract class Mode {
     Mode(JFrame frame) {
         this.frame = frame;
         //Dimensions are in pixels, need to be mm
-        panel.setSize(new Dimension(570, 710));
+        panel.setPreferredSize(new Dimension(570, 710));
+        panel.setMaximumSize(new Dimension(570, 710));
 
         panel.setLayout(null);
 

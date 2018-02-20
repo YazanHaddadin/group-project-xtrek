@@ -25,17 +25,23 @@ class Xtrek extends JFrame {
         this.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        this.setPreferredSize(new Dimension(600, 720));
+        this.setPreferredSize(new Dimension(800, 800));
         this.setResizable(false);
 
-        this.setLayout(null);
-        c.setBackground(Color.BLACK);
+        this.setLayout(new GridBagLayout());
+        this.getContentPane().setBackground(Color.BLACK);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 1;
+        c.gridy = 1;
+        c.weighty = 1.0;
+        c.weightx = 1.0;
 
         currentView = new MainMenu(this);
         currentView.displayMode();
         currentView.makeVisible();
-        this.getContentPane().add(currentView.getPanel());
+        this.getContentPane().add(currentView.getPanel(), c);
         this.pack();
 
         this.validate();

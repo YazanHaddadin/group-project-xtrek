@@ -166,7 +166,7 @@ public class TurnByTurn extends Mode  {
         
         @Override
         public void selected() {
-            getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE); //
+            new Thread(() -> getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE)).start();
         }
     }
 
@@ -176,19 +176,26 @@ public class TurnByTurn extends Mode  {
         frame.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        frame.setSize(new Dimension(350, 650));
+        frame.setPreferredSize(new Dimension(700, 850));
         frame.setResizable(true);
+        frame.setLayout(new GridBagLayout());
 
-        
+        GridBagConstraints con = new GridBagConstraints();
+
         c.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Mode currentView = new TurnByTurn(frame);
         currentView.displayMode();
         currentView.makeVisible();
-        frame.getContentPane().add(currentView.panel);
-        frame.pack();
 
+        con.gridx = 1;
+        con.gridy = 1;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        frame.getContentPane().add(currentView.panel, con);
+
+        frame.pack();
         frame.validate();
         frame.setVisible(true);
     }
