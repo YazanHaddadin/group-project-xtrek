@@ -270,7 +270,9 @@ public class WhereTo extends Mode {
             //Delete button pressed
             else if ("DEL".equals(letter)) {
                 //Delete a letter from the text field
-                destination.setText(destination.getText().substring(0, destination.getText ().length() - 1));
+                if(destination.getText().length() > 0) {
+                    destination.setText(destination.getText().substring(0, destination.getText ().length() - 1));
+                }
             }
             
             //Previous page button has been pressed
