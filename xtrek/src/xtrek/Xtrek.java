@@ -19,6 +19,7 @@ class Xtrek extends JFrame {
      */
     private static Mode currentView;
     private static Container c;
+    private static Xtrek xtrek;
     
     private Xtrek() {
         c = this.getContentPane();
@@ -49,7 +50,7 @@ class Xtrek extends JFrame {
     }
     
     public static void main(String[] args) {
-        Xtrek xtrek = new Xtrek();
+        xtrek = new Xtrek();
     }
     
 }
