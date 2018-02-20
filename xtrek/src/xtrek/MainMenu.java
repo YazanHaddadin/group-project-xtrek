@@ -90,12 +90,16 @@ public class MainMenu extends Mode {
             case "PWR"      : if       (isOn == false){
                 
                                   MainMenu.this.makeVisible();
+//                                  whereTo.setVisible(true); tripComputer.setVisible(true); map.setVisible(true);
+//                                  speech.setVisible(true);satellite.setVisible(true);about.setVisible(true);
                                   menu.setBackground(Color.WHITE);plus.setBackground(Color.WHITE);minus.setBackground(Color.WHITE);
                                   select.setBackground(Color.WHITE);isOn = true;
                                   
                               } else if(isOn == true){
                                   
                                   MainMenu.this.hide();
+//                                  whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
+//                                  speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
                                   menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
                                   select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
                                   minus.setEnabled(false);select.setEnabled(false);isOn = false;
