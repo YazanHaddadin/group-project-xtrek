@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 
 public class MainMenu extends Mode {
     private static boolean isOn=false;
+    private static ControlLayout controlView;
     
     final JButton onOff        = new ControlButton ("PWR");
     final JButton plus         = new ControlButton("+");
@@ -36,6 +37,14 @@ public class MainMenu extends Mode {
    
     @Override
     public void displayMode() {
+        controlView = new ControlLayout(onOff);
+        controlView = new ControlLayout(menu);
+        controlView = new ControlLayout(plus);
+        controlView = new ControlLayout(minus);
+        controlView = new ControlLayout(select);
+        
+        controlView.makeVisibleControl();
+        
         frame.setTitle("Main Menu");
         panel.setBackground(Color.BLACK);
         
@@ -80,15 +89,13 @@ public class MainMenu extends Mode {
             switch ( control ) {
             case "PWR"      : if       (isOn == false){
                 
-                                  whereTo.setVisible(true); tripComputer.setVisible(true); map.setVisible(true);
-                                  speech.setVisible(true);satellite.setVisible(true);about.setVisible(true);
+                                  MainMenu.this.makeVisible();
                                   menu.setBackground(Color.WHITE);plus.setBackground(Color.WHITE);minus.setBackground(Color.WHITE);
                                   select.setBackground(Color.WHITE);isOn = true;
                                   
                               } else if(isOn == true){
                                   
-                                  whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
-                                  speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
+                                  MainMenu.this.hide();
                                   menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
                                   select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
                                   minus.setEnabled(false);select.setEnabled(false);isOn = false;
