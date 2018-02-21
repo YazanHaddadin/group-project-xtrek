@@ -1,3 +1,13 @@
+/*
+ * Main Menu Class
+ *
+ * Provides the User Interface of the Main Menu for the Xtrek, where the user is
+ * able to choose between which mode to go to using the Control Buttons provided
+ * in the ControlLayout class.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 1
+ */
 package xtrek;
 
 import javax.swing.*;
@@ -6,11 +16,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-/**
- *
- * @author Yazan
- */
 
 public class MainMenu extends Mode {
     private static ControlLayout controlView;

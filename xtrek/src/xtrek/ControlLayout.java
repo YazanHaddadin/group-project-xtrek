@@ -1,7 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Control Layout Class
+ *
+ * Provides the Cotrol Panel which has the control buttons to be shown on all
+ * the modes, where the + and - buttons are used to navigate between the modes
+ * and the select button to choose which mode that is highlighted and the menu
+ * button to close the current mode and revert back to the Main Menu. The power
+ * button is used to turn off and on the display.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -12,10 +19,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- *
- * @author Yazuz
- */
 public class ControlLayout {
     JPanel controlPanel = new JPanel();
 
