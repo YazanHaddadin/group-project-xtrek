@@ -5,20 +5,14 @@
  */
 package xtrek;
 
-
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import javax.swing.JFrame;
 import java.io.File;
-import javax.swing.JLabel;
-import javax.swing.WindowConstants;
-import javax.swing.ImageIcon;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 
 /**
@@ -33,10 +27,29 @@ public class Map extends Mode {
   final static String ZOOM      = "5";           /* 0 .. 21           */
   final static String SIZE      = "612x612";     /* Size              */
   
-public Map(JFrame frame){
-        super(frame);
-        displayMode();
+  public Map(JFrame frame){
+    super(frame);
+    displayMode();
+    panel.setLayout(new BorderLayout());
+  }
+  
+  @Override
+  public void displayMode() {
+    frame.setTitle("Main Menu");
+    try{
+      BufferedImage mapImage = ImageIO.read(new File(OUTPUT));
+      JLabel label = new JLabel(new ImageIcon(mapImage));
+      JPanel panel = new JPanel(new BorderLayout());
+      panel.add( label, BorderLayout.CENTER );
+      panel.setBackground(Color.BLACK);
     }
+    catch (IOException ex){
+      //do whatever
+    }
+   
+    panel.validate();
+    panel.setVisible(true);
+  }
   
   static byte[] readData( String latitude
                         , String longitude
@@ -69,21 +82,13 @@ public Map(JFrame frame){
     }
   }
   
-      @Override
-  public void displayMode() {
-      frame.setTitle("Main Menu");
-      panel.setBackground(Color.BLACK);
-      try {
-        BufferedImage mapImage = ImageIO.read(new File(OUTPUT));
-        JLabel picLabel = new JLabel(new ImageIcon(mapImage));
-        panel.add(picLabel);
-      }
-      catch (IOException ex){
-        //do whatever
-      }
-      panel.validate();
-      panel.setVisible(true);
-  }
+      
+  
+  /*public static void main( String[] argv ) {
+    
+    final byte[] data = readData( LATITUDE, LONGITUDE, ZOOM, SIZE ); 
+    writeData( OUTPUT, data );
+  } */
   
       /*Container c = getContentPane();
       setLocationRelativeTo(null);
