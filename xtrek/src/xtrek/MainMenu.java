@@ -41,7 +41,7 @@ public class MainMenu extends Mode {
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(15, 15, 15, 15);
         c.weightx = 1.0;
         c.weighty = 1.0;
 

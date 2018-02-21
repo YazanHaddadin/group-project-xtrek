@@ -15,7 +15,11 @@ import java.util.HashMap;
 
 /**
  *
- * @author sebltm
+ * @author Sebastien Michel
+ * @version Sprint 1
+ *
+ * Provides UI to choose and language for the Turn By Turn, translates the directions and speaks them out when
+ * needed
  */
 public class TurnByTurn extends Mode  {
     final private JButton bOff = new LangButton("Off"     , null, null, null);
