@@ -44,11 +44,18 @@ class Xtrek extends JFrame {
         c.weighty = 1.0;
         c.weightx = 1.0;*/
 
-        currentView = new MainMenu(this);
+        MainMenu   = new MainMenu(this);   MainMenu.hide();
+        AboutMode  = new About(this);      AboutMode.hide();
+        MapMode    = new Map(this);        MapMode.hide();
+        TurnByTurn = new TurnByTurn(this); TurnByTurn.hide();
+        WhereTo    = new WhereTo(this);    WhereTo.hide();
+
+        currentView = MainMenu;
         currentView.displayMode();
         currentView.makeVisible();
         this.getContentPane().add(currentView.getPanel());
         this.pack();
+
 
         this.validate();
         this.setVisible(true);

@@ -154,7 +154,7 @@ public class WhereTo extends Mode {
         
         panel.validate();
         panel.setVisible(true);
-        frame.add(destination);
+        panel.add(destination);
     }
     
     class KeyboardButton extends JButton {
