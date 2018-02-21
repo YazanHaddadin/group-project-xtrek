@@ -24,7 +24,7 @@ public class MainMenu extends Mode {
     final JButton tripComputer = new OperatorButton("Trip Computer",WhereTo.class);
     final JButton map          = new OperatorButton("Map",Map.class);
     final JButton speech       = new OperatorButton("Speech", TurnByTurn.class);
-    final JButton satellite    = new OperatorButton("Sattelite",WhereTo.class);
+    final JButton satellite    = new OperatorButton("Satellite",WhereTo.class);
     final JButton about        = new OperatorButton("About",About.class);
     
     public MainMenu(JFrame frame){
