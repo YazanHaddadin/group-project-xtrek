@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 public class MainMenu extends Mode {
     private static ControlLayout controlView;
     
+    //creating the operator buttons to switch modes
     final JButton whereTo      = new OperatorButton("Where To?", WhereTo.class);
     final JButton tripComputer = new OperatorButton("Trip Computer",WhereTo.class);
     final JButton map          = new OperatorButton("Map",Map.class);
@@ -35,9 +36,10 @@ public class MainMenu extends Mode {
    
     @Override
     public void displayMode() {
-        
+    //this is the actual display of the Main Menu mode
         frame.setTitle("Main Menu");
         
+        //using GridBagConstraints to adapt to different screen sizes
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
@@ -77,6 +79,7 @@ public class MainMenu extends Mode {
     }
     
     private class OperatorButton extends JButton {
+    //the class that creates the operator button and sets its display style
         private final Class currentClass;
         
         OperatorButton(String display, Class currentClass){
@@ -116,6 +119,7 @@ public class MainMenu extends Mode {
         }
 
         private void setStyle() {
+        //set the display style of the operator buttons
             setBackground(Color.WHITE);
             setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 14));
@@ -123,14 +127,17 @@ public class MainMenu extends Mode {
         }
     
         private void focusGained() {
+        //when the focus is on the current button it changes colour
             setBackground(Color.ORANGE);
         }
 
         private void focusLost() {
+        //when the focus is lost it reverts back to the orginal colour
             setBackground(Color.WHITE);
         }
 
         public void selected() {
+        //when a button is selected the Main Menu view is hidden and the selected view is made visible
             try {
                 MainMenu.this.hide();
 
