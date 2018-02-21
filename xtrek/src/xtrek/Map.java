@@ -5,14 +5,14 @@
  */
 package xtrek;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.File;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 
 
 /**
@@ -34,22 +34,22 @@ public class Map extends Mode {
   }
   
   @Override
-  public void displayMode() {
-    frame.setTitle("Main Menu");
-    try{
-      BufferedImage mapImage = ImageIO.read(new File(OUTPUT));
-      JLabel label = new JLabel(new ImageIcon(mapImage));
-      JPanel panel = new JPanel(new BorderLayout());
-      panel.add( label, BorderLayout.CENTER );
-      panel.setBackground(Color.BLACK);
+    public void displayMode() {
+        frame.setTitle("Main Menu");
+        try{
+            BufferedImage mapImage = ImageIO.read(new File(OUTPUT));
+            JLabel label = new JLabel(new ImageIcon(mapImage));
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.add( label, BorderLayout.CENTER );
+            panel.setBackground(Color.BLACK);
+        }
+        catch (IOException ex){
+          //do whatever
+        }
+
+        panel.validate();
+        panel.setVisible(true);
     }
-    catch (IOException ex){
-      //do whatever
-    }
-   
-    panel.validate();
-    panel.setVisible(true);
-  }
   
   static byte[] readData( String latitude
                         , String longitude
