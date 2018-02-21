@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * WhereTo Class
+ *
+ * Provides a keyboard for the user to input their destination for the XTrek
+ * device. 
+ *
+ * @author Caleb Blackmore
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -14,10 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-/**
- *
- * @author caleb
- */
 public class WhereTo extends Mode {
     
     // Text field where destination will go.
@@ -165,6 +165,7 @@ public class WhereTo extends Mode {
             this.letter = letter; 
             applyKeyboardButtonStyling();
             
+            // Mouse listener is for testing only, won't be in the finished code.
             this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
