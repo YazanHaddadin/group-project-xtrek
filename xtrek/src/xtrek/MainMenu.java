@@ -36,7 +36,7 @@ public class MainMenu extends Mode {
         
         JPanel display = new JPanel();
         display.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.GRAY));
-        display.setBounds(32,10,281,600);
+        //display.setBounds(32,10,281,600);
         display.setOpaque(false);
         panel.add(display);
         
