@@ -20,6 +20,12 @@ class Xtrek extends JFrame {
     private static Mode currentView;
     private static Container c;
     private static Xtrek xtrek;
+    static boolean isOn = true;
+    static Mode MainMenu;
+    static Mode AboutMode;
+    static Mode MapMode;
+    static Mode TurnByTurn;
+    static Mode WhereTo;
     
     private Xtrek() {
         c = this.getContentPane();
@@ -50,6 +56,18 @@ class Xtrek extends JFrame {
     
     public static void main(String[] args) {
         xtrek = new Xtrek();
+    }
+
+    public static void hideCurrentView() {
+        currentView.hide();
+    }
+
+    public static void showCurrentView() {
+        currentView.makeVisible();
+    }
+
+    public static void setCurrentView(Mode view) {
+        currentView = view;
     }
     
 }

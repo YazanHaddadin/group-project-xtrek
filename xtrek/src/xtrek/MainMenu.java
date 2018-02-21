@@ -13,14 +13,7 @@ import java.awt.event.MouseEvent;
  */
 
 public class MainMenu extends Mode {
-    private static boolean isOn=false;
     private static ControlLayout controlView;
-    
-    final JButton onOff        = new ControlButton ("PWR");
-    final JButton plus         = new ControlButton("+");
-    final JButton minus        = new ControlButton("-");
-    final JButton select       = new ControlButton("Select");
-    final JButton menu         = new ControlButton("M");
     
     final JButton whereTo      = new OperatorButton("Where To?", WhereTo.class);
     final JButton tripComputer = new OperatorButton("Trip Computer",WhereTo.class);
@@ -37,13 +30,6 @@ public class MainMenu extends Mode {
    
     @Override
     public void displayMode() {
-        controlView = new ControlLayout(onOff);
-        controlView = new ControlLayout(menu);
-        controlView = new ControlLayout(plus);
-        controlView = new ControlLayout(minus);
-        controlView = new ControlLayout(select);
-        
-        controlView.makeVisibleControl();
         
         frame.setTitle("Main Menu");
         panel.setBackground(Color.BLACK);
@@ -54,12 +40,6 @@ public class MainMenu extends Mode {
         display.setOpaque(false);
         panel.add(display);
         
-        onOff.setBounds (244,25,55,55) ; panel.add(onOff);
-        menu.setBounds  (313,150,20,55); panel.add(menu);
-        plus.setBounds  (12,150,20,30) ; panel.add(plus);
-        minus.setBounds (12,205,20,30) ; panel.add(minus);
-        select.setBounds(12,325,20,65) ; panel.add(select);
-        
         whereTo.setBounds     (45, 150, 120, 120) ; panel.add(whereTo);
         tripComputer.setBounds(180, 150, 120, 120); panel.add(tripComputer);
         map.setBounds         (45, 300, 120, 120) ; panel.add(map);
@@ -67,98 +47,12 @@ public class MainMenu extends Mode {
         satellite.setBounds   (45, 450, 120, 120) ; panel.add(satellite);
         about.setBounds       (180, 450, 120, 120); panel.add(about);
         
-        if (isOn==false){
+        if (Xtrek.isOn==false){
             whereTo.setVisible(false);tripComputer.setVisible(false);map.setVisible(false);
             speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
-            menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
-            select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
-            minus.setEnabled(false);select.setEnabled(false);       
         }
         panel.validate();
         panel.setVisible(true);
-    }
-    
-    private class ControlButton extends JButton {
-        
-        ControlButton(String control){
-            super(control);
-            setStyle();
-            
-          addMouseListener( new MouseAdapter() {
-          public void mouseClicked( MouseEvent me ) {
-            switch ( control ) {
-            case "PWR"      : if       (isOn == false){
-                
-                                  MainMenu.this.makeVisible();
-//                                  whereTo.setVisible(true); tripComputer.setVisible(true); map.setVisible(true);
-//                                  speech.setVisible(true);satellite.setVisible(true);about.setVisible(true);
-                                  menu.setBackground(Color.WHITE);plus.setBackground(Color.WHITE);minus.setBackground(Color.WHITE);
-                                  select.setBackground(Color.WHITE);isOn = true;
-                                  
-                              } else if(isOn == true){
-                                  
-                                  MainMenu.this.hide();
-//                                  whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
-//                                  speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
-                                  menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
-                                  select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
-                                  minus.setEnabled(false);select.setEnabled(false);isOn = false;
-                              }
-                break;
-            case "+"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
-                               else if(isOn == false){plus.setEnabled(false);}
-                break;
-            case "-"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
-                               else if(isOn == false){plus.setEnabled(false);}
-                break;
-            case "Select"   :  if (isOn == true){System.out.println(control);} // select button
-                               else if(isOn == false){plus.setEnabled(false);}
-                break;
-            case "M"        :  MainMenu.this.makeVisible(); frame.add(getPanel()); frame.revalidate(); frame.repaint(); break;
-            }
-          }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                ControlButton.this.focusGained();
-            }
-               
-            @Override
-            public void mouseExited(MouseEvent e) {
-                ControlButton.this.focusLost();
-            }
-            });
-            this.addFocusListener(new FocusListener() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    ControlButton.this.focusGained();
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    ControlButton.this.focusLost();
-                }
-            
-            });
-        }
-        
-        private void setStyle() {
-            setBackground(Color.WHITE);
-            setBorderPainted(false);
-            setFont(new Font("Arial", Font.BOLD, 8));
-            setHorizontalAlignment(SwingConstants.CENTER);
-        }
-        
-        private void focusGained() {
-            if (isOn == true){
-                setBackground(Color.ORANGE);
-            }
-        }
-
-        private void focusLost() {
-             if (isOn == true){
-            setBackground(Color.WHITE);
-             }
-        }
     }
     
     private class OperatorButton extends JButton {
