@@ -21,11 +21,11 @@ class Xtrek extends JFrame {
     private static Container c;
     private static Xtrek xtrek;
     static boolean isOn = true;
-    static Mode MainMenu;
-    static Mode AboutMode;
-    static Mode MapMode;
-    static Mode TurnByTurn;
-    static Mode WhereTo;
+    static MainMenu MainMenu;
+    static About AboutMode;
+    static Map MapMode;
+    static TurnByTurn TurnByTurn;
+    static WhereTo WhereTo;
     
     private Xtrek() {
         c = this.getContentPane();
@@ -37,12 +37,6 @@ class Xtrek extends JFrame {
 
         this.getContentPane().setBackground(Color.BLACK);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        /*GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 1;
-        c.gridy = 1;
-        c.weighty = 1.0;
-        c.weightx = 1.0;*/
 
         MainMenu   = new MainMenu(this);   MainMenu.hide();
         AboutMode  = new About(this);      AboutMode.hide();

@@ -29,7 +29,7 @@ public class MainMenu extends Mode {
     
     public MainMenu(JFrame frame){
         super(frame);
-        panel.setLayout(null);
+        panel.setLayout(new GridBagLayout());
         displayMode();
     }
    
@@ -37,62 +37,43 @@ public class MainMenu extends Mode {
     public void displayMode() {
         
         frame.setTitle("Main Menu");
-        panel.setBackground(Color.BLACK);
         
-        JPanel display = new JPanel();
-        display.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.GRAY));
-        //display.setBounds(32,10,281,600);
-        display.setOpaque(false);
-        panel.add(display);
-        
-        whereTo.setBounds     (45, 150, 120, 120) ; panel.add(whereTo);
-        tripComputer.setBounds(180, 150, 120, 120); panel.add(tripComputer);
-        map.setBounds         (45, 300, 120, 120) ; panel.add(map);
-        speech.setBounds      (180, 300, 120, 120); panel.add(speech);
-        satellite.setBounds   (45, 450, 120, 120) ; panel.add(satellite);
-        about.setBounds       (180, 450, 120, 120); panel.add(about);
-        
-        if (Xtrek.isOn==false){
-            whereTo.setVisible(false);tripComputer.setVisible(false);map.setVisible(false);
-            speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
-        }
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(5, 5, 5, 5);
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+
+        c.gridx = 0;
+        c.gridy = 0;
+        panel.add(whereTo,c);
+
+        c.gridy = 1;
+        panel.add(map,c);
+
+        c.gridy = 2;
+        panel.add(satellite,c);
+
+        c.gridx = 1;
+        c.gridy = 0;
+        panel.add(tripComputer,c);
+
+        c.gridy = 1;
+        panel.add(speech,c);
+
+        c.gridy = 2;
+        panel.add(about,c);
+
+        map.setVisible(Xtrek.isOn);
+        about.setVisible(Xtrek.isOn);
+        speech.setVisible(Xtrek.isOn);
+        whereTo.setVisible(Xtrek.isOn);
+        satellite.setVisible(Xtrek.isOn);
+        tripComputer.setVisible(Xtrek.isOn);
+
         panel.validate();
         panel.setVisible(true);
-        
-//      GridBagConstraints c = new GridBagConstraints();
-//
-//      c.fill = GridBagConstraints.BOTH;
-//      c.insets = new Insets(5, 5, 5, 5);
-//      c.weightx = 1.0;
-//      c.weighty = 1.0;
-//        
-//      c.gridx = 0;
-//      c.gridy = 0;
-//      panel.add(whereTo,c);
-//      
-//      c.gridx++;
-//      panel.add(tripComputer,c);
-//      
-//      c.gridy++;
-//      c.gridx--;
-//      panel.add(map,c);
-//        
-//      c.gridx++;
-//      panel.add(speech,c);
-//      
-//      c.gridy++;
-//      c.gridx--;
-//      panel.add(satellite,c);
-//        
-//      c.gridx++;
-//      panel.add(about,c);
-//        
-//      if (Xtrek.isOn==false){
-//          whereTo.setVisible(false);tripComputer.setVisible(false);map.setVisible(false);
-//          speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
-//      }
-//      panel.validate();
-//      panel.setVisible(true);
     }
     
     private class OperatorButton extends JButton {
