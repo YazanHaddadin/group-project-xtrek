@@ -71,14 +71,14 @@ public class ControlLayout {
                         }
                             break;
                         case "+"        :  if (Xtrek.isOn == true){System.out.println(control);} // scroll through buttons
-                        else if(Xtrek.isOn == false){plus.setEnabled(false);}
-                            break;
+                                           else if(Xtrek.isOn == false){plus.setEnabled(false);}
+                                           break;
                         case "-"        :  if (Xtrek.isOn == true){System.out.println(control);} // scroll through buttons
-                        else if(Xtrek.isOn == false){plus.setEnabled(false);}
-                            break;
+                                           else if(Xtrek.isOn == false){plus.setEnabled(false);}
+                                            break;
                         case "Select"   :  if (Xtrek.isOn == true){System.out.println(control);} // select button
-                        else if(Xtrek.isOn == false){plus.setEnabled(false);}
-                            break;
+                                           else if(Xtrek.isOn == false){plus.setEnabled(false);}
+                                           break;
                         case "M"        :  Xtrek.hideCurrentView(); Xtrek.setCurrentView(Xtrek.MainMenu); Xtrek.showCurrentView();
                     }
                 }

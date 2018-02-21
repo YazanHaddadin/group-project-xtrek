@@ -53,6 +53,41 @@ public class MainMenu extends Mode {
         }
         panel.validate();
         panel.setVisible(true);
+        
+//      GridBagConstraints c = new GridBagConstraints();
+//
+//      c.fill = GridBagConstraints.BOTH;
+//      c.insets = new Insets(5, 5, 5, 5);
+//      c.weightx = 1.0;
+//      c.weighty = 1.0;
+//        
+//      c.gridx = 0;
+//      c.gridy = 0;
+//      panel.add(whereTo,c);
+//      
+//      c.gridx++;
+//      panel.add(tripComputer,c);
+//      
+//      c.gridy++;
+//      c.gridx--;
+//      panel.add(map,c);
+//        
+//      c.gridx++;
+//      panel.add(speech,c);
+//      
+//      c.gridy++;
+//      c.gridx--;
+//      panel.add(satellite,c);
+//        
+//      c.gridx++;
+//      panel.add(about,c);
+//        
+//      if (Xtrek.isOn==false){
+//          whereTo.setVisible(false);tripComputer.setVisible(false);map.setVisible(false);
+//          speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
+//      }
+//      panel.validate();
+//      panel.setVisible(true);
     }
     
     private class OperatorButton extends JButton {
