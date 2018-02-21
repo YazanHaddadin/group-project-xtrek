@@ -28,7 +28,7 @@ public class ControlLayout {
     final JButton select       = new ControlButton("Select");
     final JButton menu         = new ControlButton("M");
     
-    ControlLayout(JButton b){
+    ControlLayout(){
         controlPanel.setPreferredSize(new Dimension(570, 710));
         controlPanel.setMaximumSize(new Dimension(570, 710));
         
@@ -43,7 +43,6 @@ public class ControlLayout {
         select.setBounds(12,325,20,65) ; controlPanel.add(select);
 
         controlPanel.setBackground(Color.BLACK);
-        controlPanel.add(b);
     }
 
     private class ControlButton extends JButton {
