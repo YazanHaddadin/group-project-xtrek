@@ -16,12 +16,15 @@ public class TripComputer extends Mode {
  
     JPanel odometerPanel = new JPanel();
     JLabel odometerLabel = new JLabel("Trip Odometer:");
+    JLabel odometerReading = new JLabel("1.0 KM");
     
     JPanel speedPanel = new JPanel();
     JLabel speedLabel = new JLabel("Speed:");
+    JLabel speedReading = new JLabel("4.5 KM/H");
     
     JPanel movingTimePanel = new JPanel();
     JLabel movingTimeLabel = new JLabel("Moving Time:");
+    JLabel movingTimeReading = new JLabel("28 mins 35 secs");
     
     
     public TripComputer(JFrame frame) {
@@ -58,13 +61,20 @@ public class TripComputer extends Mode {
         movingTimePanel.setBackground(Color.WHITE);
         
         //Set correct font for each label.
-        odometerLabel.setFont(new Font("Arial", Font.BOLD, 36));
-        speedLabel.setFont(new Font("Arial", Font.BOLD, 36));
-        movingTimeLabel.setFont(new Font("Arial", Font.BOLD, 36));
+        odometerLabel.setFont(new Font("Arial", Font.BOLD, 72));
+        speedLabel.setFont(new Font("Arial", Font.BOLD, 72));
+        movingTimeLabel.setFont(new Font("Arial", Font.BOLD, 72));
+        
+        odometerReading.setFont(new Font("Arial", Font.BOLD, 72));
+        speedReading.setFont(new Font("Arial", Font.BOLD, 72));
+        movingTimeReading.setFont(new Font("Arial", Font.BOLD, 72));
         
         odometerPanel.add(odometerLabel);
+        odometerPanel.add(odometerReading);
         speedPanel.add(speedLabel);
+        speedPanel.add(speedReading);
         movingTimePanel.add(movingTimeLabel);
+        movingTimePanel.add(movingTimeReading);
         
         frame.setVisible(true);
         panel.validate();
