@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * TurnByTurn class
+ * 
+ * Provides UI to choose and language for the Turn By Turn, translates the directions and speaks them out when
+ * needed
+ * 
+ * @author Sebastien Michel
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -13,14 +17,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
-/**
- *
- * @author Sebastien Michel
- * @version Sprint 1
- *
- * Provides UI to choose and language for the Turn By Turn, translates the directions and speaks them out when
- * needed
- */
 public class TurnByTurn extends Mode  {
     final private JButton bOff = new LangButton("Off"     , null, null, null);
     final private JButton bEng = new LangButton("English" , "en-GB", "Male",  "(en-GB, George, Apollo)");

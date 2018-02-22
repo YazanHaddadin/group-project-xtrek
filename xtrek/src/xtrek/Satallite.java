@@ -1,4 +1,4 @@
-/*
+/**
  * Satallite Class
  *
  * Reads out the current coordinates of the device.

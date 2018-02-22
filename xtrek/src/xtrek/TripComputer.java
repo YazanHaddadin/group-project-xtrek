@@ -1,4 +1,4 @@
-/*
+/**
  * TripComputer Class
  *
  * Provides live trip information to the user, including an odometer, their

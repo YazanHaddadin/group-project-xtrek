@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * SelectedListener class
+ * 
+ * @author Sebastien Michel
+ * @version Sprint 1
  */
 package xtrek;
 
-/**
- *
- * @author sebltm
- */
 interface SelectedListener {
     void selected();
 }

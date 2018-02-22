@@ -1,17 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * XTrek class
+ * 
+ * Provides a main method for starting the device and running the software.
+ * Switches between the different modes in the software.
+ * 
+ * @author Sebastien Michel
+ * @version Sprint 1
  */
 package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author sebltm
- */
 class Xtrek extends JFrame {
 
     /**

@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * HttpConnect Class
+ *
+ * Provides an HTTP connection for the Map class.
+ *
+ * @author Alex Vale
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -10,11 +13,6 @@ import java.io.DataOutputStream;
 import java.io.DataInputStream;
 import java.net.URL;
 import java.net.HttpURLConnection;
-
-/**
- *
- * @author Alex
- */
 
 public class HttpConnect {
   final static int TIMEOUT  = 5000; /* ms  */

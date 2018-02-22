@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Mode class
+ * 
+ * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
+ * 
+ * @author sebltm
+ * @version Sprint 1
+ *
+ * To use : extends Mode
+ * Implement displayMode() which needs to include your buttons, text labels, images, etc
  */
 package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author sebltm
- * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
- *
- * To use : extends Mode
- * Implement displayMode() which needs to include your buttons, text labels, images, etc
- */
+
 public abstract class Mode {
     final JFrame frame;
     JPanel panel = new JPanel();

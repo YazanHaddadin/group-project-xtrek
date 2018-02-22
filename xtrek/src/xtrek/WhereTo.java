@@ -1,4 +1,4 @@
-/*
+/**
  * WhereTo Class
  *
  * Provides a keyboard for the user to input their destination for the XTrek

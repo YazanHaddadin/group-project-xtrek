@@ -1,7 +1,7 @@
-/*
+/**
  * Control Layout Class
  *
- * Provides the Cotrol Panel which has the control buttons to be shown on all
+ * Provides the Control Panel which has the control buttons to be shown on all
  * the modes, where the + and - buttons are used to navigate between the modes
  * and the select button to choose which mode that is highlighted and the menu
  * button to close the current mode and revert back to the Main Menu. The power

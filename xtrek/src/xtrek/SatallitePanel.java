@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * SatallitePanel class
+ * 
+ * Provides the layout for the Satallite class.
+ * 
+ * @author Liam Vinson
+ * @version Sprint 1
  */
 package xtrek;
 
-/**
- *
- * @author liamvinson
- */
 public class SatallitePanel extends javax.swing.JPanel {
 
     /**

@@ -1,4 +1,4 @@
-/*
+/**
  * About Class
  *
  * Provides information about the device

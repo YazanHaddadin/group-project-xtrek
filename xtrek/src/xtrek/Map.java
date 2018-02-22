@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Map class
+ * 
+ * Provides a map on the screen of the device, where the user will be able to see
+ * their current location.
+ * 
+ * @author Alex Vale
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -15,10 +19,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-/**
- *
- * @author Alex
- */
 public class Map extends Mode {
 
     final static String OUTPUT = "output.png";  /* Output file        */

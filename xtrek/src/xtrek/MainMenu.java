@@ -1,4 +1,4 @@
-/*
+/**
  * Main Menu Class
  *
  * Provides the User Interface of the Main Menu for the Xtrek, where the user is

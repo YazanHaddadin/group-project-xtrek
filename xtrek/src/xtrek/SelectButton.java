@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * SelectButton class
+ * 
+ * @author Sebastien Michel
+ * @version Sprint 1
  */
 package xtrek;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author sebltm
- */
 class SelectButton {
     private final ArrayList<SelectedListener> listeners = new ArrayList<>();
     
