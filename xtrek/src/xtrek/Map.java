@@ -85,7 +85,7 @@ public class Map extends Mode {
                     + "?" + "center" + "=" + LATITUDE + "," + LONGITUDE
                     + "&" + "zoom" + "=" + ZOOM
                     + "&" + "size" + "=" + SIZE, new HashMap<>(), "");
-            connect.writeData("map.png", connect.getResponse());
+            connect.writeData(OUTPUT, connect.getResponse());
         }
     }
 }
