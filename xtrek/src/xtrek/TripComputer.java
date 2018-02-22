@@ -24,8 +24,6 @@ public class TripComputer extends Mode {
     JLabel movingTimeLabel = new JLabel("Moving Time:");
     
     
-    
-   
     public TripComputer(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
@@ -43,6 +41,7 @@ public class TripComputer extends Mode {
         c.weightx = 1.0;
         c.weighty = 1.0;
 
+        //Set relative position for each panel in the grid bag layout.
         c.gridx = 0;
         c.gridy = 0;
         panel.add(odometerPanel, c);
@@ -53,13 +52,21 @@ public class TripComputer extends Mode {
         c.gridy++;
         panel.add(movingTimePanel, c );
 
+        //Set background colours for each panel.
+        odometerPanel.setBackground(Color.WHITE);
+        speedPanel.setBackground(Color.WHITE);;
+        movingTimePanel.setBackground(Color.WHITE);
+        
+        //Set correct font for each label.
+        odometerLabel.setFont(new Font("Arial", Font.BOLD, 36));
+        speedLabel.setFont(new Font("Arial", Font.BOLD, 36));
+        movingTimeLabel.setFont(new Font("Arial", Font.BOLD, 36));
         
         odometerPanel.add(odometerLabel);
         speedPanel.add(speedLabel);
         movingTimePanel.add(movingTimeLabel);
         
         frame.setVisible(true);
-        
         panel.validate();
         panel.setVisible(true);
     }
