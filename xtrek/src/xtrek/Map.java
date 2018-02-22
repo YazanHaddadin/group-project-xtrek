@@ -24,7 +24,7 @@ public class Map extends Mode {
     final static String OUTPUT = "output.png";  /* Output file        */
     final static String LATITUDE = "50.7184";     /* Inputted latitude  */
     final static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
-    final static String ZOOM = "5";           /* 0 .. 21           */
+    final static String ZOOM = "17";           /* 0 .. 21           */
     final static String SIZE = "612x612";     /* Size              */
     private static JLabel label;
     private BufferedImage mapImage;
