@@ -37,7 +37,7 @@ public class Map extends Mode {
 
     @Override
     public void displayMode() {
-        frame.setTitle("Main Menu");
+        frame.setTitle("Map");
 
         panel.setLayout(null);
 
