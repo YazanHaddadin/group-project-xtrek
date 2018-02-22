@@ -78,77 +78,79 @@ public class WhereTo extends Mode {
         frame.setTitle("Where To?");
         
         //Styling and positioning for destination text field
-        destination.setBounds(35, 10, 500, 80);
+        destination.setBounds(10, 10, 540, 80);
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font("Arial", Font.BOLD, 36));
+        destination.setBorder(null);
+        destination.setEditable(false);
         
         //Set co-ordinates for the buttons on the alphabetical keyboard
-        btnA.setBounds(35, 100, 125, 80); panel.add(btnA);
-        btnB.setBounds(160, 100, 125, 80); panel.add(btnB);
-        btnC.setBounds(285, 100, 125, 80); panel.add(btnC);
-        btnD.setBounds(410, 100, 125, 80); panel.add(btnD);
-        btnE.setBounds(35, 180, 125, 80); panel.add(btnE);
-        btnF.setBounds(160, 180, 125, 80); panel.add(btnF);
-        btnG.setBounds(285, 180, 125, 80); panel.add(btnG);
-        btnH.setBounds(410, 180, 125, 80); panel.add(btnH);
-        btnI.setBounds(35, 260, 125, 80); panel.add(btnI);
-        btnJ.setBounds(160, 260, 125, 80); panel.add(btnJ);
-        btnK.setBounds(285, 260, 125, 80); panel.add(btnK);
-        btnL.setBounds(410, 260, 125, 80); panel.add(btnL);
-        btnM.setBounds(35, 340, 125, 80); panel.add(btnM);
-        btnN.setBounds(160, 340, 125, 80); panel.add(btnN);
-        btnO.setBounds(285, 340, 125, 80); panel.add(btnO);
-        btnP.setBounds(410, 340, 125, 80); panel.add(btnP);
-        btnQ.setBounds(35, 420, 125, 80); panel.add(btnQ);
-        btnR.setBounds(160, 420, 125, 80); panel.add(btnR);
-        btnS.setBounds(285, 420, 125, 80); panel.add(btnS);
-        btnT.setBounds(410, 420, 125, 80); panel.add(btnT);
-        btnU.setBounds(35, 500, 125, 80); panel.add(btnU);
-        btnV.setBounds(160, 500, 125, 80); panel.add(btnV);
-        btnW.setBounds(285, 500, 125, 80); panel.add(btnW);
-        btnX.setBounds(410, 500, 125, 80); panel.add(btnX);
-        btnY.setBounds(35, 580, 125, 80); panel.add(btnY);
-        btnZ.setBounds(160, 580, 125, 80); panel.add(btnZ);
-        btnSpace.setBounds(285, 580, 125, 80); panel.add(btnSpace);
-        btnNextPage.setBounds(410, 580, 125, 80); panel.add(btnNextPage);
+        btnA.setBounds(10, 100, 135, 80); panel.add(btnA);
+        btnB.setBounds(145, 100, 135, 80); panel.add(btnB);
+        btnC.setBounds(280, 100, 135, 80); panel.add(btnC);
+        btnD.setBounds(415, 100, 135, 80); panel.add(btnD);
+        btnE.setBounds(10, 180, 135, 80); panel.add(btnE);
+        btnF.setBounds(145, 180, 135, 80); panel.add(btnF);
+        btnG.setBounds(280, 180, 135, 80); panel.add(btnG);
+        btnH.setBounds(415, 180, 135, 80); panel.add(btnH);
+        btnI.setBounds(10, 260, 135, 80); panel.add(btnI);
+        btnJ.setBounds(145, 260, 135, 80); panel.add(btnJ);
+        btnK.setBounds(280, 260, 135, 80); panel.add(btnK);
+        btnL.setBounds(415, 260, 135, 80); panel.add(btnL);
+        btnM.setBounds(10, 340, 135, 80); panel.add(btnM);
+        btnN.setBounds(145, 340, 135, 80); panel.add(btnN);
+        btnO.setBounds(280, 340, 135, 80); panel.add(btnO);
+        btnP.setBounds(415, 340, 135, 80); panel.add(btnP);
+        btnQ.setBounds(10, 420, 135, 80); panel.add(btnQ);
+        btnR.setBounds(145, 420, 135, 80); panel.add(btnR);
+        btnS.setBounds(280, 420, 135, 80); panel.add(btnS);
+        btnT.setBounds(415, 420, 135, 80); panel.add(btnT);
+        btnU.setBounds(10, 500, 135, 80); panel.add(btnU);
+        btnV.setBounds(145, 500, 135, 80); panel.add(btnV);
+        btnW.setBounds(280, 500, 135, 80); panel.add(btnW);
+        btnX.setBounds(415, 500, 135, 80); panel.add(btnX);
+        btnY.setBounds(10, 580, 135, 80); panel.add(btnY);
+        btnZ.setBounds(145, 580, 135, 80); panel.add(btnZ);
+        btnSpace.setBounds(280, 580, 135, 80); panel.add(btnSpace);
+        btnNextPage.setBounds(415, 580, 135, 80); panel.add(btnNextPage);
         
 
         
         //Set co-ordinates for numeric keyboard buttons, and also make them not visible initially, until the numerical keyboard is opened
-        btn1.setBounds(35, 100, 166, 112); panel.add(btn1);
+        btn1.setBounds(10, 100, 180, 112); panel.add(btn1);
         btn1.setVisible(false);
         
-        btn2.setBounds(202, 100, 166, 112); panel.add(btn2);
+        btn2.setBounds(190, 100, 180, 112); panel.add(btn2);
         btn2.setVisible(false);
         
-        btn3.setBounds(368, 100, 166, 112); panel.add(btn3);
+        btn3.setBounds(370, 100, 180, 112); panel.add(btn3);
         btn3.setVisible(false);
 
-        btn4.setBounds(35, 212, 166, 112); panel.add(btn4);
+        btn4.setBounds(10, 212, 180, 112); panel.add(btn4);
         btn4.setVisible(false);
         
-        btn5.setBounds(202, 212, 166, 112); panel.add(btn5);
+        btn5.setBounds(190, 212, 180, 112); panel.add(btn5);
         btn5.setVisible(false);
         
-        btn6.setBounds(368, 212, 166, 112); panel.add(btn6);
+        btn6.setBounds(370, 212, 180, 112); panel.add(btn6);
         btn6.setVisible(false);
         
-        btn7.setBounds(35, 324, 166, 112); panel.add(btn7);
+        btn7.setBounds(10, 324, 180, 112); panel.add(btn7);
         btn7.setVisible(false);
         
-        btn8.setBounds(202, 324, 166, 112); panel.add(btn8);
+        btn8.setBounds(190, 324, 180, 112); panel.add(btn8);
         btn8.setVisible(false);
         
-        btn9.setBounds(368, 324, 166, 112); panel.add(btn9);
+        btn9.setBounds(370, 324, 180, 112); panel.add(btn9);
         btn9.setVisible(false);
         
-        btn0.setBounds(35, 436, 166, 112); panel.add(btn0);
+        btn0.setBounds(10, 436, 180, 112); panel.add(btn0);
         btn0.setVisible(false);
         
-        btnBackPage.setBounds(35, 548, 166, 112); panel.add(btnBackPage);
+        btnBackPage.setBounds(10, 548, 180, 112); panel.add(btnBackPage);
         btnBackPage.setVisible(false);
         
-        btnDel.setBounds(202, 436, 332, 224); panel.add(btnDel);
+        btnDel.setBounds(190, 436, 360, 224); panel.add(btnDel);
         btnDel.setVisible(false);
         
         panel.validate();
