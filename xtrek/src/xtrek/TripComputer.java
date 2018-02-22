@@ -40,7 +40,7 @@ public class TripComputer extends Mode {
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(10, 10, 10, 10);
         c.weightx = 1.0;
         c.weighty = 1.0;
 
@@ -65,9 +65,9 @@ public class TripComputer extends Mode {
         speedLabel.setFont(new Font("Arial", Font.BOLD, 72));
         movingTimeLabel.setFont(new Font("Arial", Font.BOLD, 72));
         
-        odometerReading.setFont(new Font("Arial", Font.BOLD, 72));
-        speedReading.setFont(new Font("Arial", Font.BOLD, 72));
-        movingTimeReading.setFont(new Font("Arial", Font.BOLD, 72));
+        odometerReading.setFont(new Font("Arial", Font.BOLD, 70));
+        speedReading.setFont(new Font("Arial", Font.BOLD, 70));
+        movingTimeReading.setFont(new Font("Arial", Font.BOLD, 70));
         
         odometerPanel.add(odometerLabel);
         odometerPanel.add(odometerReading);
