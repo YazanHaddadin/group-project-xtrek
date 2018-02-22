@@ -22,7 +22,7 @@ public class MainMenu extends Mode {
     
     //creating the operator buttons to switch modes
     final JButton whereTo      = new OperatorButton("Where To?", WhereTo.class);
-    final JButton tripComputer = new OperatorButton("Trip Computer",WhereTo.class);
+    final JButton tripComputer = new OperatorButton("Trip Computer",TripComputer.class);
     final JButton map          = new OperatorButton("Map",Map.class);
     final JButton speech       = new OperatorButton("Speech", TurnByTurn.class);
     final JButton satellite    = new OperatorButton("Satellite",WhereTo.class);
