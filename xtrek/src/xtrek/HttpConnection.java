@@ -81,9 +81,9 @@ class HttpConnection {
         return response;
     }
 
-    public void writeData(byte[] buffer) {
+    public void writeData(String fileName, byte[] buffer) {
         try {
-            File             file = new File( "speech.wav" );
+            File             file = new File( fileName );
             FileOutputStream fos  = new FileOutputStream( file );
             DataOutputStream dos  = new DataOutputStream( fos );
             dos.write( buffer );

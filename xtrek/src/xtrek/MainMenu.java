@@ -1,3 +1,13 @@
+/*
+ * Main Menu Class
+ *
+ * Provides the User Interface of the Main Menu for the Xtrek, where the user is
+ * able to choose between which mode to go to using the Control Buttons provided
+ * in the ControlLayout class.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 1
+ */
 package xtrek;
 
 import javax.swing.*;
@@ -7,150 +17,69 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- *
- * @author Yazan
- */
-
 public class MainMenu extends Mode {
-    private static boolean isOn=false;
+    private static ControlLayout controlView;
     
-    final JButton onOff        = new ControlButton ("PWR");
-    final JButton plus         = new ControlButton("+");
-    final JButton minus        = new ControlButton("-");
-    final JButton select       = new ControlButton("Select");
-    final JButton menu         = new ControlButton("M");
-    
+    //creating the operator buttons to switch modes
     final JButton whereTo      = new OperatorButton("Where To?", WhereTo.class);
     final JButton tripComputer = new OperatorButton("Trip Computer",WhereTo.class);
     final JButton map          = new OperatorButton("Map",Map.class);
     final JButton speech       = new OperatorButton("Speech", TurnByTurn.class);
-    final JButton satellite    = new OperatorButton("Sattelite",WhereTo.class);
+    final JButton satellite    = new OperatorButton("Satellite",WhereTo.class);
     final JButton about        = new OperatorButton("About",About.class);
     
     public MainMenu(JFrame frame){
         super(frame);
-        panel.setLayout(null);
+        panel.setLayout(new GridBagLayout());
         displayMode();
     }
    
     @Override
     public void displayMode() {
+    //this is the actual display of the Main Menu mode
         frame.setTitle("Main Menu");
-        panel.setBackground(Color.BLACK);
         
-        JPanel display = new JPanel();
-        display.setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.GRAY));
-        display.setBounds(32,10,281,600);
-        display.setOpaque(false);
-        panel.add(display);
-        
-        onOff.setBounds (244,25,55,55) ; panel.add(onOff);
-        menu.setBounds  (313,150,20,55); panel.add(menu);
-        plus.setBounds  (12,150,20,30) ; panel.add(plus);
-        minus.setBounds (12,205,20,30) ; panel.add(minus);
-        select.setBounds(12,325,20,65) ; panel.add(select);
-        
-        whereTo.setBounds     (45, 150, 120, 120) ; panel.add(whereTo);
-        tripComputer.setBounds(180, 150, 120, 120); panel.add(tripComputer);
-        map.setBounds         (45, 300, 120, 120) ; panel.add(map);
-        speech.setBounds      (180, 300, 120, 120); panel.add(speech);
-        satellite.setBounds   (45, 450, 120, 120) ; panel.add(satellite);
-        about.setBounds       (180, 450, 120, 120); panel.add(about);
-        
-        if (isOn==false){
-            whereTo.setVisible(false);tripComputer.setVisible(false);map.setVisible(false);
-            speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
-            menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
-            select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
-            minus.setEnabled(false);select.setEnabled(false);       
-        }
+        //using GridBagConstraints to adapt to different screen sizes
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(10, 10, 10, 10);
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+
+        c.gridx = 0;
+        c.gridy = 0;
+        panel.add(whereTo,c);
+
+        c.gridy = 1;
+        panel.add(map,c);
+
+        c.gridy = 2;
+        panel.add(satellite,c);
+
+        c.gridx = 1;
+        c.gridy = 0;
+        panel.add(tripComputer,c);
+
+        c.gridy = 1;
+        panel.add(speech,c);
+
+        c.gridy = 2;
+        panel.add(about,c);
+
+        map.setVisible(Xtrek.isOn);
+        about.setVisible(Xtrek.isOn);
+        speech.setVisible(Xtrek.isOn);
+        whereTo.setVisible(Xtrek.isOn);
+        satellite.setVisible(Xtrek.isOn);
+        tripComputer.setVisible(Xtrek.isOn);
+
         panel.validate();
         panel.setVisible(true);
     }
     
-    private class ControlButton extends JButton {
-        
-        ControlButton(String control){
-            super(control);
-            setStyle();
-            
-          addMouseListener( new MouseAdapter() {
-          public void mouseClicked( MouseEvent me ) {
-            switch ( control ) {
-            case "PWR"      : if       (isOn == false){
-                
-                                  whereTo.setVisible(true); tripComputer.setVisible(true); map.setVisible(true);
-                                  speech.setVisible(true);satellite.setVisible(true);about.setVisible(true);
-                                  menu.setBackground(Color.WHITE);plus.setBackground(Color.WHITE);minus.setBackground(Color.WHITE);
-                                  select.setBackground(Color.WHITE);isOn = true;
-                                  
-                              } else if(isOn == true){
-                                  
-                                  whereTo.setVisible(false); tripComputer.setVisible(false); map.setVisible(false);
-                                  speech.setVisible(false);satellite.setVisible(false);about.setVisible(false);
-                                  menu.setBackground(Color.GRAY);plus.setBackground(Color.GRAY);minus.setBackground(Color.GRAY);
-                                  select.setBackground(Color.GRAY); menu.setEnabled(false);plus.setEnabled(false);
-                                  minus.setEnabled(false);select.setEnabled(false);isOn = false;
-                              }
-                break;
-            case "+"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
-                               else if(isOn == false){plus.setEnabled(false);}
-                break;
-            case "-"        :  if (isOn == true){System.out.println(control);} // scroll through buttons
-                               else if(isOn == false){plus.setEnabled(false);}
-                break;
-            case "Select"   :  if (isOn == true){System.out.println(control);} // select button
-                               else if(isOn == false){plus.setEnabled(false);}
-                break;
-            case "M"        :  MainMenu.this.makeVisible(); frame.add(getPanel()); frame.revalidate(); frame.repaint(); break;
-            }
-          }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                ControlButton.this.focusGained();
-            }
-               
-            @Override
-            public void mouseExited(MouseEvent e) {
-                ControlButton.this.focusLost();
-            }
-            });
-            this.addFocusListener(new FocusListener() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    ControlButton.this.focusGained();
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    ControlButton.this.focusLost();
-                }
-            
-            });
-        }
-        
-        private void setStyle() {
-            setBackground(Color.WHITE);
-            setBorderPainted(false);
-            setFont(new Font("Arial", Font.BOLD, 8));
-            setHorizontalAlignment(SwingConstants.CENTER);
-        }
-        
-        private void focusGained() {
-            if (isOn == true){
-                setBackground(Color.ORANGE);
-            }
-        }
-
-        private void focusLost() {
-             if (isOn == true){
-            setBackground(Color.WHITE);
-             }
-        }
-    }
-    
     private class OperatorButton extends JButton {
+    //the class that creates the operator button and sets its display style
         private final Class currentClass;
         
         OperatorButton(String display, Class currentClass){
@@ -190,6 +119,7 @@ public class MainMenu extends Mode {
         }
 
         private void setStyle() {
+        //set the display style of the operator buttons
             setBackground(Color.WHITE);
             setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 14));
@@ -197,14 +127,17 @@ public class MainMenu extends Mode {
         }
     
         private void focusGained() {
+        //when the focus is on the current button it changes colour
             setBackground(Color.ORANGE);
         }
 
         private void focusLost() {
+        //when the focus is lost it reverts back to the orginal colour
             setBackground(Color.WHITE);
         }
 
         public void selected() {
+        //when a button is selected the Main Menu view is hidden and the selected view is made visible
             try {
                 MainMenu.this.hide();
 

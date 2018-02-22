@@ -21,9 +21,12 @@ public abstract class Mode {
     JPanel panel = new JPanel();
 
     Mode(JFrame frame) {
+
         this.frame = frame;
         //Dimensions are in pixels, need to be mm
-        panel.setSize(new Dimension(570, 710));
+        panel.setPreferredSize(new Dimension(570, 710));
+        panel.setMaximumSize(new Dimension(570, 710));
+        panel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 
         panel.setLayout(null);
 
