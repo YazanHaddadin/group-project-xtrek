@@ -61,7 +61,6 @@ public class Map extends Mode {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //mapImage = ImageIO.read(new File(OUTPUT));
     }
 
     @Override
