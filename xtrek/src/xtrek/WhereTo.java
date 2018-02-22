@@ -81,7 +81,6 @@ public class WhereTo extends Mode {
         destination.setBounds(35, 10, 500, 80);
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font("Arial", Font.BOLD, 36));
-        destination.setHorizontalAlignment(JTextField.CENTER);
         
         //Set co-ordinates for the buttons on the alphabetical keyboard
         btnA.setBounds(35, 100, 125, 80); panel.add(btnA);
