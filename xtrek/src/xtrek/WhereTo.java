@@ -78,78 +78,78 @@ public class WhereTo extends Mode {
         frame.setTitle("Where To?");
         
         //Styling and positioning for destination text field
-        destination.setBounds(35, 10, 280, 80);
+        destination.setBounds(35, 10, 500, 80);
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font("Arial", Font.BOLD, 36));
         destination.setHorizontalAlignment(JTextField.CENTER);
         
         //Set co-ordinates for the buttons on the alphabetical keyboard
-        btnA.setBounds(35, 100, 70, 70); panel.add(btnA);
-        btnB.setBounds(105, 100, 70, 70); panel.add(btnB);
-        btnC.setBounds(175, 100, 70, 70); panel.add(btnC);
-        btnD.setBounds(245, 100, 70, 70); panel.add(btnD);
-        btnE.setBounds(35, 170, 70, 70); panel.add(btnE);
-        btnF.setBounds(105, 170, 70, 70); panel.add(btnF);
-        btnG.setBounds(175, 170, 70, 70); panel.add(btnG);
-        btnH.setBounds(245, 170, 70, 70); panel.add(btnH);
-        btnI.setBounds(35, 240, 70, 70); panel.add(btnI);
-        btnJ.setBounds(105, 240, 70, 70); panel.add(btnJ);
-        btnK.setBounds(175, 240, 70, 70); panel.add(btnK);
-        btnL.setBounds(245, 240, 70, 70); panel.add(btnL);
-        btnM.setBounds(35, 310, 70, 70); panel.add(btnM);
-        btnN.setBounds(105, 310, 70, 70); panel.add(btnN);
-        btnO.setBounds(175, 310, 70, 70); panel.add(btnO);
-        btnP.setBounds(245, 310, 70, 70); panel.add(btnP);
-        btnQ.setBounds(35, 380, 70, 70); panel.add(btnQ);
-        btnR.setBounds(105, 380, 70, 70); panel.add(btnR);
-        btnS.setBounds(175, 380, 70, 70); panel.add(btnS);
-        btnT.setBounds(245, 380, 70, 70); panel.add(btnT);
-        btnU.setBounds(35, 450, 70, 70); panel.add(btnU);
-        btnV.setBounds(105, 450, 70, 70); panel.add(btnV);
-        btnW.setBounds(175, 450, 70, 70); panel.add(btnW);
-        btnX.setBounds(245, 450, 70, 70); panel.add(btnX);
-        btnY.setBounds(35, 520, 70, 70); panel.add(btnY);
-        btnZ.setBounds(105, 520, 70, 70); panel.add(btnZ);
-        btnSpace.setBounds(175, 520, 70, 70); panel.add(btnSpace);
-        btnNextPage.setBounds(245, 520, 70, 70); panel.add(btnNextPage);
+        btnA.setBounds(35, 100, 125, 80); panel.add(btnA);
+        btnB.setBounds(160, 100, 125, 80); panel.add(btnB);
+        btnC.setBounds(285, 100, 125, 80); panel.add(btnC);
+        btnD.setBounds(410, 100, 125, 80); panel.add(btnD);
+        btnE.setBounds(35, 180, 125, 80); panel.add(btnE);
+        btnF.setBounds(160, 180, 125, 80); panel.add(btnF);
+        btnG.setBounds(285, 180, 125, 80); panel.add(btnG);
+        btnH.setBounds(410, 180, 125, 80); panel.add(btnH);
+        btnI.setBounds(35, 260, 125, 80); panel.add(btnI);
+        btnJ.setBounds(160, 260, 125, 80); panel.add(btnJ);
+        btnK.setBounds(285, 260, 125, 80); panel.add(btnK);
+        btnL.setBounds(410, 260, 125, 80); panel.add(btnL);
+        btnM.setBounds(35, 340, 125, 80); panel.add(btnM);
+        btnN.setBounds(160, 340, 125, 80); panel.add(btnN);
+        btnO.setBounds(285, 340, 125, 80); panel.add(btnO);
+        btnP.setBounds(410, 340, 125, 80); panel.add(btnP);
+        btnQ.setBounds(35, 420, 125, 80); panel.add(btnQ);
+        btnR.setBounds(160, 420, 125, 80); panel.add(btnR);
+        btnS.setBounds(285, 420, 125, 80); panel.add(btnS);
+        btnT.setBounds(410, 420, 125, 80); panel.add(btnT);
+        btnU.setBounds(35, 500, 125, 80); panel.add(btnU);
+        btnV.setBounds(160, 500, 125, 80); panel.add(btnV);
+        btnW.setBounds(285, 500, 125, 80); panel.add(btnW);
+        btnX.setBounds(410, 500, 125, 80); panel.add(btnX);
+        btnY.setBounds(35, 580, 125, 80); panel.add(btnY);
+        btnZ.setBounds(160, 580, 125, 80); panel.add(btnZ);
+        btnSpace.setBounds(285, 580, 125, 80); panel.add(btnSpace);
+        btnNextPage.setBounds(410, 580, 125, 80); panel.add(btnNextPage);
         
 
         
         //Set co-ordinates for numeric keyboard buttons, and also make them not visible initially, until the numerical keyboard is opened
-        btn1.setBounds(35, 100, 93, 98); panel.add(btn1);
+        btn1.setBounds(35, 100, 166, 112); panel.add(btn1);
         btn1.setVisible(false);
         
-        btn2.setBounds(128, 100, 93, 98); panel.add(btn2);
+        btn2.setBounds(202, 100, 166, 112); panel.add(btn2);
         btn2.setVisible(false);
         
-        btn3.setBounds(221, 100, 93, 98); panel.add(btn3);
+        btn3.setBounds(368, 100, 166, 112); panel.add(btn3);
         btn3.setVisible(false);
 
-        btn4.setBounds(35, 198, 93, 98); panel.add(btn4);
+        btn4.setBounds(35, 212, 166, 112); panel.add(btn4);
         btn4.setVisible(false);
         
-        btn5.setBounds(128, 198, 93, 98); panel.add(btn5);
+        btn5.setBounds(202, 212, 166, 112); panel.add(btn5);
         btn5.setVisible(false);
         
-        btn6.setBounds(221, 198, 93, 98); panel.add(btn6);
+        btn6.setBounds(368, 212, 166, 112); panel.add(btn6);
         btn6.setVisible(false);
         
-        btn7.setBounds(35, 296, 93, 98); panel.add(btn7);
+        btn7.setBounds(35, 324, 166, 112); panel.add(btn7);
         btn7.setVisible(false);
         
-        btn8.setBounds(128, 296, 93, 98); panel.add(btn8);
+        btn8.setBounds(202, 324, 166, 112); panel.add(btn8);
         btn8.setVisible(false);
         
-        btn9.setBounds(221, 296, 93, 98); panel.add(btn9);
+        btn9.setBounds(368, 324, 166, 112); panel.add(btn9);
         btn9.setVisible(false);
         
-        btn0.setBounds(35, 394, 93, 98); panel.add(btn0);
+        btn0.setBounds(35, 436, 166, 112); panel.add(btn0);
         btn0.setVisible(false);
         
-        btnBackPage.setBounds(35, 492, 93, 98); panel.add(btnBackPage);
+        btnBackPage.setBounds(35, 548, 166, 112); panel.add(btnBackPage);
         btnBackPage.setVisible(false);
         
-        btnDel.setBounds(128, 394, 186, 196); panel.add(btnDel);
+        btnDel.setBounds(202, 436, 332, 224); panel.add(btnDel);
         btnDel.setVisible(false);
         
         panel.validate();
