@@ -87,8 +87,10 @@ public class WhereTo extends Mode {
         
         c.gridx = 0;
         c.gridy = 0;
+        c.gridwidth = 4;
         panel.add(destination, c);
 
+        c.gridwidth = 1;
         c.gridy++;
         panel.add(btnA, c);
         
