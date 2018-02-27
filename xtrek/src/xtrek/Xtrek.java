@@ -32,7 +32,7 @@ class Xtrek extends JFrame {
         this.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        this.setPreferredSize(new Dimension(570, 710));
+        this.setPreferredSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
         this.setResizable(false);
 
         this.getContentPane().setBackground(Color.BLACK);

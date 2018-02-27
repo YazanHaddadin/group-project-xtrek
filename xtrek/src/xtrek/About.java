@@ -31,7 +31,7 @@ public class About extends Mode  {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         JPanel panel = new AboutPanel();
-        frame.setSize(new Dimension(570, 710));
+        frame.setSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
         frame.setResizable(false);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

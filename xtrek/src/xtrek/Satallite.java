@@ -62,7 +62,7 @@ public class Satallite extends Mode {
   public static void main( String[] argv ) {
       JFrame frame = new JFrame();
         SatallitePanel panel = new SatallitePanel();
-        frame.setSize(new Dimension(570, 710));
+        frame.setSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
         frame.setResizable(false);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

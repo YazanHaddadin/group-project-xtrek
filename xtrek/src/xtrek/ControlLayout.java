@@ -30,8 +30,8 @@ public class ControlLayout {
     final JButton menu         = new ControlButton("M");
     
     ControlLayout(){
-        controlPanel.setPreferredSize(new Dimension(570, 710));
-        controlPanel.setMaximumSize(new Dimension(570, 710));
+        controlPanel.setPreferredSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
+        controlPanel.setMaximumSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
         
         controlPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 

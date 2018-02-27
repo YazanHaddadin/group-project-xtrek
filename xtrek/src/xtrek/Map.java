@@ -43,7 +43,7 @@ public class Map extends Mode {
 
         label = new JLabel();
 
-        label.setBounds(0, 0, 570, 710);
+        label.setBounds(0, 0, Constants.screenWidth, Constants.screenHeight);
         panel.add(label);
 
         panel.validate();
