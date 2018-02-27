@@ -25,7 +25,7 @@ public class MainMenu extends Mode {
     final JButton tripComputer = new OperatorButton("Trip Computer",TripComputer.class);
     final JButton map          = new OperatorButton("Map",Map.class);
     final JButton speech       = new OperatorButton("Speech", TurnByTurn.class);
-    final JButton satellite    = new OperatorButton("Satellite",WhereTo.class);
+    final JButton satallite    = new OperatorButton("Satallite",Satallite.class);
     final JButton about        = new OperatorButton("About",About.class);
     
     public MainMenu(JFrame frame){
@@ -55,7 +55,7 @@ public class MainMenu extends Mode {
         panel.add(map,c);
 
         c.gridy = 2;
-        panel.add(satellite,c);
+        panel.add(satallite,c);
 
         c.gridx = 1;
         c.gridy = 0;
@@ -71,7 +71,7 @@ public class MainMenu extends Mode {
         about.setVisible(Xtrek.isOn);
         speech.setVisible(Xtrek.isOn);
         whereTo.setVisible(Xtrek.isOn);
-        satellite.setVisible(Xtrek.isOn);
+        satallite.setVisible(Xtrek.isOn);
         tripComputer.setVisible(Xtrek.isOn);
 
         panel.validate();
