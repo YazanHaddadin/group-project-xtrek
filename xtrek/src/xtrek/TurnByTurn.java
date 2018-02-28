@@ -12,6 +12,9 @@ package xtrek;
 import org.w3c.dom.CharacterData;
 import org.w3c.dom.*;
 import org.xml.sax.InputSource;
+import sun.audio.AudioData;
+import sun.audio.AudioDataStream;
+import sun.audio.AudioPlayer;
 
 import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
@@ -37,7 +40,6 @@ public class TurnByTurn extends Mode {
     final private JButton bGer = new LangButton("German", "de-DE", "Male", "(de-DE, Stefan, Apollo)");
     final private JButton bIta = new LangButton("Italian", "it-IT", "Male", "(it-IT, Cosimo, Apollo)");
     final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male", "(ja-JP, Ichiro, Apollo)");
-
 
     TurnByTurn(JFrame frame) {
         super(frame);
@@ -149,7 +151,7 @@ public class TurnByTurn extends Mode {
         return "";
     }
 
-    private void downloadNextSegment(String segment) {
+    private byte[] downloadNextSegment(String segment) {
         String key1 = "b496988cc4d34a69a1410c097a7e56ca";
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", key1);
@@ -163,7 +165,13 @@ public class TurnByTurn extends Mode {
                 ""
         );
 
-        conn.writeData("speech.wav", conn.getResponse());
+        return conn.getResponse();
+    }
+
+    private void playAudio(byte[] audio) {
+        AudioData audioData = new AudioData(audio);
+        AudioDataStream audioStream = new AudioDataStream(audioData);
+        AudioPlayer.player.start(audioStream);
     }
 
     class LangButton extends JButton implements SelectedListener {
@@ -235,7 +243,7 @@ public class TurnByTurn extends Mode {
             TurnByTurn.name = this.NAME;
             TurnByTurn.gender = this.GENDER;
             TurnByTurn.language = this.LANGUAGE;
-            new Thread(() -> downloadNextSegment(translateSegment("Hello, this is a sample sentence translated and spoken from English to my native language"))).start();
+            new Thread(() -> playAudio(downloadNextSegment(translateSegment("Hello, this is a sample sentence translated and spoken from English to my native language")))).start();
         }
     }
 }
