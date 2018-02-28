@@ -9,12 +9,20 @@
  */
 package xtrek;
 
+import org.w3c.dom.CharacterData;
+import org.w3c.dom.*;
+import org.xml.sax.InputSource;
+
 import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.StringReader;
+import java.time.Instant;
 import java.util.HashMap;
 
 public class TurnByTurn extends Mode  {
@@ -24,8 +32,14 @@ public class TurnByTurn extends Mode  {
     final private JButton bGer = new LangButton("German"  , "de-DE", "Male",  "(de-DE, Stefan, Apollo)");
     final private JButton bIta = new LangButton("Italian" , "it-IT", "Male",  "(it-IT, Cosimo, Apollo)");
     final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male",  "(ja-JP, Ichiro, Apollo)");
-    final static private String KEY1 = "10d30eade54847f881f88da8da8ac8ea";
-    final static private String KEY2 = "7277a9230ab04d8ea7f4ed2384077c25";
+
+    static private String token;
+    static private Instant keyExpiry;
+
+    static private String name;
+    static private String gender;
+    static private String language;
+
     
     TurnByTurn(JFrame frame) {
         super(frame);
@@ -117,38 +131,6 @@ public class TurnByTurn extends Mode  {
             SELECT.setSelectedListener(this);
         }
         
-        private void getNextSegment(String segment) {
-            String token = renewAccessToken();
-            HashMap<String, String> requestProp = new HashMap<>();
-            String put = requestProp.put("Content-Type", "application/ssml+xml");
-            requestProp.put("X-Microsoft-OutputFormat", "riff-16khz-16bit-mono-pcm");
-            requestProp.put("Authorization", "Bearer "+token);
-            HttpConnection conn = new HttpConnection(
-                            "https://speech.platform.bing.com/synthesize",
-                            requestProp,
-                            "<speak version='1.0' xml:lang='en-us'>" +
-                                    "<voice xml:lang='"+this.LANGUAGE+"' " +
-                                    "xml:gender='"+GENDER+"' " +
-                                    "name='Microsoft Server Speech Text to Speech Voice "+NAME+"'>"
-                                    +segment+
-                                    "</voice></speak>");
-
-            byte[] response = conn.getResponse();
-            conn.writeData("speech.wav", response);
-        }
-        
-        private String renewAccessToken() {
-            HashMap<String, String> requestProp = new HashMap<String, String>() {
-            };
-            requestProp.put("Ocp-Apim-Subscription-Key", TurnByTurn.KEY1);
-            HttpConnection conn = new HttpConnection(
-                    "https://api.cognitive.microsoft.com/sts/v1.0/issueToken",
-                    requestProp,
-                    "");
-
-            return new String(conn.getResponse());
-        }
-        
         private void focusGained() {
             setBackground(Color.ORANGE);
         }
@@ -166,8 +148,67 @@ public class TurnByTurn extends Mode  {
         
         @Override
         public void selected() {
-            new Thread(() -> getNextSegment("Hello, this is a sample sentence in " + this.LANGUAGE)).start();
+            TurnByTurn.name = this.NAME;
+            TurnByTurn.gender = this.GENDER;
+            TurnByTurn.language = this.LANGUAGE;
+            new Thread(() -> downloadNextSegment(translateSegment("Hello, this is a sample sentence translated and spoken from English to my native language"))).start();
         }
+    }
+
+    private String translateSegment(String segment) {
+        String key1 = "b496988cc4d34a69a1410c097a7e56ca";
+        HashMap<String, String> requestProp = new HashMap<>();
+        requestProp.put("Ocp-Apim-Subscription-Key", key1);
+        HttpConnection conn = new HttpConnection(
+                "https://api.microsofttranslator.com/V2/Http.svc/Translate?" +
+                        "text='"+segment.replaceAll("\\s+","%20")+"'&" +
+                        "to="+TurnByTurn.language.toLowerCase()+"&" +
+                        "options="+TurnByTurn.gender.toLowerCase(),
+                "GET",
+                requestProp,
+                ""
+        );
+
+        byte[] response = conn.getResponse();
+        String xml = new String(response);
+
+        String translatedString = parseXML(xml);
+        return translatedString;
+    }
+
+    private String parseXML(String xml) {
+        try {
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(xml));
+
+            Document doc = db.parse(is);
+            NodeList line = doc.getElementsByTagName("string");
+            Element xmlString = (Element) line.item(0);
+            Node child = xmlString.getFirstChild();
+            return ((CharacterData)child).getData();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    private void downloadNextSegment(String segment) {
+        String key1 = "b496988cc4d34a69a1410c097a7e56ca";
+        HashMap<String, String> requestProp = new HashMap<>();
+        requestProp.put("Ocp-Apim-Subscription-Key", key1);
+        HttpConnection conn = new HttpConnection(
+                "https://api.microsofttranslator.com/V2/Http.svc/Speak?" +
+                        "text="+segment.replaceAll("\\s+","%20")+"&" +
+                        "language="+TurnByTurn.language.toLowerCase()+"&" +
+                        "options="+TurnByTurn.gender.toLowerCase(),
+                "GET",
+                requestProp,
+                ""
+        );
+
+        conn.writeData("speech.wav", conn.getResponse());
     }
 
     public static void main(String[] args) {

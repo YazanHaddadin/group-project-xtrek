@@ -9,8 +9,8 @@
 
 package xtrek;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
@@ -24,14 +24,20 @@ class HttpConnection {
      * @param requestProp a Map of the request properties in key, value pairs
      * @param body The body of the request
      */
-    public HttpConnection(String u, Map<String, String> requestProp, String body) {
+    public HttpConnection(String u, String method, Map<String, String> requestProp, String body) {
         try {
             URL url = new URL(u);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            System.out.println(u);
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 
-            conn.setRequestMethod("POST");
+            conn.setRequestMethod(method);
+
             conn.setDoInput(true);
-            conn.setDoOutput(true);
+            if(method == "GET") conn.setDoOutput(false);
+            else conn.setDoOutput(true);
+            conn.setUseCaches(false);
+
+            conn.setRequestMethod(method);
 
             for(Map.Entry<String, String> e : requestProp.entrySet()) {
                 String key = e.getKey();
@@ -39,13 +45,16 @@ class HttpConnection {
                 conn.addRequestProperty(key, value);
             }
 
-            conn.addRequestProperty("Content-Length", String.valueOf(body.getBytes().length));
+            //conn.addRequestProperty("Content-Length", String.valueOf(body.getBytes().length));
             conn.connect();
+            System.out.println(conn.getRequestMethod());
 
-            DataOutputStream out = new DataOutputStream (conn.getOutputStream());
-            out.write(body.getBytes());
-            out.flush();
-            out.close();
+            if(method != "GET") {
+                DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+                out.write(body.getBytes());
+                out.flush();
+                out.close();
+            }
 
             int status = conn.getResponseCode();
             if(status >= 200 && status < 400) {

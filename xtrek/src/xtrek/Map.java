@@ -84,7 +84,7 @@ public class Map extends Mode {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
                     + "?" + "center" + "=" + LATITUDE + "," + LONGITUDE
                     + "&" + "zoom" + "=" + ZOOM
-                    + "&" + "size" + "=" + SIZE, new HashMap<>(), "");
+                    + "&" + "size" + "=" + SIZE, "POST", new HashMap<>(), "");
             connect.writeData(OUTPUT, connect.getResponse());
         }
     }
