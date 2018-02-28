@@ -18,6 +18,7 @@ class Xtrek extends JFrame {
      * @param args the command line arguments
      */
     private static Mode currentView;
+    private static Mode display;
     private static Container c;
     private static Xtrek xtrek;
     static boolean isOn = true;
@@ -26,6 +27,7 @@ class Xtrek extends JFrame {
     static Map MapMode;
     static TurnByTurn TurnByTurn;
     static WhereTo WhereTo;
+    static ControlLayout ControlPanel;
     
     private Xtrek() {
         c = this.getContentPane();
@@ -43,7 +45,13 @@ class Xtrek extends JFrame {
         MapMode    = new Map(this);        MapMode.hide();
         TurnByTurn = new TurnByTurn(this); TurnByTurn.hide();
         WhereTo    = new WhereTo(this);    WhereTo.hide();
+        ControlPanel= new ControlLayout(this); ControlPanel.hideControl();
 
+        display = ControlPanel;
+        display.displayMode();
+        display.makeControlVisible();
+        this.getContentPane().add(display.getControlPanel());
+        
         currentView = MainMenu;
         currentView.displayMode();
         currentView.makeVisible();

@@ -18,8 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MainMenu extends Mode {
-    private static ControlLayout controlView;
-    
     //creating the operator buttons to switch modes
     final JButton whereTo      = new OperatorButton("Where To?", WhereTo.class);
     final JButton tripComputer = new OperatorButton("Trip Computer",TripComputer.class);
@@ -28,7 +26,7 @@ public class MainMenu extends Mode {
     final JButton satallite    = new OperatorButton("Satallite",Satallite.class);
     final JButton about        = new OperatorButton("About",About.class);
     
-    public MainMenu(JFrame frame){
+    MainMenu(JFrame frame){
         super(frame);
         panel.setLayout(new GridBagLayout());
         displayMode();
