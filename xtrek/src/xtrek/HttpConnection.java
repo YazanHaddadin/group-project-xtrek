@@ -27,7 +27,6 @@ class HttpConnection {
     public HttpConnection(String u, String method, Map<String, String> requestProp, String body) {
         try {
             URL url = new URL(u);
-            System.out.println(u);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 
             conn.setRequestMethod(method);
@@ -47,7 +46,6 @@ class HttpConnection {
 
             //conn.addRequestProperty("Content-Length", String.valueOf(body.getBytes().length));
             conn.connect();
-            System.out.println(conn.getRequestMethod());
 
             if(method != "GET") {
                 DataOutputStream out = new DataOutputStream(conn.getOutputStream());
