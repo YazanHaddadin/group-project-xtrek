@@ -19,32 +19,38 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ControlLayout {
-    JPanel controlPanel = new JPanel(); //create a seperate panel other than the main one
-    
+public class ControlLayout extends Mode{
     //create the control buttons to control the selection of modes
     final JButton onOff        = new ControlButton("PWR");
     final JButton plus         = new ControlButton("+");
     final JButton minus        = new ControlButton("-");
     final JButton select       = new ControlButton("Select");
-    final JButton menu         = new ControlButton("M");
+    final JButton menu         = new ControlButton("Menu");
     
-    ControlLayout(){
-        controlPanel.setPreferredSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
-        controlPanel.setMaximumSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
-        
-        controlPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-
-        controlPanel.setLayout(null);
+    ControlLayout(JFrame frame){
+        super(frame);
+        displayMode();
+    }
+    
+    @Override
+    public void displayMode() {
+        frame.setTitle("Control Layout");
         
         //add the control buttons to the new panel created 
-        onOff.setBounds (244,25,55,55) ; controlPanel.add(onOff);
-        menu.setBounds  (313,150,20,55); controlPanel.add(menu);
-        plus.setBounds  (12,150,20,30) ; controlPanel.add(plus);
-        minus.setBounds (12,205,20,30) ; controlPanel.add(minus);
-        select.setBounds(12,325,20,65) ; controlPanel.add(select);
+        onOff.setBounds (444,25,85,85) ; controlPanel.add(onOff);
+        menu.setBounds  (513,180,30,85); controlPanel.add(menu);
+        plus.setBounds  (12,180,30,40) ; controlPanel.add(plus);
+        minus.setBounds (12,255,30,40) ; controlPanel.add(minus);
+        select.setBounds(12,365,30,85) ; controlPanel.add(select);
 
-        controlPanel.setBackground(Color.BLACK);
+        onOff.setVisible(true);
+        menu.setVisible(true);
+        plus.setVisible(true);
+        minus.setVisible(true);
+        select.setVisible(true);
+       
+        controlPanel.validate();
+        controlPanel.setVisible(true);
     }
 
     private class ControlButton extends JButton {
@@ -80,7 +86,7 @@ public class ControlLayout {
                         case "Select"   :  if (Xtrek.isOn == true){System.out.println(control);} // select button
                                            else if(Xtrek.isOn == false){plus.setEnabled(false);} // not yet implemented
                                            break;
-                        case "M"        :  Xtrek.hideCurrentView(); Xtrek.setCurrentView(Xtrek.MainMenu); Xtrek.showCurrentView();
+                        case "Menu"        :  Xtrek.hideCurrentView(); Xtrek.setCurrentView(Xtrek.MainMenu); Xtrek.showCurrentView();
                     }
                 }
                 @Override
@@ -128,17 +134,5 @@ public class ControlLayout {
                 setBackground(Color.WHITE);
             }
         }
-    }
-    
-    public void makeVisibleControl() {
-        controlPanel.setVisible(true);
-    }
-
-    void hideControlPanel() {
-        controlPanel.setVisible(false);
-    }
-
-    public JPanel getControlPanel() {
-        return controlPanel;
     }
 }
