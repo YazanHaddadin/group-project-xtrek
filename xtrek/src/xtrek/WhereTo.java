@@ -1,8 +1,8 @@
 /**
  * WhereTo Class
- *
+ * <p>
  * Provides a keyboard for the user to input their destination for the XTrek
- * device. 
+ * device.
  *
  * @author Caleb Blackmore
  * @version Sprint 1
@@ -19,72 +19,72 @@ import java.awt.event.MouseEvent;
 
 
 public class WhereTo extends Mode {
-    
+
     // Text field where destination will go.
     final JTextField destination = new JTextField();
-    
+
     //Create each keyboard button
-    final JButton btnA = new KeyboardButton ("A");
-    final JButton btnB = new KeyboardButton ("B");
-    final JButton btnC = new KeyboardButton ("C");
-    final JButton btnD = new KeyboardButton ("D");
-    final JButton btnE = new KeyboardButton ("E");
-    final JButton btnF = new KeyboardButton ("F");
-    final JButton btnG = new KeyboardButton ("G");
-    final JButton btnH = new KeyboardButton ("H");
-    final JButton btnI = new KeyboardButton ("I");
-    final JButton btnJ = new KeyboardButton ("J");
-    final JButton btnK = new KeyboardButton ("K");
-    final JButton btnL = new KeyboardButton ("L");
-    final JButton btnM = new KeyboardButton ("M");
-    final JButton btnN = new KeyboardButton ("N");
-    final JButton btnO = new KeyboardButton ("O");
-    final JButton btnP = new KeyboardButton ("P");
-    final JButton btnQ = new KeyboardButton ("Q");
-    final JButton btnR = new KeyboardButton ("R");
-    final JButton btnS = new KeyboardButton ("S");
-    final JButton btnT = new KeyboardButton ("T");
-    final JButton btnU = new KeyboardButton ("U");
-    final JButton btnV = new KeyboardButton ("V");
-    final JButton btnW = new KeyboardButton ("W");
-    final JButton btnX = new KeyboardButton ("X");
-    final JButton btnY = new KeyboardButton ("Y");
-    final JButton btnZ = new KeyboardButton ("Z");
-    
-    final JButton btnSpace = new KeyboardButton ("_");
-    final JButton btnNextPage = new KeyboardButton (">");
-    
-    final JButton btn1 = new KeyboardButton ("1");
-    final JButton btn2 = new KeyboardButton ("2");
-    final JButton btn3 = new KeyboardButton ("3");
-    final JButton btn4 = new KeyboardButton ("4");
-    final JButton btn5 = new KeyboardButton ("5");
-    final JButton btn6 = new KeyboardButton ("6");
-    final JButton btn7 = new KeyboardButton ("7");
-    final JButton btn8 = new KeyboardButton ("8");
-    final JButton btn9 = new KeyboardButton ("9");
-    final JButton btn0 = new KeyboardButton ("0");
-    final JButton btnBackPage = new KeyboardButton ("<");
-    final JButton btnDel = new KeyboardButton ("DEL");
-    
+    final JButton btnA = new KeyboardButton("A");
+    final JButton btnB = new KeyboardButton("B");
+    final JButton btnC = new KeyboardButton("C");
+    final JButton btnD = new KeyboardButton("D");
+    final JButton btnE = new KeyboardButton("E");
+    final JButton btnF = new KeyboardButton("F");
+    final JButton btnG = new KeyboardButton("G");
+    final JButton btnH = new KeyboardButton("H");
+    final JButton btnI = new KeyboardButton("I");
+    final JButton btnJ = new KeyboardButton("J");
+    final JButton btnK = new KeyboardButton("K");
+    final JButton btnL = new KeyboardButton("L");
+    final JButton btnM = new KeyboardButton("M");
+    final JButton btnN = new KeyboardButton("N");
+    final JButton btnO = new KeyboardButton("O");
+    final JButton btnP = new KeyboardButton("P");
+    final JButton btnQ = new KeyboardButton("Q");
+    final JButton btnR = new KeyboardButton("R");
+    final JButton btnS = new KeyboardButton("S");
+    final JButton btnT = new KeyboardButton("T");
+    final JButton btnU = new KeyboardButton("U");
+    final JButton btnV = new KeyboardButton("V");
+    final JButton btnW = new KeyboardButton("W");
+    final JButton btnX = new KeyboardButton("X");
+    final JButton btnY = new KeyboardButton("Y");
+    final JButton btnZ = new KeyboardButton("Z");
+
+    final JButton btnSpace = new KeyboardButton("_");
+    final JButton btnNextPage = new KeyboardButton(">");
+
+    final JButton btn1 = new KeyboardButton("1");
+    final JButton btn2 = new KeyboardButton("2");
+    final JButton btn3 = new KeyboardButton("3");
+    final JButton btn4 = new KeyboardButton("4");
+    final JButton btn5 = new KeyboardButton("5");
+    final JButton btn6 = new KeyboardButton("6");
+    final JButton btn7 = new KeyboardButton("7");
+    final JButton btn8 = new KeyboardButton("8");
+    final JButton btn9 = new KeyboardButton("9");
+    final JButton btn0 = new KeyboardButton("0");
+    final JButton btnBackPage = new KeyboardButton("<");
+    final JButton btnDel = new KeyboardButton("DEL");
+
     public WhereTo(JFrame frame) {
         super(frame);
         frame.pack();
         panel.setLayout(new GridBagLayout());
         displayMode();
     }
-    
+
     @Override
     public void displayMode() {
         frame.setTitle("Where To?");
-        
+
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(1, 1, 1, 1);
         c.weightx = 1.0;
         c.weighty = 1.0;
-        
+
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 4;
@@ -93,154 +93,148 @@ public class WhereTo extends Mode {
         c.gridwidth = 1;
         c.gridy++;
         panel.add(btnA, c);
-        
+
         c.gridx++;
         panel.add(btnB, c);
-        
+
         c.gridx++;
         panel.add(btnC, c);
-        
+
         c.gridx++;
         panel.add(btnD, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnE, c);
-        
+
         c.gridx++;
         panel.add(btnF, c);
-        
+
         c.gridx++;
         panel.add(btnG, c);
-        
+
         c.gridx++;
         panel.add(btnH, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnI, c);
-        
+
         c.gridx++;
         panel.add(btnJ, c);
-        
+
         c.gridx++;
         panel.add(btnK, c);
-        
+
         c.gridx++;
         panel.add(btnL, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnM, c);
-        
+
         c.gridx++;
         panel.add(btnN, c);
-        
+
         c.gridx++;
         panel.add(btnO, c);
-        
+
         c.gridx++;
         panel.add(btnP, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnQ, c);
-        
+
         c.gridx++;
         panel.add(btnR, c);
-        
+
         c.gridx++;
         panel.add(btnS, c);
-        
+
         c.gridx++;
         panel.add(btnT, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnU, c);
-        
+
         c.gridx++;
         panel.add(btnV, c);
-        
+
         c.gridx++;
         panel.add(btnW, c);
-        
+
         c.gridx++;
         panel.add(btnX, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnY, c);
-        
+
         c.gridx++;
         panel.add(btnZ, c);
-        
+
         c.gridx++;
         panel.add(btnSpace, c);
-        
+
         c.gridx++;
         panel.add(btnNextPage, c);
-        
-        
-        
-        
-        
-        
+
+
         //Numerical keyboard buttons...
         c.gridx = 0;
         c.gridy = 1;
         panel.add(btn1, c);
-        
+
         c.gridx++;
         panel.add(btn2, c);
-        
+
         c.gridx++;
         panel.add(btn3, c);
 
         c.gridx = 0;
         c.gridy++;
         panel.add(btn4, c);
-        
+
         c.gridx++;
         panel.add(btn5, c);
-        
+
         c.gridx++;
         panel.add(btn6, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btn7, c);
-        
+
         c.gridx++;
         panel.add(btn8, c);
-        
+
         c.gridx++;
         panel.add(btn9, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btn0, c);
-        
+
         c.gridx = 0;
         c.gridy++;
         panel.add(btnBackPage, c);
-        
+
         c.gridx++;
         c.gridy--;
         c.gridheight = 2;
         c.gridwidth = 2;
         panel.add(btnDel, c);
-        
-        
-        
-        
+
+
         //Styling and positioning for destination text field
         //destination.setBounds(10, 10, 540, 80);
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font("Arial", Font.BOLD, 36));
         destination.setBorder(null);
         destination.setEditable(false);
-        
+
         //Set co-ordinates for the buttons on the alphabetical keyboard
         /*btnA.setBounds(10, 100, 135, 80); panel.add(btnA);
         btnB.setBounds(145, 100, 135, 80); panel.add(btnB);
@@ -270,77 +264,76 @@ public class WhereTo extends Mode {
         btnZ.setBounds(145, 580, 135, 80); panel.add(btnZ);
         btnSpace.setBounds(280, 580, 135, 80); panel.add(btnSpace);
         btnNextPage.setBounds(415, 580, 135, 80); panel.add(btnNextPage); */
-        
 
-        
+
         //Set co-ordinates for numeric keyboard buttons, and also make them not visible initially, until the numerical keyboard is opened
         //btn1.setBounds(10, 100, 180, 112); panel.add(btn1);
         btn1.setVisible(false);
-        
+
         //btn2.setBounds(190, 100, 180, 112); panel.add(btn2);
         btn2.setVisible(false);
-        
+
         //btn3.setBounds(370, 100, 180, 112); panel.add(btn3);
         btn3.setVisible(false);
 
         //btn4.setBounds(10, 212, 180, 112); panel.add(btn4);
         btn4.setVisible(false);
-        
+
         //btn5.setBounds(190, 212, 180, 112); panel.add(btn5);
         btn5.setVisible(false);
-        
+
         //btn6.setBounds(370, 212, 180, 112); panel.add(btn6);
         btn6.setVisible(false);
-        
+
         //btn7.setBounds(10, 324, 180, 112); panel.add(btn7);
         btn7.setVisible(false);
-        
+
         //btn8.setBounds(190, 324, 180, 112); panel.add(btn8);
         btn8.setVisible(false);
-        
+
         //btn9.setBounds(370, 324, 180, 112); panel.add(btn9);
         btn9.setVisible(false);
-        
+
         //btn0.setBounds(10, 436, 180, 112); panel.add(btn0);
         btn0.setVisible(false);
-        
+
         //btnBackPage.setBounds(10, 548, 180, 112); panel.add(btnBackPage);
         btnBackPage.setVisible(false);
-        
+
         //btnDel.setBounds(190, 436, 360, 224); panel.add(btnDel);
         btnDel.setVisible(false);
-        
+
         panel.validate();
         panel.setVisible(true);
         panel.add(destination);
     }
-    
+
     class KeyboardButton extends JButton {
         private String letter;
-                
+
         public KeyboardButton(String letter) {
             super(letter);
-            this.letter = letter; 
+            this.letter = letter;
             applyKeyboardButtonStyling();
-            
+
             // Mouse listener is for testing only, won't be in the finished code.
             this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                KeyboardButton.this.selected();
-            }
-            
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                KeyboardButton.this.focusGained();
-            }
-               
-            @Override
-            public void mouseExited(MouseEvent e) {
-                KeyboardButton.this.focusLost();
-            }
-        });
-            
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    KeyboardButton.this.selected();
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    KeyboardButton.this.focusGained();
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    KeyboardButton.this.focusLost();
+                }
+            });
+
             this.addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
@@ -353,34 +346,34 @@ public class WhereTo extends Mode {
                 }
             });
         }
-        
+
         public String getDisplayLabel() {
-           return this.letter;
+            return this.letter;
         }
-        
+
         //Set the background, font and border for each button.
         private void applyKeyboardButtonStyling() {
             setBackground(Color.WHITE);
             setFont(new Font("Arial", Font.BOLD, 36));
             setBorder(new LineBorder(Color.BLACK));
         }
-         
+
         private void focusGained() {
-           setBackground(Color.ORANGE);
+            setBackground(Color.ORANGE);
         }
 
         private void focusLost() {
             setBackground(Color.WHITE);
         }
-        
+
         private void selected() {
             //Space button has been pressed
-            if("_".equals(letter)) {
+            if ("_".equals(letter)) {
                 destination.setText(destination.getText() + " ");
             }
-            
+
             //Next page button pressed
-            else if(">".equals(letter)) {
+            else if (">".equals(letter)) {
                 //Hide all buttons for the main letter keyboard
                 btnA.setVisible(false);
                 btnB.setVisible(false);
@@ -410,7 +403,7 @@ public class WhereTo extends Mode {
                 btnZ.setVisible(false);
                 btnSpace.setVisible(false);
                 btnNextPage.setVisible(false);
-                
+
                 //Show all numeric keyboard buttons
                 btn1.setVisible(true);
                 btn2.setVisible(true);
@@ -423,17 +416,17 @@ public class WhereTo extends Mode {
                 btn9.setVisible(true);
                 btn0.setVisible(true);
                 btnDel.setVisible(true);
-                btnBackPage.setVisible(true); 
+                btnBackPage.setVisible(true);
             }
-            
+
             //Delete button pressed
             else if ("DEL".equals(letter)) {
                 //Delete a letter from the text field
-                if(destination.getText().length() > 0) {
-                    destination.setText(destination.getText().substring(0, destination.getText ().length() - 1));
+                if (destination.getText().length() > 0) {
+                    destination.setText(destination.getText().substring(0, destination.getText().length() - 1));
                 }
             }
-            
+
             //Previous page button has been pressed
             else if ("<".equals(letter)) {
                 //Show all buttons for the main letter keyboard
@@ -465,7 +458,7 @@ public class WhereTo extends Mode {
                 btnZ.setVisible(true);
                 btnSpace.setVisible(true);
                 btnNextPage.setVisible(true);
-                
+
                 //Hide all numeric keyboard buttons
                 btn1.setVisible(false);
                 btn2.setVisible(false);
@@ -480,11 +473,11 @@ public class WhereTo extends Mode {
                 btnDel.setVisible(false);
                 btnBackPage.setVisible(false);
             }
-            
+
             //An ordinary letter or number button has been pressed
             else {
                 destination.setText(destination.getText() + letter);
-            }   
-        }    
+            }
+        }
     }
 }

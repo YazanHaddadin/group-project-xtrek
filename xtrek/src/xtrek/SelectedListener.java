@@ -1,6 +1,6 @@
 /**
  * SelectedListener class
- * 
+ *
  * @author Sebastien Michel
  * @version Sprint 1
  */

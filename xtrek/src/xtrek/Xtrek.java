@@ -1,9 +1,9 @@
 /**
  * XTrek class
- * 
+ * <p>
  * Provides a main method for starting the device and running the software.
  * Switches between the different modes in the software.
- * 
+ *
  * @author Sebastien Michel
  * @version Sprint 1
  */
@@ -28,7 +28,7 @@ class Xtrek extends JFrame {
     static TurnByTurn TurnByTurn;
     static WhereTo WhereTo;
     static ControlLayout ControlPanel;
-    
+
     private Xtrek() {
         c = this.getContentPane();
         this.setLocationRelativeTo(null);
@@ -40,18 +40,24 @@ class Xtrek extends JFrame {
         this.getContentPane().setBackground(Color.BLACK);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        MainMenu   = new MainMenu(this);   MainMenu.hide();
-        AboutMode  = new About(this);      AboutMode.hide();
-        MapMode    = new Map(this);        MapMode.hide();
-        TurnByTurn = new TurnByTurn(this); TurnByTurn.hide();
-        WhereTo    = new WhereTo(this);    WhereTo.hide();
-        ControlPanel= new ControlLayout(this); ControlPanel.hideControl();
+        MainMenu = new MainMenu(this);
+        MainMenu.hide();
+        AboutMode = new About(this);
+        AboutMode.hide();
+        MapMode = new Map(this);
+        MapMode.hide();
+        TurnByTurn = new TurnByTurn(this);
+        TurnByTurn.hide();
+        WhereTo = new WhereTo(this);
+        WhereTo.hide();
+        ControlPanel = new ControlLayout(this);
+        ControlPanel.hideControl();
 
         display = ControlPanel;
         display.displayMode();
         display.makeControlVisible();
         this.getContentPane().add(display.getControlPanel());
-        
+
         currentView = MainMenu;
         currentView.displayMode();
         currentView.makeVisible();
@@ -62,7 +68,7 @@ class Xtrek extends JFrame {
         this.validate();
         this.setVisible(true);
     }
-    
+
     public static void main(String[] args) {
         xtrek = new Xtrek();
     }
@@ -78,5 +84,5 @@ class Xtrek extends JFrame {
     public static void setCurrentView(Mode view) {
         currentView = view;
     }
-    
+
 }

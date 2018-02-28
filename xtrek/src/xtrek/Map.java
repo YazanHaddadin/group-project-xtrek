@@ -1,9 +1,9 @@
 /**
  * Map class
- * 
+ * <p>
  * Provides a map on the screen of the device, where the user will be able to see
  * their current location.
- * 
+ *
  * @author Alex Vale
  * @version Sprint 1
  */
