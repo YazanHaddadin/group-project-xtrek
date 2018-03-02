@@ -9,7 +9,13 @@
 
 package xtrek;
 
+import org.w3c.dom.CharacterData;
+import org.w3c.dom.*;
+import org.xml.sax.InputSource;
+
 import javax.net.ssl.HttpsURLConnection;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.net.URL;
 import java.util.Map;
@@ -104,5 +110,23 @@ class HttpConnection {
         } catch (Exception ex) {
             System.exit(1);
         }
+    }
+
+    String parseXML(String xml) {
+        try {
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(xml));
+
+            Document doc = db.parse(is);
+            NodeList line = doc.getElementsByTagName("string");
+            Element xmlString = (Element) line.item(0);
+            Node child = xmlString.getFirstChild();
+            return ((CharacterData) child).getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 }

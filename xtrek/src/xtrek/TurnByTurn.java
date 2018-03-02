@@ -9,42 +9,72 @@
  */
 package xtrek;
 
-import org.w3c.dom.CharacterData;
-import org.w3c.dom.*;
-import org.xml.sax.InputSource;
 import sun.audio.AudioData;
 import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 
 import javax.swing.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.StringReader;
-import java.time.Instant;
 import java.util.HashMap;
 
 public class TurnByTurn extends Mode {
-    static private String token;
-    static private Instant keyExpiry;
-    static private String name;
     static private String gender;
     static private String language;
-    final private JButton bOff = new LangButton("Off", null, null, null);
-    final private JButton bEng = new LangButton("English", "en-GB", "Male", "(en-GB, George, Apollo)");
-    final private JButton bFre = new LangButton("French", "fr-FR", "Female", "(fr-FR, Julie, Apollo)");
-    final private JButton bGer = new LangButton("German", "de-DE", "Male", "(de-DE, Stefan, Apollo)");
-    final private JButton bIta = new LangButton("Italian", "it-IT", "Male", "(it-IT, Cosimo, Apollo)");
-    final private JButton bJap = new LangButton("Japanese", "ja-JP", "Male", "(ja-JP, Ichiro, Apollo)");
+    final private JButton bOff = new LangButton(Language.OFF, null);
+    final private JButton bEng = new LangButton(Language.ENGLISH, Gender.MALE);
+    final private JButton bFre = new LangButton(Language.FRENCH, Gender.FEMALE);
+    final private JButton bGer = new LangButton(Language.GERMAN, Gender.MALE);
+    final private JButton bIta = new LangButton(Language.ITALIAN, Gender.MALE);
+    final private JButton bJap = new LangButton(Language.JAPANESE, Gender.MALE);
 
     TurnByTurn(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
         displayMode();
+    }
+
+    public enum Language {
+        OFF("Off", null),
+        ENGLISH("English", "en-GB"),
+        FRENCH("French", "fr-FR"),
+        GERMAN("German", "de-DE"),
+        ITALIAN("Italian", "it-IT"),
+        JAPANESE("Japanese", "ja-JP");
+
+        private String language;
+        private String display;
+
+        Language(String display, String language) {
+            this.display = display;
+            this.language = language;
+        }
+
+        public String getLanguage() {
+            return language;
+        }
+
+        public String getDisplay() {
+            return display;
+        }
+    }
+
+    public enum Gender {
+        MALE("Male"),
+        FEMALE("Female");
+
+        private String gender;
+
+        Gender(String gender) {
+            this.gender = gender;
+        }
+
+        public String getGender() {
+            return gender;
+        }
     }
 
     public static void main(String[] args) {
@@ -129,26 +159,8 @@ public class TurnByTurn extends Mode {
         byte[] response = conn.getResponse();
         String xml = new String(response);
 
-        String translatedString = parseXML(xml);
+        String translatedString = conn.parseXML(xml);
         return translatedString;
-    }
-
-    private String parseXML(String xml) {
-        try {
-            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            InputSource is = new InputSource();
-            is.setCharacterStream(new StringReader(xml));
-
-            Document doc = db.parse(is);
-            NodeList line = doc.getElementsByTagName("string");
-            Element xmlString = (Element) line.item(0);
-            Node child = xmlString.getFirstChild();
-            return ((CharacterData) child).getData();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "";
     }
 
     private byte[] downloadNextSegment(String segment) {
@@ -175,16 +187,14 @@ public class TurnByTurn extends Mode {
     }
 
     class LangButton extends JButton implements SelectedListener {
-        private final String NAME;
-        private final String GENDER;
-        private final String LANGUAGE;
+        private final Gender GENDER;
+        private final Language LANGUAGE;
         private final SelectButton SELECT = new SelectButton();
 
-        LangButton(String display, String language, String gender, String name) {
-            super(display);
+        LangButton(Language language, Gender gender) {
+            super(language.getDisplay());
 
             setStyle();
-            this.NAME = name;
             this.GENDER = gender;
             this.LANGUAGE = language;
 
@@ -240,9 +250,8 @@ public class TurnByTurn extends Mode {
 
         @Override
         public void selected() {
-            TurnByTurn.name = this.NAME;
-            TurnByTurn.gender = this.GENDER;
-            TurnByTurn.language = this.LANGUAGE;
+            TurnByTurn.gender = this.GENDER.getGender();
+            TurnByTurn.language = this.LANGUAGE.getLanguage();
             new Thread(() -> playAudio(downloadNextSegment(translateSegment("Hello, this is a sample sentence translated and spoken from English to my native language")))).start();
         }
     }
