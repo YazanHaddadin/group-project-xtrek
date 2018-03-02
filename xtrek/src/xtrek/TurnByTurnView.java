@@ -54,5 +54,7 @@ public class TurnByTurnView extends ModeView {
 
         panel.validate();
         panel.setVisible(false);
+
+        bOff.requestFocus();
     }
 }

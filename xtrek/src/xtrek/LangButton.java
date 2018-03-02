@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-class LangButton extends JButton implements SelectedListener {
+class LangButton extends JButton {
     private final TurnByTurn controller;
     private final TurnByTurn.Gender GENDER;
     private final TurnByTurn.Language LANGUAGE;
@@ -18,10 +18,6 @@ class LangButton extends JButton implements SelectedListener {
         this.LANGUAGE = language;
         this.controller = controller;
 
-            /*THE MOUSE LISTENER WILL GET REMOVED WHEN THE BUTTONS ARE PROPERLY
-            IMPLEMENTED. THIS IS ONLY FOR TESTING PURPOSE ATM
-            */
-
         this.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -33,9 +29,6 @@ class LangButton extends JButton implements SelectedListener {
                 LangButton.this.focusLost();
             }
         });
-
-        ControlLayout.getSelectButton().addSelectedListener(this);
-
     }
 
     private void focusGained() {
@@ -53,12 +46,11 @@ class LangButton extends JButton implements SelectedListener {
         setHorizontalAlignment(SwingConstants.LEFT);
     }
 
-    @Override
-    public void selected(SelectedEvent e) {
-        if(this.GENDER != null) {
-            controller.setGender(this.GENDER.getGender());
-            controller.setLanguage(this.LANGUAGE.getLanguage());
-            controller.playAudio("The language has been set to " + this.LANGUAGE.getDisplay());
-        }
+    TurnByTurn.Language getLanguage() {
+        return LANGUAGE;
+    }
+
+    TurnByTurn.Gender getGender() {
+        return GENDER;
     }
 }

@@ -18,6 +18,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class ControlLayout {
     //create the control buttons to control the selection of modes
@@ -28,7 +29,7 @@ public class ControlLayout {
     final JButton minus = new ControlButton("-");
     final JButton onOff = new ControlButton("PWR");
     final JButton menu = new ControlButton("Menu");
-    final static SelectButton select = new SelectButton();
+    final JButton select = new ControlButton("Select");
 
     ControlLayout(JFrame frame, JPanel panel) {
         this.panel = panel;
@@ -93,10 +94,13 @@ public class ControlLayout {
         controlPanel.setVisible(true);
     }
 
-    private class ControlButton extends JButton {
+    class ControlButton extends JButton {
+        private ArrayList<ButtonListener> listeners = new ArrayList<>();
+        private String control;
 
         ControlButton(String control) {
             super(control);
+            this.control = control;
             setStyle();
 
             addMouseListener(new MouseAdapter() {
@@ -129,19 +133,26 @@ public class ControlLayout {
                             break;
                         case "+":
                             if (Xtrek.isOn) {
-                                System.out.println(control);
-                            } // scroll through buttons
-                            else if (!Xtrek.isOn) {
-                                plus.setEnabled(false);
-                            } // not yet implemented
+                                fireEvent();
+                            }
+                            else {
+                                //TODO implement plus if xtrek is off
+                            }
                             break;
                         case "-":
                             if (Xtrek.isOn) {
-                                System.out.println(control);
-                            } // scroll through buttons
-                            else if (!Xtrek.isOn) {
-                                plus.setEnabled(false);
-                            } // not yet implemented
+                                fireEvent();
+                            }
+                            else {
+                                //TODO implement minus if Xtrek is off
+                            }
+                            break;
+                        case "Select":
+                            if(Xtrek.isOn) {
+                                fireEvent();
+                            } else {
+                                //TODO implement Select if Xtrek is off
+                            }
                             break;
                         case "Menu":
                             Xtrek.hideCurrentView();
@@ -160,6 +171,7 @@ public class ControlLayout {
                     ControlButton.this.focusLost();
                 }
             });
+
             this.addFocusListener(new FocusListener() {
                 @Override
                 public void focusGained(FocusEvent e) {
@@ -174,12 +186,23 @@ public class ControlLayout {
             });
         }
 
+        public String getControl() {
+            return control;
+        }
+
         private void setStyle() {
-            //set the display style of the control buttons
             setBackground(Color.WHITE);
             setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 25));
             setHorizontalAlignment(SwingConstants.CENTER);
+        }
+
+        public synchronized void addSelectedListener(ButtonListener listener) {
+            listeners.add(listener);
+        }
+
+        public synchronized void emptyListeners() {
+            listeners.clear();
         }
 
         private void focusGained() {
@@ -195,13 +218,30 @@ public class ControlLayout {
                 setBackground(Color.WHITE);
             }
         }
+
+        private void fireEvent() {
+            ButtonEvent event = new ButtonEvent(this);
+            switch(control) {
+                case "+":
+                    for (Object listener : listeners) {
+                        ((ButtonListener) listener).plus(event);
+                    }
+                    break;
+                case "-":
+                    for (Object listener : listeners) {
+                        ((ButtonListener) listener).minus(event);
+                    }
+                    break;
+                case "Select":
+                    for (Object listener : listeners) {
+                        ((ButtonListener) listener).selected(event);
+                    }
+            }
+
+        }
     }
 
     JPanel getPanel() {
         return controlPanel;
-    }
-
-    static SelectButton getSelectButton() {
-        return select;
     }
 }

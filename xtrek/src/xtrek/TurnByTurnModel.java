@@ -5,6 +5,7 @@ import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TurnByTurnModel extends ModeModel {
@@ -52,7 +53,7 @@ public class TurnByTurnModel extends ModeModel {
         return conn.getResponse();
     }
 
-    static void playAudio(String segment) {
+    void playAudio(String segment) {
         byte[] audio = TurnByTurnModel.downloadNextSegment(TurnByTurnModel.translateSegment(segment));
 
         audioData = new AudioData(audio);
@@ -74,8 +75,47 @@ public class TurnByTurnModel extends ModeModel {
         TurnByTurnModel.gender = gender;
     }
 
+    String getGender() {
+        return gender;
+    }
+
+    String getLanguage() {
+        return language;
+    }
+
+    void selected(LangButton currentButton) {
+        System.out.println("SELECTED");
+        if(gender != null) {
+            language = currentButton.getLanguage().getLanguage();
+            gender = currentButton.getGender().getGender();
+            this.playAudio("The language has been set to " + currentButton.getLanguage().getDisplay());
+        }
+    }
+
+    int plus(int buttonIndex, ArrayList<JButton> buttons) {
+        System.out.println("PLUS");
+        if(buttonIndex < buttons.size()) {
+            buttonIndex++;
+
+        } else {
+            buttonIndex = 0;
+        }
+
+        return buttonIndex;
+    }
+
+    int minus(int buttonIndex, ArrayList<JButton> buttons) {
+        System.out.println("MINUS");
+        if(buttonIndex > 0) {
+            buttonIndex--;
+        } else {
+            buttonIndex = buttons.size();
+        }
+
+        return buttonIndex;
+    }
+
     JButton addButton(TurnByTurn.Language language, TurnByTurn.Gender gender, TurnByTurn controller) {
-        JButton button = new LangButton(language, gender, controller);
-        return button;
+        return new LangButton(language, gender, controller);
     }
 }

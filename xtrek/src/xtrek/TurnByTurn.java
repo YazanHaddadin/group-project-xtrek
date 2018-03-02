@@ -10,10 +10,14 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
-public class TurnByTurn extends Mode {
+public class TurnByTurn extends Mode implements ButtonListener {
     private TurnByTurnView TBTView;
     private TurnByTurnModel TBTModel;
+    private ArrayList<JButton> buttons = new ArrayList<>();
+    private LangButton currentButton;
+    private int buttonIndex = 0;
 
     TurnByTurn(JFrame frame) {
         model = new TurnByTurnModel();
@@ -61,21 +65,45 @@ public class TurnByTurn extends Mode {
         TBTView.displayMode();
     }
 
-    void setLanguage(String language) {
+    private void setLanguage(String language) {
         TBTModel.setLanguage(language);
     }
 
-    void setGender(String gender) {
+    private void setGender(String gender) {
         TBTModel.setGender(gender);
     }
 
-    void playAudio(String segment) {
+    private void playAudio(String segment) {
         TBTModel.stopAudio();
-        TurnByTurnModel.playAudio(segment);
+        TBTModel.playAudio(segment);
     }
 
     JButton addButton(Language language, Gender gender) {
-        return TBTModel.addButton(language, gender, this);
+        JButton button = TBTModel.addButton(language, gender, this);
+        buttons.add(button);
+        System.out.println(((LangButton) button).getLanguage().getDisplay());
+        return button;
+    }
+
+    @Override
+    public void selected(ButtonEvent evt) {
+        TBTModel.selected(currentButton);
+    }
+
+    @Override
+    public void plus(ButtonEvent evt) {
+        buttonIndex = TBTModel.plus(buttonIndex, buttons);
+
+        currentButton = (LangButton)buttons.get(buttonIndex);
+        currentButton.requestFocus();
+    }
+
+    @Override
+    public void minus(ButtonEvent evt) {
+        buttonIndex = TBTModel.minus(buttonIndex, buttons);
+
+        currentButton = (LangButton)buttons.get(buttonIndex);
+        currentButton.requestFocus();
     }
 
     public enum Language {
