@@ -114,6 +114,6 @@ public class TurnByTurn extends Mode {
     }
 
     JButton addButton(Language language, Gender gender) {
-        return new LangButton(language, gender, this);
+        return model.addButton(language, gender, this);
     }
 }
