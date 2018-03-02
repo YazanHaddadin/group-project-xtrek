@@ -2,7 +2,7 @@ package xtrek;
 
 import javax.swing.*;
 
-public abstract class Mode {
+public abstract class Mode implements ButtonListener {
     ModeView view;
     ModeModel model;
 

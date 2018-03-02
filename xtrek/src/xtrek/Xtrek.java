@@ -49,7 +49,7 @@ class Xtrek extends JFrame {
         TurnByTurn.hide();
         WhereTo = new WhereTo(this);
         WhereTo.hide();
-        ControlPanel = new ControlLayout(this, MainMenu.panel);
+        ControlPanel = new ControlLayout(this, currentView);
 
         this.getContentPane().add(ControlPanel.getPanel());
 

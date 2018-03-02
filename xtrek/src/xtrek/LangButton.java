@@ -2,33 +2,18 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.util.ArrayList;
 
 class LangButton extends JButton {
-    private final TurnByTurn controller;
     private final TurnByTurn.Gender GENDER;
     private final TurnByTurn.Language LANGUAGE;
 
-    LangButton(TurnByTurn.Language language, TurnByTurn.Gender gender, TurnByTurn controller) {
+    LangButton(TurnByTurn.Language language, TurnByTurn.Gender gender) {
         super(language.getDisplay());
 
         setStyle();
         this.GENDER = gender;
         this.LANGUAGE = language;
-        this.controller = controller;
-
-        this.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                LangButton.this.focusGained();
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                LangButton.this.focusLost();
-            }
-        });
     }
 
     private void focusGained() {
@@ -52,5 +37,10 @@ class LangButton extends JButton {
 
     TurnByTurn.Gender getGender() {
         return GENDER;
+    }
+
+    void giveFocus(ArrayList<LangButton> buttons) {
+        for(LangButton randButton : buttons) randButton.focusLost();
+        this.focusGained();
     }
 }

@@ -22,17 +22,18 @@ import java.util.ArrayList;
 
 public class ControlLayout {
     //create the control buttons to control the selection of modes
-    final JPanel controlPanel = new JPanel();
-    JPanel panel;
+    Mode currentMode;
     private JFrame frame;
+    final JPanel controlPanel = new JPanel();
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");
     final JButton onOff = new ControlButton("PWR");
     final JButton menu = new ControlButton("Menu");
     final JButton select = new ControlButton("Select");
+    private ArrayList<ButtonListener> listeners = new ArrayList<>();
 
-    ControlLayout(JFrame frame, JPanel panel) {
-        this.panel = panel;
+    ControlLayout(JFrame frame, Mode mode) {
+        this.currentMode = mode;
         this.frame = frame;
         displayMode();
     }
@@ -82,7 +83,8 @@ public class ControlLayout {
         con.weighty = 1.0;
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(panel, con);
+        controlPanel.add(currentMode.getPanel(), con);
+        listeners.add(currentMode);
 
         onOff.setVisible(true);
         menu.setVisible(true);
@@ -95,7 +97,6 @@ public class ControlLayout {
     }
 
     class ControlButton extends JButton {
-        private ArrayList<ButtonListener> listeners = new ArrayList<>();
         private String control;
 
         ControlButton(String control) {
@@ -184,10 +185,6 @@ public class ControlLayout {
                 }
 
             });
-        }
-
-        public String getControl() {
-            return control;
         }
 
         private void setStyle() {
