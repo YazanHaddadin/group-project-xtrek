@@ -17,8 +17,7 @@ class Xtrek extends JFrame {
     /**
      * @param args the command line arguments
      */
-    private static ModeView currentView;
-    private static ModeView display;
+    private static Mode currentView;
     private static Container c;
     private static Xtrek xtrek;
     static boolean isOn = true;
@@ -50,15 +49,10 @@ class Xtrek extends JFrame {
         TurnByTurn.hide();
         WhereTo = new WhereTo(this);
         WhereTo.hide();
-        ControlPanel = new ControlLayout(this);
-        ControlPanel.hideControl();
+        ControlPanel = new ControlLayout(this, MainMenu.panel);
 
-        display = ControlPanel;
-        display.displayMode();
-        display.makeControlVisible();
-        this.getContentPane().add(display.getControlPanel());
+        this.getContentPane().add(ControlPanel.getPanel());
 
-        currentView = MainMenu;
         currentView.displayMode();
         currentView.makeVisible();
         this.getContentPane().add(currentView.getPanel());
@@ -81,7 +75,7 @@ class Xtrek extends JFrame {
         currentView.makeVisible();
     }
 
-    public static void setCurrentView(ModeView view) {
+    public static void setCurrentView(Mode view) {
         currentView = view;
     }
 

@@ -79,6 +79,8 @@ public class TurnByTurn extends Mode {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Mode currentView = new TurnByTurn(frame);
+        ControlLayout controlPanel = new ControlLayout(frame, currentView.getPanel());
+
         currentView.displayMode();
         currentView.makeVisible();
 
@@ -86,7 +88,8 @@ public class TurnByTurn extends Mode {
         con.gridy = 1;
         con.weighty = 1.0;
         con.weightx = 1.0;
-        frame.getContentPane().add(currentView.getPanel(), con);
+        frame.getContentPane().add(controlPanel.getPanel(), con);
+
 
         frame.pack();
         frame.validate();

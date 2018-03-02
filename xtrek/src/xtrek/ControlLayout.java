@@ -19,34 +19,69 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ControlLayout extends ModeView {
+public class ControlLayout {
     //create the control buttons to control the selection of modes
-    final JButton onOff = new ControlButton("PWR");
+    final JPanel controlPanel = new JPanel();
+    JPanel panel;
+    private JFrame frame;
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");
-    final JButton select = new ControlButton("Select");
+    final JButton onOff = new ControlButton("PWR");
     final JButton menu = new ControlButton("Menu");
+    final JButton select = new ControlButton("Select");
 
-    ControlLayout(JFrame frame) {
-        super(frame);
+    ControlLayout(JFrame frame, JPanel panel) {
+        this.panel = panel;
+        this.frame = frame;
         displayMode();
     }
 
-    @Override
     public void displayMode() {
         frame.setTitle("Control Layout");
 
-        //add the control buttons to the new panel created 
-        onOff.setBounds(444, 25, 85, 85);
-        controlPanel.add(onOff);
-        menu.setBounds(513, 180, 30, 85);
-        controlPanel.add(menu);
-        plus.setBounds(12, 180, 30, 40);
-        controlPanel.add(plus);
-        minus.setBounds(12, 255, 30, 40);
-        controlPanel.add(minus);
-        select.setBounds(12, 365, 30, 85);
-        controlPanel.add(select);
+        //seperate panel for the control buttons
+        controlPanel.setPreferredSize(new Dimension(Constants.screenWidth + 25, Constants.screenHeight + 25));
+        controlPanel.setMaximumSize(new Dimension(Constants.screenWidth + 25, Constants.screenHeight + 25));
+
+        controlPanel.setLayout(new GridBagLayout());
+        controlPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+
+        controlPanel.setBackground(Color.BLACK);
+
+        GridBagConstraints con = new GridBagConstraints();
+
+        //add the control buttons to the new panel created
+        con.gridx = 0;
+        con.gridy = 0;
+        con.gridwidth = 1;
+        con.gridheight = 2;
+        con.fill = GridBagConstraints.BOTH;
+        controlPanel.add(plus, con);
+
+        con.gridy = 1;
+        controlPanel.add(minus, con);
+
+        con.gridy = 4;
+        con.gridheight = 2;
+        controlPanel.add(select, con);
+
+        con.gridy = 0;
+        con.gridx = 6;
+        con.gridheight = 1;
+        controlPanel.add(onOff, con);
+
+        con.gridx = 6;
+        con.gridy = 3;
+        controlPanel.add(menu, con);
+
+        con.gridx = 1;
+        con.gridy = 1;
+        con.gridwidth = 5;
+        con.gridheight = 15;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        con.fill = GridBagConstraints.BOTH;
+        controlPanel.add(panel, con);
 
         onOff.setVisible(true);
         menu.setVisible(true);
@@ -69,7 +104,7 @@ public class ControlLayout extends ModeView {
                     //to add functionality depending on which button has been clicked
                     switch (control) {
                         case "PWR":
-                            if (Xtrek.isOn == false) {
+                            if (!Xtrek.isOn) {
                                 //turns the screen back on making the current view visible
                                 Xtrek.showCurrentView();
                                 menu.setBackground(Color.WHITE);
@@ -78,7 +113,7 @@ public class ControlLayout extends ModeView {
                                 select.setBackground(Color.WHITE);
                                 Xtrek.isOn = true;
 
-                            } else if (Xtrek.isOn == true) {
+                            } else if (Xtrek.isOn) {
                                 //turns the screen back off making the current view invisible but leaving the operator buttons visible
                                 Xtrek.hideCurrentView();
                                 menu.setBackground(Color.GRAY);
@@ -93,33 +128,33 @@ public class ControlLayout extends ModeView {
                             }
                             break;
                         case "+":
-                            if (Xtrek.isOn == true) {
+                            if (Xtrek.isOn) {
                                 System.out.println(control);
                             } // scroll through buttons
-                            else if (Xtrek.isOn == false) {
+                            else if (!Xtrek.isOn) {
                                 plus.setEnabled(false);
                             } // not yet implemented
                             break;
                         case "-":
-                            if (Xtrek.isOn == true) {
+                            if (Xtrek.isOn) {
                                 System.out.println(control);
                             } // scroll through buttons
-                            else if (Xtrek.isOn == false) {
+                            else if (!Xtrek.isOn) {
                                 plus.setEnabled(false);
                             } // not yet implemented
                             break;
                         case "Select":
-                            if (Xtrek.isOn == true) {
+                            if (Xtrek.isOn) {
                                 System.out.println(control);
                             } // select button
-                            else if (Xtrek.isOn == false) {
+                            else if (!Xtrek.isOn) {
                                 plus.setEnabled(false);
                             } // not yet implemented
                             break;
                         case "Menu":
                             Xtrek.hideCurrentView();
-                            Xtrek.setCurrentView(Xtrek.MainMenu);
-                            Xtrek.showCurrentView();
+                            //Xtrek.setCurrentView(Xtrek.MainMenu);
+                            //Xtrek.showCurrentView();
                     }
                 }
 
@@ -151,22 +186,26 @@ public class ControlLayout extends ModeView {
             //set the display style of the control buttons
             setBackground(Color.WHITE);
             setBorderPainted(false);
-            setFont(new Font("Arial", Font.BOLD, 8));
+            setFont(new Font("Arial", Font.BOLD, 25));
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 
         private void focusGained() {
             //when the focus is on the current button it changes colour
-            if (Xtrek.isOn == true) {
+            if (Xtrek.isOn) {
                 setBackground(Color.ORANGE);
             }
         }
 
         private void focusLost() {
             //when the focus is lost it reverts back to the orginal colour
-            if (Xtrek.isOn == true) {
+            if (Xtrek.isOn) {
                 setBackground(Color.WHITE);
             }
         }
+    }
+
+    JPanel getPanel() {
+        return controlPanel;
     }
 }
