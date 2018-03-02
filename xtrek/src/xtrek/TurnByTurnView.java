@@ -15,7 +15,6 @@ public class TurnByTurnView extends ModeView {
     TurnByTurnView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
-        displayMode();
     }
 
     void setController(TurnByTurn controller) {

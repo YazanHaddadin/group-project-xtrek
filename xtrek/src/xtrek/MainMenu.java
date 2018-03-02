@@ -142,10 +142,10 @@ public class MainMenu extends ModeView {
                 frame.remove(getPanel());
 
                 @SuppressWarnings("unchecked")
-                ModeView newMode = (ModeView) currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
+                Mode newMode = (Mode)currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
 
                 newMode.makeVisible();
-                frame.add(newMode.panel);
+                frame.add(newMode.getPanel());
                 frame.revalidate();
                 frame.repaint();
 

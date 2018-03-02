@@ -3,12 +3,13 @@ package xtrek;
 import javax.swing.*;
 
 public abstract class Mode {
-    private ModeView view;
-    private ModeModel controller;
+    private JFrame frame;
+    ModeView view;
+    ModeModel model;
 
-    Mode(ModeView view, ModeModel controller) {
-        this.view = view;
-        this.controller = controller;
+    Mode(JFrame frame) {
+        this.model = new TurnByTurnModel();
+        this.view = new TurnByTurnView(frame);
     }
 
     void displayMode() {
@@ -21,5 +22,9 @@ public abstract class Mode {
 
     JPanel getPanel() {
         return view.getPanel();
+    }
+
+    void hide() {
+        view.hide();
     }
 }
