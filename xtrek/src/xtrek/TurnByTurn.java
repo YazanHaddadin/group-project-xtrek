@@ -13,8 +13,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TurnByTurn extends Mode {
+    private TurnByTurnView TBTView;
+    private TurnByTurnModel TBTModel;
+
     TurnByTurn(JFrame frame) {
-        super(frame);
+        model = new TurnByTurnModel();
+        view = new TurnByTurnView(frame);
+
+        TBTModel = (TurnByTurnModel)model;
+        TBTView = (TurnByTurnView)view;
     }
 
     public enum Language {
@@ -89,24 +96,24 @@ public class TurnByTurn extends Mode {
 
     @Override
     void displayMode() {
-        ((TurnByTurnView)view).setController(this);
-        view.displayMode();
+        TBTView.setController(this);
+        TBTView.displayMode();
     }
 
     void setLanguage(String language) {
-        ((TurnByTurnModel)model).setLanguage(language);
+        TBTModel.setLanguage(language);
     }
 
     void setGender(String gender) {
-        ((TurnByTurnModel)model).setGender(gender);
+        TBTModel.setGender(gender);
     }
 
     void playAudio(String segment) {
-        ((TurnByTurnModel)model).stopAudio();
+        TBTModel.stopAudio();
         TurnByTurnModel.playAudio(segment);
     }
 
     JButton addButton(Language language, Gender gender) {
-        return ((TurnByTurnModel)model).addButton(language, gender, this);
+        return TBTModel.addButton(language, gender, this);
     }
 }
