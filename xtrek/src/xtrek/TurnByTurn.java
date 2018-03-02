@@ -9,31 +9,18 @@
  */
 package xtrek;
 
-import sun.audio.AudioData;
-import sun.audio.AudioDataStream;
-import sun.audio.AudioPlayer;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
 
 public class TurnByTurn extends Mode {
-    static private String gender;
-    static private String language;
-    final private JButton bOff = new LangButton(Language.OFF, null);
-    final private JButton bEng = new LangButton(Language.ENGLISH, Gender.MALE);
-    final private JButton bFre = new LangButton(Language.FRENCH, Gender.FEMALE);
-    final private JButton bGer = new LangButton(Language.GERMAN, Gender.MALE);
-    final private JButton bIta = new LangButton(Language.ITALIAN, Gender.MALE);
-    final private JButton bJap = new LangButton(Language.JAPANESE, Gender.MALE);
+    private static TurnByTurnView view;
+    private static TurnByTurnModel model;
 
     TurnByTurn(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
+        view = new TurnByTurnView(frame, panel);
+        model = new TurnByTurnModel();
         displayMode();
     }
 
@@ -109,150 +96,24 @@ public class TurnByTurn extends Mode {
 
     @Override
     public void displayMode() {
-
-        frame.setTitle("Turn-By-Turn");
-
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(5, 5, 5, 5);
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-
-        c.gridx = 0;
-        c.gridy = 0;
-        panel.add(bOff, c);
-
-        c.gridy++;
-        panel.add(bEng, c);
-
-        c.gridy++;
-        panel.add(bFre, c);
-
-        c.gridy++;
-        panel.add(bGer, c);
-
-        c.gridy++;
-        panel.add(bIta, c);
-
-        c.gridy++;
-        panel.add(bJap, c);
-
-        panel.validate();
-        panel.setVisible(false);
+        view.setController(this);
+        view.setView();
     }
 
-    private String translateSegment(String segment) {
-        String key1 = "b496988cc4d34a69a1410c097a7e56ca";
-        HashMap<String, String> requestProp = new HashMap<>();
-        requestProp.put("Ocp-Apim-Subscription-Key", key1);
-        HttpConnection conn = new HttpConnection(
-                "https://api.microsofttranslator.com/V2/Http.svc/Translate?" +
-                        "text='" + segment.replaceAll("\\s+", "%20") + "'&" +
-                        "to=" + TurnByTurn.language.toLowerCase() + "&" +
-                        "options=" + TurnByTurn.gender.toLowerCase(),
-                "GET",
-                requestProp,
-                ""
-        );
-
-        byte[] response = conn.getResponse();
-        String xml = new String(response);
-
-        String translatedString = conn.parseXML(xml);
-        return translatedString;
+    void setLanguage(String language) {
+        model.setLanguage(language);
     }
 
-    private byte[] downloadNextSegment(String segment) {
-        String key1 = "b496988cc4d34a69a1410c097a7e56ca";
-        HashMap<String, String> requestProp = new HashMap<>();
-        requestProp.put("Ocp-Apim-Subscription-Key", key1);
-        HttpConnection conn = new HttpConnection(
-                "https://api.microsofttranslator.com/V2/Http.svc/Speak?" +
-                        "text=" + segment.replaceAll("\\s+", "%20") + "&" +
-                        "language=" + TurnByTurn.language.toLowerCase() + "&" +
-                        "options=" + TurnByTurn.gender.toLowerCase(),
-                "GET",
-                requestProp,
-                ""
-        );
-
-        return conn.getResponse();
+    void setGender(String gender) {
+        model.setGender(gender);
     }
 
-    private void playAudio(byte[] audio) {
-        AudioData audioData = new AudioData(audio);
-        AudioDataStream audioStream = new AudioDataStream(audioData);
-        AudioPlayer.player.start(audioStream);
+    void playAudio(String segment) {
+        model.stopAudio();
+        TurnByTurnModel.playAudio(segment);
     }
 
-    class LangButton extends JButton implements SelectedListener {
-        private final Gender GENDER;
-        private final Language LANGUAGE;
-        private final SelectButton SELECT = new SelectButton();
-
-        LangButton(Language language, Gender gender) {
-            super(language.getDisplay());
-
-            setStyle();
-            this.GENDER = gender;
-            this.LANGUAGE = language;
-
-            /*THE MOUSE LISTENER WILL GET REMOVED WHEN THE BUTTONS ARE PROPERLY
-            IMPLEMENTED. THIS IS ONLY FOR TESTING PURPOSE ATM
-            */
-            this.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    LangButton.this.selected();
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    LangButton.this.focusGained();
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    LangButton.this.focusLost();
-                }
-            });
-
-            this.addFocusListener(new FocusListener() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    LangButton.this.focusGained();
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    LangButton.this.focusLost();
-                }
-            });
-
-            SELECT.setSelectedListener(this);
-        }
-
-        private void focusGained() {
-            setBackground(Color.ORANGE);
-        }
-
-        private void focusLost() {
-            setBackground(Color.WHITE);
-        }
-
-        private void setStyle() {
-            setBackground(Color.WHITE);
-            setBorderPainted(false);
-            setFont(new Font("Arial", Font.BOLD, 36));
-            setHorizontalAlignment(SwingConstants.LEFT);
-        }
-
-        @Override
-        public void selected() {
-            TurnByTurn.gender = this.GENDER.getGender();
-            TurnByTurn.language = this.LANGUAGE.getLanguage();
-            new Thread(() -> playAudio(downloadNextSegment(translateSegment("Hello, this is a sample sentence translated and spoken from English to my native language")))).start();
-        }
+    JButton addButton(Language language, Gender gender) {
+        return new LangButton(language, gender, this);
     }
 }
