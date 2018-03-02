@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @version Sprint 2
  */
 public abstract class ModeModel {
-    ArrayList<LangButton> buttons = new ArrayList<>();
+    ArrayList<JButton> buttons = new ArrayList<>();
 
     abstract JButton addButton(TurnByTurn.Language language, TurnByTurn.Gender gender);
 

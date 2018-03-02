@@ -72,7 +72,7 @@ public class TurnByTurn extends Mode implements SpeechListener {
     }
 
     void giveFocus(JButton button) {
-        TBTModel.giveFocus((LangButton) button);
+        TBTModel.giveFocus((TurnByTurnModel.LangButton) button);
     }
 
     @Override
