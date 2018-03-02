@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-public class Satallite extends Mode {
+public class Satallite extends ModeView {
 
     public Satallite(JFrame frame) {
         super(frame);

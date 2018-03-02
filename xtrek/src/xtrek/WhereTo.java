@@ -18,7 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class WhereTo extends Mode {
+public class WhereTo extends ModeView {
 
     // Text field where destination will go.
     final JTextField destination = new JTextField();

@@ -12,7 +12,7 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 
-public class TripComputer extends Mode {
+public class TripComputer extends ModeView {
 
     JPanel odometerPanel = new JPanel();
     JLabel odometerLabel = new JLabel("Trip Odometer:");

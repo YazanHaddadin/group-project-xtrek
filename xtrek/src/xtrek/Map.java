@@ -19,7 +19,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Map extends Mode {
+public class Map extends ModeView {
 
     final static String OUTPUT = "output.png";  /* Output file        */
     final static String LATITUDE = "50.7184";     /* Inputted latitude  */

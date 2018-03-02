@@ -19,7 +19,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ControlLayout extends Mode {
+public class ControlLayout extends ModeView {
     //create the control buttons to control the selection of modes
     final JButton onOff = new ControlButton("PWR");
     final JButton plus = new ControlButton("+");

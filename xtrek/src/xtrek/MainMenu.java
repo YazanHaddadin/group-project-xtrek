@@ -17,7 +17,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MainMenu extends Mode {
+public class MainMenu extends ModeView {
     //creating the operator buttons to switch modes
     final JButton whereTo = new OperatorButton("Where To?", WhereTo.class);
     final JButton tripComputer = new OperatorButton("Trip Computer", TripComputer.class);
@@ -142,7 +142,7 @@ public class MainMenu extends Mode {
                 frame.remove(getPanel());
 
                 @SuppressWarnings("unchecked")
-                Mode newMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
+                ModeView newMode = (ModeView) currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
 
                 newMode.makeVisible();
                 frame.add(newMode.panel);

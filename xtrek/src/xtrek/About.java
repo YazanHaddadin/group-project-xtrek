@@ -11,7 +11,7 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 
-public class About extends Mode {
+public class About extends ModeView {
 
     public About(JFrame frame) {
         super(frame);

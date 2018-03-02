@@ -17,8 +17,8 @@ class Xtrek extends JFrame {
     /**
      * @param args the command line arguments
      */
-    private static Mode currentView;
-    private static Mode display;
+    private static ModeView currentView;
+    private static ModeView display;
     private static Container c;
     private static Xtrek xtrek;
     static boolean isOn = true;
@@ -81,7 +81,7 @@ class Xtrek extends JFrame {
         currentView.makeVisible();
     }
 
-    public static void setCurrentView(Mode view) {
+    public static void setCurrentView(ModeView view) {
         currentView = view;
     }
 

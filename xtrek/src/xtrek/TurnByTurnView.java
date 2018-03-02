@@ -3,9 +3,7 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 
-public class TurnByTurnView {
-    final private JFrame frame;
-    final private JPanel panel;
+public class TurnByTurnView extends ModeView {
     private JButton bOff;
     private JButton bEng;
     private JButton bFre;
@@ -14,16 +12,18 @@ public class TurnByTurnView {
     private JButton bJap;
     private TurnByTurn controller;
 
-    TurnByTurnView(JFrame frame, JPanel panel) {
-        this.frame = frame;
-        this.panel = panel;
+    TurnByTurnView(JFrame frame) {
+        super(frame);
+        panel.setLayout(new GridBagLayout());
+        displayMode();
     }
 
     void setController(TurnByTurn controller) {
         this.controller = controller;
     }
 
-    void setView() {
+    @Override
+    public void displayMode() {
         frame.setTitle("Turn-By-Turn");
 
         bOff = controller.addButton(TurnByTurn.Language.OFF, null);

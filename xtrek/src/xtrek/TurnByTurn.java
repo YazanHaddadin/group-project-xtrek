@@ -17,9 +17,8 @@ public class TurnByTurn extends Mode {
     private static TurnByTurnModel model;
 
     TurnByTurn(JFrame frame) {
-        super(frame);
-        panel.setLayout(new GridBagLayout());
-        view = new TurnByTurnView(frame, panel);
+        super(view, model);
+        view = new TurnByTurnView(frame);
         model = new TurnByTurnModel();
         displayMode();
     }
@@ -87,7 +86,7 @@ public class TurnByTurn extends Mode {
         con.gridy = 1;
         con.weighty = 1.0;
         con.weightx = 1.0;
-        frame.getContentPane().add(currentView.panel, con);
+        frame.getContentPane().add(currentView.getPanel(), con);
 
         frame.pack();
         frame.validate();
@@ -95,9 +94,9 @@ public class TurnByTurn extends Mode {
     }
 
     @Override
-    public void displayMode() {
+    void displayMode() {
         view.setController(this);
-        view.setView();
+        view.displayMode();
     }
 
     void setLanguage(String language) {
