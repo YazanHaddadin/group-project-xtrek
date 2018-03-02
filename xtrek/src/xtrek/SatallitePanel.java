@@ -10,6 +10,9 @@ package xtrek;
 
 public class SatallitePanel extends javax.swing.JPanel {
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+
     /**
      * Creates new form SatallitePanel
      */
@@ -51,9 +54,5 @@ public class SatallitePanel extends javax.swing.JPanel {
                                 .addGap(197, 197, 197))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

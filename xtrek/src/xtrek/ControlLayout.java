@@ -21,15 +21,15 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class ControlLayout {
-    //create the control buttons to control the selection of modes
-    Mode currentMode;
-    private JFrame frame;
     final JPanel controlPanel = new JPanel();
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");
     final JButton onOff = new ControlButton("PWR");
     final JButton menu = new ControlButton("Menu");
     final JButton select = new ControlButton("Select");
+    //create the control buttons to control the selection of modes
+    Mode currentMode;
+    private JFrame frame;
     private ArrayList<ButtonListener> listeners = new ArrayList<>();
 
     ControlLayout(JFrame frame, Mode mode) {
@@ -96,6 +96,10 @@ public class ControlLayout {
         controlPanel.setVisible(true);
     }
 
+    JPanel getPanel() {
+        return controlPanel;
+    }
+
     class ControlButton extends JButton {
         private String control;
 
@@ -135,21 +139,19 @@ public class ControlLayout {
                         case "+":
                             if (Xtrek.isOn) {
                                 fireEvent();
-                            }
-                            else {
+                            } else {
                                 //TODO implement plus if xtrek is off
                             }
                             break;
                         case "-":
                             if (Xtrek.isOn) {
                                 fireEvent();
-                            }
-                            else {
+                            } else {
                                 //TODO implement minus if Xtrek is off
                             }
                             break;
                         case "Select":
-                            if(Xtrek.isOn) {
+                            if (Xtrek.isOn) {
                                 fireEvent();
                             } else {
                                 //TODO implement Select if Xtrek is off
@@ -218,7 +220,7 @@ public class ControlLayout {
 
         private void fireEvent() {
             ButtonEvent event = new ButtonEvent(this);
-            switch(control) {
+            switch (control) {
                 case "+":
                     for (Object listener : listeners) {
                         ((ButtonListener) listener).plus(event);
@@ -236,9 +238,5 @@ public class ControlLayout {
             }
 
         }
-    }
-
-    JPanel getPanel() {
-        return controlPanel;
     }
 }

@@ -17,18 +17,13 @@ import java.io.InputStreamReader;
 
 public class Satallite extends ModeView {
 
-    public Satallite(JFrame frame) {
-        super(frame);
-    }
-
-    @Override
-    public void displayMode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     final static String FILE_NAME = "/dev/cu.usbmodem1421";
     /* final static String FILE_NAME = "/dev/cu.usbmodem1441"; */
     final static int BUFF_SIZE = 1024;
+
+    public Satallite(JFrame frame) {
+        super(frame);
+    }
 
     /*
      * Reader.
@@ -72,6 +67,11 @@ public class Satallite extends ModeView {
         frame.setVisible(true);
 
         reader(FILE_NAME, panel);
+    }
+
+    @Override
+    public void displayMode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

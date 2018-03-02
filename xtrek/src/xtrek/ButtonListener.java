@@ -10,6 +10,8 @@ import java.util.EventListener;
 
 interface ButtonListener extends EventListener {
     void selected(ButtonEvent evt);
+
     void plus(ButtonEvent evt);
+
     void minus(ButtonEvent evt);
 }

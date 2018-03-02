@@ -17,17 +17,6 @@ public class About extends ModeView {
         super(frame);
     }
 
-    @Override
-    public void displayMode() {
-
-        frame.setTitle("About");
-
-        panel = new AboutPanel();
-
-        panel.validate();
-        panel.setVisible(true);
-    }
-
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         JPanel panel = new AboutPanel();
@@ -39,5 +28,16 @@ public class About extends ModeView {
         frame.add(panel);
 
         frame.setVisible(true);
+    }
+
+    @Override
+    public void displayMode() {
+
+        frame.setTitle("About");
+
+        panel = new AboutPanel();
+
+        panel.validate();
+        panel.setVisible(true);
     }
 }

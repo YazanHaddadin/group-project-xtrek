@@ -5,16 +5,16 @@ import sun.audio.AudioDataStream;
 import sun.audio.AudioPlayer;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Sebastien Michel
+ * @version Sprint 2
+ */
 public class TurnByTurnModel extends ModeModel {
+    static private AudioDataStream audioStream;
     private String gender;
     private String language;
-
-    static private AudioDataStream audioStream;
-
-    private ArrayList<LangButton> buttons = new ArrayList<>();
     private LangButton currentButton;
     private int buttonIndex = 0;
 
@@ -68,7 +68,7 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void selected(ButtonEvent evt) {
-        if(currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {
+        if (currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {
             language = currentButton.getLanguage().getLanguage();
             gender = currentButton.getGender().getGender();
             stopAudio();
@@ -83,7 +83,7 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void plus(ButtonEvent evt) {
-        if(buttonIndex < buttons.size()-1) buttonIndex++;
+        if (buttonIndex < buttons.size() - 1) buttonIndex++;
         else buttonIndex = 0;
 
         currentButton = buttons.get(buttonIndex);
@@ -91,8 +91,8 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void minus(ButtonEvent evt) {
-        if(buttonIndex > 0) buttonIndex--;
-        else buttonIndex = buttons.size()-1;
+        if (buttonIndex > 0) buttonIndex--;
+        else buttonIndex = buttons.size() - 1;
 
         currentButton = buttons.get(buttonIndex);
         currentButton.giveFocus(buttons);

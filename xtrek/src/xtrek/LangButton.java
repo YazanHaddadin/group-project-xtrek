@@ -40,7 +40,7 @@ class LangButton extends JButton {
     }
 
     void giveFocus(ArrayList<LangButton> buttons) {
-        for(LangButton randButton : buttons) randButton.focusLost();
+        for (LangButton randButton : buttons) randButton.focusLost();
         this.focusGained();
     }
 }

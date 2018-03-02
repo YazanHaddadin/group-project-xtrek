@@ -25,10 +25,9 @@ class HttpConnection {
     private byte[] response;
 
     /**
-     *
-     * @param u String of the url to connect to
+     * @param u           String of the url to connect to
      * @param requestProp a Map of the request properties in key, value pairs
-     * @param body The body of the request
+     * @param body        The body of the request
      */
     public HttpConnection(String u, String method, Map<String, String> requestProp, String body) {
         try {

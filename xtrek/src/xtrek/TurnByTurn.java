@@ -9,7 +9,7 @@ import java.awt.*;
  * needed
  *
  * @author Sebastien Michel
- * @version Sprint 1
+ * @version Sprint 2
  */
 public class TurnByTurn extends Mode implements SpeechListener {
     private TurnByTurnView TBTView;
@@ -23,6 +23,12 @@ public class TurnByTurn extends Mode implements SpeechListener {
         TBTView = (TurnByTurnView) view;
     }
 
+    /**
+     * The main method is just for testing purposes, allowing me to test my class independently of others
+     * It will not be present in the final product
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         Container c = frame.getContentPane();
@@ -62,7 +68,7 @@ public class TurnByTurn extends Mode implements SpeechListener {
     }
 
     JButton addButton(Language language, Gender gender) {
-       return TBTModel.addButton(language, gender);
+        return TBTModel.addButton(language, gender);
     }
 
     void giveFocus(JButton button) {

@@ -14,12 +14,6 @@ import java.awt.*;
 
 class Xtrek extends JFrame {
 
-    /**
-     * @param args the command line arguments
-     */
-    private static Mode currentView;
-    private static Container c;
-    private static Xtrek xtrek;
     static boolean isOn = true;
     static MainMenu MainMenu;
     static About AboutMode;
@@ -27,6 +21,12 @@ class Xtrek extends JFrame {
     static TurnByTurn TurnByTurn;
     static WhereTo WhereTo;
     static ControlLayout ControlPanel;
+    /**
+     * @param args the command line arguments
+     */
+    private static Mode currentView;
+    private static Container c;
+    private static Xtrek xtrek;
 
     private Xtrek() {
         c = this.getContentPane();
