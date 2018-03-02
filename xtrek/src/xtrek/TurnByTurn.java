@@ -1,7 +1,6 @@
 /**
  * TurnByTurn class
- * <p>
- * Provides UI to choose and language for the Turn By Turn, translates the directions and speaks them out when
+ * Provides UI to choose a language for the Turn By Turn, translates the directions and speaks them out when
  * needed
  *
  * @author Sebastien Michel
