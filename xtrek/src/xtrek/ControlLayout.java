@@ -18,7 +18,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class ControlLayout {
     final JPanel controlPanel = new JPanel();
@@ -27,10 +26,10 @@ public class ControlLayout {
     final JButton onOff = new ControlButton("PWR");
     final JButton menu = new ControlButton("Menu");
     final JButton select = new ControlButton("Select");
-    //create the control buttons to control the selection of modes
+
     Mode currentMode;
     private JFrame frame;
-    private ArrayList<ButtonListener> listeners = new ArrayList<>();
+    private ButtonListener listener;
 
     ControlLayout(JFrame frame, Mode mode) {
         this.currentMode = mode;
@@ -84,7 +83,7 @@ public class ControlLayout {
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
         controlPanel.add(currentMode.getPanel(), con);
-        listeners.add(currentMode);
+        listener = currentMode;
 
         onOff.setVisible(true);
         menu.setVisible(true);
@@ -196,14 +195,6 @@ public class ControlLayout {
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 
-        public synchronized void addSelectedListener(ButtonListener listener) {
-            listeners.add(listener);
-        }
-
-        public synchronized void emptyListeners() {
-            listeners.clear();
-        }
-
         private void focusGained() {
             //when the focus is on the current button it changes colour
             if (Xtrek.isOn) {
@@ -222,19 +213,14 @@ public class ControlLayout {
             ButtonEvent event = new ButtonEvent(this);
             switch (control) {
                 case "+":
-                    for (Object listener : listeners) {
-                        ((ButtonListener) listener).plus(event);
-                    }
+                    listener.plus(event);
                     break;
                 case "-":
-                    for (Object listener : listeners) {
-                        ((ButtonListener) listener).minus(event);
-                    }
+                    listener.minus(event);
                     break;
                 case "Select":
-                    for (Object listener : listeners) {
-                        ((ButtonListener) listener).selected(event);
-                    }
+                    listener.selected(event);
+                    break;
             }
 
         }

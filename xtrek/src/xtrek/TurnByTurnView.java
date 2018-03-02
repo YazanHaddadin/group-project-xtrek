@@ -5,6 +5,12 @@ import java.awt.*;
 
 public class TurnByTurnView extends ModeView {
     private TurnByTurn controller;
+    private JButton bOff;
+    private JButton bEng;
+    private JButton bFre;
+    private JButton bGer;
+    private JButton bIta;
+    private JButton bJap;
 
     TurnByTurnView(JFrame frame) {
         super(frame);
@@ -19,12 +25,12 @@ public class TurnByTurnView extends ModeView {
     public void displayMode() {
         frame.setTitle("Turn-By-Turn");
 
-        JButton bOff = controller.addButton(TurnByTurn.Language.OFF, TurnByTurn.Gender.MALE);
-        JButton bEng = controller.addButton(TurnByTurn.Language.ENGLISH, TurnByTurn.Gender.MALE);
-        JButton bFre = controller.addButton(TurnByTurn.Language.FRENCH, TurnByTurn.Gender.FEMALE);
-        JButton bGer = controller.addButton(TurnByTurn.Language.GERMAN, TurnByTurn.Gender.MALE);
-        JButton bIta = controller.addButton(TurnByTurn.Language.ITALIAN, TurnByTurn.Gender.MALE);
-        JButton bJap = controller.addButton(TurnByTurn.Language.JAPANESE, TurnByTurn.Gender.MALE);
+        bOff = controller.addButton(TurnByTurn.Language.OFF, TurnByTurn.Gender.MALE);
+        bEng = controller.addButton(TurnByTurn.Language.ENGLISH, TurnByTurn.Gender.MALE);
+        bFre = controller.addButton(TurnByTurn.Language.FRENCH, TurnByTurn.Gender.FEMALE);
+        bGer = controller.addButton(TurnByTurn.Language.GERMAN, TurnByTurn.Gender.MALE);
+        bIta = controller.addButton(TurnByTurn.Language.ITALIAN, TurnByTurn.Gender.MALE);
+        bJap = controller.addButton(TurnByTurn.Language.JAPANESE, TurnByTurn.Gender.MALE);
 
         GridBagConstraints c = new GridBagConstraints();
 

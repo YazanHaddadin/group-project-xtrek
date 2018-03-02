@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Sebastien Michel
  * @version Sprint 2
  */
-public abstract class ModeModel {
+abstract class ModeModel {
     ArrayList<JButton> buttons = new ArrayList<>();
 
     abstract JButton addButton(TurnByTurn.Language language, TurnByTurn.Gender gender);
