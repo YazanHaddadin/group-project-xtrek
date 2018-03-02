@@ -33,8 +33,8 @@ public class SelectButton extends JButton {
         listeners.add(listener);
     }
 
-    public synchronized void removeSelectedListener(SelectedListener listener) {
-        listeners.remove(listener);
+    public synchronized void emptyListeners() {
+        listeners.clear();
     }
 
     private void fireEvent() {

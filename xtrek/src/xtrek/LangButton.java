@@ -55,10 +55,10 @@ class LangButton extends JButton implements SelectedListener {
 
     @Override
     public void selected(SelectedEvent e) {
-        System.out.println(this.LANGUAGE.getLanguage());
-        controller.setGender(this.GENDER.getGender());
-        controller.setLanguage(this.LANGUAGE.getLanguage());
-        controller.playAudio("Hello, this is a sentence translated from English to my native" +
-                "language");
+        if(this.GENDER != null) {
+            controller.setGender(this.GENDER.getGender());
+            controller.setLanguage(this.LANGUAGE.getLanguage());
+            controller.playAudio("The language has been set to " + this.LANGUAGE.getDisplay());
+        }
     }
 }

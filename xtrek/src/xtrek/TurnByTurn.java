@@ -19,8 +19,63 @@ public class TurnByTurn extends Mode {
         model = new TurnByTurnModel();
         view = new TurnByTurnView(frame);
 
-        TBTModel = (TurnByTurnModel)model;
-        TBTView = (TurnByTurnView)view;
+        TBTModel = (TurnByTurnModel) model;
+        TBTView = (TurnByTurnView) view;
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        Container c = frame.getContentPane();
+        frame.setLocationRelativeTo(null);
+
+        //Dimensions are in pixels, need to be mm
+        frame.setPreferredSize(new Dimension(700, 850));
+        frame.setResizable(true);
+        frame.setLayout(new GridBagLayout());
+
+        GridBagConstraints con = new GridBagConstraints();
+
+        c.setBackground(Color.BLACK);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        Mode currentView = new TurnByTurn(frame);
+        ControlLayout controlPanel = new ControlLayout(frame, currentView.getPanel());
+
+        currentView.displayMode();
+        currentView.makeVisible();
+
+        con.gridx = 1;
+        con.gridy = 1;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        frame.getContentPane().add(controlPanel.getPanel(), con);
+
+        frame.pack();
+        frame.validate();
+        frame.setVisible(true);
+    }
+
+    @Override
+    void displayMode() {
+        TBTView.setController(this);
+        TBTView.displayMode();
+    }
+
+    void setLanguage(String language) {
+        TBTModel.setLanguage(language);
+    }
+
+    void setGender(String gender) {
+        TBTModel.setGender(gender);
+    }
+
+    void playAudio(String segment) {
+        TBTModel.stopAudio();
+        TurnByTurnModel.playAudio(segment);
+    }
+
+    JButton addButton(Language language, Gender gender) {
+        return TBTModel.addButton(language, gender, this);
     }
 
     public enum Language {
@@ -61,61 +116,5 @@ public class TurnByTurn extends Mode {
         public String getGender() {
             return gender;
         }
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        Container c = frame.getContentPane();
-        frame.setLocationRelativeTo(null);
-
-        //Dimensions are in pixels, need to be mm
-        frame.setPreferredSize(new Dimension(700, 850));
-        frame.setResizable(true);
-        frame.setLayout(new GridBagLayout());
-
-        GridBagConstraints con = new GridBagConstraints();
-
-        c.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        Mode currentView = new TurnByTurn(frame);
-        ControlLayout controlPanel = new ControlLayout(frame, currentView.getPanel());
-
-        currentView.displayMode();
-        currentView.makeVisible();
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        frame.getContentPane().add(controlPanel.getPanel(), con);
-
-
-        frame.pack();
-        frame.validate();
-        frame.setVisible(true);
-    }
-
-    @Override
-    void displayMode() {
-        TBTView.setController(this);
-        TBTView.displayMode();
-    }
-
-    void setLanguage(String language) {
-        TBTModel.setLanguage(language);
-    }
-
-    void setGender(String gender) {
-        TBTModel.setGender(gender);
-    }
-
-    void playAudio(String segment) {
-        TBTModel.stopAudio();
-        TurnByTurnModel.playAudio(segment);
-    }
-
-    JButton addButton(Language language, Gender gender) {
-        return TBTModel.addButton(language, gender, this);
     }
 }

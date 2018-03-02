@@ -61,7 +61,7 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void stopAudio() {
-        if(AudioPlayer.player.isAlive()) {
+        if (AudioPlayer.player.isAlive()) {
             AudioPlayer.player.stop(audioStream);
         }
     }
