@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TurnByTurnModel extends ModeModel {
-    static private String gender;
-    static private String language;
+    private String gender;
+    private String language;
 
     static private AudioDataStream audioStream;
 
@@ -18,15 +18,15 @@ public class TurnByTurnModel extends ModeModel {
     private LangButton currentButton;
     private int buttonIndex = 0;
 
-    private static String translateSegment(String segment) {
+    private String translateSegment(String segment) {
         String key1 = "b496988cc4d34a69a1410c097a7e56ca";
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", key1);
         HttpConnection conn = new HttpConnection(
                 "https://api.microsofttranslator.com/V2/Http.svc/Translate?" +
                         "text='" + segment.replaceAll("\\s+", "%20") + "'&" +
-                        "to=" + TurnByTurnModel.language.toLowerCase() + "&" +
-                        "options=" + TurnByTurnModel.gender.toLowerCase(),
+                        "to=" + this.language.toLowerCase() + "&" +
+                        "options=" + this.gender.toLowerCase(),
                 "GET",
                 requestProp,
                 ""
@@ -38,15 +38,15 @@ public class TurnByTurnModel extends ModeModel {
         return conn.parseXML(xml);
     }
 
-    private static byte[] downloadNextSegment(String segment) {
+    private byte[] downloadNextSegment(String segment) {
         String key1 = "b496988cc4d34a69a1410c097a7e56ca";
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", key1);
         HttpConnection conn = new HttpConnection(
                 "https://api.microsofttranslator.com/V2/Http.svc/Speak?" +
                         "text=" + segment.replaceAll("\\s+", "%20") + "&" +
-                        "language=" + TurnByTurnModel.language.toLowerCase() + "&" +
-                        "options=" + TurnByTurnModel.gender.toLowerCase(),
+                        "language=" + this.language.toLowerCase() + "&" +
+                        "options=" + this.gender.toLowerCase(),
                 "GET",
                 requestProp,
                 ""
@@ -55,8 +55,8 @@ public class TurnByTurnModel extends ModeModel {
         return conn.getResponse();
     }
 
-    private void playAudio(String segment) {
-        byte[] audio = TurnByTurnModel.downloadNextSegment(TurnByTurnModel.translateSegment(segment));
+    void playAudio(String segment) {
+        byte[] audio = downloadNextSegment(translateSegment(segment));
 
         AudioData audioData = new AudioData(audio);
         audioStream = new AudioDataStream(audioData);
@@ -68,12 +68,16 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void selected(ButtonEvent evt) {
-        if(currentButton.getGender() != null) {
+        if(currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {
             language = currentButton.getLanguage().getLanguage();
             gender = currentButton.getGender().getGender();
             stopAudio();
             this.playAudio("The language has been set to " + currentButton.getLanguage().getDisplay());
         } else {
+            stopAudio();
+            currentButton = buttons.get(0);
+            language = currentButton.getLanguage().getLanguage();
+            gender = currentButton.getGender().getGender();
             this.playAudio("Speech function turned off");
         }
     }
@@ -92,6 +96,10 @@ public class TurnByTurnModel extends ModeModel {
 
         currentButton = buttons.get(buttonIndex);
         currentButton.giveFocus(buttons);
+    }
+
+    void giveFocus(LangButton button) {
+        button.giveFocus(buttons);
     }
 
     JButton addButton(TurnByTurn.Language language, TurnByTurn.Gender gender) {

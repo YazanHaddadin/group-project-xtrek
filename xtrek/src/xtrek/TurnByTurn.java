@@ -1,3 +1,8 @@
+package xtrek;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * TurnByTurn class
  * Provides UI to choose a language for the Turn By Turn, translates the directions and speaks them out when
@@ -6,12 +11,7 @@
  * @author Sebastien Michel
  * @version Sprint 1
  */
-package xtrek;
-
-import javax.swing.*;
-import java.awt.*;
-
-public class TurnByTurn extends Mode {
+public class TurnByTurn extends Mode implements SpeechListener {
     private TurnByTurnView TBTView;
     private TurnByTurnModel TBTModel;
 
@@ -65,6 +65,10 @@ public class TurnByTurn extends Mode {
        return TBTModel.addButton(language, gender);
     }
 
+    void giveFocus(JButton button) {
+        TBTModel.giveFocus((LangButton) button);
+    }
+
     @Override
     public void selected(ButtonEvent evt) {
         TBTModel.selected(evt);
@@ -78,6 +82,11 @@ public class TurnByTurn extends Mode {
     @Override
     public void minus(ButtonEvent evt) {
         TBTModel.minus(evt);
+    }
+
+    @Override
+    public void speakNextSegment(SpeechEvent evt) {
+        TBTModel.playAudio(evt.speech);
     }
 
     public enum Language {

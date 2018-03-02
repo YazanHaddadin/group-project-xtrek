@@ -1,13 +1,10 @@
 package xtrek;
 
-import javax.swing.*;
 import java.util.EventObject;
 
-public class ButtonEvent extends EventObject {
-    JButton button;
+class ButtonEvent extends EventObject {
 
-    public ButtonEvent(Object source) {
+    ButtonEvent(Object source) {
         super(source);
-        button = (ControlLayout.ControlButton)source;
     }
 }
