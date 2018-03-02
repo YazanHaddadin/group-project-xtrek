@@ -14,8 +14,6 @@ public class TurnByTurnModel extends ModeModel {
     static private AudioData audioData;
     static private AudioDataStream audioStream;
 
-    private JButton button;
-
     static String translateSegment(String segment) {
         String key1 = "b496988cc4d34a69a1410c097a7e56ca";
         HashMap<String, String> requestProp = new HashMap<>();
@@ -77,6 +75,7 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     JButton addButton(TurnByTurn.Language language, TurnByTurn.Gender gender, TurnByTurn controller) {
-        return new LangButton(language, gender, controller);
+        JButton button = new LangButton(language, gender, controller);
+        return button;
     }
 }

@@ -6,6 +6,8 @@
  */
 package xtrek;
 
-interface SelectedListener {
-    void selected();
+import java.util.EventListener;
+
+interface SelectedListener extends EventListener {
+    void selected(SelectedEvent evt);
 }

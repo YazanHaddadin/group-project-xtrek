@@ -28,7 +28,7 @@ public class ControlLayout {
     final JButton minus = new ControlButton("-");
     final JButton onOff = new ControlButton("PWR");
     final JButton menu = new ControlButton("Menu");
-    final JButton select = new ControlButton("Select");
+    final static SelectButton select = new SelectButton();
 
     ControlLayout(JFrame frame, JPanel panel) {
         this.panel = panel;
@@ -143,14 +143,6 @@ public class ControlLayout {
                                 plus.setEnabled(false);
                             } // not yet implemented
                             break;
-                        case "Select":
-                            if (Xtrek.isOn) {
-                                System.out.println(control);
-                            } // select button
-                            else if (!Xtrek.isOn) {
-                                plus.setEnabled(false);
-                            } // not yet implemented
-                            break;
                         case "Menu":
                             Xtrek.hideCurrentView();
                             //Xtrek.setCurrentView(Xtrek.MainMenu);
@@ -207,5 +199,9 @@ public class ControlLayout {
 
     JPanel getPanel() {
         return controlPanel;
+    }
+
+    static SelectButton getSelectButton() {
+        return select;
     }
 }
