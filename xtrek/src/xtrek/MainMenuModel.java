@@ -16,24 +16,21 @@ import java.util.ArrayList;
 public class MainMenuModel extends ModeModel{
     private String display;
     private Class currentClass;
-    ModeView view;
     
     private OperatorButton currentButton;
     private int buttonIndex;
     
     public void selected() {
             //when a button is selected the Main Menu view is hidden and the selected view is made visible
-        try {
-            @SuppressWarnings("unchecked")
-            Mode currentMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(view.getPanel());
-
-            currentMode.makeVisible();
-            view.getPanel().validate();
-            view.makeVisible();
-
-        } catch (NoSuchMethodException | java.lang.InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            @SuppressWarnings("unchecked")
+//            currentMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(ControlLayout.getPanel());
+//
+//            currentMode.makeVisible();
+//
+//        } catch (NoSuchMethodException | java.lang.InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
     }
     
     void plus(ButtonEvent evt) {
