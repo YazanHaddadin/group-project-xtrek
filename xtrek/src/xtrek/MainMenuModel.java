@@ -23,20 +23,15 @@ public class MainMenuModel extends ModeModel{
     
     public void selected() {
             //when a button is selected the Main Menu view is hidden and the selected view is made visible
-//        try {
-//            MainMenu.thishide();
-//
-//            @SuppressWarnings("unchecked")
-//            Mode newMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(frame);
-//
-//            newMode.makeVisible();
-//            MainMenuView.frame.add(newMode.getPanel());
-//            frame.revalidate();
-//            frame.repaint();
-//
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            @SuppressWarnings("unchecked")
+            currentMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(ControlLayout.getPanel());
+
+            currentMode.makeVisible();
+
+        } catch (NoSuchMethodException | java.lang.InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
     
     void plus(ButtonEvent evt) {
