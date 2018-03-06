@@ -145,23 +145,15 @@ public class ControlLayout {
                             if (!Xtrek.isOn) {
                                 //turns the screen back on making the current view visible
                                 Xtrek.showCurrentView();
-                                menu.setBackground(Color.WHITE);
-                                plus.setBackground(Color.WHITE);
-                                minus.setBackground(Color.WHITE);
-                                select.setBackground(Color.WHITE);
+                                setOPEnabColor();
+                                enableOPButton();
                                 Xtrek.isOn = true;
 
                             } else if (Xtrek.isOn) {
                                 //turns the screen back off making the current view invisible but leaving the operator buttons visible
                                 Xtrek.hideCurrentView();
-                                menu.setBackground(Color.GRAY);
-                                plus.setBackground(Color.GRAY);
-                                minus.setBackground(Color.GRAY);
-                                select.setBackground(Color.GRAY);
-                                menu.setEnabled(false);
-                                plus.setEnabled(false);
-                                minus.setEnabled(false);
-                                select.setEnabled(false);
+                                setOPDisColor();
+                                disableOPButton();
                                 Xtrek.isOn = false; //disables all buttons but the power button
                             }
                             break;
@@ -187,9 +179,9 @@ public class ControlLayout {
                             }
                             break;
                         case "Menu":
-                            Xtrek.hideCurrentView();
-                            //Xtrek.setCurrentView(Xtrek.MainMenu);
-                            //Xtrek.showCurrentView();
+//                            Xtrek.hideCurrentView();
+//                            Xtrek.setCurrentView(Xtrek.MainMenu);
+//                            Xtrek.showCurrentView();
                     }
                 }
 
@@ -255,6 +247,34 @@ public class ControlLayout {
                     break;
             }
 
+        }
+        
+        private void setOPDisColor(){
+            menu.setBackground(Color.GRAY);
+            plus.setBackground(Color.GRAY);
+            minus.setBackground(Color.GRAY);
+            select.setBackground(Color.GRAY);
+        }
+        
+        private void setOPEnabColor(){
+            menu.setBackground(Color.WHITE);
+            plus.setBackground(Color.WHITE);
+            minus.setBackground(Color.WHITE);
+            select.setBackground(Color.WHITE);
+        }
+        
+        private void disableOPButton(){
+            menu.setEnabled(false);
+            plus.setEnabled(false);
+            minus.setEnabled(false);
+            select.setEnabled(false);
+        }
+        
+        private void enableOPButton(){
+            menu.setEnabled(true);
+            plus.setEnabled(true);
+            minus.setEnabled(true);
+            select.setEnabled(true);
         }
     }
 }
