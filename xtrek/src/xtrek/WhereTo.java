@@ -27,6 +27,12 @@ public class WhereTo extends Mode {
     }
     
     @Override
+    void displayMode() {
+        whereView.setController(this);
+        whereView.displayMode();
+    }
+    
+    @Override
     public void selected(ButtonEvent evt) {
         whereModel.selected(evt);
     }
@@ -44,6 +50,10 @@ public class WhereTo extends Mode {
     //Add a button to the model.
     JButton addButton(String letter) {
         return whereModel.addButton(letter);
+    }
+    
+    void giveFocus(JButton button) {
+        whereModel.giveFocus((WhereToModel.KeyboardButton) button);
     }
     
     public void addToDestination(String letter) {
