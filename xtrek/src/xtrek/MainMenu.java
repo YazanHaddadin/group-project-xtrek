@@ -1,9 +1,8 @@
 /**
  * Main Menu Class
  * <p>
- * Provides the User Interface of the Main Menu for the Xtrek, where the user is
- * able to choose between which mode to go to using the Control Buttons provided
- * in the ControlLayout class.
+ * Using the Main Menu View and Main Menu Model the display of the Xtrek is shown
+ * and functionality is implemented.
  *
  * @author Yazan Haddadin
  * @version Sprint 1
