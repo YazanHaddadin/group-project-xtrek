@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Main Menu View Class
+ * <p>
+ * Provides the User Interface of the Main Menu for the Xtrek.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -11,10 +14,6 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-/**
- *
- * @author Yazuz
- */
 public class MainMenuView extends ModeView{
     private MainMenu controller;
     

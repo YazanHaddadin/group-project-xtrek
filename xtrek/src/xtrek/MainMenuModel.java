@@ -1,7 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Main Menu View Class
+ * <p>
+ * Provides the functionality of the buttons in the Main Menu class.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 1
  */
 package xtrek;
 
@@ -10,10 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- *
- * @author Yazuz
- */
 public class MainMenuModel extends ModeModel{
     private String display;
     private Class currentClass;
