@@ -10,8 +10,6 @@ import java.util.ArrayList;
 abstract class ModeModel {
     ArrayList<JButton> buttons = new ArrayList<>();
 
-    abstract JButton addButton(TurnByTurn.Language language, TurnByTurn.Gender gender);
-
     abstract void plus(ButtonEvent evt);
 
     abstract void minus(ButtonEvent evt);
