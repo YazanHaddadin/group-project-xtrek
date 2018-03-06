@@ -5,7 +5,7 @@
  * their current location.
  *
  * @author Alex Vale
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 
@@ -19,7 +19,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Map extends ModeView {
+public class Map extends Mode {
+    
+    private MapView MapView;
+    private MapModel MapModel;
 
     final static String OUTPUT = "output.png";  /* Output file        */
     final static String LATITUDE = "50.7184";     /* Inputted latitude  */
@@ -30,12 +33,35 @@ public class Map extends ModeView {
     private BufferedImage mapImage;
     private Timer timer;
 
-    public Map(JFrame frame) {
+    /*public Map(JFrame frame) {
         super(frame);
         displayMode();
+    }*/
+    
+    public Map(JFrame frame) {
+        model = new MapModel();
+        view = new MapView(frame);
+
+        MapModel = (MapModel) model;
+        MapView = (MapView) view;
+    }
+    
+    @Override
+    public void selected(ButtonEvent evt) {
+        MapModel.selected(evt);
     }
 
     @Override
+    public void plus(ButtonEvent evt) {
+        MapModel.plus(evt);
+    }
+
+    @Override
+    public void minus(ButtonEvent evt) {
+        MapModel.minus(evt);
+    }
+
+    /*@Override
     public void displayMode() {
         frame.setTitle("Map");
 
@@ -88,4 +114,5 @@ public class Map extends ModeView {
             connect.writeData(OUTPUT, connect.getResponse());
         }
     }
+    */
 }
