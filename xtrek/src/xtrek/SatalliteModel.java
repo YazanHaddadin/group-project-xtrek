@@ -8,7 +8,6 @@ import javax.swing.JButton;
  */
 public class SatalliteModel extends ModeModel {
 
-
     @Override
     void plus(ButtonEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
