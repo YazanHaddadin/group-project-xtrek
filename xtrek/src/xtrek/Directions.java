@@ -18,10 +18,8 @@ public class Directions {
     //Default values, will be used if not overriden in the method call.
     static String origin = "Exeter, UK";
     static String dest = "Loughborough, UK";
-    static String region = "UK";
-    static String mode = "Walking";   
     
-    static HashMap<String, String> requestProp = new HashMap<>();
+    static HashMap<String, String> requestProperties = new HashMap<>();
     static String body;
 
     /**
@@ -35,10 +33,10 @@ public class Directions {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
                     + "&" + "destination" + "=" + URLEncoder.encode(dest, "UTF-8")
-                    + "&" + "region" + "=" + region
-                    + "&" + "mode" + "=" +mode);
+                    + "&" + "region" + "=" + Constants.directionsRegion
+                    + "&" + "mode" + "=" + Constants.travelMode);
             
-            HttpConnection conn = new HttpConnection(url, "GET", requestProp, body);
+            HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);
             byte[] response = conn.getResponse();
 
             return response;

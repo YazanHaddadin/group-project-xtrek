@@ -12,4 +12,8 @@ package xtrek;
 public class Constants {
     public static int screenWidth = 570;
     public static int screenHeight = 710;
+    
+    //Defaults for the Directions class
+    public static String travelMode = "WALKING";
+    public static String directionsRegion = "UK";
 }
