@@ -189,6 +189,8 @@ public class ControlLayout {
         }
 
         private void setStyle() {
+
+            setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 25));
