@@ -83,6 +83,10 @@ public class ControlLayout {
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
         controlPanel.add(currentMode.getPanel(), con);
+
+        currentMode.displayMode();
+        currentMode.makeVisible();
+
         listener = currentMode;
 
         onOff.setVisible(true);
@@ -97,6 +101,32 @@ public class ControlLayout {
 
     JPanel getPanel() {
         return controlPanel;
+    }
+
+    void updateFrame(Mode mode) {
+        controlPanel.remove(currentMode.getPanel());
+
+        this.currentMode = mode;
+
+        GridBagConstraints con = new GridBagConstraints();
+
+        con.gridx = 1;
+        con.gridy = 1;
+        con.gridwidth = 5;
+        con.gridheight = 15;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        con.fill = GridBagConstraints.BOTH;
+        controlPanel.add(currentMode.getPanel(), con);
+
+        currentMode.displayMode();
+        currentMode.makeVisible();
+
+        listener = currentMode;
+
+        controlPanel.validate();
+        frame.revalidate();
+        frame.repaint();
     }
 
     class ControlButton extends JButton {
@@ -189,6 +219,8 @@ public class ControlLayout {
         }
 
         private void setStyle() {
+
+            setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 25));

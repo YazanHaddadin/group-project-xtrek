@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/xtrek.iml" filepath="$PROJECT_DIR$/.idea/xtrek.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xtrek.iml" filepath="$PROJECT_DIR$/xtrek.iml" />
     </modules>
   </component>
 </project>

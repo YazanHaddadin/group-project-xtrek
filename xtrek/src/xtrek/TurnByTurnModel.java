@@ -129,10 +129,13 @@ public class TurnByTurnModel extends ModeModel {
         }
 
         private void setStyle() {
-            setBackground(Color.WHITE);
+            setOpaque(true);
             setBorderPainted(false);
+            setBackground(Color.WHITE);
             setFont(new Font("Arial", Font.BOLD, 36));
             setHorizontalAlignment(SwingConstants.LEFT);
+
+            setVisible(true);
         }
 
         TurnByTurn.Language getLanguage() {

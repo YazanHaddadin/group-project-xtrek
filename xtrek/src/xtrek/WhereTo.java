@@ -1,7 +1,8 @@
 /**
- * WhereTo Controller
+ * WhereTo Controller Class
  * <p>
- * Provides an interface for communication between the model and the view.
+ * Provides an interface for communication between the model and the view of
+ * the keyboard on the XTrek where the user will input their destination.
  *
  * @author Caleb Blackmore
  * @version Sprint 2
@@ -40,18 +41,21 @@ public class WhereTo extends Mode {
         whereModel.minus(evt);
     }
     
+    //Add a button to the model.
     JButton addButton(String letter) {
         return whereModel.addButton(letter);
     }
     
     public void addToDestination(String letter) {
+        //Add the typed letter to the destination field
         whereView.destination.setText(whereView.destination.getText() + letter);
     }
     
     public void deleteFromDestination() {
+        // Delete 1 character from the destination field
         if (whereView.destination.getText().length() > 0) {
-                    whereView.destination.setText(whereView.destination.getText().substring(0, whereView.destination.getText().length() - 1));
-                }
+            whereView.destination.setText(whereView.destination.getText().substring(0, whereView.destination.getText().length() - 1));
+        }
     }
     
     public void hideLetterButtons() {
@@ -119,6 +123,7 @@ public class WhereTo extends Mode {
     }
     
     public void showNumberButtons() {
+        //Show all buttons for the numerical keypad.
         whereView.btn1.setVisible(true);
         whereView.btn2.setVisible(true);
         whereView.btn3.setVisible(true);
@@ -134,6 +139,7 @@ public class WhereTo extends Mode {
     }
     
     public void hideNumberButtons() {
+        //Hide all buttons on the numerical keypad.
         whereView.btn1.setVisible(false);
         whereView.btn2.setVisible(false);
         whereView.btn3.setVisible(false);

@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * WhereTo Model Class
+ * <p>
+ * Manages the behaviour of the keyboard on the XTrek device, where the user
+ * will input their destination.
+ *
+ * @author Caleb Blackmore
+ * @version Sprint 2
  */
 package xtrek;
 
@@ -10,10 +14,6 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-/**
- *
- * @author caleb
- */
 public class WhereToModel extends ModeModel {
     private KeyboardButton currentButton;
     private String currentLetter;
@@ -109,7 +109,5 @@ public class WhereToModel extends ModeModel {
             KeyboardButton button = new KeyboardButton(letter);
             buttons.add(button);
             return button;
-        }
-        
-        
+        }    
 }
