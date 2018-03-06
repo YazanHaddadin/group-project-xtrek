@@ -38,12 +38,12 @@ public class MainMenuView extends ModeView{
         //this is the actual display of the Main Menu mode
         frame.setTitle("Main Menu");
 
-        whereTo      = controller.addButton("Where To?", WhereTo.class);
-        tripComputer = controller.addButton("Trip Computer", TripComputer.class);
-        map          = controller.addButton("Map", Map.class);
-        speech       = controller.addButton("Speech", TurnByTurn.class);
-        satallite    = controller.addButton("Satallite", Satallite.class);
-        about        = controller.addButton("About", About.class);
+        whereTo      = controller.addButton("whereto", WhereTo.class);
+        tripComputer = controller.addButton("tripcomputer", TripComputer.class);
+        map          = controller.addButton("map", Map.class);
+        speech       = controller.addButton("speech", TurnByTurn.class);
+        satallite    = controller.addButton("satallite", Satallite.class);
+        about        = controller.addButton("about", About.class);    
         
         
         //using GridBagConstraints to adapt to different screen sizes

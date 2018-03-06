@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class MainMenuModel extends ModeModel{
     private String display;
@@ -71,7 +73,12 @@ public class MainMenuModel extends ModeModel{
         private final Class currentClass;
         
         OperatorButton(String display, Class currentClass) {
-            super(display);
+            try {
+                Image img = ImageIO.read(getClass().getResource(display + ".png"));
+                setIcon(new ImageIcon(img));
+            }   catch (Exception ex) {
+                System.out.println(ex);
+            }  
             this.currentClass = currentClass;
             setStyle();
         }
