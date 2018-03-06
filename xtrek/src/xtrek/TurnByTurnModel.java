@@ -116,6 +116,7 @@ public class TurnByTurnModel extends ModeModel {
             super(language.getDisplay());
 
             setStyle();
+            setBorder(BorderFactory.createLineBorder(Color.WHITE,1));
             this.GENDER = gender;
             this.LANGUAGE = language;
         }
@@ -129,8 +130,9 @@ public class TurnByTurnModel extends ModeModel {
         }
 
         private void setStyle() {
+            setEnabled(true);
+            setVisible(true);
             setBackground(Color.WHITE);
-            setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 36));
             setHorizontalAlignment(SwingConstants.LEFT);
         }
