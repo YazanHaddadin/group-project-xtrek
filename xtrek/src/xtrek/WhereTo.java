@@ -1,7 +1,8 @@
 /**
  * WhereTo Controller
  * <p>
- * Provides an interface for communication between the model and the view.
+ * Provides an interface for communication between the model and the view of
+ * the keyboard on the Xtrek where the user will unput their destination.
  *
  * @author Caleb Blackmore
  * @version Sprint 2
