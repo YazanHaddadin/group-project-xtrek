@@ -75,6 +75,7 @@ public class MainMenuModel extends ModeModel{
         
         private void setStyle() {
             //set the display style of the operator buttons
+            setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(false);
             setFont(new Font("Arial", Font.BOLD, 14));

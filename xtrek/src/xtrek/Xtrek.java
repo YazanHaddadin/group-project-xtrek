@@ -9,6 +9,8 @@
  */
 package xtrek;
 
+import sun.applet.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -41,21 +43,18 @@ class Xtrek extends JFrame {
 
         MainMenu = new MainMenu(this);
         MainMenu.hide();
-        AboutMode = new About(this);
+        /*AboutMode = new About(this);
         AboutMode.hide();
         MapMode = new Map(this);
-        MapMode.hide();
+        MapMode.hide();*/
         TurnByTurn = new TurnByTurn(this);
         TurnByTurn.hide();
-        WhereTo = new WhereTo(this);
-        WhereTo.hide();
+        /*WhereTo = new WhereTo(this);
+        WhereTo.hide();*/
+        currentView = MainMenu;
         ControlPanel = new ControlLayout(this, currentView);
 
         this.getContentPane().add(ControlPanel.getPanel());
-
-        currentView.displayMode();
-        currentView.makeVisible();
-        this.getContentPane().add(currentView.getPanel());
         this.pack();
 
 
