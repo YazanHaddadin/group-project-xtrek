@@ -14,11 +14,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Satallite extends ModeView {
 
     final static String FILE_NAME = "/dev/cu.usbmodem1421";
-    /* final static String FILE_NAME = "/dev/cu.usbmodem1441"; */
     final static int BUFF_SIZE = 1024;
 
     public Satallite(JFrame frame) {
@@ -41,7 +42,17 @@ public class Satallite extends ModeView {
                     Thread.sleep(500);
                 } else {
                     if (line.startsWith("$GPGLL")) {
-                        panel.setLabel(line);
+                        String[] splits = line.split(",");
+                        String value1 = splits[1];
+                        String value2 = splits[2];
+                        if (value1.equals("") || value2.equals("")) {
+                            panel.setLabel1("No signal recieved");
+                            panel.setLabel2("");
+                        } else {
+                            panel.setLabel1(value1);
+                            panel.setLabel2(value2);
+                        }
+                        
                     }
                 }
             }
@@ -63,15 +74,15 @@ public class Satallite extends ModeView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(panel);
-
+        
         frame.setVisible(true);
-
+        
         reader(FILE_NAME, panel);
     }
 
     @Override
     public void displayMode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 
