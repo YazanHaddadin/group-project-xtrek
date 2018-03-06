@@ -1,7 +1,7 @@
 /**
- * WhereTo View
+ * WhereTo View Class
  * <p>
- * Provides a view for the keyboard on the Xtrek device, where the user will
+ * Provides the view for the keyboard on the XTrek device, where the user will
  * input their destination.
  *
  * @author Caleb Blackmore
@@ -137,6 +137,7 @@ public class WhereToView extends ModeView{
         c.gridwidth = 4;
         panel.add(destination, c);
 
+        //Add letter buttons to the grid
         c.gridwidth = 1;
         c.gridy++;
         panel.add(btnA, c);
@@ -229,7 +230,7 @@ public class WhereToView extends ModeView{
         panel.add(btnNextPage, c);
 
 
-        //Numerical keyboard buttons...
+        //Add numerical keyboard buttons to the grid
         c.gridx = 0;
         c.gridy = 1;
         panel.add(btn1, c);

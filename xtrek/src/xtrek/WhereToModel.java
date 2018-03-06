@@ -1,7 +1,7 @@
 /**
- * WhereTo Model
+ * WhereTo Model Class
  * <p>
- * Manages the behaviour of the keyboard on the Xtrek device, where the user
+ * Manages the behaviour of the keyboard on the XTrek device, where the user
  * will input their destination.
  *
  * @author Caleb Blackmore
@@ -109,7 +109,5 @@ public class WhereToModel extends ModeModel {
             KeyboardButton button = new KeyboardButton(letter);
             buttons.add(button);
             return button;
-        }
-        
-        
+        }    
 }
