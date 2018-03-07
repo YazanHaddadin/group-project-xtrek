@@ -1,84 +1,49 @@
 /**
- * TripComputer Class
+ * TripComputer Controller Class
  * <p>
- * Provides live trip information to the user, including an odometer, their
- * speed and the time they have spent moving.
+ * Provides for communication between the view and model of the Trip Computer
+ * on the XTrek. Will provide information about the current trip.
  *
  * @author Caleb Blackmore
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class TripComputer extends ModeView {
+public class TripComputer extends Mode {
+    
+    private TripComputerView tcView;
+    private TripComputerModel tcModel;
+    
+    TripComputer(JFrame frame) {
+        model = new TripComputerModel();
+        view = new TripComputerView(frame);
 
-    JPanel odometerPanel = new JPanel();
-    JLabel odometerLabel = new JLabel("Trip Odometer:");
-    JLabel odometerReading = new JLabel("1.0 KM");
-
-    JPanel speedPanel = new JPanel();
-    JLabel speedLabel = new JLabel("Speed:");
-    JLabel speedReading = new JLabel("4.5 KM/H");
-
-    JPanel movingTimePanel = new JPanel();
-    JLabel movingTimeLabel = new JLabel("Moving Time:");
-    JLabel movingTimeReading = new JLabel("28 mins 35 secs");
-
-
-    public TripComputer(JFrame frame) {
-        super(frame);
-        panel.setLayout(new GridBagLayout());
-        displayMode();
+        tcModel = (TripComputerModel) model;
+        tcView = (TripComputerView) view;
+    }
+    
+    @Override
+    void displayMode() {
+        tcView.setController(this);
+        tcView.displayMode();
+    }
+    
+    @Override
+    public void selected(ButtonEvent evt) {
+        tcModel.selected(evt);
     }
 
     @Override
-    public void displayMode() {
-        frame.setTitle("Trip Computer");
+    public void plus(ButtonEvent evt) {
+        tcModel.plus(evt);
+    }
 
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(10, 10, 10, 10);
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-
-        //Set relative position for each panel in the grid bag layout.
-        c.gridx = 0;
-        c.gridy = 0;
-        panel.add(odometerPanel, c);
-
-        c.gridy++;
-        panel.add(speedPanel, c);
-
-        c.gridy++;
-        panel.add(movingTimePanel, c);
-
-        //Set background colours for each panel.
-        odometerPanel.setBackground(Color.WHITE);
-        speedPanel.setBackground(Color.WHITE);
-        movingTimePanel.setBackground(Color.WHITE);
-
-        //Set correct font for each label.
-        odometerLabel.setFont(new Font("Arial", Font.BOLD, 72));
-        speedLabel.setFont(new Font("Arial", Font.BOLD, 72));
-        movingTimeLabel.setFont(new Font("Arial", Font.BOLD, 72));
-
-        odometerReading.setFont(new Font("Arial", Font.BOLD, 70));
-        speedReading.setFont(new Font("Arial", Font.BOLD, 70));
-        movingTimeReading.setFont(new Font("Arial", Font.BOLD, 70));
-
-        odometerPanel.add(odometerLabel);
-        odometerPanel.add(odometerReading);
-        speedPanel.add(speedLabel);
-        speedPanel.add(speedReading);
-        movingTimePanel.add(movingTimeLabel);
-        movingTimePanel.add(movingTimeReading);
-
-        frame.setVisible(true);
-        panel.validate();
-        panel.setVisible(true);
+    @Override
+    public void minus(ButtonEvent evt) {
+        tcModel.minus(evt);
     }
 
 }
