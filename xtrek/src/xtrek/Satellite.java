@@ -17,7 +17,6 @@ import java.io.InputStreamReader;
 
 public class Satellite extends ModeView {
 
-    final static String FILE_NAME = "/dev/cu.usbmodem1421";
     final static int BUFF_SIZE = 1024;
 
     public Satellite(JFrame frame) {
@@ -28,35 +27,52 @@ public class Satellite extends ModeView {
      * Reader.
      */
     private static void reader(String fileName, SatellitePanel panel) {
-        try {
-            FileInputStream in = new FileInputStream(new File(fileName));
+        while(true){
+            try {
+                FileInputStream in = new FileInputStream(new File(fileName));
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String line;
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                String line;
 
-            while (true) {
-                line = br.readLine();
-                if (line == null) {
-                    Thread.sleep(500);
-                } else {
-                    if (line.startsWith("$GPGLL")) {
-                        String[] splits = line.split(",");
-                        String value1 = splits[1];
-                        String value2 = splits[2];
-                        if (value1.equals("") || value2.equals("")) {
-                            panel.setLabel1("No signal recieved");
-                            panel.setLabel2("");
-                        } else {
-                            panel.setLabel1(value1);
-                            panel.setLabel2(value2);
+                while (true) {
+                    line = br.readLine();
+                    if (line == null) {
+                        Thread.sleep(500);
+                    } else {
+                        if (line.startsWith("$GPGLL")) {
+                            System.out.println(line);
+                            String[] splits = line.split(",");
+                            String value1 = splits[1];
+                            String direction1 = splits[2];
+                            String value2 = splits[3];
+                            String direction2 = splits[4];
+                            if (value1.equals("") || value2.equals("")) {
+                                panel.setLabel1("No signal recieved");
+                                panel.setLabel2("");
+                            } else {
+                                Float processed1 = Float.parseFloat(value1)/100;
+                                Float processed2 = Float.parseFloat(value2)/100;
+                                String output1 = String.format("%.4f", processed1);
+                                String output2 = String.format("%.4f", processed2);
+
+                                panel.setLabel1(output1 + " " + direction1);
+                                panel.setLabel2(output2 + " " + direction2);
+                            }
+
                         }
-                        
                     }
                 }
+            } catch (Exception ex) {
+                System.out.println(ex);
+                panel.setLabel1("Device not connected");
+                panel.setLabel2("");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex1) {
+                    System.out.println(ex1);;
+                }
             }
-        } catch (Exception ex) {
-            System.out.println(ex);
-            System.exit(1);
+            
         }
     }
 
@@ -75,7 +91,7 @@ public class Satellite extends ModeView {
         
         frame.setVisible(true);
         
-        reader(FILE_NAME, panel);
+        reader(Constants.dongleLocation, panel);
     }
 
     @Override
