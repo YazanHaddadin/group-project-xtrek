@@ -9,6 +9,9 @@
  */
 package xtrek;
 
+
+import java.util.TimerTask;
+
 public class TripComputerModel extends ModeModel{
     
     void plus(ButtonEvent evt) {
@@ -21,5 +24,19 @@ public class TripComputerModel extends ModeModel{
     
     void selected(ButtonEvent evt) {
        //Nothing to be done here - get rid of?
+    }
+    
+    static class IncreaseMovingTime extends TimerTask {
+
+        static int secondsCounter = 0;
+        static int numberOfMinutes = 0;
+        static int numberOfSeconds = 0;
+        
+        public void run() {
+            secondsCounter++; 
+            numberOfMinutes = secondsCounter/60;
+            numberOfSeconds = secondsCounter%60;
+            System.out.println("Moving time is currently " + numberOfMinutes + " minutes, " + numberOfSeconds + " seconds.");
+        }
     }
 }

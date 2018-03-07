@@ -13,6 +13,7 @@ import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
 
 class Xtrek extends JFrame {
 
@@ -60,6 +61,8 @@ class Xtrek extends JFrame {
 
         this.validate();
         this.setVisible(true);
+        
+        increaseMovingTime();
     }
 
     public static void main(String[] args) {
@@ -78,4 +81,9 @@ class Xtrek extends JFrame {
         currentView = view;
     }
 
+    //Increment timer for the journey every second
+    public static void increaseMovingTime() {
+        Timer movingTimer = new Timer();
+        movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
+    }
 }
