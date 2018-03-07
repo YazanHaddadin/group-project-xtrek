@@ -8,12 +8,12 @@
  */
 package xtrek;
 
-public class SatallitePanel extends javax.swing.JPanel {
+public class SatellitePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SatallitePanel
      */
-    public SatallitePanel() {
+    public SatellitePanel() {
         initComponents();
     }
 

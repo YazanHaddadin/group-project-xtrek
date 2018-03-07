@@ -11,9 +11,9 @@ import javax.swing.JFrame;
  *
  * @author liamvinson
  */
-public class SatalliteView extends ModeView {
+public class SatelliteView extends ModeView {
 
-    public SatalliteView(JFrame frame) {
+    public SatelliteView(JFrame frame) {
         super(frame);
     }
 

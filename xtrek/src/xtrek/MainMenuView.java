@@ -42,7 +42,7 @@ public class MainMenuView extends ModeView{
         tripComputer = controller.addButton("tripcomputer", TripComputer.class);
         map          = controller.addButton("map", Map.class);
         speech       = controller.addButton("speech", TurnByTurn.class);
-        satallite    = controller.addButton("satallite", Satallite.class);
+        satallite    = controller.addButton("satellite", Satellite.class);
         about        = controller.addButton("about", About.class);    
         
         

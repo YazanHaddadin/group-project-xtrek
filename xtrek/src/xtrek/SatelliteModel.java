@@ -6,7 +6,7 @@ import javax.swing.JButton;
  *
  * @author liamvinson
  */
-public class SatalliteModel extends ModeModel {
+public class SatelliteModel extends ModeModel {
 
     @Override
     void plus(ButtonEvent evt) {

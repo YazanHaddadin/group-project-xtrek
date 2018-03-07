@@ -1,5 +1,5 @@
 /**
- * Satallite Class
+ * Satellite Class
  * <p>
  * Reads out the current coordinates of the device.
  *
@@ -14,22 +14,20 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Satallite extends ModeView {
+public class Satellite extends ModeView {
 
     final static String FILE_NAME = "/dev/cu.usbmodem1421";
     final static int BUFF_SIZE = 1024;
 
-    public Satallite(JFrame frame) {
+    public Satellite(JFrame frame) {
         super(frame);
     }
 
     /*
      * Reader.
      */
-    private static void reader(String fileName, SatallitePanel panel) {
+    private static void reader(String fileName, SatellitePanel panel) {
         try {
             FileInputStream in = new FileInputStream(new File(fileName));
 
@@ -67,7 +65,7 @@ public class Satallite extends ModeView {
      */
     public static void main(String[] argv) {
         JFrame frame = new JFrame();
-        SatallitePanel panel = new SatallitePanel();
+        SatellitePanel panel = new SatellitePanel();
         frame.setSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
         frame.setResizable(false);
 
