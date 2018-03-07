@@ -16,4 +16,7 @@ public class Constants {
     //Defaults for the Directions class
     public static String travelMode = "WALKING";
     public static String directionsRegion = "UK";
+    
+    //Defaults for the Satellite class
+    public static String dongleLocation = "/dev/cu.usbmodem1421";
 }
