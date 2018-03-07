@@ -215,7 +215,7 @@ public class ControlLayout {
             setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(false);
-            setFont(new Font("Arial", Font.BOLD, 25));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 25));
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 

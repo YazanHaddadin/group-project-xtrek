@@ -279,7 +279,7 @@ public class WhereToView extends ModeView{
         //Styling and positioning for destination text field
         //destination.setBounds(10, 10, 540, 80);
         destination.setBackground(Color.WHITE);
-        destination.setFont(new Font("Arial", Font.BOLD, 36));
+        destination.setFont(new Font(Constants.systemFont, Font.BOLD, 36));
         destination.setBorder(null);
         destination.setEditable(false);
 

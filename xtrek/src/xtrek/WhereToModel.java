@@ -68,7 +68,7 @@ public class WhereToModel extends ModeModel {
         private void applyKeyboardButtonStyling() {
             setOpaque(true);
             setBackground(Color.WHITE);
-            setFont(new Font("Arial", Font.BOLD, 36));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 36));
             setBorder(new LineBorder(Color.BLACK));
         }
 

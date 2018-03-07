@@ -12,6 +12,7 @@ package xtrek;
 public class Constants {
     public static int screenWidth = 570;
     public static int screenHeight = 710;
+    public static String systemFont = "Arial";
     
     //Defaults for the Directions class
     public static String travelMode = "WALKING";

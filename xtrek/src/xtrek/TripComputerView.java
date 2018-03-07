@@ -56,13 +56,13 @@ public class TripComputerView extends ModeView{
         movingTimePanel.setBackground(Color.WHITE);
 
         //Set correct font for each label.
-        odometerLabel.setFont(new Font("Arial", Font.BOLD, 72));
-        speedLabel.setFont(new Font("Arial", Font.BOLD, 72));
-        movingTimeLabel.setFont(new Font("Arial", Font.BOLD, 72));
+        odometerLabel.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
+        speedLabel.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
+        movingTimeLabel.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
 
-        odometerReading.setFont(new Font("Arial", Font.BOLD, 70));
-        speedReading.setFont(new Font("Arial", Font.BOLD, 70));
-        movingTimeReading.setFont(new Font("Arial", Font.BOLD, 70));
+        odometerReading.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
+        speedReading.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
+        movingTimeReading.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
 
         odometerPanel.add(odometerLabel);
         odometerPanel.add(odometerReading);
