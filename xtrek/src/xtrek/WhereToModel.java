@@ -21,6 +21,12 @@ public class WhereToModel extends ModeModel {
     
     private WhereTo controller;
     
+    JButton addButton(String letter) {
+            KeyboardButton button = new KeyboardButton(letter);
+            buttons.add(button);
+            return button;
+        } 
+    
     void selected(ButtonEvent evt) {
         //Space button has been pressed
             if ("_".equals(currentLetter)) {
@@ -51,7 +57,7 @@ public class WhereToModel extends ModeModel {
     }
     
     public class KeyboardButton extends JButton {
-        private String letter;
+        private final String letter;
 
         public KeyboardButton(String letter) {
             super(letter);
@@ -61,7 +67,7 @@ public class WhereToModel extends ModeModel {
     
         
         public String getDisplayLabel() {
-            return this.letter;
+            return letter;
         }
 
         //Set the background, font and border for each button.
@@ -90,7 +96,7 @@ public class WhereToModel extends ModeModel {
             if(buttonIndex < buttons.size()-1) buttonIndex++;
             else buttonIndex = 0;
 
-            currentButton = (KeyboardButton)buttons.get(buttonIndex);
+            currentButton = (KeyboardButton) buttons.get(buttonIndex);
             currentButton.giveFocus(buttons);
         }
 
@@ -98,7 +104,7 @@ public class WhereToModel extends ModeModel {
             if(buttonIndex > 0) buttonIndex--;
             else buttonIndex = buttons.size()-1;
 
-            currentButton = (KeyboardButton)buttons.get(buttonIndex);
+            currentButton = (KeyboardButton) buttons.get(buttonIndex);
             currentButton.giveFocus(buttons);
         }
         
@@ -106,9 +112,5 @@ public class WhereToModel extends ModeModel {
             button.giveFocus(buttons);
         }
         
-        JButton addButton(String letter) {
-            KeyboardButton button = new KeyboardButton(letter);
-            buttons.add(button);
-            return button;
-        }    
+           
 }

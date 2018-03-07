@@ -68,7 +68,6 @@ public class WhereToView extends ModeView{
         super(frame);
         frame.pack();
         panel.setLayout(new GridBagLayout());
-        displayMode();
     }
     
     void setController(WhereTo controller) {
