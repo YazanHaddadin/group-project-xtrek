@@ -16,7 +16,6 @@ import javax.swing.border.LineBorder;
 
 public class WhereToModel extends ModeModel {
     private KeyboardButton currentButton;
-    private String currentLetter;
     private int buttonIndex = 0;
     
     private WhereTo controller;
@@ -28,31 +27,32 @@ public class WhereToModel extends ModeModel {
         } 
     
     void selected(ButtonEvent evt) {
+        System.out.println(currentButton.getDisplayLabel() + " currently pressed.");
         //Space button has been pressed
-            if ("_".equals(currentLetter)) {
-                controller.addToDestination(" ");
+            if ("_".equals(currentButton.getDisplayLabel())) {
+                controller.addToDestination("Space");
             }
 
             //Next page button pressed
-            else if (">".equals(currentLetter)) {
+            else if (">".equals(currentButton.getDisplayLabel())) {
                 controller.hideLetterButtons();
                 controller.showNumberButtons();
             }
 
             //Delete button pressed
-            else if ("DEL".equals(currentLetter)) {
+            else if ("DEL".equals(currentButton.getDisplayLabel())) {
                 controller.deleteFromDestination();
             }
 
             //Previous page button has been pressed
-            else if ("<".equals(currentLetter)) {
+            else if ("<".equals(currentButton.getDisplayLabel())) {
                 controller.hideNumberButtons();
                 controller.showLetterButtons();
             }
 
             //An ordinary letter or number button has been pressed
             else {
-                controller.addToDestination(currentLetter);
+                controller.addToDestination(currentButton.getDisplayLabel());
             }
     }
     

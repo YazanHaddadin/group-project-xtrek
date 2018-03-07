@@ -57,6 +57,8 @@ public class WhereTo extends Mode {
     }
     
     public void addToDestination(String letter) {
+        System.out.println("Made it to addToDestination");
+        System.out.println("Adding " + letter);
         //Add the typed letter to the destination field
         whereView.destination.setText(whereView.destination.getText() + letter);
     }
@@ -170,7 +172,7 @@ public class WhereTo extends Mode {
     
     
     
-    
+    //Main method, allows the class to be tested independently.
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         Container c = frame.getContentPane();
