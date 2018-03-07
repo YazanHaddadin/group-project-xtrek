@@ -160,22 +160,16 @@ public class ControlLayout {
                         case "+":
                             if (Xtrek.isOn) {
                                 fireEvent();
-                            } else {
-                                //TODO implement plus if xtrek is off
                             }
                             break;
                         case "-":
                             if (Xtrek.isOn) {
                                 fireEvent();
-                            } else {
-                                //TODO implement minus if Xtrek is off
                             }
                             break;
                         case "Select":
                             if (Xtrek.isOn) {
                                 fireEvent();
-                            } else {
-                                //TODO implement Select if Xtrek is off
                             }
                             break;
                         case "Menu":

@@ -21,7 +21,7 @@ public class MainMenuView extends ModeView{
     private JButton tripComputer;
     private JButton map;
     private JButton speech;
-    private JButton satallite;
+    private JButton satellite;
     private JButton about;
 
     MainMenuView(JFrame frame) {
@@ -42,7 +42,7 @@ public class MainMenuView extends ModeView{
         tripComputer = controller.addButton("tripcomputer", TripComputer.class);
         map          = controller.addButton("map", Map.class);
         speech       = controller.addButton("speech", TurnByTurn.class);
-        satallite    = controller.addButton("satellite", Satellite.class);
+        satellite    = controller.addButton("satellite", Satellite.class);
         about        = controller.addButton("about", About.class);    
         
         
@@ -62,7 +62,7 @@ public class MainMenuView extends ModeView{
         panel.add(map, c);
 
         c.gridy = 2;
-        panel.add(satallite, c);
+        panel.add(satellite, c);
 
         c.gridx = 1;
         c.gridy = 0;
@@ -78,7 +78,7 @@ public class MainMenuView extends ModeView{
         about.setVisible(Xtrek.isOn);
         speech.setVisible(Xtrek.isOn);
         whereTo.setVisible(Xtrek.isOn);
-        satallite.setVisible(Xtrek.isOn);
+        satellite.setVisible(Xtrek.isOn);
         tripComputer.setVisible(Xtrek.isOn);
 
         panel.validate();
