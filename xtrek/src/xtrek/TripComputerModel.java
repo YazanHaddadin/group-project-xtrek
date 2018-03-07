@@ -15,15 +15,18 @@ import java.util.TimerTask;
 public class TripComputerModel extends ModeModel{
     
     void plus(ButtonEvent evt) {
-        //Plus button action will go here
+        //This button is disabled, so no code here. 
+        //But this placeholder needs to be here due to interface.
     }
 
     void minus(ButtonEvent evt) {
-        //Minus button action will go here
+        //This button is disabled, so no code here. 
+        //But this placeholder needs to be here due to interface.
     }
     
     void selected(ButtonEvent evt) {
-       //Nothing to be done here - get rid of?
+        //No selecting in this mode. 
+        //But this placeholder needs to be here due to interface.
     }
     
     static class IncreaseMovingTime extends TimerTask {
