@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Map Model class
+ * <p>
+ * The Model for the Map MVC
+ * @author Alex Vale
+ * @version Sprint 2
  */
 package xtrek;
 
@@ -14,11 +16,7 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author Alex Vale
- * @version Sprint 2
- */
+
 public class MapModel extends ModeModel {
     private static String OUTPUT = "output.png";  /* Output file        */
     private static String LATITUDE = "50.7184";     /* Inputted latitude  */
@@ -34,7 +32,7 @@ public class MapModel extends ModeModel {
     
     //Downloads a new map every 5 sec and sets the new image
     public void updateMap() {
-        timer.schedule(new UpdateMap(), 0, 5000);
+        timer.schedule(new UpdateMap(), 0, 5000); //5000 = 5 second delay on update
     }
     
     //Downloads a static image of the map
