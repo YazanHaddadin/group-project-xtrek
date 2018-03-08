@@ -69,10 +69,9 @@ public class TripComputerModel extends ModeModel{
             kmTravelled = kmTravelled + 0.01; 
             
             //Ensure the distance is always exactly 2 decimal places in length
-            DecimalFormat df = new DecimalFormat("##########.00");      
-            kmTravelled = Double.valueOf(df.format(kmTravelled));
+            DecimalFormat df = new DecimalFormat("#########0.00"); 
+            odoLabel = df.format(kmTravelled) + " KM";
             
-            odoLabel = String.valueOf(kmTravelled) + " KM";
             TripComputer.updateTripOdometer(odoLabel);
         }
     }
