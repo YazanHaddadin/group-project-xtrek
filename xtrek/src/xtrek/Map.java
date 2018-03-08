@@ -9,9 +9,7 @@
  */
 package xtrek;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
+import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -42,7 +40,7 @@ public class Map extends Mode {
     }*/
     
     public Map(JFrame frame) {
-        model = new MapModel();
+        model = new MapModel(this);
         view = new MapView(frame);
 
         mapModel = (MapModel) model;
@@ -51,7 +49,6 @@ public class Map extends Mode {
     
     @Override
     void displayMode() {
-        mapView.setController(this);
         mapView.displayMode();
     }
     
@@ -70,6 +67,14 @@ public class Map extends Mode {
         mapModel.minus(evt);
     }
 
+    private void updateMap() {
+        mapModel.updateMap();
+    }
+
+    void setIcon(ImageIcon image) {
+        mapView.setIcon(image);
+    }
+
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         Container c = frame.getContentPane();
@@ -78,19 +83,30 @@ public class Map extends Mode {
         //Dimensions are in pixels, need to be mm
         frame.setPreferredSize(new Dimension(700, 850));
         frame.setResizable(true);
-        frame.setLayout(null);
+        frame.setLayout(new GridBagLayout());
+
+        GridBagConstraints con = new GridBagConstraints();
 
         c.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Mode currentView = new Map(frame);
+        ControlLayout controlPanel = new ControlLayout(frame, currentView);
 
         currentView.displayMode();
         currentView.makeVisible();
 
+        con.gridx = 1;
+        con.gridy = 1;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        frame.getContentPane().add(controlPanel.getPanel(), con);
+
         frame.pack();
         frame.validate();
         frame.setVisible(true);
+
+        ((Map)currentView).updateMap();
     }
     /*@Override
     public void displayMode() {

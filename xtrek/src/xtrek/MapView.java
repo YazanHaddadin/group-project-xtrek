@@ -6,6 +6,7 @@
 package xtrek;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -13,19 +14,14 @@ import java.awt.*;
  * @author Alex Vale
  * @version Sprint 2
  */
-public class MapView extends ModeView{
+public class MapView extends ModeView {
     private Map controller;
     private java.util.Timer timer;
     private static JLabel label;
     
     public MapView(JFrame frame) {
         super(frame);
-        panel.setLayout(null);
-        displayMode();
-    }
-    
-    void setController(Map controller) {
-        this.controller = controller;
+        panel.setLayout(new GridBagLayout());
     }
     
     @Override
@@ -44,12 +40,13 @@ public class MapView extends ModeView{
     public void displayMode() {
         frame.setTitle("Map");
 
-        panel.setLayout(null);
-
         label = new JLabel();
+        label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
 
-        label.setBounds(0, 0, Constants.screenWidth, Constants.screenHeight);
-        panel.add(label);
+        GridBagConstraints con = new GridBagConstraints();
+        con.gridx = 0;
+        con.gridy = 0;
+        panel.add(label, con);
         
         ImageIcon pic = new ImageIcon("redDot.jpg");
         panel.add(new JLabel(pic));
@@ -58,6 +55,10 @@ public class MapView extends ModeView{
         panel.setVisible(true);
 
         timer = new java.util.Timer();
+    }
+
+    void setIcon(ImageIcon image) {
+        label.setIcon(image);
     }
     
 }

@@ -27,15 +27,19 @@ public class MapModel extends ModeModel {
     static String ZOOM = "17";           /* 0 .. 21           */
     static String SIZE = "612x612";     /* Size              */
     private static JLabel label;
-    private Timer timer;
+    private Timer timer = new Timer();
     private Map controller;
+
+    MapModel(Map controller) {
+        this.controller = controller;
+    }
     
     //Downloads a new map every 5 sec and sets the new image
     public void updateMap() {
         timer.schedule(new UpdateMap(), 0, 5000);
         try {
             BufferedImage myPicture = ImageIO.read(new File(OUTPUT));
-            label.setIcon(new ImageIcon(myPicture));
+            controller.setIcon(new ImageIcon(myPicture));
         } catch (IOException e) {
             e.printStackTrace();
         }
