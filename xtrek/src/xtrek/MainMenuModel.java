@@ -74,7 +74,8 @@ public class MainMenuModel extends ModeModel{
         
         OperatorButton(String display, Class currentClass) {
             try {
-                Image img = ImageIO.read(getClass().getResource("assets/" + display + ".png"));
+                Image img = ImageIO.read(getClass().getResource("assets/" + display + ".png"))
+                        .getScaledInstance(88, 70, Image.SCALE_SMOOTH);
                 setIcon(new ImageIcon(img));
             }   catch (Exception ex) {
                 System.out.println(ex);

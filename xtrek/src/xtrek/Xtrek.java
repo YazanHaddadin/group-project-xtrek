@@ -22,16 +22,14 @@ class Xtrek extends JFrame {
     static Map MapMode;
     static TurnByTurn TurnByTurn;
     static WhereTo WhereTo;
-    static ControlLayout ControlPanel;
+    static ControlLayout controlPanel;
     /**
      * @param args the command line arguments
      */
     private static Mode currentView;
-    private static Container c;
     private static Xtrek xtrek;
 
     private Xtrek() {
-        c = this.getContentPane();
         this.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
@@ -45,10 +43,10 @@ class Xtrek extends JFrame {
         MapMode = new Map(this);
         TurnByTurn = new TurnByTurn(this);
         WhereTo = new WhereTo(this);
-        currentView = MainMenu;
-        ControlPanel = new ControlLayout(this, currentView);
+        setCurrentView(MainMenu);
+        controlPanel = new ControlLayout(this, currentView);
 
-        this.getContentPane().add(ControlPanel.getPanel());
+        this.getContentPane().add(controlPanel.getPanel());
         this.pack();
 
         this.validate();

@@ -50,23 +50,6 @@ public class ControlLayout extends JPanel{
         this.setLayout(null);
         this.setPreferredSize(Constants.device);
 
-        JPanel overlayPanel = new JPanel();
-        overlayPanel.setPreferredSize(Constants.device);
-        overlayPanel.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
-        overlayPanel.setLayout(null);
-        overlayPanel.setBackground(Color.BLACK);
-        JLabel overlay = new JLabel();
-        try {
-            Image img = ImageIO.read(getClass().getResource("assets/display.png"));
-            overlay.setIcon(new ImageIcon(img));
-            overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
-            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
-            overlayPanel.add(overlay);
-            this.add(overlayPanel);
-        } catch(IOException e) {
-            System.out.println(e);
-        }
-
         //add the control buttons to the new panel created
         Dimension buttonSize = new Dimension(15, 40);
         plus.setBounds(0, 80, 15, 40);
@@ -89,15 +72,29 @@ public class ControlLayout extends JPanel{
         onOff.setPreferredSize(new Dimension(30, 30));
         this.add(onOff);
 
-        this.add(currentMode.getPanel());
-
-        listener = currentMode;
-
         onOff.setVisible(true);
         menu.setVisible(true);
         plus.setVisible(true);
         minus.setVisible(true);
         select.setVisible(true);
+
+        updateFrame(currentMode);
+
+        JPanel overlayPanel = new JPanel();
+        overlayPanel.setPreferredSize(Constants.device);
+        overlayPanel.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+        overlayPanel.setLayout(null);
+        overlayPanel.setBackground(Color.BLACK);
+        JLabel overlay = new JLabel();
+        try {
+            overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
+            overlayPanel.add(overlay);
+            this.add(overlayPanel);
+        } catch(IOException e) {
+            e.printStackTrace();
+            //TODO handle can't find overlay
+        }
 
         this.validate();
     }
