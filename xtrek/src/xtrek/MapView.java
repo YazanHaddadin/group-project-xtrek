@@ -1,18 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MapView class
+ * <p>
+ * The View for the Map MVC
+ *
+ * @author Alex Vale
+ * @version Sprint 2
  */
 package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
- * @author Alex Vale
- * @version Sprint 2
- */
+
 public class MapView extends ModeView {
     private static JLabel label = new JLabel();
 
@@ -25,7 +24,6 @@ public class MapView extends ModeView {
     @Override
     public void makeVisible() {
         panel.setVisible(true);
-        //MapModel.updateMap();
     }
 
     @Override
