@@ -50,6 +50,10 @@ public class TripComputer extends Mode {
         tcView.movingTimeReading.setText(mtText);
     }
     
+    public static void updateTripOdometer(String odoText) {
+        tcView.odometerReading.setText(odoText);
+    }
+    
     // Temporary Main Method for Testing
     // REMOVE THIS BEFORE SUBMISSION!
     public static void main(String[] args) {
@@ -84,7 +88,7 @@ public class TripComputer extends Mode {
         frame.setVisible(true);
         
         tcModel.increaseMovingTime();
-        updateMovingTime("Hello");
+        tcModel.increaseTripOdometer();
     }
 
 }

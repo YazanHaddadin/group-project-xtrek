@@ -22,11 +22,11 @@ public class TripComputerView extends ModeView{
 
     JPanel speedPanel = new JPanel();
     JLabel speedLabel = new JLabel("Speed:");
-    JLabel speedReading = new JLabel("4.5 KM/H");
+    JLabel speedReading = new JLabel("6.0 KM/H");
 
     JPanel movingTimePanel = new JPanel();
     JLabel movingTimeLabel = new JLabel("Moving Time:");
-    JLabel movingTimeReading = new JLabel("28 mins 35 secs");
+    JLabel movingTimeReading = new JLabel("0 min 0 sec");
     
     @Override
     public void displayMode() {

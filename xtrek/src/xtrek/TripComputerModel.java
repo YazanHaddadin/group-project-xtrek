@@ -16,6 +16,7 @@ import java.util.TimerTask;
 public class TripComputerModel extends ModeModel{
     
     static String mtLabel;
+    static String odoLabel;
     
     void plus(ButtonEvent evt) {
         //This button is disabled, so no code here. 
@@ -52,5 +53,26 @@ public class TripComputerModel extends ModeModel{
         Timer movingTimer = new Timer();
         movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
         
+    }
+    
+    
+    
+    
+    
+    
+    static class IncreaseTripOdometer extends TimerTask {
+
+        static double kmTravelled = 0;
+        
+        public void run() {
+            kmTravelled = kmTravelled + 0.01; 
+            odoLabel = String.valueOf(kmTravelled) + " KM";
+            TripComputer.updateTripOdometer(odoLabel);
+        }
+    }
+    
+    public void increaseTripOdometer() {
+        Timer odoTimer = new Timer();
+        odoTimer.schedule(new TripComputerModel.IncreaseTripOdometer(), 0, 10000);
     }
 }
