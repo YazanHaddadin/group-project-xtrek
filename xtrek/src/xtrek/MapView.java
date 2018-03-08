@@ -33,6 +33,9 @@ public class MapView extends ModeView {
     public void onHide() {
         panel.setVisible(false);
     }
+    void setIcon(ImageIcon image) {
+        label.setIcon(image);
+    }
     
     @Override
     public void displayMode() {
@@ -52,8 +55,6 @@ public class MapView extends ModeView {
         panel.setVisible(true);
     }
 
-    void setIcon(ImageIcon image) {
-        label.setIcon(image);
-    }
+    
     
 }
