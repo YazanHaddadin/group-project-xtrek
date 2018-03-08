@@ -8,6 +8,7 @@
  */
 package xtrek;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -76,6 +77,8 @@ public class MainMenuView extends ModeView{
 
         panel.validate();
         panel.setVisible(true);
+        
+        whereTo.setBackground(Color.ORANGE);
         
         frame.getRootPane().setDefaultButton(whereTo);
         whereTo.requestFocus();

@@ -8,8 +8,6 @@
  */
 package xtrek;
 
-import sun.awt.image.PixelConverter;
-
 import javax.swing.JButton;
 import javax.swing.*;
 import java.awt.*;

@@ -12,8 +12,6 @@
  */
 package xtrek;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -87,8 +85,9 @@ public class ControlLayout extends JPanel{
         overlayPanel.setBackground(Color.BLACK);
         JLabel overlay = new JLabel();
         try {
+            Image img = ImageIO.read(getClass().getResource("assets/display.png"));
             overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
-            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
+            overlay.setIcon(new ImageIcon(img));
             overlayPanel.add(overlay);
             this.add(overlayPanel);
         } catch(IOException e) {
