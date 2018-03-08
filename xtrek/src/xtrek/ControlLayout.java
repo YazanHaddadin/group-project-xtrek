@@ -58,11 +58,12 @@ public class ControlLayout extends  JPanel{
         try {
             con.gridx = 0;
             con.gridy = 0;
-            con.gridwidth = Constants.deviceWidth;
-            con.gridheight = Constants.deviceHeight;
+            con.fill = GridBagConstraints.NONE;
             overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
             overlayPanel.add(overlay, con);
 
+            con.gridwidth = Constants.deviceWidth;
+            con.gridheight = Constants.deviceHeight;
             this.add(overlayPanel, con);
         } catch(IOException e) {
             e.printStackTrace();
@@ -70,35 +71,41 @@ public class ControlLayout extends  JPanel{
         }
 
         //add the control buttons to the new panel created
-        /*con.gridx = 305;
-        con.gridy = 75;
-        con.gridwidth = 1;
-        con.gridheight = 2;
-        con.fill = GridBagConstraints.BOTH;
+        con.gridx = 0;
+        con.gridy = 60;
+        con.weightx = 1.0;
+        con.weighty = 1.0;
+        con.gridwidth = 15;
+        con.gridheight = 60;
         this.add(plus, con);
 
-        /*con.gridy = 1;
+        con.weightx = 0.5;
+        con.weighty = 0.5;
+        con.gridy = 120;
         this.add(minus, con);
 
-        con.gridy = 4;
-        con.gridheight = 2;
+        con.weightx = 0.5;
+        con.weighty = 0.5;
+        con.gridy = 187;
         this.add(select, con);
 
-        con.gridy = 305;
-        con.gridx = 75;
-        con.gridheight = 60;
-        con.gridwidth = 15;
+        con.gridx = 305;
+        con.gridy = 75;
+        this.add(menu, con);
+
+        con.gridy = 220;
+        con.gridx = 120;
+        con.gridwidth = 36;
+        con.gridheight = 36;
         this.add(onOff, con);
 
-        con.gridx = 6;
-        con.gridy = 3;
-        this.add(menu, con);*/
-
+        con.weightx = 1.0;
+        con.weighty = 1.0;
         con.gridx = Constants.deviceWidth - Constants.screenWidth;
         con.gridy = Constants.deviceHeight - Constants.screenHeight;
-        System.out.println(con.gridy);
         con.gridwidth = Constants.screenWidth;
         con.gridheight = Constants.screenHeight;
+        currentMode.getPanel().setPreferredSize(Constants.screen);
         this.add(currentMode.getPanel(), con);
 
         currentMode.displayMode();
@@ -226,7 +233,7 @@ public class ControlLayout extends  JPanel{
             setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(false);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 25));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 5));
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 

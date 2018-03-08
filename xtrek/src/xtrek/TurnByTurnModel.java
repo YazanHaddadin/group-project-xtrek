@@ -128,11 +128,23 @@ public class TurnByTurnModel extends ModeModel {
             setBackground(Color.WHITE);
         }
 
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (isSelected()) {
+                setBorder(BorderFactory.createEmptyBorder());
+            } else {
+                setBorder(BorderFactory.createLoweredBevelBorder());
+            }
+        }
+
         private void setStyle() {
             setOpaque(true);
+            setFocusable(false);
+            setFocusPainted(false);
             setBorderPainted(false);
             setBackground(Color.WHITE);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 36));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 22));
             setHorizontalAlignment(SwingConstants.LEFT);
 
             setVisible(true);
