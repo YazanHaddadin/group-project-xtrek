@@ -103,7 +103,7 @@ public class MapModel extends ModeModel {
     }
 
     @Override
-    void onHide() {
+    void hide() {
         stopUpdate();
     }
     

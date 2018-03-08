@@ -13,7 +13,6 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.imageio.ImageIO;
 
 
 public abstract class ModeView {
@@ -35,7 +34,7 @@ public abstract class ModeView {
         panel.setVisible(true);
     }
 
-    void onHide() {
+    void hide() {
         panel.setVisible(false);
     }
 
