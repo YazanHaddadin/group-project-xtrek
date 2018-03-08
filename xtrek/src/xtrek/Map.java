@@ -9,6 +9,9 @@
  */
 package xtrek;
 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -47,6 +50,12 @@ public class Map extends Mode {
     }
     
     @Override
+    void displayMode() {
+        MapView.setController(this);
+        MapView.displayMode();
+    }
+    
+    @Override
     public void selected(ButtonEvent evt) {
         MapModel.selected(evt);
     }
@@ -61,6 +70,27 @@ public class Map extends Mode {
         MapModel.minus(evt);
     }
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        Container c = frame.getContentPane();
+        frame.setLocationRelativeTo(null);
+
+        //Dimensions are in pixels, need to be mm
+        frame.setPreferredSize(new Dimension(700, 850));
+        frame.setResizable(true);
+        
+        c.setBackground(Color.BLACK);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        Mode currentView = new Map(frame);
+        
+        currentView.displayMode();
+        currentView.makeVisible();
+
+        frame.pack();
+        frame.validate();
+        frame.setVisible(true);
+    }
     /*@Override
     public void displayMode() {
         frame.setTitle("Map");
