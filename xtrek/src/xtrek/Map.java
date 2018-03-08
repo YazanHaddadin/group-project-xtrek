@@ -71,6 +71,11 @@ public class Map extends Mode {
     void onHide() {
         mapModel.onHide();
     }
+    
+    @Override
+    void onDisplay(){
+        mapModel.onDisplay();
+    }
 
     private void updateMap() {
         mapModel.updateMap();
