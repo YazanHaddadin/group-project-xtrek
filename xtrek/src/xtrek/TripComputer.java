@@ -14,8 +14,8 @@ import java.awt.*;
 
 public class TripComputer extends Mode {
     
-    private TripComputerView tcView;
-    private TripComputerModel tcModel;
+    private static TripComputerView tcView;
+    private static TripComputerModel tcModel;
     
     TripComputer(JFrame frame) {
         model = new TripComputerModel();
@@ -44,6 +44,10 @@ public class TripComputer extends Mode {
     @Override
     public void minus(ButtonEvent evt) {
         tcModel.minus(evt);
+    }
+    
+    public static void updateMovingTime(String mtText) {
+        tcView.movingTimeReading.setText(mtText);
     }
     
     // Temporary Main Method for Testing
@@ -78,6 +82,9 @@ public class TripComputer extends Mode {
         frame.pack();
         frame.validate();
         frame.setVisible(true);
+        
+        tcModel.increaseMovingTime();
+        updateMovingTime("Hello");
     }
 
 }

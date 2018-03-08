@@ -10,9 +10,12 @@
 package xtrek;
 
 
+import java.util.Timer;
 import java.util.TimerTask;
 
 public class TripComputerModel extends ModeModel{
+    
+    static String mtLabel;
     
     void plus(ButtonEvent evt) {
         //This button is disabled, so no code here. 
@@ -39,7 +42,15 @@ public class TripComputerModel extends ModeModel{
             secondsCounter++; 
             numberOfMinutes = secondsCounter/60;
             numberOfSeconds = secondsCounter%60;
-            System.out.println("Moving time is currently " + numberOfMinutes + " minutes, " + numberOfSeconds + " seconds.");
+            mtLabel = (numberOfMinutes + " min " + numberOfSeconds + " sec");
+            TripComputer.updateMovingTime(mtLabel);
         }
+    }
+    
+    //Increment timer for the journey every second
+    public void increaseMovingTime() {
+        Timer movingTimer = new Timer();
+        movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
+        
     }
 }
