@@ -41,8 +41,6 @@ public class MapView extends ModeView {
     public void displayMode() {
         frame.setTitle("Map");
 
-        label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
-
         GridBagConstraints con = new GridBagConstraints();
         con.gridx = 0;
         con.gridy = 0;

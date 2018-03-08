@@ -25,7 +25,7 @@ public class MapModel extends ModeModel {
     private static String LATITUDE = "50.7184";     /* Inputted latitude  */
     private static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
     private static String ZOOM = "17";           /* 0 .. 21           */
-    private static String SIZE = "612x612";     /* Size              */
+    private static String SIZE = Constants.screenWidth + "x" + Constants.screenHeight;
     private Timer timer = new Timer();
     private Map controller;
 
