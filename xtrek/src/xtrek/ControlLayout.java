@@ -57,16 +57,16 @@ public class ControlLayout {
         GridBagConstraints con = new GridBagConstraints();
         JLabel overlay = new JLabel();
         try {
-            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
-            con.gridx = 0;
+            Image img = ImageIO.read(getClass().getResource("assets/display.png"));
+            overlay.setIcon(new ImageIcon(img));
+            con.gridx = 4;
             con.gridy = 0;
             con.gridwidth = 8;
             con.gridheight = 17;
             con.fill = GridBagConstraints.BOTH;
             controlPanel.add(overlay, con);
         } catch(IOException e) {
-            e.printStackTrace();
-            //TODO handle can't find overlay
+            System.out.println(e);
         }
 
         //add the control buttons to the new panel created

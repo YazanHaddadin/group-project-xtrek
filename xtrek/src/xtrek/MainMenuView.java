@@ -50,7 +50,7 @@ public class MainMenuView extends ModeView{
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(10, 10, 10, 10);
+        c.insets = new Insets(10, 0, 40, 40);
         c.weightx = 1.0;
         c.weighty = 1.0;
 
