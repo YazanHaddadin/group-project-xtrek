@@ -47,60 +47,48 @@ public class ControlLayout extends  JPanel{
         frame.setTitle("Control Layout");
 
         //seperate panel for the control buttons
-        this.setLayout(new GridBagLayout());
-
-        GridBagConstraints con = new GridBagConstraints();
+        this.setLayout(null);
+        this.setPreferredSize(Constants.device);
 
         JPanel overlayPanel = new JPanel();
-        overlayPanel.setLayout(new GridBagLayout());
+        overlayPanel.setPreferredSize(Constants.device);
+        overlayPanel.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+        overlayPanel.setLayout(null);
         overlayPanel.setBackground(Color.BLACK);
         JLabel overlay = new JLabel();
         try {
-            con.gridx = 0;
-            con.gridy = 0;
-            con.fill = GridBagConstraints.NONE;
+            overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
             overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
-            overlayPanel.add(overlay, con);
-
-            con.gridwidth = 7;
-            con.gridheight = 7;
-            this.add(overlayPanel, con);
+            overlayPanel.add(overlay);
+            this.add(overlayPanel);
         } catch(IOException e) {
             e.printStackTrace();
             //TODO handle can't find overlay
         }
 
         //add the control buttons to the new panel created
-        con.gridx = 0;
-        con.gridy = 1;
-        con.weightx = 0.1;
-        con.weighty = 0.3;
-        con.gridwidth = 1;
-        con.gridheight = 1;
-        this.add(plus, con);
+        Dimension buttonSize = new Dimension(15, 40);
+        plus.setBounds(0, 80, 15, 40);
+        plus.setPreferredSize(buttonSize);
+        this.add(plus);
 
-        con.gridy = 2;
-        this.add(minus, con);
+        minus.setBounds(0, 120, 15, 40);
+        minus.setPreferredSize(buttonSize);
+        this.add(minus);
 
-        con.gridy = 3;
-        this.add(select, con);
+        select.setBounds(0, 200, 15, 40);
+        select.setPreferredSize(buttonSize);
+        this.add(select);
 
-        con.gridx = 6;
-        con.gridy = 1;
-        this.add(menu, con);
+        menu.setBounds(310, 80, 15, 40);
+        menu.setPreferredSize(buttonSize);
+        this.add(menu);
 
-        con.gridy = 4;
-        con.gridx = 3;
-        this.add(onOff, con);
-
-        con.gridx = 1;
-        con.gridy = 2;
-        con.weightx = 1.0;
-        con.weighty = 1.0;
-        con.gridwidth = 3;
-        con.gridheight = 6;
+        onOff.setBounds(200, 140, 30, 30);
+        onOff.setPreferredSize(new Dimension(30, 30));
+        this.add(onOff);
         currentMode.getPanel().setPreferredSize(Constants.screen);
-        this.add(currentMode.getPanel(), con);
+        this.add(currentMode.getPanel());
 
         listener = currentMode;
 
@@ -128,7 +116,7 @@ public class ControlLayout extends  JPanel{
         con.gridy = 1;
         con.gridwidth = 5;
         con.gridheight = 15;
-        con.weighty = 1.0;
+        con.weighty = 0.4;
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
         this.add(currentMode.getPanel(), con);
@@ -147,7 +135,7 @@ public class ControlLayout extends  JPanel{
         private String control;
 
         ControlButton(String control) {
-            super(control);
+            super("");
             this.control = control;
             setStyle();
 
