@@ -50,8 +50,8 @@ public class Map extends Mode {
     }
 
     @Override
-    void onHide() {
-        mapModel.onHide();
+    void hide() {
+        mapModel.hide();
     }
     
     @Override
