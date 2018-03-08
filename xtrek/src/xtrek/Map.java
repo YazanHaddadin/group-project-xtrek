@@ -10,14 +10,9 @@
 package xtrek;
 
 import java.awt.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class Map extends Mode {
@@ -68,8 +63,8 @@ public class Map extends Mode {
     }
 
     @Override
-    void onHide() {
-        mapModel.onHide();
+    void hide() {
+        mapModel.hide();
     }
     
     @Override
@@ -159,7 +154,7 @@ public class Map extends Mode {
     }
 
     @Override
-    public void onHide() {
+    public void hide() {
         panel.setVisible(false);
         timer.cancel();
     }

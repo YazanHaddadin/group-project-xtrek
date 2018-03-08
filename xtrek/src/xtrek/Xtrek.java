@@ -46,7 +46,7 @@ class Xtrek extends JFrame {
         WhereTo = new WhereTo(this);
         satellite = new Satellite(this);
 
-        setCurrentView(MainMenu);
+        currentView = MainMenu;
         controlPanel = new ControlLayout(this, MainMenu);
 
         this.getContentPane().add(controlPanel.getPanel());
@@ -65,16 +65,13 @@ class Xtrek extends JFrame {
     }
 
     public static void hideCurrentView(){
-        currentView.onHide();
-    }
-
-    public static void setCurrentView(Mode view) {
-        currentView = view;
+        currentView.hide();
     }
 
     public static void updateFrame(Mode view) {
         currentView = view;
         currentView.onDisplay();
+        currentView.makeVisible();
         controlPanel.updateFrame(view);
     }
 

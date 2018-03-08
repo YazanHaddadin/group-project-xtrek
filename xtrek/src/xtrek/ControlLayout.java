@@ -100,7 +100,7 @@ public class ControlLayout extends JPanel{
 
     void updateFrame(Mode mode) {
         this.remove(currentMode.getPanel());
-        currentMode.onHide();
+        currentMode.hide();
         this.currentMode = mode;
         currentMode.onDisplay();
         this.add(currentMode.getPanel());

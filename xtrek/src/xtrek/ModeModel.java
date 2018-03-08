@@ -20,7 +20,7 @@ abstract class ModeModel {
 
     }
 
-    void onHide() {
+    void hide() {
 
     }
 }

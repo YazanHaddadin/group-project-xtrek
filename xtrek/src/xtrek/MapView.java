@@ -6,7 +6,6 @@
 package xtrek;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 /**
@@ -30,9 +29,10 @@ public class MapView extends ModeView {
     }
 
     @Override
-    public void onHide() {
+    public void hide() {
         panel.setVisible(false);
     }
+
     void setIcon(ImageIcon image) {
         label.setIcon(image);
     }
