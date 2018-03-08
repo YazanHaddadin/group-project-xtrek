@@ -9,15 +9,25 @@
  */
 package xtrek;
 
+import java.awt.*;
+
 public class Constants {
-    public static int screenWidth = 570;
-    public static int screenHeight = 710;
-    public static String systemFont = "Arial";
+    public static final int deviceWidth = 325;
+    public static final int deviceHeight = 590;
+
+    public static final Dimension device = new Dimension(deviceWidth, deviceHeight);
+
+    public static final int screenHeight = 365;
+    public static final int screenWidth = 235;
+
+    public static final Dimension screen = new Dimension(screenWidth, screenHeight);
+
+    public static final String systemFont = "Arial";
     
     //Defaults for the Directions class
-    public static String travelMode = "WALKING";
-    public static String directionsRegion = "UK";
+    public static final String travelMode = "WALKING";
+    public static final String directionsRegion = "UK";
     
     //Defaults for the Satellite class
-    public static String dongleLocation = "/dev/cu.usbmodem1421";
+    public static final String dongleLocation = "/dev/cu.usbmodem1421";
 }

@@ -12,6 +12,8 @@
  */
 package xtrek;
 
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -24,15 +26,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ControlLayout {
-    final JPanel controlPanel = new JPanel();
+public class ControlLayout extends  JPanel{
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");
-    final JButton onOff = new ControlButton("PWR");
-    final JButton menu = new ControlButton("Menu");
-    final JButton select = new ControlButton("Select");
+    private final JButton onOff = new ControlButton("PWR");
+    private final JButton menu = new ControlButton("Menu");
+    private final JButton select = new ControlButton("Select");
 
-    Mode currentMode;
+    private Mode currentMode;
     private JFrame frame;
     private ButtonListener listener;
 
@@ -46,61 +47,59 @@ public class ControlLayout {
         frame.setTitle("Control Layout");
 
         //seperate panel for the control buttons
-        controlPanel.setPreferredSize(new Dimension(Constants.screenWidth + 25, Constants.screenHeight + 25));
-        controlPanel.setMaximumSize(new Dimension(Constants.screenWidth + 25, Constants.screenHeight + 25));
-
-        controlPanel.setLayout(new GridBagLayout());
-        controlPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-
-        controlPanel.setBackground(Color.BLACK);
+        this.setLayout(new GridBagLayout());
 
         GridBagConstraints con = new GridBagConstraints();
+
+        JPanel overlayPanel = new JPanel();
+        overlayPanel.setLayout(new GridBagLayout());
+        overlayPanel.setBackground(Color.BLACK);
         JLabel overlay = new JLabel();
         try {
-            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
             con.gridx = 0;
             con.gridy = 0;
-            con.gridwidth = 8;
-            con.gridheight = 17;
-            con.fill = GridBagConstraints.BOTH;
-            controlPanel.add(overlay, con);
+            con.gridwidth = Constants.deviceWidth;
+            con.gridheight = Constants.deviceHeight;
+            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
+            overlayPanel.add(overlay, con);
+
+            this.add(overlayPanel, con);
         } catch(IOException e) {
             e.printStackTrace();
             //TODO handle can't find overlay
         }
 
         //add the control buttons to the new panel created
-        con.gridx = 0;
-        con.gridy = 0;
+        /*con.gridx = 305;
+        con.gridy = 75;
         con.gridwidth = 1;
         con.gridheight = 2;
         con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(plus, con);
+        this.add(plus, con);
 
-        con.gridy = 1;
-        controlPanel.add(minus, con);
+        /*con.gridy = 1;
+        this.add(minus, con);
 
         con.gridy = 4;
         con.gridheight = 2;
-        controlPanel.add(select, con);
+        this.add(select, con);
 
-        con.gridy = 0;
-        con.gridx = 6;
-        con.gridheight = 1;
-        controlPanel.add(onOff, con);
+        con.gridy = 305;
+        con.gridx = 75;
+        con.gridheight = 60;
+        con.gridwidth = 15;
+        this.add(onOff, con);
 
         con.gridx = 6;
         con.gridy = 3;
-        controlPanel.add(menu, con);
+        this.add(menu, con);*/
 
-        con.gridx = 1;
-        con.gridy = 1;
-        con.gridwidth = 5;
-        con.gridheight = 15;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(currentMode.getPanel(), con);
+        con.gridx = Constants.deviceWidth - Constants.screenWidth;
+        con.gridy = Constants.deviceHeight - Constants.screenHeight;
+        System.out.println(con.gridy);
+        con.gridwidth = Constants.screenWidth;
+        con.gridheight = Constants.screenHeight;
+        this.add(currentMode.getPanel(), con);
 
         currentMode.displayMode();
         currentMode.makeVisible();
@@ -113,16 +112,16 @@ public class ControlLayout {
         minus.setVisible(true);
         select.setVisible(true);
 
-        controlPanel.validate();
-        controlPanel.setVisible(true);
+        this.validate();
+        this.setVisible(true);
     }
 
     JPanel getPanel() {
-        return controlPanel;
+        return this;
     }
 
     void updateFrame(Mode mode) {
-        controlPanel.remove(currentMode.getPanel());
+        this.remove(currentMode.getPanel());
 
         this.currentMode = mode;
 
@@ -135,14 +134,14 @@ public class ControlLayout {
         con.weighty = 1.0;
         con.weightx = 1.0;
         con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(currentMode.getPanel(), con);
+        this.add(currentMode.getPanel(), con);
 
         currentMode.displayMode();
         currentMode.makeVisible();
 
         listener = currentMode;
 
-        controlPanel.validate();
+        this.validate();
         frame.revalidate();
         frame.repaint();
     }

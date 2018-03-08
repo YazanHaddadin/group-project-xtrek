@@ -24,8 +24,8 @@ public abstract class ModeView {
         this.frame = frame;
         //Dimensions are in pixels, need to be mm
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
-        panel.setMaximumSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
+        panel.setPreferredSize(Constants.screen);
+        panel.setMaximumSize(Constants.screen);
         panel.setBackground(Color.BLACK);
     }
 
