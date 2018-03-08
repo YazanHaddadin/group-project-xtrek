@@ -30,7 +30,6 @@ class Xtrek extends JFrame {
     private static Mode currentView;
     private static Container c;
     private static Xtrek xtrek;
-    private TripComputer tc;
 
     private Xtrek() {
         c = this.getContentPane();
