@@ -26,7 +26,6 @@ public class MapModel extends ModeModel {
     static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
     static String ZOOM = "17";           /* 0 .. 21           */
     static String SIZE = "612x612";     /* Size              */
-    private static JLabel label;
     private Timer timer = new Timer();
     private Map controller;
 
