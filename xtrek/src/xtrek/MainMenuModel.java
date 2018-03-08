@@ -29,17 +29,17 @@ public class MainMenuModel extends ModeModel{
     void selected(ButtonEvent evt) {
         //when a button is selected the Main Menu view is hidden and the selected view is made visible
         if(currentButton.currentClass == WhereTo.class) {
-            Xtrek.setCurrentView(Xtrek.WhereTo);
+            Xtrek.updateFrame(Xtrek.WhereTo);
         } else if(currentButton.currentClass == TripComputer.class) {
-            Xtrek.setCurrentView(Xtrek.tripComputer);
+            Xtrek.updateFrame(Xtrek.tripComputer);
         } else if(currentButton.currentClass == Map.class) {
-            Xtrek.setCurrentView(Xtrek.MapMode);
+            Xtrek.updateFrame(Xtrek.MapMode);
         } else if(currentButton.currentClass == TurnByTurn.class) {
-            Xtrek.setCurrentView(Xtrek.TurnByTurn);
+            Xtrek.updateFrame(Xtrek.TurnByTurn);
         } else if(currentButton.currentClass == Satellite.class) {
-            Xtrek.setCurrentView(Xtrek.satellite);
+            Xtrek.updateFrame(Xtrek.satellite);
         } else if(currentButton.currentClass == About.class) {
-            Xtrek.setCurrentView(Xtrek.AboutMode);
+            Xtrek.updateFrame(Xtrek.AboutMode);
         }
     }
     
