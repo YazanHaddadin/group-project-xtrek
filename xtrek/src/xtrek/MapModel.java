@@ -21,18 +21,18 @@ import javax.swing.JLabel;
  * @version Sprint 2
  */
 public class MapModel extends ModeModel {
-    final static String OUTPUT = "output.png";  /* Output file        */
-    final static String LATITUDE = "50.7184";     /* Inputted latitude  */
-    final static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
-    final static String ZOOM = "17";           /* 0 .. 21           */
-    final static String SIZE = "612x612";     /* Size              */
+    static String OUTPUT = "output.png";  /* Output file        */
+    static String LATITUDE = "50.7184";     /* Inputted latitude  */
+    static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
+    static String ZOOM = "17";           /* 0 .. 21           */
+    static String SIZE = "612x612";     /* Size              */
     private static JLabel label;
     private Timer timer;
-    
+    private Map controller;
     
     //Downloads a new map every 5 sec and sets the new image
     public void updateMap() {
-        timer.schedule(new MapModel.UpdateMap(), 0, 5000);
+        timer.schedule(new UpdateMap(), 0, 5000);
         try {
             BufferedImage myPicture = ImageIO.read(new File(OUTPUT));
             label.setIcon(new ImageIcon(myPicture));
@@ -55,17 +55,39 @@ public class MapModel extends ModeModel {
         }
     }
     
+    @Override
     void plus(ButtonEvent evt) {
         //change zoom if + button is pressed
+        int zoomInt = Integer.parseInt(ZOOM);
+        if(zoomInt < 21) {
+            zoomInt++;
+        }
+        else {           
+            zoomInt = 21;  
+        }
+        
+        ZOOM = Integer.toString(zoomInt);
+        new UpdateMap();
     }
     
+    @Override
     void minus(ButtonEvent evt) {
         //change zoom if - button is pressed
+         int zoomInt = Integer.parseInt(ZOOM);
+        if(zoomInt > 0) {
+            zoomInt--;
+        }
+        else {           
+            zoomInt = 0;  
+        }
+        
+        ZOOM = Integer.toString(zoomInt);
+        new UpdateMap();
     }
     
     @Override
     void selected(ButtonEvent evt) {
-        
+        //do nothing
     }
     
 }
