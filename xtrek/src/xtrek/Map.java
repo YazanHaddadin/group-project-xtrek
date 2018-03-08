@@ -74,7 +74,13 @@ public class Map extends Mode {
     void setIcon(ImageIcon image) {
         mapView.setIcon(image);
     }
-
+    
+    /**
+     * The main method is just for testing purposes, allowing me to test my class independently of others
+     * It will not be present in the final product
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         Container c = frame.getContentPane();
