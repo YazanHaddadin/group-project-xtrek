@@ -1,5 +1,5 @@
 /**
- * TripComputer View Class
+ * TripComputer Model Class
  * <p>
  * Provides the logic and methods for the Trip Computer mode of the XTrek, 
  * which will provide real time information about the current trip.
@@ -34,6 +34,7 @@ public class TripComputerModel extends ModeModel{
         //But this placeholder needs to be here due to interface.
     }
     
+    //Class for incrementing the number of seconds the device has been moving every second.
     static class IncreaseMovingTime extends TimerTask {
 
         static int secondsCounter = 0;
@@ -56,11 +57,8 @@ public class TripComputerModel extends ModeModel{
         
     }
     
-    
-    
-    
-    
-    
+    //Class for increasing the trip odometer every 10 seconds, to simulate movement.
+    //Later, this will be based on satellite information from the device.
     static class IncreaseTripOdometer extends TimerTask {
 
         static double kmTravelled = 0;
