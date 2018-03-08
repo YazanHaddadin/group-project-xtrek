@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class WhereTo extends Mode {
     
-    private WhereToView whereView;
-    private WhereToModel whereModel;
+    private static WhereToView whereView;
+    private static WhereToModel whereModel;
     
     WhereTo(JFrame frame) {
         model = new WhereToModel();
@@ -56,21 +56,20 @@ public class WhereTo extends Mode {
         whereModel.giveFocus((WhereToModel.KeyboardButton) button);
     }
     
-    public void addToDestination(String letter) {
-        System.out.println("Made it to addToDestination");
+    static void addToDestination(String letter) {
         System.out.println("Adding " + letter);
         //Add the typed letter to the destination field
         whereView.destination.setText(whereView.destination.getText() + letter);
     }
     
-    public void deleteFromDestination() {
+    static void deleteFromDestination() {
         // Delete 1 character from the destination field
         if (whereView.destination.getText().length() > 0) {
             whereView.destination.setText(whereView.destination.getText().substring(0, whereView.destination.getText().length() - 1));
         }
     }
     
-    public void hideLetterButtons() {
+    static void hideLetterButtons() {
         //Hide all buttons for the main letter keyboard
         whereView.btnA.setVisible(false);
         whereView.btnB.setVisible(false);
@@ -102,7 +101,7 @@ public class WhereTo extends Mode {
         whereView.btnNextPage.setVisible(false);
     }
     
-    public void showLetterButtons() {
+    static void showLetterButtons() {
         //Hide all buttons for the main letter keyboard
         whereView.btnA.setVisible(true);
         whereView.btnB.setVisible(true);
@@ -134,7 +133,7 @@ public class WhereTo extends Mode {
         whereView.btnNextPage.setVisible(true);
     }
     
-    public void showNumberButtons() {
+    static void showNumberButtons() {
         //Show all buttons for the numerical keypad.
         whereView.btn1.setVisible(true);
         whereView.btn2.setVisible(true);
@@ -150,7 +149,7 @@ public class WhereTo extends Mode {
         whereView.btnBackPage.setVisible(true);
     }
     
-    public void hideNumberButtons() {
+    static void hideNumberButtons() {
         //Hide all buttons on the numerical keypad.
         whereView.btn1.setVisible(false);
         whereView.btn2.setVisible(false);

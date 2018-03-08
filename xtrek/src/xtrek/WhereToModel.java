@@ -29,31 +29,36 @@ public class WhereToModel extends ModeModel {
     void selected(ButtonEvent evt) {
         System.out.println(currentButton.getDisplayLabel() + " currently pressed.");
         //Space button has been pressed
-            if ("_".equals(currentButton.getDisplayLabel())) {
-                controller.addToDestination("Space");
-            }
+        if ("_".equals(currentButton.getDisplayLabel())) {
+            System.out.println("Space method being called...");
+            controller.addToDestination(" ");
+        }
 
-            //Next page button pressed
-            else if (">".equals(currentButton.getDisplayLabel())) {
-                controller.hideLetterButtons();
-                controller.showNumberButtons();
-            }
+        //Next page button pressed
+        else if (">".equals(currentButton.getDisplayLabel())) {
+            System.out.println("Next page method method being called...");
+            controller.hideLetterButtons();
+            controller.showNumberButtons();
+        }
 
-            //Delete button pressed
-            else if ("DEL".equals(currentButton.getDisplayLabel())) {
-                controller.deleteFromDestination();
-            }
+        //Delete button pressed
+        else if ("DEL".equals(currentButton.getDisplayLabel())) {
+            System.out.println("Delete method being called...");
+            controller.deleteFromDestination();
+        }
 
-            //Previous page button has been pressed
-            else if ("<".equals(currentButton.getDisplayLabel())) {
-                controller.hideNumberButtons();
-                controller.showLetterButtons();
-            }
+        //Previous page button has been pressed
+        else if ("<".equals(currentButton.getDisplayLabel())) {
+            System.out.println("Previous page method being called...");
+            controller.hideNumberButtons();
+            controller.showLetterButtons();
+        }
 
-            //An ordinary letter or number button has been pressed
-            else {
-                controller.addToDestination(currentButton.getDisplayLabel());
-            }
+        //An ordinary letter or number button has been pressed
+        else {
+            System.out.println("Letter method being called...");
+            controller.addToDestination(currentButton.getDisplayLabel());
+        }
     }
     
     public class KeyboardButton extends JButton {

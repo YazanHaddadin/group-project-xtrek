@@ -16,7 +16,7 @@ public class WhereToView extends ModeView{
     private WhereTo controller;
     
     // Text field where destination will go.
-    public JTextField destination = new JTextField("Test Destination");
+    public static JTextField destination = new JTextField("Test Destination");
 
     //Create each keyboard button
     public JButton btnA;
@@ -127,6 +127,7 @@ public class WhereToView extends ModeView{
         destination.setFont(new Font(Constants.systemFont, Font.BOLD, 22));
         destination.setBorder(null);
         destination.setOpaque(true);
+        destination.setEditable(false);
         
         JPanel destinationPanel = new JPanel();
         
