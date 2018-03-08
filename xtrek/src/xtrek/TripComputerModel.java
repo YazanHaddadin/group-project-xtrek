@@ -12,10 +12,12 @@ package xtrek;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.text.DecimalFormat;
 
 public class TripComputerModel extends ModeModel{
     
     static String mtLabel;
+    static String odoLabel;
     
     void plus(ButtonEvent evt) {
         //This button is disabled, so no code here. 
@@ -52,5 +54,31 @@ public class TripComputerModel extends ModeModel{
         Timer movingTimer = new Timer();
         movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
         
+    }
+    
+    
+    
+    
+    
+    
+    static class IncreaseTripOdometer extends TimerTask {
+
+        static double kmTravelled = 0;
+        
+        public void run() {
+            kmTravelled = kmTravelled + 0.01; 
+            
+            //Ensure the distance is always exactly 2 decimal places in length
+            DecimalFormat df = new DecimalFormat("##########.00");      
+            kmTravelled = Double.valueOf(df.format(kmTravelled));
+            
+            odoLabel = String.valueOf(kmTravelled) + " KM";
+            TripComputer.updateTripOdometer(odoLabel);
+        }
+    }
+    
+    public void increaseTripOdometer() {
+        Timer odoTimer = new Timer();
+        odoTimer.schedule(new TripComputerModel.IncreaseTripOdometer(), 0, 10000);
     }
 }
