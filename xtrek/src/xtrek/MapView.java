@@ -50,8 +50,5 @@ public class MapView extends ModeView {
 
         panel.validate();
         panel.setVisible(true);
-    }
-
-    
-    
+    }    
 }
