@@ -106,7 +106,7 @@ public class ControlLayout extends JPanel{
         this.add(currentMode.getPanel());
 
         currentMode.displayMode();
-        currentMode.makeVisible();
+        currentMode.show();
 
         listener = currentMode;
 

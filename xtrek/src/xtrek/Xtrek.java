@@ -61,7 +61,7 @@ class Xtrek extends JFrame {
     }
 
     public static void showCurrentView() {
-        currentView.makeVisible();
+        currentView.show();
     }
 
     public static void hideCurrentView(){
@@ -71,7 +71,7 @@ class Xtrek extends JFrame {
     public static void updateFrame(Mode view) {
         currentView = view;
         currentView.onDisplay();
-        currentView.makeVisible();
+        currentView.show();
         controlPanel.updateFrame(view);
     }
 
