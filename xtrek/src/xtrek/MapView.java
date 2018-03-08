@@ -20,6 +20,7 @@ public class MapView extends ModeView{
     
     public MapView(JFrame frame) {
         super(frame);
+        panel.setLayout(null);
         displayMode();
     }
     

@@ -24,8 +24,8 @@ import java.util.TimerTask;
 
 public class Map extends Mode {
     
-    private MapView MapView;
-    private MapModel MapModel;
+    private MapView mapView;
+    private MapModel mapModel;
 
     final static String OUTPUT = "output.png";  /* Output file        */
     final static String LATITUDE = "50.7184";     /* Inputted latitude  */
@@ -45,29 +45,29 @@ public class Map extends Mode {
         model = new MapModel();
         view = new MapView(frame);
 
-        MapModel = (MapModel) model;
-        MapView = (MapView) view;
+        mapModel = (MapModel) model;
+        mapView = (MapView) view;
     }
     
     @Override
     void displayMode() {
-        MapView.setController(this);
-        MapView.displayMode();
+        mapView.setController(this);
+        mapView.displayMode();
     }
     
     @Override
     public void selected(ButtonEvent evt) {
-        MapModel.selected(evt);
+        mapModel.selected(evt);
     }
 
     @Override
     public void plus(ButtonEvent evt) {
-        MapModel.plus(evt);
+        mapModel.plus(evt);
     }
 
     @Override
     public void minus(ButtonEvent evt) {
-        MapModel.minus(evt);
+        mapModel.minus(evt);
     }
 
     public static void main(String[] args) {
@@ -78,12 +78,13 @@ public class Map extends Mode {
         //Dimensions are in pixels, need to be mm
         frame.setPreferredSize(new Dimension(700, 850));
         frame.setResizable(true);
-        
+        frame.setLayout(null);
+
         c.setBackground(Color.BLACK);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
+
         Mode currentView = new Map(frame);
-        
+
         currentView.displayMode();
         currentView.makeVisible();
 
