@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 
 public class MainMenuModel extends ModeModel{
     private String display;
-    private Class currentClass;
     ModeView view;
     
     private OperatorButton currentButton;
@@ -84,8 +83,8 @@ public class MainMenuModel extends ModeModel{
         
         private void setStyle() {
             //set the display style of the operator buttons
-            setOpaque(true);
-            setBackground(Color.WHITE);
+            setOpaque(true); 
+            setBackground(Color.BLACK);
             setBorderPainted(false);
             setFont(new Font(Constants.systemFont, Font.BOLD, 14));
             setHorizontalAlignment(SwingConstants.CENTER);
@@ -98,7 +97,7 @@ public class MainMenuModel extends ModeModel{
 
         private void focusLost() {
             //when the focus is lost it reverts back to the orginal colour
-            setBackground(Color.WHITE);
+            setBackground(Color.BLACK);
         }
         
         String getDisplay() {

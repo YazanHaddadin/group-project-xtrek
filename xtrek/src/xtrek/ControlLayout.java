@@ -19,9 +19,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class ControlLayout extends JPanel{
@@ -92,7 +89,6 @@ public class ControlLayout extends JPanel{
             this.add(overlayPanel);
         } catch(IOException e) {
             e.printStackTrace();
-            //TODO handle can't find overlay
         }
 
         this.validate();
