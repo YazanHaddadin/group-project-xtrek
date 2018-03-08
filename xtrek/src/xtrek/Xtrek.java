@@ -41,21 +41,15 @@ class Xtrek extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         MainMenu = new MainMenu(this);
-        MainMenu.hide();
-        /*AboutMode = new About(this);
-        AboutMode.hide();
+        AboutMode = new About(this);
         MapMode = new Map(this);
-        MapMode.hide();*/
         TurnByTurn = new TurnByTurn(this);
-        TurnByTurn.hide();
-        /*WhereTo = new WhereTo(this);
-        WhereTo.hide();*/
+        WhereTo = new WhereTo(this);
         currentView = MainMenu;
         ControlPanel = new ControlLayout(this, currentView);
 
         this.getContentPane().add(ControlPanel.getPanel());
         this.pack();
-
 
         this.validate();
         this.setVisible(true);

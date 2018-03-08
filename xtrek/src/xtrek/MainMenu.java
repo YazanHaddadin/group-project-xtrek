@@ -59,8 +59,7 @@ public class MainMenu extends Mode{
         frame.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        frame.setPreferredSize(new Dimension(700, 850));
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLayout(new GridBagLayout());
 
         GridBagConstraints con = new GridBagConstraints();

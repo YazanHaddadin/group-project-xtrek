@@ -26,7 +26,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ControlLayout extends  JPanel{
+public class ControlLayout extends JPanel{
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");
     private final JButton onOff = new ControlButton("PWR");
@@ -85,10 +85,10 @@ public class ControlLayout extends  JPanel{
         menu.setPreferredSize(buttonSize);
         this.add(menu);
 
-        onOff.setBounds(200, 140, 30, 30);
+        onOff.setBounds(200, 110, 30, 30);
         onOff.setPreferredSize(new Dimension(30, 30));
         this.add(onOff);
-        currentMode.getPanel().setPreferredSize(Constants.screen);
+
         this.add(currentMode.getPanel());
 
         listener = currentMode;
@@ -108,19 +108,8 @@ public class ControlLayout extends  JPanel{
 
     void updateFrame(Mode mode) {
         this.remove(currentMode.getPanel());
-
         this.currentMode = mode;
-
-        GridBagConstraints con = new GridBagConstraints();
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.gridwidth = 5;
-        con.gridheight = 15;
-        con.weighty = 0.4;
-        con.weightx = 1.0;
-        con.fill = GridBagConstraints.BOTH;
-        this.add(currentMode.getPanel(), con);
+        this.add(currentMode.getPanel());
 
         currentMode.displayMode();
         currentMode.makeVisible();

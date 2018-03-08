@@ -17,7 +17,7 @@ public class Constants {
 
     public static final Dimension device = new Dimension(deviceWidth, deviceHeight);
 
-    public static final int screenHeight = 220;
+    public static final int screenHeight = 350;
     public static final int screenWidth = 220;
 
     public static final Dimension screen = new Dimension(screenWidth, screenHeight);
