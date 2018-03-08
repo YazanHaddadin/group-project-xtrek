@@ -30,6 +30,7 @@ public class WhereTo extends Mode {
     void displayMode() {
         whereView.setController(this);
         whereView.displayMode();
+        showLetterButtons();
     }
     
     @Override
@@ -57,7 +58,6 @@ public class WhereTo extends Mode {
     }
     
     static void addToDestination(String letter) {
-        System.out.println("Adding " + letter);
         //Add the typed letter to the destination field
         whereView.destination.setText(whereView.destination.getText() + letter);
     }
