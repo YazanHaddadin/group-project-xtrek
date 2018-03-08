@@ -57,21 +57,12 @@ public class ControlLayout extends  JPanel{
         overlayPanel.setBackground(Color.BLACK);
         JLabel overlay = new JLabel();
         try {
-<<<<<<< HEAD
             Image img = ImageIO.read(getClass().getResource("assets/display.png"));
             overlay.setIcon(new ImageIcon(img));
-            con.gridx = 4;
-            con.gridy = 0;
-            con.gridwidth = 8;
-            con.gridheight = 17;
-            con.fill = GridBagConstraints.BOTH;
-            controlPanel.add(overlay, con);
-=======
             overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
             overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
             overlayPanel.add(overlay);
             this.add(overlayPanel);
->>>>>>> 04b27d8147df020c224f068f53757ae95779d0f6
         } catch(IOException e) {
             System.out.println(e);
         }
