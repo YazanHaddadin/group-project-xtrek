@@ -12,7 +12,6 @@
  */
 package xtrek;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,9 +20,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class ControlLayout extends  JPanel{
@@ -60,7 +56,6 @@ public class ControlLayout extends  JPanel{
             Image img = ImageIO.read(getClass().getResource("assets/display.png"));
             overlay.setIcon(new ImageIcon(img));
             overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
-            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
             overlayPanel.add(overlay);
             this.add(overlayPanel);
         } catch(IOException e) {
