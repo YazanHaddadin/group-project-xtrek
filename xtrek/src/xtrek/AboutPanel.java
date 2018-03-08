@@ -57,7 +57,7 @@ public class AboutPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Dinosoft");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/xtrek/icon.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/xtrek/assets/icon.png"))); // NOI18N
         jLabel5.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
