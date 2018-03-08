@@ -12,8 +12,8 @@ import java.awt.*;
  * @version Sprint 2
  */
 public class TurnByTurn extends Mode implements SpeechListener {
-    private TurnByTurnView TBTView;
-    private TurnByTurnModel TBTModel;
+    private final TurnByTurnView TBTView;
+    private final TurnByTurnModel TBTModel;
 
     TurnByTurn(JFrame frame) {
         model = new TurnByTurnModel();
@@ -102,8 +102,8 @@ public class TurnByTurn extends Mode implements SpeechListener {
         ITALIAN("Italian", "it-IT"),
         JAPANESE("Japanese", "ja-JP");
 
-        private String language;
-        private String display;
+        private final String language;
+        private final String display;
 
         Language(String display, String language) {
             this.display = display;
@@ -123,7 +123,7 @@ public class TurnByTurn extends Mode implements SpeechListener {
         MALE("Male"),
         FEMALE("Female");
 
-        private String gender;
+        private final String gender;
 
         Gender(String gender) {
             this.gender = gender;

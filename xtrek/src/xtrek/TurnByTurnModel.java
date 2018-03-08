@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TurnByTurnModel extends ModeModel {
+class TurnByTurnModel extends ModeModel {
     private String gender;
     private String language;
 
