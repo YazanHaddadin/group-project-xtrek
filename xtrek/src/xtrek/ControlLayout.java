@@ -12,12 +12,17 @@
  */
 package xtrek;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class ControlLayout {
     final JPanel controlPanel = new JPanel();
@@ -50,6 +55,19 @@ public class ControlLayout {
         controlPanel.setBackground(Color.BLACK);
 
         GridBagConstraints con = new GridBagConstraints();
+        JLabel overlay = new JLabel();
+        try {
+            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
+            con.gridx = 0;
+            con.gridy = 0;
+            con.gridwidth = 8;
+            con.gridheight = 17;
+            con.fill = GridBagConstraints.BOTH;
+            controlPanel.add(overlay, con);
+        } catch(IOException e) {
+            e.printStackTrace();
+            //TODO handle can't find overlay
+        }
 
         //add the control buttons to the new panel created
         con.gridx = 0;
