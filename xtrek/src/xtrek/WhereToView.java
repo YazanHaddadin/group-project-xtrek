@@ -16,7 +16,7 @@ public class WhereToView extends ModeView{
     private WhereTo controller;
     
     // Text field where destination will go.
-    public JTextField destination = new JTextField("Test");
+    public JTextField destination = new JTextField("Test Destination");
 
     //Create each keyboard button
     public JButton btnA;
@@ -122,6 +122,28 @@ public class WhereToView extends ModeView{
         btnDel = controller.addButton("DEL");
         btnBackPage = controller.addButton("<");
         
+        //Add destination to its own JPanel
+        destination.setBackground(Color.WHITE);
+        destination.setFont(new Font(Constants.systemFont, Font.BOLD, 36));
+        destination.setBorder(null);
+        
+        JPanel destinationPanel = new JPanel();
+        
+        destinationPanel.setLayout(new GridBagLayout());
+        GridBagConstraints d = new GridBagConstraints();
+        
+        d.fill = GridBagConstraints.BOTH;
+        d.insets = new Insets(1, 1, 1, 1);
+        d.weightx = 1.0;
+        d.weighty = 1.0;
+        d.gridwidth = 1;
+        d.gridx = 0;
+        d.gridy = 0;
+
+        destinationPanel.add(destination, d);
+        
+        destinationPanel.validate();
+        destinationPanel.setVisible(true);
         
         
         GridBagConstraints c = new GridBagConstraints();
@@ -134,11 +156,12 @@ public class WhereToView extends ModeView{
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 4;
-        panel.add(destination, c);
+        panel.add(destinationPanel, c);
 
         //Add letter buttons to the grid
         c.gridwidth = 1;
-        c.gridy++;
+        c.gridx = 0;
+        c.gridy = 1;
         panel.add(btnA, c);
 
         c.gridx++;
@@ -274,84 +297,21 @@ public class WhereToView extends ModeView{
         c.gridwidth = 2;
         panel.add(btnDel, c);
 
-
-        //Styling and positioning for destination text field
-        //destination.setBounds(10, 10, 540, 80);
-        destination.setBackground(Color.WHITE);
-        destination.setFont(new Font(Constants.systemFont, Font.BOLD, 36));
-        destination.setBorder(null);
-        destination.setEditable(false);
-
-        //Set co-ordinates for the buttons on the alphabetical keyboard
-        /*btnA.setBounds(10, 100, 135, 80); panel.add(btnA);
-        btnB.setBounds(145, 100, 135, 80); panel.add(btnB);
-        btnC.setBounds(280, 100, 135, 80); panel.add(btnC);
-        btnD.setBounds(415, 100, 135, 80); panel.add(btnD);
-        btnE.setBounds(10, 180, 135, 80); panel.add(btnE);
-        btnF.setBounds(145, 180, 135, 80); panel.add(btnF);
-        btnG.setBounds(280, 180, 135, 80); panel.add(btnG);
-        btnH.setBounds(415, 180, 135, 80); panel.add(btnH);
-        btnI.setBounds(10, 260, 135, 80); panel.add(btnI);
-        btnJ.setBounds(145, 260, 135, 80); panel.add(btnJ);
-        btnK.setBounds(280, 260, 135, 80); panel.add(btnK);
-        btnL.setBounds(415, 260, 135, 80); panel.add(btnL);
-        btnM.setBounds(10, 340, 135, 80); panel.add(btnM);
-        btnN.setBounds(145, 340, 135, 80); panel.add(btnN);
-        btnO.setBounds(280, 340, 135, 80); panel.add(btnO);
-        btnP.setBounds(415, 340, 135, 80); panel.add(btnP);
-        btnQ.setBounds(10, 420, 135, 80); panel.add(btnQ);
-        btnR.setBounds(145, 420, 135, 80); panel.add(btnR);
-        btnS.setBounds(280, 420, 135, 80); panel.add(btnS);
-        btnT.setBounds(415, 420, 135, 80); panel.add(btnT);
-        btnU.setBounds(10, 500, 135, 80); panel.add(btnU);
-        btnV.setBounds(145, 500, 135, 80); panel.add(btnV);
-        btnW.setBounds(280, 500, 135, 80); panel.add(btnW);
-        btnX.setBounds(415, 500, 135, 80); panel.add(btnX);
-        btnY.setBounds(10, 580, 135, 80); panel.add(btnY);
-        btnZ.setBounds(145, 580, 135, 80); panel.add(btnZ);
-        btnSpace.setBounds(280, 580, 135, 80); panel.add(btnSpace);
-        btnNextPage.setBounds(415, 580, 135, 80); panel.add(btnNextPage); */
-
-
-        //Set co-ordinates for numeric keyboard buttons, and also make them not visible initially, until the numerical keyboard is opened
-        //btn1.setBounds(10, 100, 180, 112); panel.add(btn1);
+        //Hide numerical keyboard buttons initially, until they are needed.
         btn1.setVisible(false);
-
-        //btn2.setBounds(190, 100, 180, 112); panel.add(btn2);
         btn2.setVisible(false);
-
-        //btn3.setBounds(370, 100, 180, 112); panel.add(btn3);
         btn3.setVisible(false);
-
-        //btn4.setBounds(10, 212, 180, 112); panel.add(btn4);
         btn4.setVisible(false);
-
-        //btn5.setBounds(190, 212, 180, 112); panel.add(btn5);
         btn5.setVisible(false);
-
-        //btn6.setBounds(370, 212, 180, 112); panel.add(btn6);
         btn6.setVisible(false);
-
-        //btn7.setBounds(10, 324, 180, 112); panel.add(btn7);
         btn7.setVisible(false);
-
-        //btn8.setBounds(190, 324, 180, 112); panel.add(btn8);
         btn8.setVisible(false);
-
-        //btn9.setBounds(370, 324, 180, 112); panel.add(btn9);
         btn9.setVisible(false);
-
-        //btn0.setBounds(10, 436, 180, 112); panel.add(btn0);
         btn0.setVisible(false);
-
-        //btnBackPage.setBounds(10, 548, 180, 112); panel.add(btnBackPage);
         btnBackPage.setVisible(false);
-
-        //btnDel.setBounds(190, 436, 360, 224); panel.add(btnDel);
         btnDel.setVisible(false);
 
         panel.validate();
         panel.setVisible(true);
-        panel.add(destination);
     }
 }

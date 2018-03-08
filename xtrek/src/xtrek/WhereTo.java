@@ -166,12 +166,7 @@ public class WhereTo extends Mode {
         whereView.btnBackPage.setVisible(false);
     }
     
-    
-    
-    
-    
-    
-    
+
     //Main method, allows the class to be tested independently.
     public static void main(String[] args) {
         JFrame frame = new JFrame();
