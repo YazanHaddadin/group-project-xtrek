@@ -174,7 +174,6 @@ public class WhereTo extends Mode {
         frame.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        frame.setPreferredSize(new Dimension(700, 850));
         frame.setResizable(true);
         frame.setLayout(new GridBagLayout());
 

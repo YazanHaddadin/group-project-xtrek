@@ -124,8 +124,9 @@ public class WhereToView extends ModeView{
         
         //Add destination to its own JPanel
         destination.setBackground(Color.WHITE);
-        destination.setFont(new Font(Constants.systemFont, Font.BOLD, 36));
+        destination.setFont(new Font(Constants.systemFont, Font.BOLD, 22));
         destination.setBorder(null);
+        destination.setOpaque(true);
         
         JPanel destinationPanel = new JPanel();
         
