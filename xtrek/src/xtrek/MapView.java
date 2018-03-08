@@ -35,6 +35,9 @@ public class MapView extends ModeView {;
         panel.setVisible(false);
         timer.cancel();
     }
+    void setIcon(ImageIcon image) {
+        label.setIcon(image);
+    }
     
     @Override
     public void displayMode() {
@@ -56,8 +59,6 @@ public class MapView extends ModeView {;
         timer = new java.util.Timer();
     }
 
-    void setIcon(ImageIcon image) {
-        label.setIcon(image);
-    }
+    
     
 }
