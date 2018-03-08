@@ -69,7 +69,7 @@ public class Satellite extends Mode {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex1) {
-                    System.out.println(ex1);;
+                    System.out.println(ex1);
                 }
             }
             
