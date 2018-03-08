@@ -13,7 +13,6 @@ import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Timer;
 
 class Xtrek extends JFrame {
 
