@@ -16,13 +16,6 @@ import javax.swing.JFrame;
 
 public class MainMenuView extends ModeView{
     private MainMenu controller;
-    
-    private JButton whereTo;
-    private JButton tripComputer;
-    private JButton map;
-    private JButton speech;
-    private JButton satellite;
-    private JButton about;
 
     MainMenuView(JFrame frame) {
         super(frame);
@@ -38,12 +31,12 @@ public class MainMenuView extends ModeView{
         //this is the actual display of the Main Menu mode
         frame.setTitle("Main Menu");
 
-        whereTo      = controller.addButton("whereto", WhereTo.class);
-        tripComputer = controller.addButton("tripcomputer", TripComputer.class);
-        map          = controller.addButton("map", Map.class);
-        speech       = controller.addButton("speech", TurnByTurn.class);
-        satellite    = controller.addButton("satellite", Satellite.class);
-        about        = controller.addButton("about", About.class);    
+        JButton whereTo      = controller.addButton("whereto", WhereTo.class);
+        JButton tripComputer = controller.addButton("tripcomputer", TripComputer.class);
+        JButton map          = controller.addButton("map", Map.class);
+        JButton speech       = controller.addButton("speech", TurnByTurn.class);
+        JButton satellite    = controller.addButton("satellite", Satellite.class);
+        JButton about        = controller.addButton("about", About.class);    
         
         
         //using GridBagConstraints to adapt to different screen sizes
@@ -83,5 +76,9 @@ public class MainMenuView extends ModeView{
 
         panel.validate();
         panel.setVisible(true);
+        
+        frame.getRootPane().setDefaultButton(whereTo);
+        whereTo.requestFocus();
+        controller.giveFocus(whereTo);
     }
 }
