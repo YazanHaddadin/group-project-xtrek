@@ -162,9 +162,7 @@ public class ControlLayout extends JPanel{
                             }
                             break;
                         case "Menu":
-//                            Xtrek.hideCurrentView();
-//                            Xtrek.setCurrentView(Xtrek.MainMenu);
-//                            Xtrek.showCurrentView();
+                            Xtrek.updateFrame(Xtrek.MainMenu);
                     }
                 }
 
