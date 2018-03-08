@@ -8,6 +8,8 @@
  */
 package xtrek;
 
+import sun.awt.image.PixelConverter;
+
 import javax.swing.JButton;
 import javax.swing.*;
 import java.awt.*;
@@ -22,19 +24,22 @@ public class MainMenuModel extends ModeModel{
     
     private OperatorButton currentButton;
     private int buttonIndex;
-    
-    public void selected() {
-            //when a button is selected the Main Menu view is hidden and the selected view is made visible
-        try {
-            @SuppressWarnings("unchecked")
-            Mode currentMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(view.getPanel());
 
-            currentMode.makeVisible();
-            view.getPanel().validate();
-            view.makeVisible();
-
-        } catch (NoSuchMethodException | java.lang.InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
-            e.printStackTrace();
+    @Override
+    void selected(ButtonEvent evt) {
+        //when a button is selected the Main Menu view is hidden and the selected view is made visible
+        if(currentButton.currentClass == WhereTo.class) {
+            Xtrek.setCurrentView(Xtrek.WhereTo);
+        } else if(currentButton.currentClass == TripComputer.class) {
+            Xtrek.setCurrentView(Xtrek.tripComputer);
+        } else if(currentButton.currentClass == Map.class) {
+            Xtrek.setCurrentView(Xtrek.MapMode);
+        } else if(currentButton.currentClass == TurnByTurn.class) {
+            Xtrek.setCurrentView(Xtrek.TurnByTurn);
+        } else if(currentButton.currentClass == Satellite.class) {
+            Xtrek.setCurrentView(Xtrek.satellite);
+        } else if(currentButton.currentClass == About.class) {
+            Xtrek.setCurrentView(Xtrek.AboutMode);
         }
     }
     
@@ -62,11 +67,6 @@ public class MainMenuModel extends ModeModel{
         OperatorButton button = new OperatorButton(display, currentClass);
         buttons.add(button);
         return button;
-    }
-
-    @Override
-    void selected(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     class OperatorButton extends JButton{

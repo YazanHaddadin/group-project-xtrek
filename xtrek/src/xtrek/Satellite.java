@@ -15,12 +15,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
-public class Satellite extends ModeView {
+public class Satellite extends Mode {
 
     final static int BUFF_SIZE = 1024;
 
     public Satellite(JFrame frame) {
-        super(frame);
+        //super(frame);
     }
 
     /*
@@ -100,4 +100,18 @@ public class Satellite extends ModeView {
     }
 
 
+    @Override
+    public void selected(ButtonEvent evt) {
+
+    }
+
+    @Override
+    public void plus(ButtonEvent evt) {
+
+    }
+
+    @Override
+    public void minus(ButtonEvent evt) {
+
+    }
 }
