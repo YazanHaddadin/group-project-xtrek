@@ -67,6 +67,11 @@ public class Map extends Mode {
         mapModel.minus(evt);
     }
 
+    @Override
+    void onHide() {
+        mapModel.onHide();
+    }
+
     private void updateMap() {
         mapModel.updateMap();
     }
@@ -143,7 +148,7 @@ public class Map extends Mode {
     }
 
     @Override
-    public void hide() {
+    public void onHide() {
         panel.setVisible(false);
         timer.cancel();
     }
