@@ -14,11 +14,10 @@ import java.awt.*;
  * @author Alex Vale
  * @version Sprint 2
  */
-public class MapView extends ModeView {;
-    private java.util.Timer timer;
+public class MapView extends ModeView {
     private static JLabel label = new JLabel();
 
-    public MapView(JFrame frame) {
+    MapView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
         displayMode();
@@ -33,7 +32,6 @@ public class MapView extends ModeView {;
     @Override
     public void onHide() {
         panel.setVisible(false);
-        timer.cancel();
     }
     
     @Override
@@ -52,8 +50,6 @@ public class MapView extends ModeView {;
 
         panel.validate();
         panel.setVisible(true);
-
-        timer = new java.util.Timer();
     }
 
     void setIcon(ImageIcon image) {

@@ -21,11 +21,11 @@ import javax.swing.JLabel;
  * @version Sprint 2
  */
 public class MapModel extends ModeModel {
-    static String OUTPUT = "output.png";  /* Output file        */
-    static String LATITUDE = "50.7184";     /* Inputted latitude  */
-    static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
-    static String ZOOM = "17";           /* 0 .. 21           */
-    static String SIZE = "612x612";     /* Size              */
+    private static String OUTPUT = "output.png";  /* Output file        */
+    private static String LATITUDE = "50.7184";     /* Inputted latitude  */
+    private static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
+    private static String ZOOM = "17";           /* 0 .. 21           */
+    private static String SIZE = "612x612";     /* Size              */
     private Timer timer = new Timer();
     private Map controller;
 
@@ -36,12 +36,6 @@ public class MapModel extends ModeModel {
     //Downloads a new map every 5 sec and sets the new image
     public void updateMap() {
         timer.schedule(new UpdateMap(), 0, 5000);
-        try {
-            BufferedImage myPicture = ImageIO.read(new File(OUTPUT));
-            controller.setIcon(new ImageIcon(myPicture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     
     //Downloads a static image of the map
@@ -55,10 +49,17 @@ public class MapModel extends ModeModel {
                     + "&" + "zoom" + "=" + ZOOM
                     + "&" + "size" + "=" + SIZE, "POST", new HashMap<>(), "");
             connect.writeData(OUTPUT, connect.getResponse());
+
+            try {
+                BufferedImage myPicture = ImageIO.read(new File(OUTPUT));
+                controller.setIcon(new ImageIcon(myPicture));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     
-    public void stopUpdate() {
+    private void stopUpdate() {
         timer.cancel();
     }
     
