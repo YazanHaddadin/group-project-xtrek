@@ -44,10 +44,6 @@ public class MapView extends ModeView {
         con.gridx = 0;
         con.gridy = 0;
         panel.add(label, con);
-        
-        ImageIcon pic = new ImageIcon("redDot.jpg");
-        panel.add(new JLabel(pic));
-
         panel.validate();
         panel.setVisible(true);
     }    
