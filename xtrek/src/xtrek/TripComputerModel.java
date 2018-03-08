@@ -1,5 +1,5 @@
 /**
- * TripComputer View Class
+ * TripComputer Model Class
  * <p>
  * Provides the logic and methods for the Trip Computer mode of the XTrek, 
  * which will provide real time information about the current trip.
@@ -34,6 +34,7 @@ public class TripComputerModel extends ModeModel{
         //But this placeholder needs to be here due to interface.
     }
     
+    //Class for incrementing the number of seconds the device has been moving every second.
     static class IncreaseMovingTime extends TimerTask {
 
         static int secondsCounter = 0;
@@ -56,11 +57,8 @@ public class TripComputerModel extends ModeModel{
         
     }
     
-    
-    
-    
-    
-    
+    //Class for increasing the trip odometer every 10 seconds, to simulate movement.
+    //Later, this will be based on satellite information from the device.
     static class IncreaseTripOdometer extends TimerTask {
 
         static double kmTravelled = 0;
@@ -69,10 +67,9 @@ public class TripComputerModel extends ModeModel{
             kmTravelled = kmTravelled + 0.01; 
             
             //Ensure the distance is always exactly 2 decimal places in length
-            DecimalFormat df = new DecimalFormat("##########.00");      
-            kmTravelled = Double.valueOf(df.format(kmTravelled));
+            DecimalFormat df = new DecimalFormat("#########0.00"); 
+            odoLabel = df.format(kmTravelled) + " KM";
             
-            odoLabel = String.valueOf(kmTravelled) + " KM";
             TripComputer.updateTripOdometer(odoLabel);
         }
     }
