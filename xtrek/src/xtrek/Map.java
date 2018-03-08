@@ -11,8 +11,7 @@ package xtrek;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.util.Timer;
+
 
 
 public class Map extends Mode {
@@ -20,19 +19,7 @@ public class Map extends Mode {
     private MapView mapView;
     private MapModel mapModel;
 
-    final static String OUTPUT = "output.png";  /* Output file        */
-    final static String LATITUDE = "50.7184";     /* Inputted latitude  */
-    final static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
-    final static String ZOOM = "17";           /* 0 .. 21           */
-    final static String SIZE = "612x612";     /* Size              */
-    private static JLabel label;
-    private BufferedImage mapImage;
-    private Timer timer;
-
-    /*public Map(JFrame frame) {
-        super(frame);
-        displayMode();
-    }*/
+   
     
     public Map(JFrame frame) {
         model = new MapModel(this);
@@ -63,8 +50,8 @@ public class Map extends Mode {
     }
 
     @Override
-    void hide() {
-        mapModel.hide();
+    void onHide() {
+        mapModel.onHide();
     }
     
     @Override
@@ -119,58 +106,4 @@ public class Map extends Mode {
 
         ((Map)currentView).updateMap();
     }
-    /*@Override
-    public void displayMode() {
-        frame.setTitle("Map");
-
-        panel.setLayout(null);
-
-        label = new JLabel();
-
-        label.setBounds(0, 0, Constants.screenWidth, Constants.screenHeight);
-        panel.add(label);
-
-        panel.validate();
-        panel.setVisible(true);
-
-        timer = new Timer();
-    }
-
-    //Downloads a new map every 5 sec and sets the new image
-    public void updateMap() {
-        timer.schedule(new UpdateMap(), 0, 5000);
-        try {
-            BufferedImage myPicture = ImageIO.read(new File(OUTPUT));
-            label.setIcon(new ImageIcon(myPicture));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void makeVisible() {
-        panel.setVisible(true);
-        updateMap();
-    }
-
-    @Override
-    public void hide() {
-        panel.setVisible(false);
-        timer.cancel();
-    }
-
-    //Downloads a static image of the map
-    class UpdateMap extends TimerTask {
-        @Override
-        public void run() {
-
-            System.out.println("Downloaded new image");
-            HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
-                    + "?" + "center" + "=" + LATITUDE + "," + LONGITUDE
-                    + "&" + "zoom" + "=" + ZOOM
-                    + "&" + "size" + "=" + SIZE, "POST", new HashMap<>(), "");
-            connect.writeData(OUTPUT, connect.getResponse());
-        }
-    }
-    */
 }
