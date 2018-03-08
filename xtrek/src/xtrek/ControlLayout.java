@@ -62,8 +62,8 @@ public class ControlLayout extends  JPanel{
             overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
             overlayPanel.add(overlay, con);
 
-            con.gridwidth = Constants.deviceWidth;
-            con.gridheight = Constants.deviceHeight;
+            con.gridwidth = 7;
+            con.gridheight = 7;
             this.add(overlayPanel, con);
         } catch(IOException e) {
             e.printStackTrace();
@@ -72,44 +72,35 @@ public class ControlLayout extends  JPanel{
 
         //add the control buttons to the new panel created
         con.gridx = 0;
-        con.gridy = 60;
-        con.weightx = 1.0;
-        con.weighty = 1.0;
-        con.gridwidth = 15;
-        con.gridheight = 60;
+        con.gridy = 1;
+        con.weightx = 0.1;
+        con.weighty = 0.3;
+        con.gridwidth = 1;
+        con.gridheight = 1;
         this.add(plus, con);
 
-        con.weightx = 0.5;
-        con.weighty = 0.5;
-        con.gridy = 120;
+        con.gridy = 2;
         this.add(minus, con);
 
-        con.weightx = 0.5;
-        con.weighty = 0.5;
-        con.gridy = 187;
+        con.gridy = 3;
         this.add(select, con);
 
-        con.gridx = 305;
-        con.gridy = 75;
+        con.gridx = 6;
+        con.gridy = 1;
         this.add(menu, con);
 
-        con.gridy = 220;
-        con.gridx = 120;
-        con.gridwidth = 36;
-        con.gridheight = 36;
+        con.gridy = 4;
+        con.gridx = 3;
         this.add(onOff, con);
 
+        con.gridx = 1;
+        con.gridy = 2;
         con.weightx = 1.0;
         con.weighty = 1.0;
-        con.gridx = Constants.deviceWidth - Constants.screenWidth;
-        con.gridy = Constants.deviceHeight - Constants.screenHeight;
-        con.gridwidth = Constants.screenWidth;
-        con.gridheight = Constants.screenHeight;
+        con.gridwidth = 3;
+        con.gridheight = 6;
         currentMode.getPanel().setPreferredSize(Constants.screen);
         this.add(currentMode.getPanel(), con);
-
-        currentMode.displayMode();
-        currentMode.makeVisible();
 
         listener = currentMode;
 
@@ -120,7 +111,6 @@ public class ControlLayout extends  JPanel{
         select.setVisible(true);
 
         this.validate();
-        this.setVisible(true);
     }
 
     JPanel getPanel() {
