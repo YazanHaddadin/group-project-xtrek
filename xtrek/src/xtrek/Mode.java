@@ -22,7 +22,13 @@ public abstract class Mode implements ButtonListener {
         return view.getPanel();
     }
 
-    void hide() {
-        view.hide();
+    void onHide() {
+        view.onHide();
+        model.onHide();
     }
+
+    void onDisplay() {
+        model.onDisplay();
+    }
+
 }

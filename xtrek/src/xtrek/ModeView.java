@@ -35,7 +35,7 @@ public abstract class ModeView {
         panel.setVisible(true);
     }
 
-    void hide() {
+    void onHide() {
         panel.setVisible(false);
     }
 

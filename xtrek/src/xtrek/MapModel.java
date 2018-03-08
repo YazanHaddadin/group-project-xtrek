@@ -44,6 +44,10 @@ public class MapModel extends ModeModel {
             e.printStackTrace();
         }
     }
+
+    public void stopUpdate() {
+        timer.cancel();
+    }
     
     //Downloads a static image of the map
     class UpdateMap extends TimerTask {
@@ -92,6 +96,16 @@ public class MapModel extends ModeModel {
     @Override
     void selected(ButtonEvent evt) {
         //do nothing
+    }
+
+    @Override
+    void onDisplay() {
+        updateMap();
+    }
+
+    @Override
+    void onHide() {
+        stopUpdate();
     }
     
 }

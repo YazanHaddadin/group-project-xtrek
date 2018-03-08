@@ -31,7 +31,7 @@ public class MapView extends ModeView {
     }
 
     @Override
-    public void hide() {
+    public void onHide() {
         panel.setVisible(false);
         timer.cancel();
     }
