@@ -43,10 +43,6 @@ public class MapModel extends ModeModel {
             e.printStackTrace();
         }
     }
-
-    public void stopUpdate() {
-        timer.cancel();
-    }
     
     //Downloads a static image of the map
     class UpdateMap extends TimerTask {
@@ -60,6 +56,10 @@ public class MapModel extends ModeModel {
                     + "&" + "size" + "=" + SIZE, "POST", new HashMap<>(), "");
             connect.writeData(OUTPUT, connect.getResponse());
         }
+    }
+    
+    public void stopUpdate() {
+        timer.cancel();
     }
     
     @Override
