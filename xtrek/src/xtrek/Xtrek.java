@@ -30,6 +30,7 @@ class Xtrek extends JFrame {
     private static Mode currentView;
     private static Container c;
     private static Xtrek xtrek;
+    private TripComputer tc;
 
     private Xtrek() {
         c = this.getContentPane();
@@ -61,8 +62,6 @@ class Xtrek extends JFrame {
 
         this.validate();
         this.setVisible(true);
-        
-        increaseMovingTime();
     }
 
     public static void main(String[] args) {
@@ -81,9 +80,5 @@ class Xtrek extends JFrame {
         currentView = view;
     }
 
-    //Increment timer for the journey every second
-    public static void increaseMovingTime() {
-        Timer movingTimer = new Timer();
-        movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
-    }
+    
 }
