@@ -15,7 +15,7 @@ public abstract class Mode implements ButtonListener {
         view.displayMode();
     }
 
-    void makeVisible() {
+    void show() {
         onDisplay();
         view.makeVisible();
     }

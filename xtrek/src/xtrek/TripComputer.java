@@ -74,7 +74,7 @@ public class TripComputer extends Mode {
         ControlLayout controlPanel = new ControlLayout(frame, currentView);
 
         currentView.displayMode();
-        currentView.makeVisible();
+        currentView.show();
 
         con.gridx = 1;
         con.gridy = 1;

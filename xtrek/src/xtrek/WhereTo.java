@@ -59,13 +59,13 @@ public class WhereTo extends Mode {
     
     static void addToDestination(String letter) {
         //Add the typed letter to the destination field
-        whereView.destination.setText(whereView.destination.getText() + letter);
+        WhereToView.destination.setText(WhereToView.destination.getText() + letter);
     }
     
     static void deleteFromDestination() {
         // Delete 1 character from the destination field
-        if (whereView.destination.getText().length() > 0) {
-            whereView.destination.setText(whereView.destination.getText().substring(0, whereView.destination.getText().length() - 1));
+        if (WhereToView.destination.getText().length() > 0) {
+            WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
         }
     }
     
@@ -185,7 +185,7 @@ public class WhereTo extends Mode {
         ControlLayout controlPanel = new ControlLayout(frame, currentView);
 
         currentView.displayMode();
-        currentView.makeVisible();
+        currentView.show();
 
         con.gridx = 1;
         con.gridy = 1;
