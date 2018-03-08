@@ -71,7 +71,7 @@ public class MapModel extends ModeModel {
         }
         
         ZOOM = Integer.toString(zoomInt);
-        new UpdateMap();
+        updateMap();
     }
     
     @Override
@@ -86,7 +86,7 @@ public class MapModel extends ModeModel {
         }
         
         ZOOM = Integer.toString(zoomInt);
-        new UpdateMap();
+        updateMap();
     }
     
     @Override
