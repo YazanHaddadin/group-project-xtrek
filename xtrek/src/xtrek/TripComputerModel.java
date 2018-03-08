@@ -12,6 +12,7 @@ package xtrek;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.text.DecimalFormat;
 
 public class TripComputerModel extends ModeModel{
     
@@ -66,6 +67,11 @@ public class TripComputerModel extends ModeModel{
         
         public void run() {
             kmTravelled = kmTravelled + 0.01; 
+            
+            //Ensure the distance is always exactly 2 decimal places in length
+            DecimalFormat df = new DecimalFormat("##########.00");      
+            kmTravelled = Double.valueOf(df.format(kmTravelled));
+            
             odoLabel = String.valueOf(kmTravelled) + " KM";
             TripComputer.updateTripOdometer(odoLabel);
         }
