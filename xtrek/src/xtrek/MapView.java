@@ -14,14 +14,14 @@ import java.awt.*;
  * @author Alex Vale
  * @version Sprint 2
  */
-public class MapView extends ModeView {
-    private Map controller;
+public class MapView extends ModeView {;
     private java.util.Timer timer;
-    private static JLabel label;
-    
+    private static JLabel label = new JLabel();
+
     public MapView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
+        displayMode();
     }
     
     @Override
@@ -40,7 +40,6 @@ public class MapView extends ModeView {
     public void displayMode() {
         frame.setTitle("Map");
 
-        label = new JLabel();
         label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
 
         GridBagConstraints con = new GridBagConstraints();
