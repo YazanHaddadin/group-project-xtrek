@@ -9,6 +9,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * TurnByTurn Model
+ *
+ * @author Sebastien Michel
+ * @version Sprint 2
+ */
 class TurnByTurnModel extends ModeModel {
     static private AudioDataStream audioStream;
     private String gender;
