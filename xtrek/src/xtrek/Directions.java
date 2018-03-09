@@ -34,7 +34,8 @@ public class Directions {
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
                     + "&" + "destination" + "=" + URLEncoder.encode(dest, "UTF-8")
                     + "&" + "region" + "=" + Constants.directionsRegion
-                    + "&" + "mode" + "=" + Constants.travelMode);
+                    + "&" + "mode" + "=" + Constants.travelMode)
+                    + "key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
             
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);
             byte[] response = conn.getResponse();

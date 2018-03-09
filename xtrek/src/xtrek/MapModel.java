@@ -19,8 +19,8 @@ import javax.swing.ImageIcon;
 
 public class MapModel extends ModeModel {
     private static String OUTPUT = "output.png";  /* Output file        */
-    private static String LATITUDE = "50.7184";     /* Inputted latitude  */
-    private static String LONGITUDE = "-3.5339";     /* Inputted Longitude */
+    private static String LATITUDE = "50.7184";     /* Inputted latitude - default Exeter - will be changed to current location  */
+    private static String LONGITUDE = "-3.5339";     /* Inputted Longitude - default Exeter - will be changed to current location */
     private static String ZOOM = "17";           /* 0 .. 21           */
     private static String SIZE = Constants.screenWidth + "x" + Constants.screenHeight;
     private Timer timer = new Timer();

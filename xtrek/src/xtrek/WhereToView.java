@@ -298,20 +298,9 @@ public class WhereToView extends ModeView{
         c.gridheight = 2;
         c.gridwidth = 2;
         panel.add(btnDel, c);
-
-        //Hide numerical keyboard buttons initially, until they are needed.
-        btn1.setVisible(false);
-        btn2.setVisible(false);
-        btn3.setVisible(false);
-        btn4.setVisible(false);
-        btn5.setVisible(false);
-        btn6.setVisible(false);
-        btn7.setVisible(false);
-        btn8.setVisible(false);
-        btn9.setVisible(false);
-        btn0.setVisible(false);
-        btnBackPage.setVisible(false);
-        btnDel.setVisible(false);
+        
+        controller.showLetterButtons();
+        controller.hideNumberButtons();
 
         panel.validate();
         panel.setVisible(true);
