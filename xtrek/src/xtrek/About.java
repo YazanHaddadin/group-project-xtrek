@@ -12,33 +12,46 @@ import javax.swing.*;
 import java.awt.*;
 
 public class About extends Mode {
+    private AboutView AView;
+    private AboutModel AModel;
 
-    public About(JFrame frame) {
-        //super(frame);
+    About(JFrame frame) {
+        view = new AboutView(frame);
+        model = new AboutModel();
+
+        AModel = (AboutModel) model;
+        AView = (AboutView) view;
     }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        JPanel panel = new AboutPanel();
-        frame.setSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
+        Container c = frame.getContentPane();
+        frame.setLocationRelativeTo(null);
+
+        //Dimensions are in pixels, need to be mm
         frame.setResizable(false);
+        frame.setLayout(new GridBagLayout());
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GridBagConstraints con = new GridBagConstraints();
 
-        frame.add(panel);
+        c.setBackground(Color.BLACK);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        Mode currentView = new About(frame);
+        ControlLayout controlPanel = new ControlLayout(frame, currentView);
+
+        currentView.displayMode();
+        currentView.show();
+
+        con.gridx = 1;
+        con.gridy = 1;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        frame.getContentPane().add(controlPanel.getPanel(), con);
+
+        frame.pack();
+        frame.validate();
         frame.setVisible(true);
-    }
-
-    @Override
-    public void displayMode() {
-
-        //frame.setTitle("About");
-
-        //panel = new AboutPanel();
-
-        //panel.validate();
-        //panel.setVisible(true);
     }
 
     @Override

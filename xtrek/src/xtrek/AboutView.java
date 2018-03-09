@@ -5,7 +5,6 @@
  */
 package xtrek;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,27 +14,17 @@ import javax.swing.JFrame;
  *
  * @author liamvinson
  */
-public class SatelliteView extends ModeView {
-    SatellitePanel sat = new SatellitePanel();
-    
-    SatelliteView(JFrame frame) {
+public class AboutView extends ModeView {
+    AboutPanel about = new AboutPanel();
+
+    public AboutView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
-    }
-    
-    public void setPosition(Float value1, String direction1, Float value2, String direction2) {
-        sat.setLabel1(value1 + " " + direction1);
-        sat.setLabel2(value2 + " " + direction2);
-    }
-    
-    public void setNoSignal() {
-        sat.setLabel1("No Signal");
-        sat.setLabel2("");
     }
 
     @Override
     public void displayMode() {
-        frame.setTitle("Satellite");
+        frame.setTitle("About");
         
         GridBagConstraints c = new GridBagConstraints();
         
@@ -43,6 +32,7 @@ public class SatelliteView extends ModeView {
         c.insets = new Insets(1,1,1,1);
         c.weightx = 1.0;
         c.weighty = 1.0;
-        panel.add(sat, c);
+        panel.add(about, c);
     }
+    
 }

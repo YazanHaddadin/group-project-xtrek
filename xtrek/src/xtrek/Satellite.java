@@ -39,15 +39,39 @@ public class Satellite extends Mode {
         }
     }
     
+    void loopUpdate() {
+        //do nothing
+    }
+    
     public static void main(String[] argv) {
-        JFrame frame = new JFrame();
-        frame.setSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        Satellite currentView = new Satellite(frame);
-        currentView.displayMode();
 
+        JFrame frame = new JFrame();
+        Container c = frame.getContentPane();
+        frame.setLocationRelativeTo(null);
+
+        //Dimensions are in pixels, need to be mm
+        frame.setResizable(false);
+        frame.setLayout(new GridBagLayout());
+
+        GridBagConstraints con = new GridBagConstraints();
+
+        c.setBackground(Color.BLACK);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        Satellite currentView = new Satellite(frame);
+        ControlLayout controlPanel = new ControlLayout(frame, currentView);
+
+        currentView.displayMode();
+        currentView.show();
+
+        con.gridx = 1;
+        con.gridy = 1;
+        con.weighty = 1.0;
+        con.weightx = 1.0;
+        frame.getContentPane().add(controlPanel.getPanel(), con);
+
+        frame.pack();
+        frame.validate();
         frame.setVisible(true);
         
         currentView.SModel.startThread();

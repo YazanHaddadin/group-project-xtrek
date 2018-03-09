@@ -76,7 +76,7 @@ public class ControlLayout extends JPanel{
         
         //Style power button
         try {
-                Image img = ImageIO.read(getClass().getResource("/assets/power.png"))
+                Image img = ImageIO.read(getClass().getResource("assets/power.png"))
                         .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
                 onOff.setIcon(new ImageIcon(img));
             }   catch (Exception ex) {
