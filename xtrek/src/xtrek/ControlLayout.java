@@ -71,8 +71,18 @@ public class ControlLayout extends JPanel{
         menu.setPreferredSize(buttonSize);
         this.add(menu);
 
-        onOff.setBounds(200, 110, 30, 30);
-        onOff.setPreferredSize(new Dimension(30, 30));
+        onOff.setBounds(200, 100, 45, 45);
+        onOff.setPreferredSize(new Dimension(45, 45));
+        
+        //Style power button
+        try {
+                Image img = ImageIO.read(getClass().getResource("assets/power.png"))
+                        .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
+                onOff.setIcon(new ImageIcon(img));
+            }   catch (Exception ex) {
+                System.out.println(ex);
+            }  
+        
         this.add(onOff);
 
         onOff.setVisible(true);
