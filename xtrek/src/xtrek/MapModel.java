@@ -89,11 +89,11 @@ public class MapModel extends ModeModel {
         public void run() {
             System.out.println("Downloaded new image");
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
-                    + "?" + "center" + "=" + LATITUDE + "," + LONGITUDE
-                    + "&" + "zoom" + "=" + ZOOM
-                    + "&" + "size" + "=" + SIZE
-                    + "&" + "markers" + "=" + LATITUDE + "," + LONGITUDE
-                    + "&" + "key" + "=" + Constants.GoogleMapAPI, "POST", new HashMap<>(), "");
+                    + "?center=" + LATITUDE + "," + LONGITUDE
+                    + "&zoom=" + ZOOM
+                    + "&size=" + SIZE
+                    + "&markers=" + LATITUDE + "," + LONGITUDE
+                    + "&key=" + Constants.GoogleMapAPI, "POST", new HashMap<>(), "");
 
             ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
 
