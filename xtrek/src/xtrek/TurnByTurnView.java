@@ -3,6 +3,12 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * TurnByTurn View
+ *
+ * @author Sebastien Michel
+ * @version Sprint 2
+ */
 public class TurnByTurnView extends ModeView {
     private TurnByTurn controller;
 

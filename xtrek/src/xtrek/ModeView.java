@@ -4,7 +4,7 @@
  * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
  *
  * @author sebltm
- * @version Sprint 1
+ * @version Sprint 2
  * <p>
  * To use : extends ModeView
  * Implement displayMode() which needs to include your buttons, text labels, images, etc

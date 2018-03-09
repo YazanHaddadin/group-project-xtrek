@@ -95,6 +95,7 @@ public class WhereToModel extends ModeModel {
     }
         
         void plus(ButtonEvent evt) {
+            //Advance selected keyboard button if the + button is pressed
             if(buttonIndex < buttons.size()-1) buttonIndex++;
             else buttonIndex = 0;
 
@@ -103,6 +104,7 @@ public class WhereToModel extends ModeModel {
         }
 
         void minus(ButtonEvent evt) {
+            //Go back 1 keyboard button if the - button is pressed
             if(buttonIndex > 0) buttonIndex--;
             else buttonIndex = buttons.size()-1;
 

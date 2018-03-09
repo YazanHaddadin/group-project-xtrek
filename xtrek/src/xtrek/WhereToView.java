@@ -299,12 +299,14 @@ public class WhereToView extends ModeView{
         c.gridwidth = 2;
         panel.add(btnDel, c);
         
+        //Initial keyboard set up
         controller.showLetterButtons();
         controller.hideNumberButtons();
 
         panel.validate();
         panel.setVisible(true);
         
+        //Place cursor on the default button - A in this case
         frame.getRootPane().setDefaultButton(btnA);
         btnA.requestFocus();
         controller.giveFocus(btnA);

@@ -4,7 +4,7 @@
  * Provides information about the device
  *
  * @author Liam Vinson
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 
