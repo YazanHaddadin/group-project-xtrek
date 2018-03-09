@@ -18,7 +18,6 @@ import java.util.TimerTask;
 
 
 public class MapModel extends ModeModel {
-    private static String OUTPUT = "output.png";  /* Output file        */
     private static String LATITUDE = "50.7184";     /* Inputted latitude - default Exeter - will be changed to current location  */
     private static String LONGITUDE = "-3.5339";     /* Inputted Longitude - default Exeter - will be changed to current location */
     private static String ZOOM = "17";           /* 0 .. 21           */
