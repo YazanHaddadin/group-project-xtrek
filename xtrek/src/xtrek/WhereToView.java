@@ -304,5 +304,9 @@ public class WhereToView extends ModeView{
 
         panel.validate();
         panel.setVisible(true);
+        
+        frame.getRootPane().setDefaultButton(btnA);
+        btnA.requestFocus();
+        controller.giveFocus(btnA);
     }
 }
