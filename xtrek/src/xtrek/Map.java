@@ -13,14 +13,12 @@ import javax.swing.*;
 import java.awt.*;
 
 
-
 public class Map extends Mode {
-    
+
     private MapView mapView;
     private MapModel mapModel;
 
-   
-    
+
     public Map(JFrame frame) {
         model = new MapModel(this);
         view = new MapView(frame);
@@ -28,45 +26,7 @@ public class Map extends Mode {
         mapModel = (MapModel) model;
         mapView = (MapView) view;
     }
-    
-    @Override
-    void displayMode() {
-        mapView.displayMode();
-    }
-    
-    @Override
-    public void selected(ButtonEvent evt) {
-        mapModel.selected(evt);
-    }
 
-    @Override
-    public void plus(ButtonEvent evt) {
-        mapModel.plus(evt);
-    }
-
-    @Override
-    public void minus(ButtonEvent evt) {
-        mapModel.minus(evt);
-    }
-
-    @Override
-    void hide() {
-        mapModel.hide();
-    }
-    
-    @Override
-    void onDisplay(){
-        mapModel.onDisplay();
-    }
-
-    private void updateMap() {
-        mapModel.updateMap();
-    }
-
-    void setIcon(ImageIcon image) {
-        mapView.setIcon(image);
-    }
-    
     /**
      * The main method is just for testing purposes, allowing me to test my class independently of others
      * It will not be present in the final product
@@ -104,6 +64,44 @@ public class Map extends Mode {
         frame.validate();
         frame.setVisible(true);
 
-        ((Map)currentView).updateMap();
+        ((Map) currentView).updateMap();
+    }
+
+    @Override
+    void displayMode() {
+        mapView.displayMode();
+    }
+
+    @Override
+    public void selected(ButtonEvent evt) {
+        mapModel.selected(evt);
+    }
+
+    @Override
+    public void plus(ButtonEvent evt) {
+        mapModel.plus(evt);
+    }
+
+    @Override
+    public void minus(ButtonEvent evt) {
+        mapModel.minus(evt);
+    }
+
+    @Override
+    void hide() {
+        mapModel.hide();
+    }
+
+    @Override
+    void onDisplay() {
+        mapModel.onDisplay();
+    }
+
+    private void updateMap() {
+        mapModel.updateMap();
+    }
+
+    void setIcon(ImageIcon image) {
+        mapView.setIcon(image);
     }
 }

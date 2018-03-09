@@ -11,7 +11,7 @@ package xtrek;
 
 import javax.swing.*;
 
-public class MainMenu extends Mode{
+public class MainMenu extends Mode {
     private MainMenuView MMView;
     private MainMenuModel MMModel;
 
@@ -22,13 +22,13 @@ public class MainMenu extends Mode{
         MMModel = (MainMenuModel) model;
         MMView = (MainMenuView) view;
     }
-    
+
     @Override
     void displayMode() {
         MMView.setController(this);
         MMView.displayMode();
     }
-    
+
     JButton addButton(String display, Class currentClass) {
         return MMModel.addButton(display, currentClass);
     }
@@ -50,5 +50,5 @@ public class MainMenu extends Mode{
     @Override
     public void minus(ButtonEvent evt) {
         MMModel.minus(evt);
-    }    
+    }
 }
