@@ -204,9 +204,8 @@ public class ControlLayout extends JPanel{
         }
 
         private void setStyle() {
-
-            setOpaque(true);
-            setBackground(Color.WHITE);
+            setOpaque(false);
+            setContentAreaFilled(false);
             setBorderPainted(false);
             setFont(new Font(Constants.systemFont, Font.BOLD, 5));
             setHorizontalAlignment(SwingConstants.CENTER);
