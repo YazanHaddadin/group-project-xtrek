@@ -1,7 +1,8 @@
 /**
  * Map Controller class
  * <p>
- * Provides a map on the screen of the device, where the user will be able to see
+ * Provides communication between the map view and model.
+ * Shows a map on the screen of the device, where the user will be able to see
  * their current location.
  *
  * @author Alex Vale
