@@ -166,7 +166,8 @@ public class WhereTo extends Mode {
     }
     
 
-    //Main method, allows the class to be tested independently.
+    //Main method allows the class to be tested seperately while work is being done on the Main Menu
+    //For testing purposes only
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         Container c = frame.getContentPane();

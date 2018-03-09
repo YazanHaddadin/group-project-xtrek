@@ -21,17 +21,17 @@ public class TripComputerModel extends ModeModel{
     
     void plus(ButtonEvent evt) {
         //This button is disabled, so no code here. 
-        //But this placeholder needs to be here due to interface.
+        //But this placeholder needs to be here due to the interface.
     }
 
     void minus(ButtonEvent evt) {
         //This button is disabled, so no code here. 
-        //But this placeholder needs to be here due to interface.
+        //But this placeholder needs to be here due to the interface.
     }
     
     void selected(ButtonEvent evt) {
         //No selecting in this mode. 
-        //But this placeholder needs to be here due to interface.
+        //But this placeholder needs to be here due to the interface.
     }
     
     //Class for incrementing the number of seconds the device has been moving every second.

@@ -20,7 +20,7 @@ public class TripComputerView extends ModeView{
     
     JPanel odometerPanel = new JPanel();
     JLabel odometerLabel = new JLabel("Trip Odometer:");
-    JLabel odometerReading = new JLabel("1.0 KM");
+    JLabel odometerReading = new JLabel("0.00 KM");
 
     JPanel speedPanel = new JPanel();
     JLabel speedLabel = new JLabel("Speed:");
@@ -66,6 +66,7 @@ public class TripComputerView extends ModeView{
         speedReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
         movingTimeReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
 
+        //Add labels to each panel
         odometerPanel.add(odometerLabel);
         odometerPanel.add(odometerReading);
         speedPanel.add(speedLabel);
