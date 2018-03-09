@@ -8,7 +8,7 @@
  * button is used to turn off and on the display.
  *
  * @author Yazan Haddadin
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 

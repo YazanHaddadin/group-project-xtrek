@@ -5,7 +5,7 @@
  * Switches between the different modes in the software.
  *
  * @author Sebastien Michel
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 
