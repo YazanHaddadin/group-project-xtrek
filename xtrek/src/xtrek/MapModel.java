@@ -22,7 +22,8 @@ public class MapModel extends ModeModel {
     private static String LONGITUDE = "-3.5339";     /* Inputted Longitude - default Exeter - will be changed to current location */
     private static String ZOOM = "17";           /* 0 .. 21           */
     private static String SIZE = Constants.screenWidth + "x" + Constants.screenHeight;
-    private Timer timer = new Timer();
+    private Timer timer = null;
+    private UpdateMap mapUpdater = new UpdateMap();
     private Map controller;
 
     MapModel(Map controller) {
@@ -31,13 +32,20 @@ public class MapModel extends ModeModel {
 
     //Downloads a new map every 5 sec and sets the new image
     public void updateMap() {
-        timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
+
         timer = new Timer();
-        timer.schedule(new UpdateMap(), 0, 5000); //5000 = 5 second delay on update
+        timer.schedule(mapUpdater, 0, 5000); //5000 = 5 second delay on update
     }
 
     private void stopUpdate() {
-        timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+            timer.purge();
+        }
     }
 
     @Override
@@ -51,7 +59,7 @@ public class MapModel extends ModeModel {
         }
 
         ZOOM = Integer.toString(zoomInt);
-        updateMap();
+        mapUpdater.downloadNewMap();
     }
 
     @Override
@@ -65,7 +73,7 @@ public class MapModel extends ModeModel {
         }
 
         ZOOM = Integer.toString(zoomInt);
-        updateMap();
+        mapUpdater.downloadNewMap();
     }
 
     @Override
@@ -80,6 +88,7 @@ public class MapModel extends ModeModel {
 
     @Override
     void hide() {
+        System.out.println("Stopped timer");
         stopUpdate();
     }
 
@@ -87,6 +96,10 @@ public class MapModel extends ModeModel {
     class UpdateMap extends TimerTask {
         @Override
         public void run() {
+            downloadNewMap();
+        }
+
+        public void downloadNewMap() {
             System.out.println("Downloaded new image");
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
                     + "?center=" + LATITUDE + "," + LONGITUDE

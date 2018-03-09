@@ -80,7 +80,7 @@ public class ControlLayout extends JPanel{
                         .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
                 onOff.setIcon(new ImageIcon(img));
             }   catch (Exception ex) {
-                System.out.println(ex);
+            ex.printStackTrace();
             }  
         
         this.add(onOff);
@@ -91,7 +91,11 @@ public class ControlLayout extends JPanel{
         minus.setVisible(true);
         select.setVisible(true);
 
-        updateFrame(currentMode);
+        currentMode.displayMode();
+        currentMode.show();
+        this.add(currentMode.getPanel());
+
+        listener = currentMode;
 
         JPanel overlayPanel = new JPanel();
         overlayPanel.setPreferredSize(Constants.device);
@@ -114,20 +118,6 @@ public class ControlLayout extends JPanel{
 
     JPanel getPanel() {
         return this;
-    }
-
-    void updateFrame(Mode mode) {
-        this.remove(currentMode.getPanel());
-        currentMode.hide();
-        this.currentMode = mode;
-        currentMode.displayMode();
-        currentMode.show();
-        this.add(currentMode.getPanel());
-
-        listener = currentMode;
-
-        this.revalidate();
-        this.repaint();
     }
 
     class ControlButton extends JButton {

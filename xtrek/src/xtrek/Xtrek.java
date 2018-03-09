@@ -47,7 +47,8 @@ class Xtrek extends JFrame {
         satellite = new Satellite(this);
 
         currentView = MainMenu;
-        controlPanel = new ControlLayout(this, MainMenu);
+
+        updateFrame(currentView);
 
         this.getContentPane().add(controlPanel.getPanel());
         this.pack();
@@ -69,8 +70,8 @@ class Xtrek extends JFrame {
     }
 
     public void updateFrame(Mode view) {
-        currentView = view;
         currentView.hide();
+        currentView = view;
         this.getContentPane().removeAll();
         controlPanel = new ControlLayout(this, currentView);
         this.getContentPane().add(controlPanel.getPanel());
