@@ -8,12 +8,10 @@
  */
 package xtrek;
 
-import javax.swing.JButton;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class MainMenuModel extends ModeModel{
     private String display;
@@ -21,22 +19,27 @@ public class MainMenuModel extends ModeModel{
     
     private OperatorButton currentButton;
     private int buttonIndex;
+    private Xtrek xtrek;
+
+    MainMenuModel(Xtrek xtrek) {
+        this.xtrek = xtrek;
+    }
 
     @Override
     void selected(ButtonEvent evt) {
         //when a button is selected the Main Menu view is hidden and the selected view is made visible
         if(currentButton.currentClass == WhereTo.class) {
-            Xtrek.updateFrame(Xtrek.WhereTo);
+            xtrek.updateFrame(Xtrek.WhereTo);
         } else if(currentButton.currentClass == TripComputer.class) {
-            Xtrek.updateFrame(Xtrek.tripComputer);
+            xtrek.updateFrame(Xtrek.tripComputer);
         } else if(currentButton.currentClass == Map.class) {
-            Xtrek.updateFrame(Xtrek.MapMode);
+            xtrek.updateFrame(Xtrek.MapMode);
         } else if(currentButton.currentClass == TurnByTurn.class) {
-            Xtrek.updateFrame(Xtrek.TurnByTurn);
+            xtrek.updateFrame(Xtrek.TurnByTurn);
         } else if(currentButton.currentClass == Satellite.class) {
-            Xtrek.updateFrame(Xtrek.satellite);
+            xtrek.updateFrame(Xtrek.satellite);
         } else if(currentButton.currentClass == About.class) {
-            Xtrek.updateFrame(Xtrek.AboutMode);
+            xtrek.updateFrame(Xtrek.AboutMode);
         }
     }
     

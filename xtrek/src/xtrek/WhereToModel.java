@@ -74,7 +74,10 @@ public class WhereToModel extends ModeModel {
             setOpaque(true);
             setBackground(Color.WHITE);
             setFont(new Font(Constants.systemFont, Font.BOLD, 22));
+            setFocusable(false);
+            setFocusPainted(false);
             setBorder(new LineBorder(Color.BLACK));
+            setVisible(true);
         }
 
         private void focusGained() {

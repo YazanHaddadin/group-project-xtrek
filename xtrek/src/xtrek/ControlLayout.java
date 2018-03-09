@@ -31,6 +31,14 @@ public class ControlLayout extends JPanel{
     private Mode currentMode;
     private JFrame frame;
     private ButtonListener listener;
+    private Xtrek xtrek;
+
+    ControlLayout(Xtrek frame, Mode mode) {
+        this.currentMode = mode;
+        this.xtrek = frame;
+        this.frame = frame;
+        displayMode();
+    }
 
     ControlLayout(JFrame frame, Mode mode) {
         this.currentMode = mode;
@@ -102,17 +110,14 @@ public class ControlLayout extends JPanel{
         this.remove(currentMode.getPanel());
         currentMode.hide();
         this.currentMode = mode;
-        currentMode.onDisplay();
-        this.add(currentMode.getPanel());
-
         currentMode.displayMode();
         currentMode.show();
+        this.add(currentMode.getPanel());
 
         listener = currentMode;
 
-        this.validate();
-        frame.revalidate();
-        frame.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
     class ControlButton extends JButton {
@@ -159,7 +164,7 @@ public class ControlLayout extends JPanel{
                             }
                             break;
                         case "Menu":
-                            Xtrek.updateFrame(Xtrek.MainMenu);
+                            xtrek.updateFrame(Xtrek.MainMenu);
                     }
                 }
 

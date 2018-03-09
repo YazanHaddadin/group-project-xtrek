@@ -10,14 +10,13 @@
 package xtrek;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainMenu extends Mode{
     private MainMenuView MMView;
     private MainMenuModel MMModel;
 
-    MainMenu(JFrame frame) {
-        model = new MainMenuModel();
+    MainMenu(Xtrek frame) {
+        model = new MainMenuModel(frame);
         view = new MainMenuView(frame);
 
         MMModel = (MainMenuModel) model;
