@@ -142,7 +142,7 @@ class TurnByTurnModel extends ModeModel {
             setFocusPainted(false);
             setBorderPainted(false);
             setBackground(Color.WHITE);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 22));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 30));
             setHorizontalAlignment(SwingConstants.LEFT);
 
             setVisible(true);
