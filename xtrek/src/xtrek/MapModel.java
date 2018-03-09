@@ -44,6 +44,7 @@ public class MapModel extends ModeModel {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
                     + "?" + "center" + "=" + LATITUDE + "," + LONGITUDE
                     + "&" + "zoom" + "=" + ZOOM
+                    //+ "&" + "markers" + "=" +"https://www.iconsdb.com/icons/preview/red/circle-xxl.png" 
                     + "&" + "size" + "=" + SIZE, "POST", new HashMap<>(), "");
             connect.writeData(OUTPUT, connect.getResponse());
 
