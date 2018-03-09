@@ -8,33 +8,38 @@
  */
 package xtrek;
 
-import javax.swing.JButton;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class MainMenuModel extends ModeModel{
     private String display;
-    private Class currentClass;
     ModeView view;
     
     private OperatorButton currentButton;
     private int buttonIndex;
-    
-    public void selected() {
-            //when a button is selected the Main Menu view is hidden and the selected view is made visible
-        try {
-            @SuppressWarnings("unchecked")
-            Mode currentMode = (Mode) currentClass.getDeclaredConstructor(JFrame.class).newInstance(view.getPanel());
+    private Xtrek xtrek;
 
-            currentMode.makeVisible();
-            view.getPanel().validate();
-            view.makeVisible();
+    MainMenuModel(Xtrek xtrek) {
+        this.xtrek = xtrek;
+    }
 
-        } catch (NoSuchMethodException | java.lang.InstantiationException | IllegalAccessException | java.lang.reflect.InvocationTargetException e) {
-            e.printStackTrace();
+    @Override
+    void selected(ButtonEvent evt) {
+        //when a button is selected the Main Menu view is hidden and the selected view is made visible
+        if(currentButton.currentClass == WhereTo.class) {
+            xtrek.updateFrame(Xtrek.WhereTo);
+        } else if(currentButton.currentClass == TripComputer.class) {
+            xtrek.updateFrame(Xtrek.tripComputer);
+        } else if(currentButton.currentClass == Map.class) {
+            xtrek.updateFrame(Xtrek.MapMode);
+        } else if(currentButton.currentClass == TurnByTurn.class) {
+            xtrek.updateFrame(Xtrek.TurnByTurn);
+        } else if(currentButton.currentClass == Satellite.class) {
+            xtrek.updateFrame(Xtrek.satellite);
+        } else if(currentButton.currentClass == About.class) {
+            xtrek.updateFrame(Xtrek.AboutMode);
         }
     }
     
@@ -63,18 +68,14 @@ public class MainMenuModel extends ModeModel{
         buttons.add(button);
         return button;
     }
-
-    @Override
-    void selected(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
     class OperatorButton extends JButton{
         private final Class currentClass;
         
         OperatorButton(String display, Class currentClass) {
             try {
-                Image img = ImageIO.read(getClass().getResource("assets/" + display + ".png"));
+                Image img = ImageIO.read(getClass().getResource("assets/" + display + ".png"))
+                        .getScaledInstance(88, 70, Image.SCALE_SMOOTH);
                 setIcon(new ImageIcon(img));
             }   catch (Exception ex) {
                 System.out.println(ex);
@@ -85,8 +86,8 @@ public class MainMenuModel extends ModeModel{
         
         private void setStyle() {
             //set the display style of the operator buttons
-            setOpaque(true);
-            setBackground(Color.WHITE);
+            setOpaque(true); 
+            setBackground(Color.BLACK);
             setBorderPainted(false);
             setFont(new Font(Constants.systemFont, Font.BOLD, 14));
             setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,7 +100,7 @@ public class MainMenuModel extends ModeModel{
 
         private void focusLost() {
             //when the focus is lost it reverts back to the orginal colour
-            setBackground(Color.WHITE);
+            setBackground(Color.BLACK);
         }
         
         String getDisplay() {

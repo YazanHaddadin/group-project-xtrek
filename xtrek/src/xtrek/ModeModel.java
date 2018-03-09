@@ -15,4 +15,10 @@ abstract class ModeModel {
     abstract void minus(ButtonEvent evt);
 
     abstract void selected(ButtonEvent evt);
+
+    void onDisplay() {
+    }
+
+    void hide() {
+    }
 }

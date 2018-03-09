@@ -14,6 +14,7 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 
+
 public abstract class ModeView {
     final JFrame frame;
     JPanel panel;
@@ -22,8 +23,10 @@ public abstract class ModeView {
         this.frame = frame;
         //Dimensions are in pixels, need to be mm
         panel = new JPanel();
-        panel.setPreferredSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
-        panel.setMaximumSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
+        panel.setPreferredSize(Constants.screen);
+        panel.setBounds(50, 150, Constants.screenWidth, Constants.screenHeight);
+        panel.setPreferredSize(Constants.screen);
+        panel.setMaximumSize(Constants.screen);
         panel.setBackground(Color.BLACK);
     }
 

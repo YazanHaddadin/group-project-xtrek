@@ -11,10 +11,10 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 
-public class About extends ModeView {
+public class About extends Mode {
 
     public About(JFrame frame) {
-        super(frame);
+        //super(frame);
     }
 
     public static void main(String[] args) {
@@ -33,11 +33,26 @@ public class About extends ModeView {
     @Override
     public void displayMode() {
 
-        frame.setTitle("About");
+        //frame.setTitle("About");
 
-        panel = new AboutPanel();
+        //panel = new AboutPanel();
 
-        panel.validate();
-        panel.setVisible(true);
+        //panel.validate();
+        //panel.setVisible(true);
+    }
+
+    @Override
+    public void selected(ButtonEvent evt) {
+
+    }
+
+    @Override
+    public void plus(ButtonEvent evt) {
+
+    }
+
+    @Override
+    public void minus(ButtonEvent evt) {
+
     }
 }

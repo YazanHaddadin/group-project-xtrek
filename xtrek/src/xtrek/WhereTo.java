@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class WhereTo extends Mode {
     
-    private WhereToView whereView;
-    private WhereToModel whereModel;
+    private static WhereToView whereView;
+    private static WhereToModel whereModel;
     
     WhereTo(JFrame frame) {
         model = new WhereToModel();
@@ -30,6 +30,7 @@ public class WhereTo extends Mode {
     void displayMode() {
         whereView.setController(this);
         whereView.displayMode();
+        showLetterButtons();
     }
     
     @Override
@@ -56,21 +57,19 @@ public class WhereTo extends Mode {
         whereModel.giveFocus((WhereToModel.KeyboardButton) button);
     }
     
-    public void addToDestination(String letter) {
-        System.out.println("Made it to addToDestination");
-        System.out.println("Adding " + letter);
+    static void addToDestination(String letter) {
         //Add the typed letter to the destination field
-        whereView.destination.setText(whereView.destination.getText() + letter);
+        WhereToView.destination.setText(WhereToView.destination.getText() + letter);
     }
     
-    public void deleteFromDestination() {
+    static void deleteFromDestination() {
         // Delete 1 character from the destination field
-        if (whereView.destination.getText().length() > 0) {
-            whereView.destination.setText(whereView.destination.getText().substring(0, whereView.destination.getText().length() - 1));
+        if (WhereToView.destination.getText().length() > 0) {
+            WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
         }
     }
     
-    public void hideLetterButtons() {
+    static void hideLetterButtons() {
         //Hide all buttons for the main letter keyboard
         whereView.btnA.setVisible(false);
         whereView.btnB.setVisible(false);
@@ -102,7 +101,7 @@ public class WhereTo extends Mode {
         whereView.btnNextPage.setVisible(false);
     }
     
-    public void showLetterButtons() {
+    static void showLetterButtons() {
         //Hide all buttons for the main letter keyboard
         whereView.btnA.setVisible(true);
         whereView.btnB.setVisible(true);
@@ -134,7 +133,7 @@ public class WhereTo extends Mode {
         whereView.btnNextPage.setVisible(true);
     }
     
-    public void showNumberButtons() {
+    static void showNumberButtons() {
         //Show all buttons for the numerical keypad.
         whereView.btn1.setVisible(true);
         whereView.btn2.setVisible(true);
@@ -150,7 +149,7 @@ public class WhereTo extends Mode {
         whereView.btnBackPage.setVisible(true);
     }
     
-    public void hideNumberButtons() {
+    static void hideNumberButtons() {
         //Hide all buttons on the numerical keypad.
         whereView.btn1.setVisible(false);
         whereView.btn2.setVisible(false);
@@ -166,12 +165,7 @@ public class WhereTo extends Mode {
         whereView.btnBackPage.setVisible(false);
     }
     
-    
-    
-    
-    
-    
-    
+
     //Main method, allows the class to be tested independently.
     public static void main(String[] args) {
         JFrame frame = new JFrame();
@@ -179,7 +173,6 @@ public class WhereTo extends Mode {
         frame.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        frame.setPreferredSize(new Dimension(700, 850));
         frame.setResizable(true);
         frame.setLayout(new GridBagLayout());
 
@@ -192,7 +185,7 @@ public class WhereTo extends Mode {
         ControlLayout controlPanel = new ControlLayout(frame, currentView);
 
         currentView.displayMode();
-        currentView.makeVisible();
+        currentView.show();
 
         con.gridx = 1;
         con.gridy = 1;

@@ -16,6 +16,8 @@ import javax.swing.*;
 public class TripComputerView extends ModeView{
     private TripComputer controller;
     
+    private int fontSize = 26;
+    
     JPanel odometerPanel = new JPanel();
     JLabel odometerLabel = new JLabel("Trip Odometer:");
     JLabel odometerReading = new JLabel("1.0 KM");
@@ -56,13 +58,13 @@ public class TripComputerView extends ModeView{
         movingTimePanel.setBackground(Color.WHITE);
 
         //Set correct font for each label.
-        odometerLabel.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
-        speedLabel.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
-        movingTimeLabel.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
+        odometerLabel.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
+        speedLabel.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
+        movingTimeLabel.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
 
-        odometerReading.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
-        speedReading.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
-        movingTimeReading.setFont(new Font(Constants.systemFont, Font.BOLD, 50));
+        odometerReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
+        speedReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
+        movingTimeReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
 
         odometerPanel.add(odometerLabel);
         odometerPanel.add(odometerReading);

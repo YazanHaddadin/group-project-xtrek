@@ -47,7 +47,6 @@ public class Satellite extends Mode {
         
         Satellite currentView = new Satellite(frame);
         currentView.displayMode();
-        currentView.makeVisible();
 
         frame.setVisible(true);
         

@@ -23,6 +23,10 @@ public class TripComputer extends Mode {
 
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
+        
+        //Start the simulations of the moving time and odometer
+        tcModel.increaseMovingTime();
+        tcModel.increaseTripOdometer();
     }
     
     @Override
@@ -62,8 +66,7 @@ public class TripComputer extends Mode {
         frame.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        frame.setPreferredSize(new Dimension(700, 850));
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLayout(new GridBagLayout());
 
         GridBagConstraints con = new GridBagConstraints();
@@ -75,7 +78,7 @@ public class TripComputer extends Mode {
         ControlLayout controlPanel = new ControlLayout(frame, currentView);
 
         currentView.displayMode();
-        currentView.makeVisible();
+        currentView.show();
 
         con.gridx = 1;
         con.gridy = 1;
@@ -87,6 +90,7 @@ public class TripComputer extends Mode {
         frame.validate();
         frame.setVisible(true);
         
+        //Start the simulations of the moving time and odometer
         tcModel.increaseMovingTime();
         tcModel.increaseTripOdometer();
     }

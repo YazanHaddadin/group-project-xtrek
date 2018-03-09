@@ -9,12 +9,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TurnByTurnModel extends ModeModel {
+class TurnByTurnModel extends ModeModel {
+    static private AudioDataStream audioStream;
     private String gender;
     private String language;
-
-    static private AudioDataStream audioStream;
-
     private LangButton currentButton;
     private int buttonIndex = 0;
 
@@ -68,14 +66,14 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void selected(ButtonEvent evt) {
-        if(currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {
+        if (currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {
             language = currentButton.getLanguage().getLanguage();
             gender = currentButton.getGender().getGender();
             stopAudio();
             this.playAudio("The language has been set to " + currentButton.getLanguage().getDisplay());
         } else {
             stopAudio();
-            currentButton = (LangButton)buttons.get(0);
+            currentButton = (LangButton) buttons.get(0);
             language = currentButton.getLanguage().getLanguage();
             gender = currentButton.getGender().getGender();
             this.playAudio("Speech function turned off");
@@ -83,18 +81,18 @@ public class TurnByTurnModel extends ModeModel {
     }
 
     void plus(ButtonEvent evt) {
-        if(buttonIndex < buttons.size()-1) buttonIndex++;
+        if (buttonIndex < buttons.size() - 1) buttonIndex++;
         else buttonIndex = 0;
 
-        currentButton = (LangButton)buttons.get(buttonIndex);
+        currentButton = (LangButton) buttons.get(buttonIndex);
         currentButton.giveFocus(buttons);
     }
 
     void minus(ButtonEvent evt) {
-        if(buttonIndex > 0) buttonIndex--;
-        else buttonIndex = buttons.size()-1;
+        if (buttonIndex > 0) buttonIndex--;
+        else buttonIndex = buttons.size() - 1;
 
-        currentButton = (LangButton)buttons.get(buttonIndex);
+        currentButton = (LangButton) buttons.get(buttonIndex);
         currentButton.giveFocus(buttons);
     }
 
@@ -128,11 +126,23 @@ public class TurnByTurnModel extends ModeModel {
             setBackground(Color.WHITE);
         }
 
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (isSelected()) {
+                setBorder(BorderFactory.createEmptyBorder());
+            } else {
+                setBorder(BorderFactory.createLoweredBevelBorder());
+            }
+        }
+
         private void setStyle() {
             setOpaque(true);
+            setFocusable(false);
+            setFocusPainted(false);
             setBorderPainted(false);
             setBackground(Color.WHITE);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 36));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 22));
             setHorizontalAlignment(SwingConstants.LEFT);
 
             setVisible(true);
@@ -147,7 +157,7 @@ public class TurnByTurnModel extends ModeModel {
         }
 
         void giveFocus(ArrayList<JButton> buttons) {
-            for (JButton randButton : buttons) ((LangButton)randButton).focusLost();
+            for (JButton randButton : buttons) ((LangButton) randButton).focusLost();
             this.focusGained();
         }
     }

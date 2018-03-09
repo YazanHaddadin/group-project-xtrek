@@ -19,22 +19,26 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
-public class ControlLayout {
-    final JPanel controlPanel = new JPanel();
+public class ControlLayout extends JPanel{
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");
-    final JButton onOff = new ControlButton("PWR");
-    final JButton menu = new ControlButton("Menu");
-    final JButton select = new ControlButton("Select");
+    private final JButton onOff = new ControlButton("PWR");
+    private final JButton menu = new ControlButton("Menu");
+    private final JButton select = new ControlButton("Select");
 
-    Mode currentMode;
+    private Mode currentMode;
     private JFrame frame;
     private ButtonListener listener;
+    private Xtrek xtrek;
+
+    ControlLayout(Xtrek frame, Mode mode) {
+        this.currentMode = mode;
+        this.xtrek = frame;
+        this.frame = frame;
+        displayMode();
+    }
 
     ControlLayout(JFrame frame, Mode mode) {
         this.currentMode = mode;
@@ -46,66 +50,40 @@ public class ControlLayout {
         frame.setTitle("Control Layout");
 
         //seperate panel for the control buttons
-        controlPanel.setPreferredSize(new Dimension(Constants.screenWidth + 25, Constants.screenHeight + 25));
-        controlPanel.setMaximumSize(new Dimension(Constants.screenWidth + 25, Constants.screenHeight + 25));
-
-        controlPanel.setLayout(new GridBagLayout());
-        controlPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-
-        controlPanel.setBackground(Color.BLACK);
-
-        GridBagConstraints con = new GridBagConstraints();
-        JLabel overlay = new JLabel();
-        try {
-            overlay.setIcon(new ImageIcon(ImageIO.read(new File("xtrek/src/xtrek/assets/display.png"))));
-            con.gridx = 0;
-            con.gridy = 0;
-            con.gridwidth = 8;
-            con.gridheight = 17;
-            con.fill = GridBagConstraints.BOTH;
-            controlPanel.add(overlay, con);
-        } catch(IOException e) {
-            e.printStackTrace();
-            //TODO handle can't find overlay
-        }
+        this.setLayout(null);
+        this.setPreferredSize(Constants.device);
 
         //add the control buttons to the new panel created
-        con.gridx = 0;
-        con.gridy = 0;
-        con.gridwidth = 1;
-        con.gridheight = 2;
-        con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(plus, con);
+        Dimension buttonSize = new Dimension(15, 40);
+        plus.setBounds(0, 80, 15, 40);
+        plus.setPreferredSize(buttonSize);
+        this.add(plus);
 
-        con.gridy = 1;
-        controlPanel.add(minus, con);
+        minus.setBounds(0, 120, 15, 40);
+        minus.setPreferredSize(buttonSize);
+        this.add(minus);
 
-        con.gridy = 4;
-        con.gridheight = 2;
-        controlPanel.add(select, con);
+        select.setBounds(0, 200, 15, 40);
+        select.setPreferredSize(buttonSize);
+        this.add(select);
 
-        con.gridy = 0;
-        con.gridx = 6;
-        con.gridheight = 1;
-        controlPanel.add(onOff, con);
+        menu.setBounds(310, 80, 15, 40);
+        menu.setPreferredSize(buttonSize);
+        this.add(menu);
 
-        con.gridx = 6;
-        con.gridy = 3;
-        controlPanel.add(menu, con);
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.gridwidth = 5;
-        con.gridheight = 15;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(currentMode.getPanel(), con);
-
-        currentMode.displayMode();
-        currentMode.makeVisible();
-
-        listener = currentMode;
+        onOff.setBounds(200, 100, 45, 45);
+        onOff.setPreferredSize(new Dimension(45, 45));
+        
+        //Style power button
+        try {
+                Image img = ImageIO.read(getClass().getResource("assets/power.png"))
+                        .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
+                onOff.setIcon(new ImageIcon(img));
+            }   catch (Exception ex) {
+            ex.printStackTrace();
+            }  
+        
+        this.add(onOff);
 
         onOff.setVisible(true);
         menu.setVisible(true);
@@ -113,45 +91,40 @@ public class ControlLayout {
         minus.setVisible(true);
         select.setVisible(true);
 
-        controlPanel.validate();
-        controlPanel.setVisible(true);
-    }
-
-    JPanel getPanel() {
-        return controlPanel;
-    }
-
-    void updateFrame(Mode mode) {
-        controlPanel.remove(currentMode.getPanel());
-
-        this.currentMode = mode;
-
-        GridBagConstraints con = new GridBagConstraints();
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.gridwidth = 5;
-        con.gridheight = 15;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        con.fill = GridBagConstraints.BOTH;
-        controlPanel.add(currentMode.getPanel(), con);
-
         currentMode.displayMode();
-        currentMode.makeVisible();
+        currentMode.show();
+        this.add(currentMode.getPanel());
 
         listener = currentMode;
 
-        controlPanel.validate();
-        frame.revalidate();
-        frame.repaint();
+        JPanel overlayPanel = new JPanel();
+        overlayPanel.setPreferredSize(Constants.device);
+        overlayPanel.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+        overlayPanel.setLayout(null);
+        overlayPanel.setBackground(Color.BLACK);
+        JLabel overlay = new JLabel();
+        try {
+            Image img = ImageIO.read(getClass().getResource("assets/display.png"));
+            overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+            overlay.setIcon(new ImageIcon(img));
+            overlayPanel.add(overlay);
+            this.add(overlayPanel);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        this.validate();
+    }
+
+    JPanel getPanel() {
+        return this;
     }
 
     class ControlButton extends JButton {
         private String control;
 
         ControlButton(String control) {
-            super(control);
+            super("");
             this.control = control;
             setStyle();
 
@@ -191,9 +164,7 @@ public class ControlLayout {
                             }
                             break;
                         case "Menu":
-//                            Xtrek.hideCurrentView();
-//                            Xtrek.setCurrentView(Xtrek.MainMenu);
-//                            Xtrek.showCurrentView();
+                            xtrek.updateFrame(Xtrek.MainMenu);
                     }
                 }
 
@@ -223,11 +194,10 @@ public class ControlLayout {
         }
 
         private void setStyle() {
-
-            setOpaque(true);
-            setBackground(Color.WHITE);
+            setOpaque(false);
+            setContentAreaFilled(false);
             setBorderPainted(false);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 25));
+            setFont(new Font(Constants.systemFont, Font.BOLD, 5));
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 

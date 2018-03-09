@@ -9,8 +9,6 @@
  */
 package xtrek;
 
-import sun.applet.Main;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,41 +20,38 @@ class Xtrek extends JFrame {
     static Map MapMode;
     static TurnByTurn TurnByTurn;
     static WhereTo WhereTo;
-    static ControlLayout ControlPanel;
+    static TripComputer tripComputer;
+    static Satellite satellite;
+    static ControlLayout controlPanel;
     /**
      * @param args the command line arguments
      */
-    private static Mode currentView;
-    private static Container c;
     private static Xtrek xtrek;
+    private static Mode currentView;
 
     private Xtrek() {
-        c = this.getContentPane();
         this.setLocationRelativeTo(null);
 
         //Dimensions are in pixels, need to be mm
-        this.setPreferredSize(new Dimension(Constants.screenWidth, Constants.screenHeight));
         this.setResizable(false);
 
         this.getContentPane().setBackground(Color.BLACK);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         MainMenu = new MainMenu(this);
-        MainMenu.hide();
-        /*AboutMode = new About(this);
-        AboutMode.hide();
+        tripComputer = new TripComputer(this);
+        AboutMode = new About(this);
         MapMode = new Map(this);
-        MapMode.hide();*/
         TurnByTurn = new TurnByTurn(this);
-        TurnByTurn.hide();
-        /*WhereTo = new WhereTo(this);
-        WhereTo.hide();*/
+        WhereTo = new WhereTo(this);
+        satellite = new Satellite(this);
+
         currentView = MainMenu;
-        ControlPanel = new ControlLayout(this, currentView);
 
-        this.getContentPane().add(ControlPanel.getPanel());
+        updateFrame(currentView);
+
+        this.getContentPane().add(controlPanel.getPanel());
         this.pack();
-
 
         this.validate();
         this.setVisible(true);
@@ -66,17 +61,23 @@ class Xtrek extends JFrame {
         xtrek = new Xtrek();
     }
 
+    public static void showCurrentView() {
+        currentView.show();
+    }
+
     public static void hideCurrentView() {
         currentView.hide();
     }
 
-    public static void showCurrentView() {
-        currentView.makeVisible();
-    }
-
-    public static void setCurrentView(Mode view) {
+    public void updateFrame(Mode view) {
+        currentView.hide();
         currentView = view;
+        this.getContentPane().removeAll();
+        controlPanel = new ControlLayout(this, currentView);
+        this.getContentPane().add(controlPanel.getPanel());
+        this.pack();
+        this.validate();
     }
 
-    
+
 }

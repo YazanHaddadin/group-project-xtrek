@@ -11,10 +11,12 @@ public abstract class Mode implements ButtonListener {
     ModeModel model;
 
     void displayMode() {
+        onDisplay();
         view.displayMode();
     }
 
-    void makeVisible() {
+    void show() {
+        onDisplay();
         view.makeVisible();
     }
 
@@ -24,5 +26,11 @@ public abstract class Mode implements ButtonListener {
 
     void hide() {
         view.hide();
+        model.hide();
     }
+
+    void onDisplay() {
+        model.onDisplay();
+    }
+
 }
