@@ -100,7 +100,7 @@ public class TurnByTurn extends Mode implements SpeechListener {
         FRENCH("French", "fr-FR"),
         GERMAN("German", "de-DE"),
         ITALIAN("Italian", "it-IT"),
-        JAPANESE("Japanese", "ja-JP");
+        SPANISH("Spanish", "es-es");
 
         private final String language;
         private final String display;

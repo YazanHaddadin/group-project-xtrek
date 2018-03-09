@@ -24,7 +24,7 @@ public class TurnByTurnView extends ModeView {
         JButton bFre = controller.addButton(TurnByTurn.Language.FRENCH, TurnByTurn.Gender.FEMALE);
         JButton bGer = controller.addButton(TurnByTurn.Language.GERMAN, TurnByTurn.Gender.MALE);
         JButton bIta = controller.addButton(TurnByTurn.Language.ITALIAN, TurnByTurn.Gender.MALE);
-        JButton bJap = controller.addButton(TurnByTurn.Language.JAPANESE, TurnByTurn.Gender.MALE);
+        JButton bJap = controller.addButton(TurnByTurn.Language.SPANISH, TurnByTurn.Gender.MALE);
 
         GridBagConstraints c = new GridBagConstraints();
 
