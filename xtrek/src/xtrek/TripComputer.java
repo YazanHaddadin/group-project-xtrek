@@ -23,6 +23,10 @@ public class TripComputer extends Mode {
 
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
+        
+        //Start the simulations of the moving time and odometer
+        tcModel.increaseMovingTime();
+        tcModel.increaseTripOdometer();
     }
     
     @Override
@@ -86,6 +90,7 @@ public class TripComputer extends Mode {
         frame.validate();
         frame.setVisible(true);
         
+        //Start the simulations of the moving time and odometer
         tcModel.increaseMovingTime();
         tcModel.increaseTripOdometer();
     }
