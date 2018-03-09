@@ -1,11 +1,3 @@
-/**
- * SatelliteView Class
- * <p>
- * Reads out the current coordinates of the device.
- *
- * @author Liam Vinson
- * @version Sprint 2
- */
 package xtrek;
 
 import java.awt.Color;
@@ -15,8 +7,12 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 
 /**
+ * SatelliteView Class
+ * <p>
+ * Reads out the current coordinates of the device.
  *
- * @author liamvinson
+ * @author Liam Vinson
+ * @version Sprint 3
  */
 public class SatelliteView extends ModeView {
     SatellitePanel sat = new SatellitePanel();

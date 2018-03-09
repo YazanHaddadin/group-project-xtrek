@@ -1,11 +1,3 @@
-/**
- * Satellite Class
- * <p>
- * Reads out the current coordinates of the device.
- *
- * @author Liam Vinson
- * @version Sprint 2
- */
 package xtrek;
 
 import javax.swing.*;
@@ -13,6 +5,14 @@ import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Satellite Class
+ * <p>
+ * Reads out the current coordinates of the device.
+ *
+ * @author Liam Vinson
+ * @version Sprint 3
+ */
 public class Satellite extends Mode {
     private SatelliteView SView;
     private SatelliteModel SModel;
