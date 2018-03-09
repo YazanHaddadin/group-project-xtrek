@@ -4,7 +4,7 @@
  * Reads out the current coordinates of the device.
  *
  * @author Liam Vinson
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 
@@ -73,6 +73,7 @@ public class Satellite extends Mode {
         frame.pack();
         frame.validate();
         frame.setVisible(true);
+        
         
         currentView.SModel.startThread();
         while(true){

@@ -1,3 +1,12 @@
+/**
+ * Satellite Class
+ * <p>
+ * Reads out the current coordinates of the device.
+ *
+ * @author Liam Vinson
+ * @version Sprint 2
+ */
+
 package xtrek;
 
 import java.io.BufferedReader;
