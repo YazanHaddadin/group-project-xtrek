@@ -30,4 +30,6 @@ public class Constants {
     
     //Defaults for the Satellite class
     public static final String dongleLocation = "/dev/cu.usbmodem1421";
+
+    public static final String GoogleMapAPI = "AIzaSyBlYfw7NDb9icLC-Ssq0EVi2d5EAjhqst0";
 }
