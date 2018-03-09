@@ -1,3 +1,9 @@
+package xtrek;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+
 /**
  * Directions Class
  * <p>
@@ -5,15 +11,8 @@
  * another.
  *
  * @author Caleb Blackmore
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashMap;
-
-
 public class Directions {
     //Default values, will be used if not overriden in the method call.
     static String origin = "Exeter, UK";

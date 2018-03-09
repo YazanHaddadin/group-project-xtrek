@@ -1,3 +1,8 @@
+package xtrek;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Map Controller class
  * <p>
@@ -6,14 +11,8 @@
  * their current location.
  *
  * @author Alex Vale
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import javax.swing.*;
-import java.awt.*;
-
-
 public class Map extends Mode {
 
     private MapView mapView;

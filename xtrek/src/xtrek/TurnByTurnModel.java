@@ -13,7 +13,7 @@ import java.util.HashMap;
  * TurnByTurn Model
  *
  * @author Sebastien Michel
- * @version Sprint 2
+ * @version Sprint 3
  */
 class TurnByTurnModel extends ModeModel {
     static private AudioDataStream audioStream;

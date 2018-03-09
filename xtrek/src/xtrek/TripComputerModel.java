@@ -1,3 +1,9 @@
+package xtrek;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.text.DecimalFormat;
+
 /**
  * TripComputer Model Class
  * <p>
@@ -5,15 +11,8 @@
  * which will provide real time information about the current trip.
  *
  * @author Caleb Blackmore
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-
-import java.util.Timer;
-import java.util.TimerTask;
-import java.text.DecimalFormat;
-
 public class TripComputerModel extends ModeModel{
     
     static String mtLabel;

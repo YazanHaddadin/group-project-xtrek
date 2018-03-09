@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package xtrek;
 
 /**
+ * Satellite Panel
+ * <p>
+ * Provides appearance of the Satellite Menu.
  *
- * @author liamvinson
+ * @author Liam Vinson
+ * @version Sprint 3
  */
 public class SatellitePanel extends javax.swing.JPanel {
 

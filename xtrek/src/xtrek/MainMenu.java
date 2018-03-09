@@ -1,3 +1,7 @@
+package xtrek;
+
+import javax.swing.*;
+
 /**
  * Main Menu Class
  * <p>
@@ -5,12 +9,8 @@
  * and functionality is implemented.
  *
  * @author Yazan Haddadin
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import javax.swing.*;
-
 public class MainMenu extends Mode {
     private MainMenuView MMView;
     private MainMenuModel MMModel;

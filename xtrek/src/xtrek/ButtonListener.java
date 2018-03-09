@@ -1,13 +1,13 @@
+package xtrek;
+
+import java.util.EventListener;
+
 /**
  * ButtonListener class
  *
  * @author Sebastien Michel
  * @version Sprint 1
  */
-package xtrek;
-
-import java.util.EventListener;
-
 interface ButtonListener extends EventListener {
     void selected(ButtonEvent evt);
 

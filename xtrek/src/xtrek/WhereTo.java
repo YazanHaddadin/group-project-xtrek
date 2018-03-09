@@ -1,3 +1,8 @@
+package xtrek;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * WhereTo Controller Class
  * <p>
@@ -5,14 +10,8 @@
  * the keyboard on the XTrek where the user will input their destination.
  *
  * @author Caleb Blackmore
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import javax.swing.*;
-import java.awt.*;
-
-
 public class WhereTo extends Mode {
     
     private static WhereToView whereView;

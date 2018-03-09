@@ -1,3 +1,8 @@
+package xtrek;
+
+import java.awt.*;
+import javax.swing.*;
+
 /**
  * TripComputer View Class
  * <p>
@@ -5,14 +10,8 @@
  * will provide information about the current trip.
  *
  * @author Caleb Blackmore
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import java.awt.*;
-import javax.swing.*;
-
-
 public class TripComputerView extends ModeView{
     private TripComputer controller;
     

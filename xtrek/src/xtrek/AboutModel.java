@@ -1,16 +1,12 @@
+package xtrek;
+
 /**
  * AboutModel Class
  * <p>
  * Provides information about the device
  *
  * @author Liam Vinson
- * @version Sprint 2
- */
-package xtrek;
-
-/**
- *
- * @author liamvinson
+ * @version Sprint 3
  */
 public class AboutModel extends ModeModel {
 

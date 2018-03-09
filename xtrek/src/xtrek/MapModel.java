@@ -1,10 +1,3 @@
-/*
- * Map Model class
- * <p>
- * The Model for the Map MVC
- * @author Alex Vale
- * @version Sprint 2
- */
 package xtrek;
 
 import javax.imageio.ImageIO;
@@ -16,7 +9,14 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+/**
+ * Map Model class
+ * <p>
+ * The Model for the Map MVC
+ * 
+ * @author Alex Vale
+ * @version Sprint 3
+ */
 public class MapModel extends ModeModel {
     private static String LATITUDE = "50.7184";     /* Inputted latitude - default Exeter - will be changed to current location  */
     private static String LONGITUDE = "-3.5339";     /* Inputted Longitude - default Exeter - will be changed to current location */

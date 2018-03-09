@@ -1,12 +1,3 @@
-/**
- * WhereTo Model Class
- * <p>
- * Manages the behaviour of the keyboard on the XTrek device, where the user
- * will input their destination.
- *
- * @author Caleb Blackmore
- * @version Sprint 2
- */
 package xtrek;
 
 import java.awt.*;
@@ -14,6 +5,15 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * WhereTo Model Class
+ * <p>
+ * Manages the behaviour of the keyboard on the XTrek device, where the user
+ * will input their destination.
+ *
+ * @author Caleb Blackmore
+ * @version Sprint 3
+ */
 public class WhereToModel extends ModeModel {
     private KeyboardButton currentButton;
     private int buttonIndex = 0;

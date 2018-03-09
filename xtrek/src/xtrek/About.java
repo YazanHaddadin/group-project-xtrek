@@ -1,16 +1,16 @@
+package xtrek;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * About Class
  * <p>
  * Provides information about the device
  *
  * @author Liam Vinson
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import javax.swing.*;
-import java.awt.*;
-
 public class About extends Mode {
     private AboutView AView;
     private AboutModel AModel;

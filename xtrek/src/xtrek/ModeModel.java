@@ -4,8 +4,10 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
+ * Mode Model abstract class
+ * 
  * @author Sebastien Michel
- * @version Sprint 2
+ * @version Sprint 3
  */
 abstract class ModeModel {
     ArrayList<JButton> buttons = new ArrayList<>();

@@ -1,15 +1,3 @@
-/**
- * Control Layout Class
- * <p>
- * Provides the Control Panel which has the control buttons to be shown on all
- * the modes, where the + and - buttons are used to navigate between the modes
- * and the select button to choose which mode that is highlighted and the menu
- * button to close the current mode and revert back to the Main Menu. The power
- * button is used to turn off and on the display.
- *
- * @author Yazan Haddadin
- * @version Sprint 2
- */
 package xtrek;
 
 import javax.imageio.ImageIO;
@@ -21,6 +9,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+/**
+ * Control Layout Class
+ * <p>
+ * Provides the Control Panel which has the control buttons to be shown on all
+ * the modes, where the + and - buttons are used to navigate between the modes
+ * and the select button to choose which mode that is highlighted and the menu
+ * button to close the current mode and revert back to the Main Menu. The power
+ * button is used to turn off and on the display.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 3
+ */
 public class ControlLayout extends JPanel{
     final JButton plus = new ControlButton("+");
     final JButton minus = new ControlButton("-");

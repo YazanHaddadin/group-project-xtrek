@@ -1,11 +1,3 @@
-/**
- * Main Menu View Class
- * <p>
- * Provides the User Interface of the Main Menu for the Xtrek.
- *
- * @author Yazan Haddadin
- * @version Sprint 2
- */
 package xtrek;
 
 import java.awt.Color;
@@ -15,6 +7,14 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/**
+ * Main Menu View Class
+ * <p>
+ * Provides the User Interface of the Main Menu for the Xtrek.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 3
+ */
 public class MainMenuView extends ModeView{
     private MainMenu controller;
 

@@ -3,8 +3,10 @@ package xtrek;
 import java.util.EventObject;
 
 /**
+ * Speech Event Class
+ * 
  * @author Sebastien Michel
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class SpeechEvent extends EventObject {
     String speech;

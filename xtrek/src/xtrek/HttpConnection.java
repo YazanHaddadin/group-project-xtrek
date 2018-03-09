@@ -1,12 +1,3 @@
-/**
- * HttpConnection Class
- * <p>
- * Provides an HTTP connection for the TurnByTurn class.
- *
- * @author sebltm
- * @version Sprint1
- */
-
 package xtrek;
 
 import org.w3c.dom.CharacterData;
@@ -20,7 +11,14 @@ import java.io.*;
 import java.net.URL;
 import java.util.Map;
 
-
+/**
+ * HttpConnection Class
+ * <p>
+ * Provides an HTTP connection for the TurnByTurn, Map and Directions classes.
+ *
+ * @author sebltm
+ * @version Sprint 3
+ */
 class HttpConnection {
     private byte[] response;
 

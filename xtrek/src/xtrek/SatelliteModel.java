@@ -1,12 +1,3 @@
-/**
- * Satellite Class
- * <p>
- * Reads out the current coordinates of the device.
- *
- * @author Liam Vinson
- * @version Sprint 2
- */
-
 package xtrek;
 
 import java.io.BufferedReader;
@@ -15,8 +6,12 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 /**
+ * Satellite Class
+ * <p>
+ * Reads out the current coordinates of the device.
  *
- * @author liamvinson
+ * @author Liam Vinson
+ * @version Sprint 3
  */
 public class SatelliteModel extends ModeModel {
     

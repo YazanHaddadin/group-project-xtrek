@@ -1,3 +1,7 @@
+package xtrek;
+
+import java.awt.*;
+
 /**
  * Constants Class
  * <p>
@@ -5,12 +9,8 @@
  * project.
  *
  * @author Caleb Blackmore
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import java.awt.*;
-
 public class Constants {
     public static final int deviceWidth = 325;
     public static final int deviceHeight = 590;

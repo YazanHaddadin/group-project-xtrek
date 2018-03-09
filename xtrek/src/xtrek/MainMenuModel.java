@@ -1,11 +1,3 @@
-/**
- * Main Menu View Class
- * <p>
- * Provides the functionality of the buttons in the Main Menu class.
- *
- * @author Yazan Haddadin
- * @version Sprint 2
- */
 package xtrek;
 
 import javax.imageio.ImageIO;
@@ -13,6 +5,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Main Menu View Class
+ * <p>
+ * Provides the functionality of the buttons in the Main Menu class.
+ *
+ * @author Yazan Haddadin
+ * @version Sprint 3
+ */
 public class MainMenuModel extends ModeModel{
     private String display;
     ModeView view;

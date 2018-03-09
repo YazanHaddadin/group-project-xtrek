@@ -1,20 +1,19 @@
+package xtrek;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * ModeView class
  * <p>
  * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
  *
  * @author sebltm
- * @version Sprint 2
+ * @version Sprint 3
  * <p>
  * To use : extends ModeView
  * Implement displayMode() which needs to include your buttons, text labels, images, etc
  */
-package xtrek;
-
-import javax.swing.*;
-import java.awt.*;
-
-
 public abstract class ModeView {
     final JFrame frame;
     JPanel panel;

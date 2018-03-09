@@ -1,3 +1,8 @@
+package xtrek;
+
+import java.awt.*;
+import javax.swing.*;
+
 /**
  * WhereTo View Class
  * <p>
@@ -5,13 +10,8 @@
  * input their destination.
  *
  * @author Caleb Blackmore
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import java.awt.*;
-import javax.swing.*;
-
 public class WhereToView extends ModeView{
     private WhereTo controller;
     

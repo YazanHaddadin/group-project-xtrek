@@ -9,7 +9,7 @@ import java.awt.*;
  * needed
  *
  * @author Sebastien Michel
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class TurnByTurn extends Mode implements SpeechListener {
     private final TurnByTurnView TBTView;

@@ -1,3 +1,8 @@
+package xtrek;
+
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * XTrek class
  * <p>
@@ -5,13 +10,8 @@
  * Switches between the different modes in the software.
  *
  * @author Sebastien Michel
- * @version Sprint 2
+ * @version Sprint 3
  */
-package xtrek;
-
-import javax.swing.*;
-import java.awt.*;
-
 class Xtrek extends JFrame {
 
     static boolean isOn = true;

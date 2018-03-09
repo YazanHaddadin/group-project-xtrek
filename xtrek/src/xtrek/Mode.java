@@ -3,8 +3,10 @@ package xtrek;
 import javax.swing.*;
 
 /**
+ * Mode abstract class
+ * 
  * @author Sebastien Michel
- * @version Sprint 2
+ * @version Sprint 3
  */
 public abstract class Mode implements ButtonListener {
     ModeView view;

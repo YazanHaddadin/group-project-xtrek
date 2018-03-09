@@ -1,17 +1,16 @@
-/*
- * MapView class
- * <p>
- * The View for the Map MVC
- *
- * @author Alex Vale
- * @version Sprint 2
- */
 package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * MapView class
+ * <p>
+ * The View for the Map MVC
+ *
+ * @author Alex Vale
+ * @version Sprint 3
+ */
 public class MapView extends ModeView {
     private static JLabel label = new JLabel();
 

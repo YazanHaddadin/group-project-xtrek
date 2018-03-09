@@ -1,11 +1,3 @@
-/**
- * AboutView Class
- * <p>
- * Provides information about the device
- *
- * @author Liam Vinson
- * @version Sprint 2
- */
 package xtrek;
 
 import java.awt.GridBagConstraints;
@@ -14,8 +6,12 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 
 /**
+ * AboutView Class
+ * <p>
+ * Provides information about the device
  *
- * @author liamvinson
+ * @author Liam Vinson
+ * @version Sprint 3
  */
 public class AboutView extends ModeView {
     AboutPanel about = new AboutPanel();
