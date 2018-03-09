@@ -4,7 +4,7 @@
  * Provides the functionality of the buttons in the Main Menu class.
  *
  * @author Yazan Haddadin
- * @version Sprint 1
+ * @version Sprint 2
  */
 package xtrek;
 
