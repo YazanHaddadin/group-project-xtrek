@@ -13,8 +13,6 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.imageio.ImageIO;
-
 
 public abstract class ModeView {
     final JFrame frame;
