@@ -73,6 +73,19 @@ public class ControlLayout extends JPanel{
 
         onOff.setBounds(200, 110, 30, 30);
         onOff.setPreferredSize(new Dimension(30, 30));
+        
+        //Style power button
+        try {
+                Image img = ImageIO.read(getClass().getResource("assets/power.png"))
+                        .getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                onOff.setIcon(new ImageIcon(img));
+            }   catch (Exception ex) {
+                System.out.println(ex);
+            }  
+        
+        
+        
+        
         this.add(onOff);
 
         onOff.setVisible(true);
