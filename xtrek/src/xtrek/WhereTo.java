@@ -48,12 +48,20 @@ public class WhereTo extends Mode {
     }
     
     //Add a button to the model.
-    JButton addButton(String letter) {
-        return whereModel.addButton(letter);
+    JButton addButton(String letter, WhereTo.buttonType type) {
+        return whereModel.addButton(letter, type);
     }
     
     void giveFocus(JButton button) {
         whereModel.giveFocus((WhereToModel.KeyboardButton) button);
+    }
+    
+    public enum buttonType {
+        LETTER_NUMBER,
+        DEL,
+        SPACE,
+        NEXT_PAGE,
+        BACK_PAGE;
     }
     
     static void addToDestination(String letter) {

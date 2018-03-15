@@ -20,53 +20,60 @@ public class WhereToModel extends ModeModel {
     
     private WhereTo controller;
     
-    JButton addButton(String letter) {
-            KeyboardButton button = new KeyboardButton(letter);
+    JButton addButton(String letter, WhereTo.buttonType type) {
+            KeyboardButton button = new KeyboardButton(letter, type);
             buttons.add(button);
             return button;
         } 
     
     void selected(ButtonEvent evt) {
+        
         //Space button has been pressed
-        if ("_".equals(currentButton.getDisplayLabel())) {
+        if (currentButton.getButtonType() == WhereTo.buttonType.SPACE) {
             controller.addToDestination(" ");
         }
 
         //Next page button pressed
-        else if (">".equals(currentButton.getDisplayLabel())) {
+        else if (currentButton.getButtonType() == WhereTo.buttonType.NEXT_PAGE) {
             controller.hideLetterButtons();
             controller.showNumberButtons();
         }
 
         //Delete button pressed
-        else if ("DEL".equals(currentButton.getDisplayLabel())) {
+        else if (currentButton.getButtonType() == WhereTo.buttonType.DEL) {
             controller.deleteFromDestination();
         }
 
         //Previous page button has been pressed
-        else if ("<".equals(currentButton.getDisplayLabel())) {
+        else if (currentButton.getButtonType() == WhereTo.buttonType.BACK_PAGE) {
             controller.hideNumberButtons();
             controller.showLetterButtons();
         }
 
         //An ordinary letter or number button has been pressed
-        else {
+        else if (currentButton.getButtonType() == WhereTo.buttonType.LETTER_NUMBER) {
             controller.addToDestination(currentButton.getDisplayLabel());
         }
     }
     
     public class KeyboardButton extends JButton {
         private final String letter;
+        private final WhereTo.buttonType TYPE;
 
-        public KeyboardButton(String letter) {
+        public KeyboardButton(String letter, WhereTo.buttonType type) {
             super(letter);
             this.letter = letter;
+            this.TYPE = type;
             applyKeyboardButtonStyling();
         }
     
         
         public String getDisplayLabel() {
             return letter;
+        }
+        
+        public WhereTo.buttonType getButtonType() {
+            return TYPE;
         }
 
         //Set the background, font and border for each button.
