@@ -56,7 +56,8 @@ public class WhereTo extends Mode {
         whereModel.giveFocus((WhereToModel.KeyboardButton) button);
     }
     
-    public enum buttonType {
+    //Enumeration for the different types of keyboard button
+    enum buttonType {
         LETTER_NUMBER,
         DEL,
         SPACE,
