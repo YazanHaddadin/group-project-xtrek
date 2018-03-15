@@ -106,7 +106,7 @@ public class WhereToView extends ModeView{
         btnZ = controller.addButton("Z", WhereTo.buttonType.LETTER_NUMBER);
         
         btnSpace = controller.addButton("_", WhereTo.buttonType.SPACE);
-        btnNextPage = controller.addButton(">", WhereTo.buttonType.NEXT_PAGE);
+        btnNextPage = controller.addButton("\u2192", WhereTo.buttonType.NEXT_PAGE);
         
         btn1 = controller.addButton("1", WhereTo.buttonType.LETTER_NUMBER);
         btn2 = controller.addButton("2", WhereTo.buttonType.LETTER_NUMBER);
@@ -120,7 +120,7 @@ public class WhereToView extends ModeView{
         btn0 = controller.addButton("0", WhereTo.buttonType.LETTER_NUMBER);
         
         btnDel = controller.addButton("DEL", WhereTo.buttonType.DEL);
-        btnBackPage = controller.addButton("<", WhereTo.buttonType.BACK_PAGE);
+        btnBackPage = controller.addButton("\u2190", WhereTo.buttonType.BACK_PAGE);
         
         //Add destination to its own JPanel
         destination.setBackground(Color.WHITE);
