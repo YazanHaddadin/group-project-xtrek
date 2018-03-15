@@ -173,6 +173,10 @@ public class WhereTo extends Mode {
         whereView.btnBackPage.setVisible(false);
     }
     
+    public static String getCurrentDestination() {
+        return whereView.destination.getText();
+    }
+    
 
     //Main method allows the class to be tested seperately while work is being done on the Main Menu
     //For testing purposes only
