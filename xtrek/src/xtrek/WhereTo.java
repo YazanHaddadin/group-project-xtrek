@@ -176,38 +176,4 @@ public class WhereTo extends Mode {
     public static String getCurrentDestination() {
         return whereView.destination.getText();
     }
-    
-
-    //Main method allows the class to be tested seperately while work is being done on the Main Menu
-    //For testing purposes only
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        Container c = frame.getContentPane();
-        frame.setLocationRelativeTo(null);
-
-        //Dimensions are in pixels, need to be mm
-        frame.setResizable(true);
-        frame.setLayout(new GridBagLayout());
-
-        GridBagConstraints con = new GridBagConstraints();
-
-        c.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        Mode currentView = new WhereTo(frame);
-        ControlLayout controlPanel = new ControlLayout(frame, currentView);
-
-        currentView.displayMode();
-        currentView.show();
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        frame.getContentPane().add(controlPanel.getPanel(), con);
-
-        frame.pack();
-        frame.validate();
-        frame.setVisible(true);
-    }
 }
