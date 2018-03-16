@@ -31,7 +31,7 @@ public class TripComputerView extends ModeView{
     
     @Override
     public void displayMode() {
-        frame.setTitle("Trip Computer");
+        frame.setTitle("XTrek");
 
         GridBagConstraints c = new GridBagConstraints();
 

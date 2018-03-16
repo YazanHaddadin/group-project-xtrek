@@ -34,7 +34,7 @@ public class SatelliteView extends ModeView {
 
     @Override
     public void displayMode() {
-        frame.setTitle("Satellite");
+        frame.setTitle("XTrek");
         
         GridBagConstraints c = new GridBagConstraints();
         

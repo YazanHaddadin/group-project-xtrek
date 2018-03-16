@@ -76,7 +76,7 @@ public class WhereToView extends ModeView{
     
     @Override
     public void displayMode() {
-        frame.setTitle("Where To?");
+        frame.setTitle("XTrek");
         
         btnA = controller.addButton("A", WhereTo.buttonType.LETTER_NUMBER);
         btnB = controller.addButton("B", WhereTo.buttonType.LETTER_NUMBER);

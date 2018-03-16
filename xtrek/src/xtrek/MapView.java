@@ -36,7 +36,7 @@ public class MapView extends ModeView {
     
     @Override
     public void displayMode() {
-        frame.setTitle("Map");
+        frame.setTitle("XTrek");
 
         GridBagConstraints con = new GridBagConstraints();
         con.gridx = 0;

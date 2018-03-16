@@ -23,7 +23,7 @@ public class TurnByTurnView extends ModeView {
 
     @Override
     public void displayMode() {
-        frame.setTitle("Turn-By-Turn");
+        frame.setTitle("XTrek");
 
         JButton bOff = controller.addButton(TurnByTurn.Language.OFF, TurnByTurn.Gender.MALE);
         JButton bEng = controller.addButton(TurnByTurn.Language.ENGLISH, TurnByTurn.Gender.MALE);

@@ -30,7 +30,7 @@ public class MainMenuView extends ModeView{
     @Override
     public void displayMode() {
         //this is the actual display of the Main Menu mode
-        frame.setTitle("Main Menu");
+        frame.setTitle("XTrek");
 
         JButton whereTo      = controller.addButton("whereto", WhereTo.class);
         JButton tripComputer = controller.addButton("tripcomputer", TripComputer.class);

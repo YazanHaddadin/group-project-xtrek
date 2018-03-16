@@ -47,7 +47,7 @@ public class ControlLayout extends JPanel{
     }
 
     public void displayMode() {
-        frame.setTitle("Control Layout");
+        frame.setTitle("XTrek");
 
         //seperate panel for the control buttons
         this.setLayout(null);

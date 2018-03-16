@@ -23,7 +23,7 @@ public class AboutView extends ModeView {
 
     @Override
     public void displayMode() {
-        frame.setTitle("About");
+        frame.setTitle("XTrek");
         
         GridBagConstraints c = new GridBagConstraints();
         
