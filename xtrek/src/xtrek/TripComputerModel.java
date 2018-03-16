@@ -18,22 +18,26 @@ public class TripComputerModel extends ModeModel{
     static String mtLabel;
     static String odoLabel;
     
-    static float lastLatitude;
-    static float lastLongitude;
+    static float lastLatitude = (float) 0.00;
+    static float lastLongitude = (float) 0.00;
     
     void plus(ButtonEvent evt) {
-        //This button is disabled, so no code here. 
-        //But this placeholder needs to be here due to the interface.
+        /*
+         * In this mode, the plus button is disabled.
+         */
+        
     }
 
     void minus(ButtonEvent evt) {
-        //This button is disabled, so no code here. 
-        //But this placeholder needs to be here due to the interface.
+        /*
+         * In this mode, the minus button is disabled.
+         */
     }
     
     void selected(ButtonEvent evt) {
-        //No selecting in this mode. 
-        //But this placeholder needs to be here due to the interface.
+        /*
+         * In this mode, the select button is disabled.
+         */
     }
     
     //Class for incrementing the number of seconds the device has been moving every second.
@@ -84,13 +88,20 @@ public class TripComputerModel extends ModeModel{
     
     //Determine if the device is moving or not.
     public static boolean determineIfMoving() {
-        float currentLatitude;
-        float currentLongitude;
+        float currentLatitude = 0;
+        float currentLongitude = 0;
         
         SatelliteModel sat = new SatelliteModel();
         
-        currentLatitude = sat.getLatitude();
-        currentLongitude = sat.getLongitude();
+        try {
+            currentLatitude = sat.getLatitude();
+            currentLongitude = sat.getLongitude();
+        } catch (Exception e) {
+            /* 
+             * Code for handling the exception will go here...
+             */
+        }
+        
         
         if(currentLatitude != lastLatitude) {
             //Update last values and return true
