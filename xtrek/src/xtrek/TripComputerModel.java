@@ -18,6 +18,9 @@ public class TripComputerModel extends ModeModel{
     static String mtLabel;
     static String odoLabel;
     
+    static float lastLatitude;
+    static float lastLongitude;
+    
     void plus(ButtonEvent evt) {
         //This button is disabled, so no code here. 
         //But this placeholder needs to be here due to the interface.
@@ -41,11 +44,13 @@ public class TripComputerModel extends ModeModel{
         static int numberOfSeconds = 0;
         
         public void run() {
+            if (determineIfMoving()) {
             secondsCounter++; 
             numberOfMinutes = secondsCounter/60;
             numberOfSeconds = secondsCounter%60;
             mtLabel = (numberOfMinutes + " min " + numberOfSeconds + " sec");
             TripComputer.updateMovingTime(mtLabel);
+            }
         }
     }
     
@@ -56,8 +61,7 @@ public class TripComputerModel extends ModeModel{
         
     }
     
-    //Class for increasing the trip odometer every 10 seconds, to simulate movement.
-    //Later, this will be based on satellite information from the device.
+    //If the satellite coordinates are changing, moving time will be increased.
     static class IncreaseTripOdometer extends TimerTask {
 
         static double kmTravelled = 0;
@@ -76,5 +80,35 @@ public class TripComputerModel extends ModeModel{
     public void increaseTripOdometer() {
         Timer odoTimer = new Timer();
         odoTimer.schedule(new TripComputerModel.IncreaseTripOdometer(), 0, 10000);
+    }
+    
+    //Determine if the device is moving or not.
+    public static boolean determineIfMoving() {
+        float currentLatitude;
+        float currentLongitude;
+        
+        SatelliteModel sat = new SatelliteModel();
+        
+        currentLatitude = sat.getLatitude();
+        currentLongitude = sat.getLongitude();
+        
+        if(currentLatitude != lastLatitude) {
+            //Update last values and return true
+            lastLatitude = currentLatitude;
+            lastLongitude = currentLatitude;
+            return true;
+        }
+        else if (currentLongitude != lastLongitude) {
+            //Update last values and return true
+            lastLatitude = currentLatitude;
+            lastLongitude = currentLatitude;
+            return true;
+        }
+        else {
+            //Update last values and return false as not moving
+            lastLatitude = currentLatitude;
+            lastLongitude = currentLatitude;
+            return false;
+        }
     }
 }

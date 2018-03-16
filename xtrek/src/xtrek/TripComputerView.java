@@ -15,7 +15,7 @@ import javax.swing.*;
 public class TripComputerView extends ModeView{
     private TripComputer controller;
     
-    private int fontSize = 26;
+    private final int fontSize = 26;
     
     JPanel odometerPanel = new JPanel();
     JLabel odometerLabel = new JLabel("Trip Odometer:");
