@@ -17,6 +17,7 @@ public class Directions {
     //Default values, will be used if not overriden in the method call.
     static String origin = "Exeter, UK";
     static String dest = "Loughborough, UK";
+    OnGPSUpdateListener listener;
     
     static HashMap<String, String> requestProperties = new HashMap<>();
     static String body;
@@ -46,5 +47,9 @@ public class Directions {
             return null;
         }
         
+    }
+
+    public void setListener(OnGPSUpdateListener listener) {
+        this.listener = listener;
     }
 }
