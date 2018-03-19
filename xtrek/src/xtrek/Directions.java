@@ -59,6 +59,7 @@ public class Directions implements OnGPSUpdateListener{
         String latitudeQuery;
         String longitudeQuery;
         
+        //Add the + or - to latitude
         if(latitudeDirection == "NORTH") {
             latitudeQuery = "+";
         }
@@ -68,6 +69,7 @@ public class Directions implements OnGPSUpdateListener{
         
         latitudeQuery = latitudeQuery + Float.toString(latitude);
         
+        //Add the + or - to longitude
         if(longitudeDirection == "EAST") {
             longitudeQuery = "+";
         }
@@ -77,8 +79,8 @@ public class Directions implements OnGPSUpdateListener{
         
         longitudeQuery = longitudeQuery + Float.toString(longitude);
         
-        String queryToMake = latitudeQuery + "," + longitudeQuery;
-        
+        //Make overall query string and send to getDirections method
+        String queryToMake = latitudeQuery + "," + longitudeQuery;      
         getDirections(queryToMake, WhereTo.getCurrentDestination());
     }
 }
