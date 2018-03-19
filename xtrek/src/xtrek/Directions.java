@@ -60,7 +60,7 @@ public class Directions implements OnGPSUpdateListener{
         String longitudeQuery;
         
         //Add the + or - to latitude
-        if(latitudeDirection == "NORTH") {
+        if("NORTH".equals(latitudeDirection)) {
             latitudeQuery = "+";
         }
         else {
@@ -70,7 +70,7 @@ public class Directions implements OnGPSUpdateListener{
         latitudeQuery = latitudeQuery + Float.toString(latitude);
         
         //Add the + or - to longitude
-        if(longitudeDirection == "EAST") {
+        if("EAST".equals(longitudeDirection)) {
             longitudeQuery = "+";
         }
         else {
