@@ -1,8 +1,7 @@
 package xtrek;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EventListener;
 
-interface OnGPSUpdateListener {
-    void onGPSUpdate(ArrayList<HashMap<Float, String>> data);
+interface OnGPSUpdateListener extends EventListener {
+    void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection);
 }

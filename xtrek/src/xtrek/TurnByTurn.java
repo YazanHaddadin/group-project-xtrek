@@ -11,7 +11,7 @@ import java.awt.*;
  * @author Sebastien Michel
  * @version Sprint 3
  */
-public class TurnByTurn extends Mode implements SpeechListener {
+public class TurnByTurn extends Mode implements OnDirectionsUpdateListener {
     private final TurnByTurnView TBTView;
     private final TurnByTurnModel TBTModel;
 
