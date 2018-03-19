@@ -1,11 +1,3 @@
-package xtrek;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-
 /**
  * Satellite Class
  * <p>
@@ -14,6 +6,14 @@ import java.util.ArrayList;
  * @author Liam Vinson
  * @version Sprint 3
  */
+package xtrek;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public class SatelliteModel extends ModeModel {
 
     private Float latitude;
