@@ -23,7 +23,7 @@ public class SatelliteModel extends ModeModel {
     
     Boolean flag;
     Thread thread = new Thread(new Reader());
-    ArrayList listeners = new ArrayList();
+    ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
     
     public class Reader implements Runnable {
         @Override
@@ -86,6 +86,14 @@ public class SatelliteModel extends ModeModel {
     
     public void setListener(OnGPSUpdateListener listener){
         listeners.add(listener);
+    }
+    
+    public void callListener() {
+        int n = listeners.size();
+        int i;
+        for(i=0; i<n; i++){
+            listeners.get(i).onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
+        }
     }
 
     @Override
