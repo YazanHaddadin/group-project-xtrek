@@ -2,6 +2,7 @@ package xtrek;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -13,7 +14,7 @@ import java.util.HashMap;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class Directions {
+public class Directions implements OnGPSUpdateListener{
     //Default values, will be used if not overriden in the method call.
     static String origin = "Exeter, UK";
     static String dest = "Loughborough, UK";
@@ -51,5 +52,33 @@ public class Directions {
 
     public void setListener(OnGPSUpdateListener listener) {
         this.listener = listener;
+    }
+
+    @Override
+    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        String latitudeQuery;
+        String longitudeQuery;
+        
+        if(latitudeDirection == "NORTH") {
+            latitudeQuery = "+";
+        }
+        else {
+            latitudeQuery = "-";
+        }
+        
+        latitudeQuery = latitudeQuery + Float.toString(latitude);
+        
+        if(longitudeDirection == "EAST") {
+            longitudeQuery = "+";
+        }
+        else {
+            longitudeQuery = "-";
+        }
+        
+        longitudeQuery = longitudeQuery + Float.toString(longitude);
+        
+        String queryToMake = latitudeQuery + "," + longitudeQuery;
+        
+        getDirections(queryToMake, WhereTo.getCurrentDestination());
     }
 }
