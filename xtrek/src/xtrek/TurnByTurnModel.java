@@ -21,6 +21,7 @@ class TurnByTurnModel extends ModeModel {
     private String language;
     private LangButton currentButton;
     private int buttonIndex = 0;
+    private ArrayList<HashMap<Float, String>> data;
 
     private String translateSegment(String segment) {
         String key1 = "b496988cc4d34a69a1410c097a7e56ca";

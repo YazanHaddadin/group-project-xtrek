@@ -14,11 +14,11 @@ import java.io.InputStreamReader;
  * @version Sprint 3
  */
 public class SatelliteModel extends ModeModel {
-    
-    Float latitude;
-    String latitudeDirection;
-    Float longitude;
-    String longitudeDirection;
+
+    private Float latitude;
+    private String latitudeDirection;
+    private Float longitude;
+    private String longitudeDirection;
     
     Boolean flag;
     
