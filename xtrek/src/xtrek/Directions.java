@@ -1,5 +1,7 @@
 package xtrek;
 
+import org.json.simple.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -82,5 +84,20 @@ public class Directions implements OnGPSUpdateListener{
         //Make overall query string and send to getDirections method
         String queryToMake = latitudeQuery + "," + longitudeQuery;      
         getDirections(queryToMake, WhereTo.getCurrentDestination());
+    }
+
+    class Route {
+        private ArrayList<Step> steps = new ArrayList<>();
+        private String warning = null;
+
+        Route(JSONObject data) {
+
+        }
+
+        class Step {
+            private Float start;
+            private Float stop;
+            private String instructions;
+        }
     }
 }
