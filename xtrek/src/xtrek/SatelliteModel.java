@@ -1,10 +1,3 @@
-package xtrek;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-
 /**
  * Satellite Class
  * <p>
@@ -13,6 +6,14 @@ import java.io.InputStreamReader;
  * @author Liam Vinson
  * @version Sprint 3
  */
+package xtrek;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 public class SatelliteModel extends ModeModel {
 
     private Float latitude;
@@ -21,8 +22,8 @@ public class SatelliteModel extends ModeModel {
     private String longitudeDirection;
     
     Boolean flag;
-    
     Thread thread = new Thread(new Reader());
+    ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
     
     public class Reader implements Runnable {
         @Override
@@ -82,20 +83,26 @@ public class SatelliteModel extends ModeModel {
     public String getLongitudeDirection(){
         return longitudeDirection;
     }
-
-    @Override
-    void plus(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public void setListener(OnGPSUpdateListener listener){
+        listeners.add(listener);
+    }
+    
+    public void callListener() {
+        int n = listeners.size();
+        int i;
+        for(i=0; i<n; i++){
+            listeners.get(i).onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
+        }
     }
 
     @Override
-    void minus(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    void plus(ButtonEvent evt) {}
 
     @Override
-    void selected(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    void minus(ButtonEvent evt) {}
+
+    @Override
+    void selected(ButtonEvent evt) {}
     
 }
