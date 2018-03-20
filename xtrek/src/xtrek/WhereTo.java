@@ -16,6 +16,7 @@ public class WhereTo extends Mode {
     
     private static WhereToView whereView;
     private static WhereToModel whereModel;
+    OnChangeDestinationListener listener;
     
     WhereTo(JFrame frame) {
         model = new WhereToModel();
@@ -23,6 +24,10 @@ public class WhereTo extends Mode {
 
         whereModel = (WhereToModel) model;
         whereView = (WhereToView) view;
+    }
+    
+    public void setListener(OnChangeDestinationListener listener) {
+        this.listener = listener;
     }
     
     @Override
