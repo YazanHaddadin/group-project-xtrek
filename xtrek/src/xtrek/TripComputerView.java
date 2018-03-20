@@ -1,7 +1,7 @@
 package xtrek;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * TripComputer View Class
@@ -57,13 +57,13 @@ public class TripComputerView extends ModeView{
         movingTimePanel.setBackground(Color.WHITE);
 
         //Set correct font for each label.
-        odometerLabel.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
-        speedLabel.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
-        movingTimeLabel.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
+        odometerLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
+        speedLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
+        movingTimeLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
 
-        odometerReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
-        speedReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
-        movingTimeReading.setFont(new Font(Constants.systemFont, Font.BOLD, fontSize));
+        odometerReading.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
+        speedReading.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
+        movingTimeReading.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
 
         //Add labels to each panel
         odometerPanel.add(odometerLabel);

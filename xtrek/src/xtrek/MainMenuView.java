@@ -1,11 +1,7 @@
 package xtrek;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Main Menu View Class
@@ -37,10 +33,10 @@ public class MainMenuView extends ModeView{
         JButton map          = controller.addButton("map", Map.class);
         JButton speech       = controller.addButton("speech", TurnByTurn.class);
         JButton satellite    = controller.addButton("satellite", Satellite.class);
-        JButton about        = controller.addButton("about", About.class);    
-        
-        
-        //using GridBagConstraints to adapt to different screen sizes
+        JButton about        = controller.addButton("about", About.class);
+
+
+        //using GridBagConstraints to adapt to different SCREEN sizes
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;

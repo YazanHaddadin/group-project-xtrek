@@ -1,12 +1,12 @@
 package xtrek;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * WhereTo View Class
  * <p>
- * Provides the view for the keyboard on the XTrek device, where the user will
+ * Provides the view for the keyboard on the XTrek DEVICE, where the user will
  * input their destination.
  *
  * @author Caleb Blackmore
@@ -124,7 +124,7 @@ public class WhereToView extends ModeView{
         
         //Add destination to its own JPanel
         destination.setBackground(Color.WHITE);
-        destination.setFont(new Font(Constants.systemFont, Font.BOLD, 22));
+        destination.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 22));
         destination.setBorder(null);
         destination.setOpaque(true);
         destination.setEditable(false);
@@ -300,8 +300,8 @@ public class WhereToView extends ModeView{
         panel.add(btnDel, c);
         
         //Initial keyboard set up
-        controller.showLetterButtons();
-        controller.hideNumberButtons();
+        WhereTo.showLetterButtons();
+        WhereTo.hideNumberButtons();
 
         panel.validate();
         panel.setVisible(true);

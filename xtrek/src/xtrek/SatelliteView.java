@@ -1,15 +1,12 @@
 package xtrek;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * SatelliteView Class
  * <p>
- * Reads out the current coordinates of the device.
+ * Reads out the current coordinates of the DEVICE.
  *
  * @author Liam Vinson
  * @version Sprint 3

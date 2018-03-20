@@ -7,7 +7,7 @@ import java.awt.*;
  * Map Controller class
  * <p>
  * Provides communication between the map view and model.
- * Shows a map on the screen of the device, where the user will be able to see
+ * Shows a map on the SCREEN of the DEVICE, where the user will be able to see
  * their current location.
  *
  * @author Alex Vale

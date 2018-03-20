@@ -1,7 +1,7 @@
 /**
  * Satellite Class
  * <p>
- * Reads out the current coordinates of the device.
+ * Reads out the current coordinates of the DEVICE.
  *
  * @author Liam Vinson
  * @version Sprint 3
@@ -29,7 +29,7 @@ public class SatelliteModel extends ModeModel {
         @Override
         public void run() {
             try{
-                FileInputStream in = new FileInputStream(new File(Constants.dongleLocation));
+                FileInputStream in = new FileInputStream(new File(Constants.DONGLE_LOCATION));
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String line;
 

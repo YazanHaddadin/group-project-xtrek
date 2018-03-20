@@ -21,7 +21,7 @@ public class MapModel extends ModeModel {
     private static String LATITUDE = "50.7184";     /* Inputted latitude - default Exeter - will be changed to current location  */
     private static String LONGITUDE = "-3.5339";     /* Inputted Longitude - default Exeter - will be changed to current location */
     private static String ZOOM = "17";           /* 0 .. 21           */
-    private static String SIZE = Constants.screenWidth + "x" + Constants.screenHeight;
+    private static String SIZE = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
     private Timer timer = null;
     private UpdateMap mapUpdater = new UpdateMap();
     private Map controller;
@@ -106,7 +106,7 @@ public class MapModel extends ModeModel {
                     + "&zoom=" + ZOOM
                     + "&size=" + SIZE
                     + "&markers=" + LATITUDE + "," + LONGITUDE
-                    + "&key=" + Constants.GoogleMapAPI, "POST", new HashMap<>(), "");
+                    + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
 
             ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
 

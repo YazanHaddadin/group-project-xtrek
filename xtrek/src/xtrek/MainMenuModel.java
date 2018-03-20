@@ -89,7 +89,7 @@ public class MainMenuModel extends ModeModel{
             setOpaque(true); 
             setBackground(Color.BLACK);
             setBorderPainted(false);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 14));
+            setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 14));
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 

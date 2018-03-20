@@ -1,14 +1,12 @@
 package xtrek;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * AboutView Class
  * <p>
- * Provides information about the device
+ * Provides information about the DEVICE
  *
  * @author Liam Vinson
  * @version Sprint 3

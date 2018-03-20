@@ -1,7 +1,7 @@
 package xtrek;
 
 import javax.swing.*;
-import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * WhereTo Controller Class
@@ -16,6 +16,8 @@ public class WhereTo extends Mode {
     
     private static WhereToView whereView;
     private static WhereToModel whereModel;
+    static OnChangeDestinationListener listener;
+    static ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
     
     WhereTo(JFrame frame) {
         model = new WhereToModel();
@@ -23,6 +25,20 @@ public class WhereTo extends Mode {
 
         whereModel = (WhereToModel) model;
         whereView = (WhereToView) view;
+    }
+
+    public static void callListener() {
+        int n = listeners.size();
+        int i;
+        for (i = 0; i < n; i++) {
+            listeners.get(i).onChangeDestination(WhereToView.destination.getText());
+        }
+    }
+
+    static void addToDestination(String letter) {
+        //Add the typed letter to the destination field
+        WhereToView.destination.setText(WhereToView.destination.getText() + letter);
+        callListener();
     }
     
     @Override
@@ -56,25 +72,20 @@ public class WhereTo extends Mode {
         whereModel.giveFocus((WhereToModel.KeyboardButton) button);
     }
     
-    //Enumeration for the different types of keyboard button
-    enum buttonType {
-        LETTER_NUMBER,
-        DEL,
-        SPACE,
-        NEXT_PAGE,
-        BACK_PAGE;
-    }
-    
-    static void addToDestination(String letter) {
-        //Add the typed letter to the destination field
-        WhereToView.destination.setText(WhereToView.destination.getText() + letter);
-    }
-    
     static void deleteFromDestination() {
         // Delete 1 character from the destination field
         if (WhereToView.destination.getText().length() > 0) {
             WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
+            callListener();
         }
+    }
+
+    public static String getCurrentDestination() {
+        return WhereToView.destination.getText();
+    }
+
+    public void setListener(OnChangeDestinationListener listener) {
+        WhereTo.listener = listener;
     }
     
     static void hideLetterButtons() {
@@ -172,8 +183,13 @@ public class WhereTo extends Mode {
         whereView.btnDel.setVisible(false);
         whereView.btnBackPage.setVisible(false);
     }
-    
-    public static String getCurrentDestination() {
-        return whereView.destination.getText();
+
+    //Enumeration for the different types of keyboard button
+    enum buttonType {
+        LETTER_NUMBER,
+        DEL,
+        SPACE,
+        NEXT_PAGE,
+        BACK_PAGE
     }
 }
