@@ -23,9 +23,8 @@ class TurnByTurnModel extends ModeModel {
     private TurnByTurn.Language language = TurnByTurn.Language.ENGLISH;
     private LangButton currentButton;
     private int buttonIndex = 0;
-    private ArrayList<HashMap<Float, String>> data;
 
-    String normaliseSentence(String sentence) {
+    private String normaliseSentence(String sentence) {
         LinkedHashMap<String, String> abb = new LinkedHashMap<>();
         abb.put("Aly", "Alley");
         abb.put("Apt", "Apartment");
