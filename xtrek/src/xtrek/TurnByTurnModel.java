@@ -44,9 +44,8 @@ class TurnByTurnModel extends ModeModel {
     }
 
     private byte[] downloadNextSegment(String segment) {
-        String key1 = "b496988cc4d34a69a1410c097a7e56ca";
         HashMap<String, String> requestProp = new HashMap<>();
-        requestProp.put("Ocp-Apim-Subscription-Key", key1);
+        requestProp.put("Ocp-Apim-Subscription-Key", Constants.MICROSOFT_VOICE_API);
         HttpConnection conn = new HttpConnection(
                 "https://api.microsofttranslator.com/V2/Http.svc/Speak?" +
                         "text=" + segment.replaceAll("\\s+", "%20") + "&" +
@@ -149,7 +148,7 @@ class TurnByTurnModel extends ModeModel {
             setFocusPainted(false);
             setBorderPainted(false);
             setBackground(Color.WHITE);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 30));
+            setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 30));
             setHorizontalAlignment(SwingConstants.LEFT);
 
             setVisible(true);

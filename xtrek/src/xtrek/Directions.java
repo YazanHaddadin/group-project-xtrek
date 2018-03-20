@@ -39,8 +39,8 @@ public class Directions implements OnGPSUpdateListener{
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
                     + "&" + "destination" + "=" + URLEncoder.encode(dest, "UTF-8")
-                    + "&" + "region" + "=" + Constants.directionsRegion
-                    + "&" + "mode" + "=" + Constants.travelMode)
+                    + "&" + "region" + "=" + Constants.DIRECTIONS_REGION
+                    + "&" + "mode" + "=" + Constants.TRAVEL_MODE)
                     + "key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
             
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);

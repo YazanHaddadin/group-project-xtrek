@@ -22,10 +22,10 @@ public abstract class ModeView {
         this.frame = frame;
         //Dimensions are in pixels, need to be mm
         panel = new JPanel();
-        panel.setPreferredSize(Constants.screen);
-        panel.setBounds(50, 150, Constants.screenWidth, Constants.screenHeight);
-        panel.setPreferredSize(Constants.screen);
-        panel.setMaximumSize(Constants.screen);
+        panel.setPreferredSize(Constants.SCREEN);
+        panel.setBounds(50, 150, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        panel.setPreferredSize(Constants.SCREEN);
+        panel.setMaximumSize(Constants.SCREEN);
         panel.setBackground(Color.BLACK);
     }
 

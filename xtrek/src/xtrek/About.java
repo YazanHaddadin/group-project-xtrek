@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * About Class
  * <p>
- * Provides information about the device
+ * Provides information about the DEVICE
  *
  * @author Liam Vinson
  * @version Sprint 3

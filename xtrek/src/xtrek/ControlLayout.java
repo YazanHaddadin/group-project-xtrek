@@ -3,8 +3,6 @@ package xtrek;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -51,7 +49,7 @@ public class ControlLayout extends JPanel{
 
         //seperate panel for the control buttons
         this.setLayout(null);
-        this.setPreferredSize(Constants.device);
+        this.setPreferredSize(Constants.DEVICE);
 
         //add the control buttons to the new panel created
         Dimension buttonSize = new Dimension(15, 40);
@@ -98,14 +96,14 @@ public class ControlLayout extends JPanel{
         listener = currentMode;
 
         JPanel overlayPanel = new JPanel();
-        overlayPanel.setPreferredSize(Constants.device);
-        overlayPanel.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+        overlayPanel.setPreferredSize(Constants.DEVICE);
+        overlayPanel.setBounds(0, 0, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
         overlayPanel.setLayout(null);
         overlayPanel.setBackground(Color.BLACK);
         JLabel overlay = new JLabel();
         try {
             Image img = ImageIO.read(getClass().getResource("assets/display.png"));
-            overlay.setBounds(0, 0, Constants.deviceWidth, Constants.deviceHeight);
+            overlay.setBounds(0, 0, Constants.DEVICE_WIDTH, Constants.DEVICE_HEIGHT);
             overlay.setIcon(new ImageIcon(img));
             overlayPanel.add(overlay);
             this.add(overlayPanel);
@@ -134,12 +132,12 @@ public class ControlLayout extends JPanel{
                     switch (control) {
                         case "PWR":
                             if (Xtrek.isOn) {
-                                //turns the screen back off making the current view invisible but leaving the operator buttons visible
+                                //turns the SCREEN back off making the current view invisible but leaving the operator buttons visible
                                 Xtrek.hideCurrentView();
                                 disableOPButton(); //disables all buttons but the power button
                                 Xtrek.isOn = false;
                             } else if (!Xtrek.isOn) {
-                                //turns the screen back on making the current view visible
+                                //turns the SCREEN back on making the current view visible
                                 Xtrek.showCurrentView();
                                 enableOPButton(); //enables all disabled buttons
                                 Xtrek.isOn = true;
@@ -176,7 +174,7 @@ public class ControlLayout extends JPanel{
             setOpaque(false);
             setContentAreaFilled(false);
             setBorderPainted(false);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 5));
+            setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 5));
             setHorizontalAlignment(SwingConstants.CENTER);
         }
 

@@ -1,14 +1,14 @@
 package xtrek;
 
-import java.awt.*;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * WhereTo Model Class
  * <p>
- * Manages the behaviour of the keyboard on the XTrek device, where the user
+ * Manages the behaviour of the keyboard on the XTrek DEVICE, where the user
  * will input their destination.
  *
  * @author Caleb Blackmore
@@ -30,29 +30,29 @@ public class WhereToModel extends ModeModel {
         
         //Space button has been pressed
         if (currentButton.getButtonType() == WhereTo.buttonType.SPACE) {
-            controller.addToDestination(" ");
+            WhereTo.addToDestination(" ");
         }
 
         //Next page button pressed
         else if (currentButton.getButtonType() == WhereTo.buttonType.NEXT_PAGE) {
-            controller.hideLetterButtons();
-            controller.showNumberButtons();
+            WhereTo.hideLetterButtons();
+            WhereTo.showNumberButtons();
         }
 
         //Delete button pressed
         else if (currentButton.getButtonType() == WhereTo.buttonType.DEL) {
-            controller.deleteFromDestination();
+            WhereTo.deleteFromDestination();
         }
 
         //Previous page button has been pressed
         else if (currentButton.getButtonType() == WhereTo.buttonType.BACK_PAGE) {
-            controller.hideNumberButtons();
-            controller.showLetterButtons();
+            WhereTo.hideNumberButtons();
+            WhereTo.showLetterButtons();
         }
 
         //An ordinary letter or number button has been pressed
         else if (currentButton.getButtonType() == WhereTo.buttonType.LETTER_NUMBER) {
-            controller.addToDestination(currentButton.getDisplayLabel());
+            WhereTo.addToDestination(currentButton.getDisplayLabel());
         }
     }
     
@@ -80,7 +80,7 @@ public class WhereToModel extends ModeModel {
         private void applyKeyboardButtonStyling() {
             setOpaque(true);
             setBackground(Color.WHITE);
-            setFont(new Font(Constants.systemFont, Font.BOLD, 22));
+            setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 22));
             setFocusable(false);
             setFocusPainted(false);
             setBorder(new LineBorder(Color.BLACK));

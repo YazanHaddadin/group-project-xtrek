@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * XTrek class
  * <p>
- * Provides a main method for starting the device and running the software.
+ * Provides a main method for starting the DEVICE and running the software.
  * Switches between the different modes in the software.
  *
  * @author Sebastien Michel

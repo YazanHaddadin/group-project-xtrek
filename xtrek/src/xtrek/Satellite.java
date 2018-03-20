@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 /**
  * Satellite Class
  * <p>
- * Reads out the current coordinates of the device.
+ * Reads out the current coordinates of the DEVICE.
  *
  * @author Liam Vinson
  * @version Sprint 3
