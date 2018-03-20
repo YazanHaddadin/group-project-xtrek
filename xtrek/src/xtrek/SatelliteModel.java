@@ -16,14 +16,41 @@ import java.util.ArrayList;
 
 public class SatelliteModel extends ModeModel {
 
-    private Float latitude;
     private String latitudeDirection;
-    private Float longitude;
     private String longitudeDirection;
     
     Boolean flag;
     Thread thread = new Thread(new Reader());
     ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
+
+    public void callListener(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        int n = listeners.size();
+        int i;
+        for (OnGPSUpdateListener listener : listeners) {
+            listener.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
+        }
+    }
+
+    public void startThread() {
+        flag = true;
+        thread.start();
+    }
+
+    public void stopThread() {
+        flag = false;
+    }
+    
+    public String getLatitudeDirection() {
+        return latitudeDirection;
+    }
+
+    public String getLongitudeDirection() {
+        return longitudeDirection;
+    }
+
+    public void setListener(OnGPSUpdateListener listener) {
+        listeners.add(listener);
+    }
     
     public class Reader implements Runnable {
         @Override
@@ -40,59 +67,27 @@ public class SatelliteModel extends ModeModel {
                         System.out.println(line);
                         String[] splits = line.split(",");
                         if(splits[1].equals("") || splits[2].equals("") || splits[3].equals("") || splits[4].equals("")) {
-                            latitude = null;
-                            latitudeDirection =null;
-                            longitude = null;
-                            longitudeDirection = null;
+                            //Skip
                         } else {
                             latitudeDirection = splits[2];
                             longitudeDirection = splits[4];
-                            
-                            latitude = Float.parseFloat(splits[1])/100;
-                            longitude = Float.parseFloat(splits[3])/100;
+
+                            Integer latDeg = Integer.parseInt(splits[1]) % 100;
+                            Integer lonDeg = Integer.parseInt(splits[3]) % 100;
+
+                            Float latMin = (Float.parseFloat(splits[1]) - latDeg) / 60;
+                            Float lonMin = (Float.parseFloat(splits[1]) - lonDeg) / 60;
+
+                            Float latitude = latDeg + latMin;
+                            Float longitude = lonDeg + lonMin;
+
+                            callListener(latitude, longitude, latitudeDirection, longitudeDirection);
                         }
                     }
                 }
             } catch (Exception ex) {
                 System.out.println(ex);
             }
-        }
-    }
-    
-    public void startThread(){
-        flag = true;
-        thread.start();
-    }
-    
-    public void stopThread(){
-        flag = false;
-    }
-    
-    public Float getLatitude() {
-        return latitude;
-    }
-    
-    public Float getLongitude() {
-        return longitude;
-    }
-    
-    public String getLatitudeDirection(){
-        return latitudeDirection;
-    }
-    
-    public String getLongitudeDirection(){
-        return longitudeDirection;
-    }
-    
-    public void setListener(OnGPSUpdateListener listener){
-        listeners.add(listener);
-    }
-    
-    public void callListener() {
-        int n = listeners.size();
-        int i;
-        for(i=0; i<n; i++){
-            listeners.get(i).onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
         }
     }
 
