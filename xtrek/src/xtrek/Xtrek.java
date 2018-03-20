@@ -27,7 +27,7 @@ class Xtrek extends JFrame {
      * @param args the command line arguments
      */
     private static Xtrek xtrek;
-    private static Mode currentView;
+    public static Mode currentView;
 
     private Xtrek() {
         this.setLocationRelativeTo(null);
