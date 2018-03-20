@@ -2,6 +2,7 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * WhereTo Controller Class
@@ -16,7 +17,8 @@ public class WhereTo extends Mode {
     
     private static WhereToView whereView;
     private static WhereToModel whereModel;
-    OnChangeDestinationListener listener;
+    static OnChangeDestinationListener listener;
+    static ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
     
     WhereTo(JFrame frame) {
         model = new WhereToModel();
@@ -28,6 +30,14 @@ public class WhereTo extends Mode {
     
     public void setListener(OnChangeDestinationListener listener) {
         this.listener = listener;
+    }
+    
+    public static void callListener() {
+        int n = listeners.size();
+        int i;
+        for(i=0; i<n; i++){
+            listeners.get(i).onChangeDestination(whereView.destination.getText());
+        }
     }
     
     @Override
@@ -73,12 +83,14 @@ public class WhereTo extends Mode {
     static void addToDestination(String letter) {
         //Add the typed letter to the destination field
         WhereToView.destination.setText(WhereToView.destination.getText() + letter);
+        callListener();
     }
     
     static void deleteFromDestination() {
         // Delete 1 character from the destination field
         if (WhereToView.destination.getText().length() > 0) {
             WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
+            callListener();
         }
     }
     

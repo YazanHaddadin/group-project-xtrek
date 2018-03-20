@@ -13,13 +13,19 @@ import java.util.TimerTask;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputerModel extends ModeModel{
+public class TripComputerModel extends ModeModel implements OnChangeDestinationListener{
     
     static String mtLabel;
     static String odoLabel;
     
     static float lastLatitude = (float) 0.00;
     static float lastLongitude = (float) 0.00;
+        
+    static int secondsCounter = 0;
+    static int numberOfMinutes = 0;
+    static int numberOfSeconds = 0;
+    
+    static double kmTravelled = 0;
     
     void plus(ButtonEvent evt) {
         /*
@@ -84,10 +90,17 @@ public class TripComputerModel extends ModeModel{
 
     }
 
+    @Override
+    public void onChangeDestination(String destination) {
+        //Reset moving time and distance when destination is changed
+        secondsCounter = 0;
+        kmTravelled = 0;
+    }
+
     //If the satellite coordinates are changing, moving time will be increased.
     static class IncreaseTripOdometer extends TimerTask {
 
-        static double kmTravelled = 0;
+        
 
         public void run() {
             kmTravelled = kmTravelled + 0.01;
@@ -107,11 +120,6 @@ public class TripComputerModel extends ModeModel{
 
     //Class for incrementing the number of seconds the DEVICE has been moving every second.
     static class IncreaseMovingTime extends TimerTask {
-
-        static int secondsCounter = 0;
-        static int numberOfMinutes = 0;
-        static int numberOfSeconds = 0;
-
         public void run() {
             if (determineIfMoving()) {
                 secondsCounter++;
