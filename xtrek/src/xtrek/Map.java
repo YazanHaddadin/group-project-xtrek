@@ -13,7 +13,7 @@ import java.awt.*;
  * @author Alex Vale
  * @version Sprint 3
  */
-public class Map extends Mode {
+public class Map extends Mode implements OnGPSUpdateListener {
 
     private MapView mapView;
     private MapModel mapModel;
@@ -103,5 +103,10 @@ public class Map extends Mode {
 
     void setIcon(ImageIcon image) {
         mapView.setIcon(image);
+    }
+
+    @Override
+    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        mapModel.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
     }
 }
