@@ -26,8 +26,6 @@ public class SatelliteModel extends ModeModel {
     private ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
 
     private void callListener(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
-        int n = listeners.size();
-        int i;
         for (OnGPSUpdateListener listener : listeners) {
             listener.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
         }
@@ -55,11 +53,11 @@ public class SatelliteModel extends ModeModel {
     }
 
 
-    public String getLongitudeDirection() {
+    String getLongitudeDirection() {
         return longitudeDirection;
     }
 
-    public void setListener(OnGPSUpdateListener listener) {
+    void setListener(OnGPSUpdateListener listener) {
         listeners.add(listener);
     }
     
@@ -73,6 +71,7 @@ public class SatelliteModel extends ModeModel {
 
                 while (true) {
                     line = br.readLine();
+                    //line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77";
                     if (line==null) { Thread.sleep(500); }
                     if (line.startsWith("$GPGLL")) {
                         System.out.println(line);

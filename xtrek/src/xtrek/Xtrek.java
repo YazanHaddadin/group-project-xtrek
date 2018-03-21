@@ -47,6 +47,7 @@ class Xtrek extends JFrame {
         satellite = new Satellite(this);
         
         satellite.startThread();
+        satellite.setListener(MapMode);
 
         currentView = MainMenu;
 

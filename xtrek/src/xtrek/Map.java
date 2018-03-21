@@ -63,8 +63,6 @@ public class Map extends Mode implements OnGPSUpdateListener {
         frame.pack();
         frame.validate();
         frame.setVisible(true);
-
-        ((Map) currentView).updateMap();
     }
 
     @Override
@@ -96,11 +94,6 @@ public class Map extends Mode implements OnGPSUpdateListener {
     void onDisplay() {
         mapModel.onDisplay();
     }
-
-    private void updateMap() {
-        mapModel.updateMap();
-    }
-
     void setIcon(ImageIcon image) {
         mapView.setIcon(image);
     }

@@ -6,24 +6,20 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Map Model class
  * <p>
  * The Model for the Map MVC
- * 
+ *
  * @author Alex Vale
  * @version Sprint 3
  */
-public class MapModel extends ModeModel {
-    private static String LATITUDE = "50.7184";     /* Inputted latitude - default Exeter - will be changed to current location  */
-    private static String LONGITUDE = "-3.5339";     /* Inputted Longitude - default Exeter - will be changed to current location */
-    private static String ZOOM = "17";           /* 0 .. 21           */
+class MapModel extends ModeModel {
+    private static Float latitude = 50.7184f;     /* Inputted latitude - default Exeter - will be changed to current location  */
+    private static Float longitude = -3.5339f;     /* Inputted Longitude - default Exeter - will be changed to current location */
+    private static String ZOOM = "10";           /* 0 .. 21           */
     private static String SIZE = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
-    private Timer timer = null;
-    private UpdateMap mapUpdater = new UpdateMap();
     private Map controller;
 
     MapModel(Map controller) {
@@ -31,7 +27,7 @@ public class MapModel extends ModeModel {
     }
 
     //Downloads a new map every 5 sec and sets the new image
-    public void updateMap() {
+    /*void updateMap() {
         if (timer != null) {
             timer.cancel();
             timer.purge();
@@ -39,18 +35,27 @@ public class MapModel extends ModeModel {
 
         timer = new Timer();
         timer.schedule(mapUpdater, 0, 5000); //5000 = 5 second delay on update
-    }
+    }*/
 
-    private void stopUpdate() {
-        if (timer != null) {
-            timer.cancel();
-            timer.purge();
+    void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        if (MapModel.latitude < (latitude - 0.005) || MapModel.latitude > (latitude + 0.005)) {
+            MapModel.latitude = latitude;
+
+            if (latitudeDirection.equals("S")) {
+                MapModel.latitude = -latitude;
+            }
         }
-    }
 
-    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
-        LATITUDE = latitude.toString() + latitudeDirection;
-        LONGITUDE = longitude.toString() + longitudeDirection;
+        if (MapModel.longitude < (longitude - 0.005) || MapModel.longitude > (longitude + 0.005)) {
+            MapModel.longitude = longitude;
+
+            if (longitudeDirection.equals("W")) {
+                MapModel.longitude = -longitude;
+            }
+        }
+
+        System.out.println(MapModel.latitude + ", " + MapModel.longitude);
+        downloadNewMap();
     }
 
     @Override
@@ -64,7 +69,7 @@ public class MapModel extends ModeModel {
         }
 
         ZOOM = Integer.toString(zoomInt);
-        mapUpdater.downloadNewMap();
+        downloadNewMap();
     }
 
     @Override
@@ -78,7 +83,7 @@ public class MapModel extends ModeModel {
         }
 
         ZOOM = Integer.toString(zoomInt);
-        mapUpdater.downloadNewMap();
+        downloadNewMap();
     }
 
     @Override
@@ -87,42 +92,29 @@ public class MapModel extends ModeModel {
     }
 
     @Override
-    void onDisplay() {
-        updateMap();
-    }
-
-    @Override
     void hide() {
         System.out.println("Stopped timer");
-        stopUpdate();
     }
 
-    //Downloads a static image of the map
-    class UpdateMap extends TimerTask {
-        @Override
-        public void run() {
-            downloadNewMap();
-        }
+    private void downloadNewMap() {
 
-        public void downloadNewMap() {
-            System.out.println("Downloaded new image");
-            HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
-                    + "?center=" + LATITUDE + "," + LONGITUDE
-                    + "&zoom=" + ZOOM
-                    + "&size=" + SIZE
-                    + "&markers=" + LATITUDE + "," + LONGITUDE
-                    + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
+        System.out.println("Downloaded new image");
+        HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
+                + "?center=" + latitude + "," + longitude
+                + "&zoom=" + ZOOM
+                + "&size=" + SIZE
+                + "&markers=" + latitude + "," + longitude
+                + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
 
-            ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
+        ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
 
-            try {
+        try {
 
-                BufferedImage myPicture = ImageIO.read(image);
-                controller.setIcon(new ImageIcon(myPicture));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            BufferedImage myPicture = ImageIO.read(image);
+            controller.setIcon(new ImageIcon(myPicture));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
 }
+
