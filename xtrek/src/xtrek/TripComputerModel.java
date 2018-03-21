@@ -13,7 +13,7 @@ import java.util.TimerTask;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputerModel extends ModeModel implements OnChangeDestinationListener {
+public class TripComputerModel extends ModeModel implements OnChangeDestinationListener, OnGPSUpdateListener {
     
     static String mtLabel;
     static String odoLabel;
@@ -24,6 +24,8 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     static int secondsCounter = 0;
     static int numberOfMinutes = 0;
     static int numberOfSeconds = 0;
+    
+    static boolean moving = false;
 
     static double kmTravelled = 0;
     
@@ -31,7 +33,6 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         /*
          * In this mode, the plus button is disabled.
          */
-        
     }
 
     void minus(ButtonEvent evt) {
@@ -95,6 +96,14 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         //Reset moving time and distance when destination is changed
         secondsCounter = 0;
         kmTravelled = 0;
+    }
+
+    @Override
+    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        //Determine if the device is moving or not.
+        moving = lastLatitude != latitude || lastLongitude != longitude;
+        lastLatitude = latitude;
+        lastLongitude = longitude;
     }
 
     //If the satellite coordinates are changing, moving time will be increased.
