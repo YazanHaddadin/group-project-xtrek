@@ -47,43 +47,6 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
          */
     }
 
-    //Determine if the DEVICE is moving or not.
-    public static boolean determineIfMoving() {
-        float currentLatitude = 0;
-        float currentLongitude = 0;
-
-        SatelliteModel sat = new SatelliteModel();
-
-        try {
-            currentLatitude = sat.getLatitude();
-            currentLongitude = sat.getLongitude();
-        } catch (Exception e) {
-            /*
-             * Code for handling the exception will go here...
-             */
-        }
-
-
-        if(currentLatitude != lastLatitude) {
-            //Update last values and return true
-            lastLatitude = currentLatitude;
-            lastLongitude = currentLatitude;
-            return true;
-        }
-        else if (currentLongitude != lastLongitude) {
-            //Update last values and return true
-            lastLatitude = currentLatitude;
-            lastLongitude = currentLatitude;
-            return true;
-        }
-        else {
-            //Update last values and return false as not moving
-            lastLatitude = currentLatitude;
-            lastLongitude = currentLatitude;
-            return false;
-        }
-    }
-
     //Increment timer for the journey every second
     public void increaseMovingTime() {
         Timer movingTimer = new Timer();
@@ -129,8 +92,10 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     //Class for incrementing the number of seconds the DEVICE has been moving every second.
     static class IncreaseMovingTime extends TimerTask {
         public void run() {
-            if (determineIfMoving()) {
+            if (moving == true) {
                 secondsCounter++;
+                
+                //Convert seconds to minutes and seconds.
                 numberOfMinutes = secondsCounter / 60;
                 numberOfSeconds = secondsCounter % 60;
                 mtLabel = (numberOfMinutes + " min " + numberOfSeconds + " sec");
