@@ -48,6 +48,11 @@ public class MapModel extends ModeModel {
         }
     }
 
+    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        LATITUDE = latitude.toString() + latitudeDirection;
+        LONGITUDE = longitude.toString() + longitudeDirection;
+    }
+
     @Override
     void plus(ButtonEvent evt) {
         //change zoom if + button is pressed
