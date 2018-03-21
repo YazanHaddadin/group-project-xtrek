@@ -60,7 +60,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         
     }
 
-    public void setListener(OnDirectionsUpdateListener listener) {
+    void setListener(OnDirectionsUpdateListener listener) {
         this.listener = listener;
     }
 

@@ -22,6 +22,7 @@ class Xtrek extends JFrame {
     static WhereTo WhereTo;
     static TripComputer tripComputer;
     static Satellite satellite;
+    static Directions directions;
     static ControlLayout controlPanel;
     /**
      * @param args the command line arguments
@@ -45,8 +46,8 @@ class Xtrek extends JFrame {
         TurnByTurn = new TurnByTurn(this);
         WhereTo = new WhereTo(this);
         satellite = new Satellite(this);
-        
-        satellite.startThread();
+        directions = new Directions();
+        directions.setListener(TurnByTurn);
         satellite.setListener(MapMode);
 
         currentView = MainMenu;

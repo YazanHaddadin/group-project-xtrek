@@ -18,7 +18,9 @@ import java.util.HashMap;
 class MapModel extends ModeModel {
     private static Float latitude = 50.7184f;     /* Inputted latitude - default Exeter - will be changed to current location  */
     private static Float longitude = -3.5339f;     /* Inputted Longitude - default Exeter - will be changed to current location */
-    private static String ZOOM = "10";           /* 0 .. 21           */
+    private static Float prevLat;
+    private static Float prevLong;
+    private static String zoom = "10";           /* 0 .. 21           */
     private static String SIZE = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
     private Map controller;
 
@@ -26,19 +28,14 @@ class MapModel extends ModeModel {
         this.controller = controller;
     }
 
-    //Downloads a new map every 5 sec and sets the new image
-    /*void updateMap() {
-        if (timer != null) {
-            timer.cancel();
-            timer.purge();
+    void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        boolean updateMaps = false;
+
+        if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) > Constants.GPS_TOLERANCE) {
+            updateMaps = true;
         }
 
-        timer = new Timer();
-        timer.schedule(mapUpdater, 0, 5000); //5000 = 5 second delay on update
-    }*/
-
-    void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
-        if (MapModel.latitude < (latitude - 0.005) || MapModel.latitude > (latitude + 0.005)) {
+        if (Math.abs(Math.abs(MapModel.latitude) - latitude) > 0.005) {
             MapModel.latitude = latitude;
 
             if (latitudeDirection.equals("S")) {
@@ -46,7 +43,7 @@ class MapModel extends ModeModel {
             }
         }
 
-        if (MapModel.longitude < (longitude - 0.005) || MapModel.longitude > (longitude + 0.005)) {
+        if (Math.abs(Math.abs(MapModel.longitude) - longitude) > 0.005) {
             MapModel.longitude = longitude;
 
             if (longitudeDirection.equals("W")) {
@@ -54,35 +51,37 @@ class MapModel extends ModeModel {
             }
         }
 
-        System.out.println(MapModel.latitude + ", " + MapModel.longitude);
-        downloadNewMap();
+        if (updateMaps) {
+            System.out.println(MapModel.latitude + ", " + MapModel.longitude);
+            downloadNewMap();
+        }
     }
 
     @Override
     void plus(ButtonEvent evt) {
         //change zoom if + button is pressed
-        int zoomInt = Integer.parseInt(ZOOM);
+        int zoomInt = Integer.parseInt(zoom);
         if (zoomInt < 21) {
             zoomInt++;
         } else {
             zoomInt = 21;
         }
 
-        ZOOM = Integer.toString(zoomInt);
+        zoom = Integer.toString(zoomInt);
         downloadNewMap();
     }
 
     @Override
     void minus(ButtonEvent evt) {
         //change zoom if - button is pressed
-        int zoomInt = Integer.parseInt(ZOOM);
+        int zoomInt = Integer.parseInt(zoom);
         if (zoomInt > 0) {
             zoomInt--;
         } else {
             zoomInt = 0;
         }
 
-        ZOOM = Integer.toString(zoomInt);
+        zoom = Integer.toString(zoomInt);
         downloadNewMap();
     }
 
@@ -101,7 +100,7 @@ class MapModel extends ModeModel {
         System.out.println("Downloaded new image");
         HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
                 + "?center=" + latitude + "," + longitude
-                + "&zoom=" + ZOOM
+                + "&zoom=" + zoom
                 + "&size=" + SIZE
                 + "&markers=" + latitude + "," + longitude
                 + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
