@@ -23,24 +23,8 @@ public class Satellite extends Mode {
 
         SModel = (SatelliteModel) model;
         SView = (SatelliteView) view;
-    }
-    
-    void updatePosition() {
-        //TODO check that values are not empty to determine mad bants
-        Float value1 = SModel.getLatitude();
-        String direction1 = SModel.getLatitudeDirection();
-        Float value2 = SModel.getLongitude();
-        String direction2 = SModel.getLongitudeDirection();
-        
-        if (value1==null) {
-            SView.setNoSignal();
-        } else {
-            SView.setPosition(value1, direction1, value2, direction2);
-        }
-    }
-    
-    void loopUpdate() {
-        //do nothing
+
+        SModel.startThread();
     }
     
     public static void main(String[] argv) {
@@ -73,8 +57,7 @@ public class Satellite extends Mode {
         frame.pack();
         frame.validate();
         frame.setVisible(true);
-        
-        
+
         currentView.SModel.startThread();
         while(true){
             currentView.updatePosition();
@@ -84,6 +67,28 @@ public class Satellite extends Mode {
                 Logger.getLogger(Satellite.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    void loopUpdate() {
+        //do nothing
+    }
+
+    private void updatePosition() {
+        //TODO check that values are not empty to determine mad bants
+        Float value1 = SModel.getLatitude();
+        String direction1 = SModel.getLatitudeDirection();
+        Float value2 = SModel.getLongitude();
+        String direction2 = SModel.getLongitudeDirection();
+
+        if (value1 == null) {
+            SView.setNoSignal();
+        } else {
+            SView.setPosition(value1, direction1, value2, direction2);
+        }
+    }
+
+    void setListener(OnGPSUpdateListener listener) {
+        SModel.setListener(listener);
     }
 
     @Override

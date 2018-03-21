@@ -45,6 +45,7 @@ class Xtrek extends JFrame {
         TurnByTurn = new TurnByTurn(this);
         WhereTo = new WhereTo(this);
         satellite = new Satellite(this);
+        satellite.setListener(MapMode);
 
         currentView = MainMenu;
 
