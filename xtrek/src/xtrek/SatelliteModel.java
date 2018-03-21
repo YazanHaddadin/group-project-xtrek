@@ -18,12 +18,14 @@ public class SatelliteModel extends ModeModel {
 
     private String latitudeDirection;
     private String longitudeDirection;
-    
-    Boolean flag;
-    Thread thread = new Thread(new Reader());
-    ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
+    private Float latitude;
+    private Float longitude;
 
-    public void callListener(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+    private Boolean flag;
+    private Thread thread = new Thread(new Reader());
+    private ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
+
+    private void callListener(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
         int n = listeners.size();
         int i;
         for (OnGPSUpdateListener listener : listeners) {
@@ -31,7 +33,7 @@ public class SatelliteModel extends ModeModel {
         }
     }
 
-    public void startThread() {
+    void startThread() {
         flag = true;
         thread.start();
     }
@@ -39,10 +41,19 @@ public class SatelliteModel extends ModeModel {
     public void stopThread() {
         flag = false;
     }
-    
-    public String getLatitudeDirection() {
+
+    Float getLatitude() {
+        return latitude;
+    }
+
+    Float getLongitude() {
+        return longitude;
+    }
+
+    String getLatitudeDirection() {
         return latitudeDirection;
     }
+
 
     public String getLongitudeDirection() {
         return longitudeDirection;
@@ -72,21 +83,21 @@ public class SatelliteModel extends ModeModel {
                             latitudeDirection = splits[2];
                             longitudeDirection = splits[4];
 
-                            Integer latDeg = Integer.parseInt(splits[1]) % 100;
-                            Integer lonDeg = Integer.parseInt(splits[3]) % 100;
+                            Integer latDeg = (int) Float.parseFloat(splits[1]) % 100;
+                            Integer lonDeg = (int) Float.parseFloat(splits[3]) % 100;
 
                             Float latMin = (Float.parseFloat(splits[1]) - latDeg) / 60;
                             Float lonMin = (Float.parseFloat(splits[1]) - lonDeg) / 60;
 
-                            Float latitude = latDeg + latMin;
-                            Float longitude = lonDeg + lonMin;
+                            latitude = latDeg + latMin;
+                            longitude = lonDeg + lonMin;
 
                             callListener(latitude, longitude, latitudeDirection, longitudeDirection);
                         }
                     }
                 }
             } catch (Exception ex) {
-                System.out.println(ex);
+                ex.printStackTrace();
             }
         }
     }
