@@ -14,14 +14,14 @@ public class SatelliteModel extends ModeModel {
 
     private Direction latitudeDirection;
     private Direction longitudeDirection;
-    private Float latitude;
-    private Float longitude;
+    private Double latitude;
+    private Double longitude;
 
     private Boolean flag;
     private Thread thread = new Thread(new Reader());
     private ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
 
-    private void callListener(Float latitude, Float longitude, Direction latitudeDirection, Direction longitudeDirection) {
+    private void callListener(Double latitude, Double longitude, Direction latitudeDirection, Direction longitudeDirection) {
         for (OnGPSUpdateListener listener : listeners) {
             listener.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
         }
@@ -36,11 +36,11 @@ public class SatelliteModel extends ModeModel {
         flag = false;
     }
 
-    Float getLatitude() {
+    Double getLatitude() {
         return latitude;
     }
 
-    Float getLongitude() {
+    Double getLongitude() {
         return longitude;
     }
 
@@ -93,7 +93,10 @@ public class SatelliteModel extends ModeModel {
                 while (true) {
                     //line = br.readLine();
                     line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77";
-                    if (line==null) { Thread.sleep(500); }
+                    Thread.sleep(5000);
+                    if (line == null) {
+                        Thread.sleep(12000);
+                    }
                     if (line.startsWith("$GPGLL")) {
                         String[] splits = line.split(",");
                         if (splits[1].equals("") || splits[2].equals("") || splits[3].equals("") || splits[4].equals(""))
@@ -111,11 +114,11 @@ public class SatelliteModel extends ModeModel {
                                 longitudeDirection = Direction.WEST;
                             }
 
-                            Float latMin = Float.parseFloat(splits[1]) % 100 / 60;
-                            Float lonMin = Float.parseFloat(splits[3]) % 100 / 60;
+                            Double latMin = Double.parseDouble(splits[1]) % 100 / 60;
+                            Double lonMin = Double.parseDouble(splits[3]) % 100 / 60;
 
-                            Integer latDeg = Math.round(Float.parseFloat(splits[1]) / 100 - latMin);
-                            Integer lonDeg = Math.round(Float.parseFloat(splits[3]) / 100 - lonMin);
+                            Long latDeg = Math.round(Double.parseDouble(splits[1]) / 100 - latMin);
+                            Long lonDeg = Math.round(Double.parseDouble(splits[3]) / 100 - lonMin);
 
                             latitude = latDeg + latMin;
                             longitude = lonDeg + lonMin;

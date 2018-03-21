@@ -8,7 +8,6 @@ import org.json.simple.parser.ParseException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -22,16 +21,16 @@ import java.util.HashMap;
  */
 public class Directions implements OnChangeDestinationListener, OnGPSUpdateListener {
     //Default values, will be used if not overriden in the method call.
-    static String origin = "Exeter, UK";
-    static String dest = "Loughborough, UK";
+    static String origin = "The Printworks, Exeter, UK";
+    static String dest = "University of Exeter, Exeter, UK";
     private static HashMap<String, String> requestProperties = new HashMap<>();
     private static String body;
     private OnDirectionsUpdateListener listener;
     private Route currentRoute = null;
-    private Float latitude;
-    private Float longitude;
-    private Float prevLatitude = null;
-    private Float prevLongitude = null;
+    private Double latitude;
+    private Double longitude;
+    private Route.Step nextStep;
+
 
     /**
       * @param origin place where you are getting directions from
@@ -46,12 +45,12 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                     + "&" + "destination" + "=" + URLEncoder.encode(dest, "UTF-8")
                     + "&" + "region" + "=" + Constants.DIRECTIONS_REGION
                     + "&" + "mode" + "=" + Constants.TRAVEL_MODE)
-                    + "key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
+                    + "&key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
             
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);
             byte[] response = conn.getResponse();
 
-            return Arrays.toString(response);
+            return new String(response);
             
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
@@ -65,10 +64,11 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     }
 
     @Override
-    public void onGPSUpdate(Float latitude,
-                            Float longitude,
+    public void onGPSUpdate(Double latitude,
+                            Double longitude,
                             SatelliteModel.Direction latitudeDirection,
                             SatelliteModel.Direction longitudeDirection) {
+
         this.latitude = latitude;
         if (latitudeDirection == SatelliteModel.Direction.SOUTH) {
             this.latitude = -latitude;
@@ -79,21 +79,30 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             this.longitude = -longitude;
         }
 
-        if (currentRoute != null && listener != null) {
-            Float nextLat = currentRoute.getNextStep().getStart_lat();
-            Float nextLong = currentRoute.getNextStep().getStart_lon();
+        if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null) {
 
-            if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) > Constants.GPS_TOLERANCE) {
-                SpeechEvent evt = new SpeechEvent(this, currentRoute.getNextStep().getInstructions());
-                listener.speakNextSegment(evt);
+            if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
+                Double nextLat = nextStep.getStart_lat();
+                Double nextLong = nextStep.getStart_lon();
+                if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) > Constants.GPS_TOLERANCE || true) {
+                    SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
+                    listener.speakNextSegment(evt);
+                }
+                nextStep = currentRoute.getNextStep();
             }
+        }
+
+        if (currentRoute == null && listener != null) {
+            String queryToMake = this.latitude + "," + this.longitude;
+            currentRoute = new Route(getDirections(origin, dest));
+            nextStep = currentRoute.getNextStep();
         }
     }
 
     @Override
     public void onChangeDestination(String destination) {
         String queryToMake = latitude + "," + longitude;
-        currentRoute = new Route(getDirections(queryToMake, destination));
+        currentRoute = new Route(getDirections(origin, destination));
     }
 
     class Route {
@@ -103,6 +112,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
         Route(String data) {
             try {
+                System.out.println(data);
+
                 JSONObject json = (JSONObject) new JSONParser().parse(data);
 
                 JSONArray routes = (JSONArray) json.get("routes");
@@ -123,8 +134,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                 for (Object step : steps) {
                     JSONObject next_json = (JSONObject) step;
                     JSONObject startLocation = (JSONObject) next_json.get("start_location");
-                    Float lon = (Float) startLocation.get("lon");
-                    Float lat = (Float) startLocation.get("lat");
+                    Double lon = (Double) startLocation.get("lng");
+                    Double lat = (Double) startLocation.get("lat");
                     String instructions = (String) next_json.get("html_instructions");
 
                     Step next_step = new Step(lon, lat, instructions);
@@ -140,25 +151,32 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         }
 
         Step getNextStep() {
-            return steps.get(i++);
+            Step step;
+            if (i < steps.size() - 1) {
+                return steps.get(i++);
+            } else {
+                step = steps.get(i);
+            }
+
+            return step;
         }
 
         class Step {
-            private Float start_lon;
-            private Float start_lat;
+            private Double start_lon;
+            private Double start_lat;
             private String instructions;
 
-            Step(Float lon, Float lat, String instructions) {
+            Step(Double lon, Double lat, String instructions) {
                 this.start_lon = lon;
                 this.start_lat = lat;
                 this.instructions = instructions;
             }
 
-            Float getStart_lat() {
+            Double getStart_lat() {
                 return start_lat;
             }
 
-            Float getStart_lon() {
+            Double getStart_lon() {
                 return start_lon;
             }
 

@@ -17,9 +17,9 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     
     static String mtLabel;
     static String odoLabel;
-    
-    static float lastLatitude = (float) 0.00;
-    static float lastLongitude = (float) 0.00;
+
+    static Double lastLatitude = 0.00;
+    static Double lastLongitude = 0.00;
 
     static int secondsCounter = 0;
     static int numberOfMinutes = 0;
@@ -62,7 +62,7 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     }
 
     @Override
-    public void onGPSUpdate(Float latitude, Float longitude,
+    public void onGPSUpdate(Double latitude, Double longitude,
                             SatelliteModel.Direction latitudeDirection,
                             SatelliteModel.Direction longitudeDirection) {
 
