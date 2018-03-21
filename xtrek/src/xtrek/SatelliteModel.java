@@ -83,11 +83,11 @@ public class SatelliteModel extends ModeModel {
                             latitudeDirection = splits[2];
                             longitudeDirection = splits[4];
 
-                            Integer latDeg = (int) Float.parseFloat(splits[1]) % 100;
-                            Integer lonDeg = (int) Float.parseFloat(splits[3]) % 100;
+                            Float latMin = Float.parseFloat(splits[1]) % 100 / 60;
+                            Float lonMin = Float.parseFloat(splits[3]) % 100 / 60;
 
-                            Float latMin = (Float.parseFloat(splits[1]) - latDeg) / 60;
-                            Float lonMin = (Float.parseFloat(splits[1]) - lonDeg) / 60;
+                            Integer latDeg = Math.round(Float.parseFloat(splits[1]) / 100 - latMin);
+                            Integer lonDeg = Math.round(Float.parseFloat(splits[3]) / 100 - lonMin);
 
                             latitude = latDeg + latMin;
                             longitude = lonDeg + lonMin;
