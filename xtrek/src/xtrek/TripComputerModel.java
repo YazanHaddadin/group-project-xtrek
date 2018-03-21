@@ -13,7 +13,7 @@ import java.util.TimerTask;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputerModel extends ModeModel implements OnChangeDestinationListener {
+public class TripComputerModel extends ModeModel implements OnChangeDestinationListener, OnGPSUpdateListener {
     
     static String mtLabel;
     static String odoLabel;
@@ -24,6 +24,8 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     static int secondsCounter = 0;
     static int numberOfMinutes = 0;
     static int numberOfSeconds = 0;
+    
+    static boolean moving = false;
 
     static double kmTravelled = 0;
     
@@ -31,7 +33,6 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         /*
          * In this mode, the plus button is disabled.
          */
-        
     }
 
     void minus(ButtonEvent evt) {
@@ -46,43 +47,6 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
          */
     }
 
-    //Determine if the DEVICE is moving or not.
-    public static boolean determineIfMoving() {
-        float currentLatitude = 0;
-        float currentLongitude = 0;
-
-        SatelliteModel sat = new SatelliteModel();
-
-        try {
-            currentLatitude = sat.getLatitude();
-            currentLongitude = sat.getLongitude();
-        } catch (Exception e) {
-            /*
-             * Code for handling the exception will go here...
-             */
-        }
-
-
-        if(currentLatitude != lastLatitude) {
-            //Update last values and return true
-            lastLatitude = currentLatitude;
-            lastLongitude = currentLatitude;
-            return true;
-        }
-        else if (currentLongitude != lastLongitude) {
-            //Update last values and return true
-            lastLatitude = currentLatitude;
-            lastLongitude = currentLatitude;
-            return true;
-        }
-        else {
-            //Update last values and return false as not moving
-            lastLatitude = currentLatitude;
-            lastLongitude = currentLatitude;
-            return false;
-        }
-    }
-
     //Increment timer for the journey every second
     public void increaseMovingTime() {
         Timer movingTimer = new Timer();
@@ -95,6 +59,14 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         //Reset moving time and distance when destination is changed
         secondsCounter = 0;
         kmTravelled = 0;
+    }
+
+    @Override
+    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+        //Determine if the device is moving or not.
+        moving = lastLatitude != latitude || lastLongitude != longitude;
+        lastLatitude = latitude;
+        lastLongitude = longitude;
     }
 
     //If the satellite coordinates are changing, moving time will be increased.
@@ -120,8 +92,10 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     //Class for incrementing the number of seconds the DEVICE has been moving every second.
     static class IncreaseMovingTime extends TimerTask {
         public void run() {
-            if (determineIfMoving()) {
+            if (moving == true) {
                 secondsCounter++;
+                
+                //Convert seconds to minutes and seconds.
                 numberOfMinutes = secondsCounter / 60;
                 numberOfSeconds = secondsCounter % 60;
                 mtLabel = (numberOfMinutes + " min " + numberOfSeconds + " sec");
