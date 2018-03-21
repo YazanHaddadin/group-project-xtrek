@@ -28,8 +28,12 @@ class MapModel extends ModeModel {
         this.controller = controller;
     }
 
-    void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+    void onGPSUpdate(Float latitude, Float longitude,
+                     SatelliteModel.Direction latitudeDirection,
+                     SatelliteModel.Direction longitudeDirection) {
         boolean updateMaps = false;
+
+        System.out.println(Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude));
 
         if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) > Constants.GPS_TOLERANCE) {
             updateMaps = true;
@@ -38,7 +42,7 @@ class MapModel extends ModeModel {
         if (Math.abs(Math.abs(MapModel.latitude) - latitude) > 0.005) {
             MapModel.latitude = latitude;
 
-            if (latitudeDirection.equals("S")) {
+            if (latitudeDirection == SatelliteModel.Direction.SOUTH) {
                 MapModel.latitude = -latitude;
             }
         }
@@ -46,14 +50,14 @@ class MapModel extends ModeModel {
         if (Math.abs(Math.abs(MapModel.longitude) - longitude) > 0.005) {
             MapModel.longitude = longitude;
 
-            if (longitudeDirection.equals("W")) {
+            if (longitudeDirection == SatelliteModel.Direction.WEST) {
                 MapModel.longitude = -longitude;
             }
         }
 
         if (updateMaps) {
             System.out.println(MapModel.latitude + ", " + MapModel.longitude);
-            downloadNewMap();
+            //downloadNewMap();
         }
     }
 

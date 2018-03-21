@@ -65,14 +65,17 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     }
 
     @Override
-    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+    public void onGPSUpdate(Float latitude,
+                            Float longitude,
+                            SatelliteModel.Direction latitudeDirection,
+                            SatelliteModel.Direction longitudeDirection) {
         this.latitude = latitude;
-        if (latitudeDirection.equals("S")) {
+        if (latitudeDirection == SatelliteModel.Direction.SOUTH) {
             this.latitude = -latitude;
         }
 
         this.longitude = longitude;
-        if (longitudeDirection.equals("W")) {
+        if (longitudeDirection == SatelliteModel.Direction.WEST) {
             this.longitude = -longitude;
         }
 

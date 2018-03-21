@@ -8,16 +8,12 @@
  */
 package xtrek;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class SatelliteModel extends ModeModel {
 
-    private String latitudeDirection;
-    private String longitudeDirection;
+    private Direction latitudeDirection;
+    private Direction longitudeDirection;
     private Float latitude;
     private Float longitude;
 
@@ -25,7 +21,7 @@ public class SatelliteModel extends ModeModel {
     private Thread thread = new Thread(new Reader());
     private ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
 
-    private void callListener(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+    private void callListener(Float latitude, Float longitude, Direction latitudeDirection, Direction longitudeDirection) {
         for (OnGPSUpdateListener listener : listeners) {
             listener.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
         }
@@ -48,39 +44,72 @@ public class SatelliteModel extends ModeModel {
         return longitude;
     }
 
-    String getLatitudeDirection() {
+    Direction getLatitudeDirection() {
         return latitudeDirection;
     }
 
-
-    String getLongitudeDirection() {
+    Direction getLongitudeDirection() {
         return longitudeDirection;
     }
 
     void setListener(OnGPSUpdateListener listener) {
         listeners.add(listener);
     }
-    
+
+    @Override
+    void plus(ButtonEvent evt) {
+    }
+
+    @Override
+    void minus(ButtonEvent evt) {
+    }
+
+    @Override
+    void selected(ButtonEvent evt) {
+    }
+
+    enum Direction {
+        NORTH("N"), SOUTH("S"), WEST("W"), EAST("E");
+
+        String direction;
+
+        Direction(String direction) {
+            this.direction = direction;
+        }
+
+        public String getDirection() {
+            return direction;
+        }
+    }
+
     public class Reader implements Runnable {
         @Override
         public void run() {
             try{
-                FileInputStream in = new FileInputStream(new File(Constants.DONGLE_LOCATION));
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+                //FileInputStream in = new FileInputStream(new File(Constants.DONGLE_LOCATION));
+                //BufferedReader br = new BufferedReader(new InputStreamReader(in));
                 String line;
 
                 while (true) {
-                    line = br.readLine();
-                    //line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77";
+                    //line = br.readLine();
+                    line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77";
                     if (line==null) { Thread.sleep(500); }
                     if (line.startsWith("$GPGLL")) {
-                        System.out.println(line);
                         String[] splits = line.split(",");
-                        if(splits[1].equals("") || splits[2].equals("") || splits[3].equals("") || splits[4].equals("")) {
-                            //Skip
-                        } else {
-                            latitudeDirection = splits[2];
-                            longitudeDirection = splits[4];
+                        if (splits[1].equals("") || splits[2].equals("") || splits[3].equals("") || splits[4].equals(""))
+                            ;
+                        else {
+                            if (splits[2].equals("N")) {
+                                latitudeDirection = Direction.NORTH;
+                            } else {
+                                latitudeDirection = Direction.SOUTH;
+                            }
+
+                            if (splits[4].equals("E")) {
+                                longitudeDirection = Direction.EAST;
+                            } else {
+                                longitudeDirection = Direction.WEST;
+                            }
 
                             Float latMin = Float.parseFloat(splits[1]) % 100 / 60;
                             Float lonMin = Float.parseFloat(splits[3]) % 100 / 60;
@@ -100,14 +129,5 @@ public class SatelliteModel extends ModeModel {
             }
         }
     }
-
-    @Override
-    void plus(ButtonEvent evt) {}
-
-    @Override
-    void minus(ButtonEvent evt) {}
-
-    @Override
-    void selected(ButtonEvent evt) {}
     
 }

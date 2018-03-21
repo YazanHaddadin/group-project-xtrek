@@ -76,9 +76,9 @@ public class Satellite extends Mode {
     private void updatePosition() {
         //TODO check that values are not empty to determine mad bants
         Float value1 = SModel.getLatitude();
-        String direction1 = SModel.getLatitudeDirection();
+        String direction1 = SModel.getLatitudeDirection().getDirection();
         Float value2 = SModel.getLongitude();
-        String direction2 = SModel.getLongitudeDirection();
+        String direction2 = SModel.getLongitudeDirection().getDirection();
 
         if (value1 == null) {
             SView.setNoSignal();

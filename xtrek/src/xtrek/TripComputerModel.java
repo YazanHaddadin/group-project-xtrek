@@ -62,11 +62,16 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     }
 
     @Override
-    public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
+    public void onGPSUpdate(Float latitude, Float longitude,
+                            SatelliteModel.Direction latitudeDirection,
+                            SatelliteModel.Direction longitudeDirection) {
+
         //Determine if the device is moving or not.
-        moving = lastLatitude != latitude || lastLongitude != longitude;
-        lastLatitude = latitude;
-        lastLongitude = longitude;
+        if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.005) {
+            moving = true;
+            lastLatitude = latitude;
+            lastLongitude = longitude;
+        } else moving = false;
     }
 
     //If the satellite coordinates are changing, moving time will be increased.
@@ -84,7 +89,7 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         }
     }
 
-    public void increaseTripOdometer() {
+    void increaseTripOdometer() {
         Timer odoTimer = new Timer();
         odoTimer.schedule(new TripComputerModel.IncreaseTripOdometer(), 0, 10000);
     }
@@ -92,7 +97,7 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
     //Class for incrementing the number of seconds the DEVICE has been moving every second.
     static class IncreaseMovingTime extends TimerTask {
         public void run() {
-            if (moving == true) {
+            if (moving) {
                 secondsCounter++;
                 
                 //Convert seconds to minutes and seconds.
