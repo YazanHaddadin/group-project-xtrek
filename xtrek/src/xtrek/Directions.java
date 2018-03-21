@@ -8,6 +8,7 @@ import org.json.simple.parser.ParseException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -19,22 +20,26 @@ import java.util.HashMap;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class Directions implements OnGPSUpdateListener{
+public class Directions implements OnChangeDestinationListener, OnGPSUpdateListener {
     //Default values, will be used if not overriden in the method call.
     static String origin = "Exeter, UK";
     static String dest = "Loughborough, UK";
-    OnGPSUpdateListener listener;
-    
-    static HashMap<String, String> requestProperties = new HashMap<>();
-    static String body;
+    private static HashMap<String, String> requestProperties = new HashMap<>();
+    private static String body;
+    private OnDirectionsUpdateListener listener;
+    private Route currentRoute = null;
+    private Float latitude;
+    private Float longitude;
+    private Float prevLatitude = null;
+    private Float prevLongitude = null;
 
     /**
       * @param origin place where you are getting directions from
       * @param dest place where you want to get directions to
      *
-      * @returns byte array containing the directions from the API
+     * @return byte array containing the directions from the API
       */
-    static String getDirections(String origin, String dest) {
+    private static String getDirections(String origin, String dest) {
         try {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
@@ -46,50 +51,50 @@ public class Directions implements OnGPSUpdateListener{
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);
             byte[] response = conn.getResponse();
 
-            return response.toString();
+            return Arrays.toString(response);
             
         } catch (UnsupportedEncodingException ex) {
-            System.out.println(ex);
+            ex.printStackTrace();
             return null;
         }
         
     }
 
-    public void setListener(OnGPSUpdateListener listener) {
+    public void setListener(OnDirectionsUpdateListener listener) {
         this.listener = listener;
     }
 
     @Override
     public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
-        String latitudeQuery;
-        String longitudeQuery;
-        
-        //Add the + or - to latitude
-        if("NORTH".equals(latitudeDirection)) {
-            latitudeQuery = "+";
+        this.latitude = latitude;
+        if (latitudeDirection.equals("S")) {
+            this.latitude = -latitude;
         }
-        else {
-            latitudeQuery = "-";
+
+        this.longitude = longitude;
+        if (longitudeDirection.equals("W")) {
+            this.longitude = -longitude;
         }
-        
-        latitudeQuery = latitudeQuery + Float.toString(latitude);
-        
-        //Add the + or - to longitude
-        if("EAST".equals(longitudeDirection)) {
-            longitudeQuery = "+";
+
+        if (currentRoute != null && listener != null) {
+            Float nextLat = currentRoute.getNextStep().getStart_lat();
+            Float nextLong = currentRoute.getNextStep().getStart_lon();
+
+            if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) > Constants.GPS_TOLERANCE) {
+                SpeechEvent evt = new SpeechEvent(this, currentRoute.getNextStep().getInstructions());
+                listener.speakNextSegment(evt);
+            }
         }
-        else {
-            longitudeQuery = "-";
-        }
-        
-        longitudeQuery = longitudeQuery + Float.toString(longitude);
-        
-        //Make overall query string and send to getDirections method
-        String queryToMake = latitudeQuery + "," + longitudeQuery;
-        Route route = new Route(getDirections(queryToMake, WhereTo.getCurrentDestination()));
+    }
+
+    @Override
+    public void onChangeDestination(String destination) {
+        String queryToMake = latitude + "," + longitude;
+        currentRoute = new Route(getDirections(queryToMake, destination));
     }
 
     class Route {
+        private int i = 0;
         private ArrayList<Step> steps = new ArrayList<>();
         private ArrayList<String> warnings = new ArrayList<>();
 
@@ -127,6 +132,14 @@ public class Directions implements OnGPSUpdateListener{
             }
         }
 
+        public ArrayList<String> getWarnings() {
+            return warnings;
+        }
+
+        Step getNextStep() {
+            return steps.get(i++);
+        }
+
         class Step {
             private Float start_lon;
             private Float start_lat;
@@ -136,6 +149,18 @@ public class Directions implements OnGPSUpdateListener{
                 this.start_lon = lon;
                 this.start_lat = lat;
                 this.instructions = instructions;
+            }
+
+            Float getStart_lat() {
+                return start_lat;
+            }
+
+            Float getStart_lon() {
+                return start_lon;
+            }
+
+            String getInstructions() {
+                return instructions;
             }
         }
     }

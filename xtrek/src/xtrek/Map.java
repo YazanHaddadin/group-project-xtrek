@@ -19,7 +19,7 @@ public class Map extends Mode implements OnGPSUpdateListener {
     private MapModel mapModel;
 
 
-    public Map(JFrame frame) {
+    Map(JFrame frame) {
         model = new MapModel(this);
         view = new MapView(frame);
 
@@ -104,7 +104,6 @@ public class Map extends Mode implements OnGPSUpdateListener {
     }
 
     private final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
-
     static double calculateDistance(Float lat2, Float lon2, Float lat1, Float lon1) {
 
         Float dlon = lon2 - lon1;
