@@ -102,4 +102,15 @@ public class Map extends Mode implements OnGPSUpdateListener {
     public void onGPSUpdate(Float latitude, Float longitude, String latitudeDirection, String longitudeDirection) {
         mapModel.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
     }
+
+    private final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
+
+    static double calculateDistance(Float lat2, Float lon2, Float lat1, Float lon1) {
+
+        Float dlon = lon2 - lon1;
+        Float dlat = lat2 - lat1;
+        Double a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2), 2);
+        Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return AVERAGE_RADIUS_OF_EARTH_KM * c;
+    }
 }
