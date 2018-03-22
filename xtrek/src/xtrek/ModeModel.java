@@ -6,6 +6,8 @@ import java.util.ArrayList;
 /**
  * Mode Model abstract class
  * 
+ * Describes the methods for each model on the device.
+ * 
  * @author Sebastien Michel
  * @version Sprint 3
  */

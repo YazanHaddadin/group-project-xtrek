@@ -16,7 +16,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * turnByTurn Model
+ * TurnByTurn Model
+ * <p>
+ * Model for the turn by turn mode of the device.
  *
  * @author Sebastien Michel
  * @version Sprint 3

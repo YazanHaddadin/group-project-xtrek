@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * turnByTurn class, Controller
+ * TurnByTurn class, Controller
  * Provides UI to choose a language for the Turn By Turn, translates the directions and speaks them out when
  * needed
  *

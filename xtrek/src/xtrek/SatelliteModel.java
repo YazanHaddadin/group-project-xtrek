@@ -1,3 +1,8 @@
+package xtrek;
+
+import java.io.*;
+import java.util.ArrayList;
+
 /**
  * Satellite Class
  * <p>
@@ -6,11 +11,6 @@
  * @author Liam Vinson
  * @version Sprint 3
  */
-package xtrek;
-
-import java.io.*;
-import java.util.ArrayList;
-
 class SatelliteModel extends ModeModel {
 
     private Direction latitudeDirection;

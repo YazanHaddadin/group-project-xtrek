@@ -31,8 +31,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     /**
       * @param origin place where you are getting directions from
       * @param dest place where you want to get directions to
-     *
-     * @return byte array containing the directions from the API
+      *
+      * @return byte array containing the directions from the API
       */
     private static String getDirections(String origin, String dest) {
         try {
