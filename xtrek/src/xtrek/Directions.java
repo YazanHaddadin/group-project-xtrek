@@ -24,9 +24,12 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private static final HashMap<String, String> requestProperties = new HashMap<>();
     private OnDirectionsUpdateListener listener;
     private Route currentRoute = null;
+    private boolean routeSet = false;
     private Double latitude;
     private Double longitude;
     private Route.Step nextStep;
+    private Double prevDistance;
+    private String destination;
 
     /**
       * @param origin place where you are getting directions from
@@ -37,26 +40,26 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private static String getDirections(String origin, String dest) {
         try {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
-                    + "?origin=" + URLEncoder.encode(origin, "UTF-8")
-                    + "&destination=" + URLEncoder.encode(dest, "UTF-8")
-                    + "&region=" + Constants.DIRECTIONS_REGION
-                    + "&mode=" + Constants.TRAVEL_MODE)
+                    + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
+                    + "&" + "destination" + "=" + URLEncoder.encode(dest, "UTF-8")
+                    + "&" + "region" + "=" + Constants.DIRECTIONS_REGION
+                    + "&" + "mode" + "=" + Constants.TRAVEL_MODE)
                     + "&key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
 
 
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, "");
-            
+
             byte[] response = conn.getResponse();
 
             return new String(response);
-            
+
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             return "";
         } catch (IOException e) {
             return "";
         }
-        
+
     }
 
     void setListener(OnDirectionsUpdateListener listener) {
@@ -79,18 +82,31 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             this.longitude = -longitude;
         }
 
-        if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null) {
+        if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null && routeSet) {
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
-                if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) < Constants.GPS_TOLERANCE) {
+
+                Double nextDistance = Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude);
+
+                if (prevDistance != null && (prevDistance - nextDistance) > 0.5) {
+                    routeSet = true;
+                    String queryToMake = latitude + "," + longitude;
+                    //Default values, will be used if not overriden in the method call.
+                    currentRoute = new Route(getDirections(queryToMake, destination));
+                    nextStep = currentRoute.getNextStep();
+                }
+
+                if (nextDistance < Constants.GPS_TOLERANCE) {
                     SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
                     listener.speakNextSegment(evt);
 
                     if (currentRoute != null) nextStep = currentRoute.getNextStep();
                 }
+
+                prevDistance = nextDistance;
             }
-        } else if (currentRoute != null && listener != null) {
+        } else if (routeSet && currentRoute == null) {
             SpeechEvent evt = new SpeechEvent(this, "");
             listener.speakNextSegment(evt);
         }
@@ -98,6 +114,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
     @Override
     public void onChangeDestination(String destination) {
+        routeSet = true;
+        this.destination = destination;
         String queryToMake = latitude + "," + longitude;
         //Default values, will be used if not overriden in the method call.
         currentRoute = new Route(getDirections(queryToMake, destination));
@@ -105,9 +123,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     }
 
     class Route {
-        private int i = 0;
         private final ArrayList<Step> steps = new ArrayList<>();
         private final ArrayList<String> warnings = new ArrayList<>();
+        private int i = 0;
 
         Route(String data) {
             try {
@@ -153,6 +171,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                 return steps.get(i++);
             } else {
                 step = steps.get(i);
+                routeSet = false;
                 currentRoute = null;
             }
 

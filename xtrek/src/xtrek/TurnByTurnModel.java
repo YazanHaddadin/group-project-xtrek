@@ -30,10 +30,6 @@ class TurnByTurnModel extends ModeModel {
     private LangButton currentButton;
     private int buttonIndex = 0;
 
-    void initClass() {
-        if (currentButton == null) currentButton = (LangButton) buttons.get(0);
-    }
-
     private String normaliseSentence(String sentence) {
         LinkedHashMap<String, String> abb = new LinkedHashMap<>();
         abb.put("Aly", "Alley");
@@ -178,7 +174,7 @@ class TurnByTurnModel extends ModeModel {
     }
 
     void playAudio(String segment) {
-        if (currentButton.getLanguage() == TurnByTurn.Language.OFF) {
+        if (currentButton == null || currentButton.getLanguage() == TurnByTurn.Language.OFF) {
             return;
         }
 
