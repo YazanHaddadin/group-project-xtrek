@@ -16,8 +16,8 @@ import java.util.HashMap;
  * @version Sprint 3
  */
 class MapModel extends ModeModel {
-    private static Double latitude;    /* Inputted latitude - default Exeter - will be changed to current location  */
-    private static Double longitude;     /* Inputted Longitude - default Exeter - will be changed to current location */
+    private static Double latitude;    
+    private static Double longitude;     
     private static Double bearing = 0.0;
     private static String zoom = "10";           /* 0 .. 21           */
     private final Map controller;
