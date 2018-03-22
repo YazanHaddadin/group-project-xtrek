@@ -29,6 +29,7 @@ class MapModel extends ModeModel {
     void onGPSUpdate(Double latitude, Double longitude,
                      SatelliteModel.Direction latitudeDirection,
                      SatelliteModel.Direction longitudeDirection) {
+        //Whenever GPS updates calculate angle of travel, and update map
 
         if (latitudeDirection == SatelliteModel.Direction.SOUTH) {
             latitude = -latitude;
@@ -90,6 +91,7 @@ class MapModel extends ModeModel {
     }
     @Override
     void hide() {
+        //hides map whenever on/off button is pressed
         controller.mapView.hideView();
     }
     private void downloadNewMap() {
@@ -98,6 +100,7 @@ class MapModel extends ModeModel {
                     + "?center=" + latitude + "," + longitude
                     + "&zoom=" + zoom
                     + "&size=" + Constants.SIZE_MAP
+                    //red dot from server
                     + "&markers=icon:" + URLEncoder.encode("https://sebastienmichel.me/red_dot_transparent.png", "UTF-8")
                     + "|" + latitude + "," + longitude
                     + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
@@ -111,6 +114,7 @@ class MapModel extends ModeModel {
     }
 
     private Double getBearing(Double lat1, Double lon1, Double lat2, Double lon2) {
+        //returns angle of direction of travel given 2 points in space
         if (lat1 == null || lon1 == null || lat2 == null || lon2 == null) {
             return 0.0;
         } else {
