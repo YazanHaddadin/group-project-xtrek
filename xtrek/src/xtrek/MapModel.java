@@ -106,7 +106,7 @@ class MapModel extends ModeModel {
         }
     }
 
-    Double getBearing(Double lat1, Double lon1, Double lat2, Double lon2) {
+    private Double getBearing(Double lat1, Double lon1, Double lat2, Double lon2) {
         Double y = Math.sin(lon2 - lon1) * Math.cos(lat2);
         Double x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
         return Math.toDegrees(Math.atan2(y, x));

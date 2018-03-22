@@ -31,7 +31,6 @@ public class TripComputer extends Mode {
     
     @Override
     void displayMode() {
-        tcView.setController(this);
         tcView.displayMode();
     }
     

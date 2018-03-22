@@ -14,19 +14,23 @@ import java.awt.*;
  */
 public class TripComputerView extends ModeView{
 
-    private final int fontSize = 26;
-
-    final JPanel odometerPanel = new JPanel();
-    final JLabel odometerLabel = new JLabel("Trip Odometer:");
+    private final JPanel odometerPanel = new JPanel();
+    private final JLabel odometerLabel = new JLabel("Trip Odometer:");
     final JLabel odometerReading = new JLabel("0.00 KM");
 
-    final JPanel speedPanel = new JPanel();
-    final JLabel speedLabel = new JLabel("Speed:");
-    final JLabel speedReading = new JLabel("6.0 KM/H");
+    private final JPanel speedPanel = new JPanel();
+    private final JLabel speedLabel = new JLabel("Speed:");
+    private final JLabel speedReading = new JLabel("6.0 KM/H");
 
-    final JPanel movingTimePanel = new JPanel();
-    final JLabel movingTimeLabel = new JLabel("Moving Time:");
+    private final JPanel movingTimePanel = new JPanel();
+    private final JLabel movingTimeLabel = new JLabel("Moving Time:");
     final JLabel movingTimeReading = new JLabel("0 min 0 sec");
+
+    TripComputerView(JFrame frame) {
+        super(frame);
+        panel.setLayout(new GridBagLayout());
+        displayMode();
+    }
     
     @Override
     public void displayMode() {
@@ -56,6 +60,7 @@ public class TripComputerView extends ModeView{
         movingTimePanel.setBackground(Color.WHITE);
 
         //Set correct font for each label.
+        int fontSize = 26;
         odometerLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
         speedLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
         movingTimeLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, fontSize));
@@ -76,14 +81,5 @@ public class TripComputerView extends ModeView{
         panel.validate();
         panel.setVisible(true);
     }
-    
-    public TripComputerView(JFrame frame) {
-        super(frame);
-        panel.setLayout(new GridBagLayout());
-        displayMode();
-    }
-    
-    void setController(TripComputer controller) {
-        TripComputer controller1 = controller;
-    }
+
 }
