@@ -23,6 +23,7 @@ class WhereToModel extends ModeModel {
 
     private WhereTo controller;
 
+    //Add each button to the array of buttons, and set the initial button as A.
     JButton addButton(String letter, WhereTo.buttonType type) {
         KeyboardButton button = new KeyboardButton(letter, type);
         buttons.add(button);
@@ -30,8 +31,8 @@ class WhereToModel extends ModeModel {
         return button;
     }
 
+    //Action based on which keyboard button has been pressed.
     void selected(ButtonEvent evt) {
-
         //Space button has been pressed
         if (currentButton.getButtonType() == WhereTo.buttonType.SPACE) {
             WhereTo.addToDestination(" ");
@@ -69,7 +70,6 @@ class WhereToModel extends ModeModel {
     }
 
     void plus(ButtonEvent evt) {
-        System.out.println(buttonIndex);
         //Advance selected keyboard button if the + button is pressed
         if (buttonIndex < endButtonIndex) buttonIndex++;
         else buttonIndex = startButtonIndex;
@@ -93,9 +93,11 @@ class WhereToModel extends ModeModel {
 
     @Override
     void hide() {
+        //Call the changed destination listener when exiting where to mode.
         WhereTo.callListener();
         buttons = new ArrayList<>();
 
+        //Reset button indexes for the letters keyboard.
         startButtonIndex = 0;
         endButtonIndex = 27;
     }

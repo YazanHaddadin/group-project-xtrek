@@ -84,6 +84,7 @@ public class WhereToView extends ModeView{
 
         panel.removeAll();
 
+        //Set up the 2 different panels - one for letters and one for numbers
         letterPanel = new JPanel();
         letterPanel.setLayout(new GridBagLayout());
         letterPanel.setBackground(Color.BLACK);
@@ -91,6 +92,7 @@ public class WhereToView extends ModeView{
         numberPanel.setLayout(new GridBagLayout());
         numberPanel.setBackground(Color.BLACK);
         
+        //Add each button to the controller
         btnA = controller.addButton("A", WhereTo.buttonType.LETTER_NUMBER);
         btnB = controller.addButton("B", WhereTo.buttonType.LETTER_NUMBER);
         btnC = controller.addButton("C", WhereTo.buttonType.LETTER_NUMBER);
@@ -144,6 +146,7 @@ public class WhereToView extends ModeView{
 
         destinationPanel = new JPanel();
         
+        //Layout setup for the destination panel
         destinationPanel.setLayout(new GridBagLayout());
         GridBagConstraints d = new GridBagConstraints();
         
@@ -156,10 +159,10 @@ public class WhereToView extends ModeView{
         d.gridy = 0;
 
         destinationPanel.add(destination, d);
-        
         destinationPanel.validate();
         destinationPanel.setVisible(true);
 
+        //Grid bag layout setup for the overall panel which holds the destination and current keyboard
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -324,6 +327,7 @@ public class WhereToView extends ModeView{
         c.gridwidth = 2;
         numberPanel.add(btnDel, c);
 
+        //Validate panels and show
         numberPanel.validate();
         letterPanel.validate();
 
@@ -337,6 +341,7 @@ public class WhereToView extends ModeView{
     }
 
     void showLetters() {
+        //Show the letters keyboard, hide the numbers keyboard
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -371,6 +376,7 @@ public class WhereToView extends ModeView{
     }
 
     void showNumbers() {
+        //Show the numbers keyboard, hide the letters.
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.HORIZONTAL;

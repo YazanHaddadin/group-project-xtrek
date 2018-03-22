@@ -64,35 +64,7 @@ public class WhereTo extends Mode {
     }
 
     static void showLetterButtons() {
-        //Hide all buttons for the main letter keyboard
-        /*whereView.btnA.setVisible(true);
-        whereView.btnB.setVisible(true);
-        whereView.btnC.setVisible(true);
-        whereView.btnD.setVisible(true);
-        whereView.btnE.setVisible(true);
-        whereView.btnF.setVisible(true);
-        whereView.btnG.setVisible(true);
-        whereView.btnH.setVisible(true);
-        whereView.btnI.setVisible(true);
-        whereView.btnJ.setVisible(true);
-        whereView.btnK.setVisible(true);
-        whereView.btnL.setVisible(true);
-        whereView.btnM.setVisible(true);
-        whereView.btnN.setVisible(true);
-        whereView.btnO.setVisible(true);
-        whereView.btnP.setVisible(true);
-        whereView.btnQ.setVisible(true);
-        whereView.btnR.setVisible(true);
-        whereView.btnS.setVisible(true);
-        whereView.btnT.setVisible(true);
-        whereView.btnU.setVisible(true);
-        whereView.btnV.setVisible(true);
-        whereView.btnW.setVisible(true);
-        whereView.btnX.setVisible(true);
-        whereView.btnY.setVisible(true);
-        whereView.btnZ.setVisible(true);
-        whereView.btnSpace.setVisible(true);
-        whereView.btnNextPage.setVisible(true);*/
+        //Show the letters keyboard
         whereView.btnA.requestFocus();
         whereView.showLetters();
         whereView.panel.revalidate();
@@ -112,19 +84,7 @@ public class WhereTo extends Mode {
     }
 
     static void showNumberButtons() {
-        //Show all buttons for the numerical keypad.
-        whereView.btn1.setVisible(true);
-        whereView.btn2.setVisible(true);
-        whereView.btn3.setVisible(true);
-        whereView.btn4.setVisible(true);
-        whereView.btn5.setVisible(true);
-        whereView.btn6.setVisible(true);
-        whereView.btn7.setVisible(true);
-        whereView.btn8.setVisible(true);
-        whereView.btn9.setVisible(true);
-        whereView.btn0.setVisible(true);
-        whereView.btnDel.setVisible(true);
-        whereView.btnBackPage.setVisible(true);
+        //Show the numbers keyboard
         whereView.showNumbers();
         whereView.btn1.requestFocus();
         whereView.panel.revalidate();
