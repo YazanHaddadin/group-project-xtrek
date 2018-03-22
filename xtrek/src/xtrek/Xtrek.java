@@ -25,6 +25,37 @@ class Xtrek extends JFrame {
     private static ControlLayout controlPanel;
     private static Mode currentView;
 
+
+    public static void main(String[] args) {
+        /*
+         */
+        Xtrek xtrek = new Xtrek();
+    }
+
+    static void showCurrentView() {
+        currentView.show();
+    }
+
+    static void hideCurrentView() {
+        currentView.hide();
+    }
+
+
+    static void turnOff() {
+        Xtrek.hideCurrentView();
+        controlPanel.disableOPButton(); //disables all buttons but the power button
+        Xtrek.isOn = false;
+        Xtrek.satellite.turnOff();
+    }
+    
+    static void turnOn() {
+        //turns the SCREEN back on making the current view visible
+        Xtrek.showCurrentView();
+        controlPanel.enableOPButton(); //enables all disabled buttons
+        Xtrek.isOn = true;
+        Xtrek.satellite.turnOn();
+    }
+    
     private Xtrek() {
         this.setLocationRelativeTo(null);
 
@@ -59,21 +90,6 @@ class Xtrek extends JFrame {
         this.validate();
         this.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        /*
-         */
-        Xtrek xtrek = new Xtrek();
-    }
-
-    static void showCurrentView() {
-        currentView.show();
-    }
-
-    static void hideCurrentView() {
-        currentView.hide();
-    }
-
     void updateFrame(Mode view) {
         currentView.hide();
         currentView = view;
@@ -82,13 +98,6 @@ class Xtrek extends JFrame {
         this.getContentPane().add(controlPanel.getPanel());
         this.pack();
         this.validate();
-    }
-
-    static void turnOff() {
-        Xtrek.hideCurrentView();
-        controlPanel.disableOPButton(); //disables all buttons but the power button
-        Xtrek.isOn = false;
-        Xtrek.satellite.turnOff();
     }
 
 }
