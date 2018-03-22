@@ -19,6 +19,7 @@ import java.util.HashMap;
 class MapModel extends ModeModel {
     private static Double latitude = 50.7184;     /* Inputted latitude - default Exeter - will be changed to current location  */
     private static Double longitude = -3.5339;     /* Inputted Longitude - default Exeter - will be changed to current location */
+    private static Double bearing = 0.0;
     private static String zoom = "10";           /* 0 .. 21           */
     private static String SIZE = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
     private Map controller;
@@ -42,6 +43,7 @@ class MapModel extends ModeModel {
         if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) > Constants.GPS_TOLERANCE) {
             MapModel.latitude = latitude;
             MapModel.longitude = longitude;
+            MapModel.bearing = getBearing(MapModel.latitude, MapModel.longitude, latitude, longitude);
             downloadNewMap();
         }
     }
@@ -103,6 +105,12 @@ class MapModel extends ModeModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    Double getBearing(Double lat1, Double lon1, Double lat2, Double lon2) {
+        Double y = Math.sin(lon2 - lon1) * Math.cos(lat2);
+        Double x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+        return Math.toDegrees(Math.atan2(y, x));
     }
 }
 

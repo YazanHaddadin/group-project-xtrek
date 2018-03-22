@@ -122,6 +122,4 @@ public class WhereToModel extends ModeModel {
         void giveFocus(KeyboardButton button) {
             button.giveFocus(buttons);
         }
-        
-           
 }
