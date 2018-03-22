@@ -16,7 +16,7 @@ public class WhereToView extends ModeView{
     private WhereTo controller;
     
     // Text field where destination will go.
-    public static final JTextField destination = new JTextField();
+    public static final JTextField destination = new JTextField("EXETER");
 
     //Create each keyboard button
     public JButton btnA;
