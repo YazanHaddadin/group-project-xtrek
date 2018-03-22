@@ -43,8 +43,7 @@ public class MapView extends ModeView {
         //method to rotate the map given a bearing
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.clearRect((Constants.SCREEN_WIDTH-Constants.MAP_DIM)/2, 
-                (Constants.SCREEN_WIDTH-Constants.MAP_DIM)/2, Constants.MAP_DIM, Constants.MAP_DIM);
+        g2d.clearRect(0, 0, Constants.MAP_DIM, Constants.MAP_DIM);
         
         if(image == null) {
             try {
@@ -54,6 +53,8 @@ public class MapView extends ModeView {
             }
         }
         
+       g2d.translate((Constants.SCREEN_WIDTH-Constants.MAP_DIM)/2, 
+               (Constants.SCREEN_HEIGHT-Constants.MAP_DIM)/2);
         g2d.rotate( MapModel.getBearing(), Constants.MAP_DIM/2, Constants.MAP_DIM/2 );
         g2d.drawImage(image, 0, 0,
                 this);
