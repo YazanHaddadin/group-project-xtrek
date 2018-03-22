@@ -148,6 +148,7 @@ public class WhereTo extends Mode {
         whereView.btnSpace.setVisible(true);
         whereView.btnNextPage.setVisible(true);
         whereView.btnA.requestFocus();
+        whereView.panel.revalidate();
         whereView.panel.repaint();
     }
     
@@ -166,6 +167,7 @@ public class WhereTo extends Mode {
         whereView.btnDel.setVisible(true);
         whereView.btnBackPage.setVisible(true);
         whereView.btn1.requestFocus();
+        whereView.panel.revalidate();
         whereView.panel.repaint();
     }
     
