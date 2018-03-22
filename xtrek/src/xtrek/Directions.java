@@ -28,6 +28,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private Double latitude;
     private Double longitude;
     private Route.Step nextStep;
+    private Double prevDistance;
+    private String destination;
 
     /**
       * @param origin place where you are getting directions from
@@ -84,12 +86,25 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
-                if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) < Constants.GPS_TOLERANCE) {
+
+                Double nextDistance = Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude);
+
+                if (prevDistance != null && (prevDistance - nextDistance) > 0.5) {
+                    routeSet = true;
+                    String queryToMake = latitude + "," + longitude;
+                    //Default values, will be used if not overriden in the method call.
+                    currentRoute = new Route(getDirections(queryToMake, destination));
+                    nextStep = currentRoute.getNextStep();
+                }
+
+                if (nextDistance < Constants.GPS_TOLERANCE) {
                     SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
                     listener.speakNextSegment(evt);
 
                     if (currentRoute != null) nextStep = currentRoute.getNextStep();
                 }
+
+                prevDistance = nextDistance;
             }
         } else if (routeSet && currentRoute == null) {
             SpeechEvent evt = new SpeechEvent(this, "");
@@ -100,6 +115,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     @Override
     public void onChangeDestination(String destination) {
         routeSet = true;
+        this.destination = destination;
         String queryToMake = latitude + "," + longitude;
         //Default values, will be used if not overriden in the method call.
         currentRoute = new Route(getDirections(queryToMake, destination));
