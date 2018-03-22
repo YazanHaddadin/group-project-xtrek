@@ -22,7 +22,7 @@ public class TripComputerView extends ModeView{
 
     final JPanel speedPanel = new JPanel();
     final JLabel speedLabel = new JLabel("Speed:");
-    final JLabel speedReading = new JLabel("6.0 KM/H");
+    final JLabel speedReading = new JLabel("0.0 KM/H");
 
     final JPanel movingTimePanel = new JPanel();
     final JLabel movingTimeLabel = new JLabel("Moving Time:");
