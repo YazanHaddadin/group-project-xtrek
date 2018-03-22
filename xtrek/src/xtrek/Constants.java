@@ -11,7 +11,7 @@ import java.awt.*;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class Constants {
+class Constants {
     public static final int DEVICE_WIDTH = 325;
     public static final int DEVICE_HEIGHT = 590;
 

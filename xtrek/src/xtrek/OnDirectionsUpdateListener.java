@@ -8,6 +8,6 @@ import java.util.EventListener;
  * @author Sebastien Michel
  * @version Sprint 3
  */
-public interface OnDirectionsUpdateListener extends EventListener {
+interface OnDirectionsUpdateListener extends EventListener {
     void speakNextSegment(SpeechEvent evt);
 }

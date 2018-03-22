@@ -35,7 +35,7 @@ class HttpConnection {
             conn.setRequestMethod(method);
 
             conn.setDoInput(true);
-            if (method == "GET") conn.setDoOutput(false);
+            if (method.equals("GET")) conn.setDoOutput(false);
             else conn.setDoOutput(true);
             conn.setUseCaches(false);
 
@@ -50,7 +50,7 @@ class HttpConnection {
             //conn.addRequestProperty("Content-Length", String.valueOf(body.getBytes().length));
             conn.connect();
 
-            if (method != "GET") {
+            if (!method.equals("GET")) {
                 DataOutputStream out = new DataOutputStream(conn.getOutputStream());
                 out.write(body.getBytes());
                 out.flush();

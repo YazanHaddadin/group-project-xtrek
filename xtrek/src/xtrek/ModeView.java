@@ -14,9 +14,9 @@ import java.awt.*;
  * To use : extends ModeView
  * Implement displayMode() which needs to include your buttons, text labels, images, etc
  */
-public abstract class ModeView {
+abstract class ModeView {
     final JFrame frame;
-    JPanel panel;
+    final JPanel panel;
 
     ModeView(JFrame frame) {
         this.frame = frame;

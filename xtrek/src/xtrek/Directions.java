@@ -20,10 +20,10 @@ import java.util.HashMap;
  * @version Sprint 3
  */
 public class Directions implements OnChangeDestinationListener, OnGPSUpdateListener {
-    //Default values, will be used if not overriden in the method call.
-    static String origin = "The Printworks, Exeter, UK";
+    private static final HashMap<String, String> requestProperties = new HashMap<>();
     static String dest = "University of Exeter, Exeter, UK";
-    private static HashMap<String, String> requestProperties = new HashMap<>();
+    //Default values, will be used if not overriden in the method call.
+    private static String origin = "The Printworks, Exeter, UK";
     private static String body;
     private OnDirectionsUpdateListener listener;
     private Route currentRoute = null;
