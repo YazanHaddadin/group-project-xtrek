@@ -111,5 +111,8 @@ class MapModel extends ModeModel {
         Double x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
         return Math.toDegrees(Math.atan2(y, x));
     }
+    static Double getBearing(){
+        return bearing;
+    }
 }
 
