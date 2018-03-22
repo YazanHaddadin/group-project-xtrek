@@ -1,6 +1,5 @@
 package xtrek;
 
-import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -69,8 +68,6 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         //Determine if the device is moving or not.
         if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.005) {
             moving = true;
-            lastLatitude = latitude;
-            lastLongitude = longitude;
             
             double distanceTravelled = 0.00;
             distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
@@ -78,6 +75,9 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
             kmTravelled += distanceTravelled;
             
             TripComputer.updateTripOdometer(Double.toString(kmTravelled));
+ 
+            lastLatitude = latitude;
+            lastLongitude = longitude;
             
         } else moving = false;
     }
