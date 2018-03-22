@@ -35,6 +35,7 @@ public class MapView extends ModeView {
         MapView.image = image;
         repaint();
     }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
