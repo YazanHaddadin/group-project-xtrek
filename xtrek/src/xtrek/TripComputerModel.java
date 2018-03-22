@@ -72,6 +72,9 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
             double distanceTravelled;
             distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
             
+            double speed = distanceTravelled/3600;
+            TripComputer.updateSpeed(Double.toString(speed));
+            
             kmTravelled += distanceTravelled;
             
             TripComputer.updateTripOdometer(Double.toString(kmTravelled));
