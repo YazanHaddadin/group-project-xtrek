@@ -38,7 +38,6 @@ public class WhereTo extends Mode {
     static void addToDestination(String letter) {
         //Add the typed letter to the destination field
         WhereToView.destination.setText(WhereToView.destination.getText() + letter);
-        callListener();
     }
     
     @Override
