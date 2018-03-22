@@ -153,6 +153,8 @@ class SatelliteModel extends ModeModel {
                         longitude = lonDeg + lonMin;
 
                         callListener(latitude, longitude, latitudeDirection, longitudeDirection);
+                    } else {
+                        callListener(null, null, null, null);
                     }
                 }
             }

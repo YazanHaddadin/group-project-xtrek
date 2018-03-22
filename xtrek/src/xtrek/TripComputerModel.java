@@ -12,21 +12,18 @@ import java.util.TimerTask;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputerModel extends ModeModel {
-    
-    static String mtLabel;
+class TripComputerModel extends ModeModel {
+
     static String odoLabel;
 
     private static Double lastLatitude;
     private static Double lastLongitude;
 
-    static int secondsCounter = 0;
-    static int numberOfMinutes = 0;
-    static int numberOfSeconds = 0;
-    
-    static boolean moving = false;
+    private static int secondsCounter = 0;
 
-    static double kmTravelled = 0;
+    private static boolean moving = false;
+
+    private static double kmTravelled = 0;
     
     void plus(ButtonEvent evt) {
         /*
@@ -47,7 +44,7 @@ public class TripComputerModel extends ModeModel {
     }
 
     //Increment timer for the journey every second
-    public void increaseMovingTime() {
+    void increaseMovingTime() {
         Timer movingTimer = new Timer();
         movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
 
@@ -81,15 +78,17 @@ public class TripComputerModel extends ModeModel {
         if(lastLongitude == null) {
             lastLongitude = longitude;
         }
-        
-        System.out.println(Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude));
-        
+
+        if (lastLatitude == null || lastLongitude == null || latitude == null || longitude == null) {
+            moving = false;
+            return;
+        }
+
         if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.001) {
             moving = true;
 
             double distanceTravelled;
             distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
-            System.out.println(distanceTravelled);
             
             double speed = Math.round(distanceTravelled*3600*100.00)/100D;
             TripComputer.updateSpeed(Double.toString(speed));
@@ -110,9 +109,9 @@ public class TripComputerModel extends ModeModel {
                 secondsCounter++;
                 
                 //Convert seconds to minutes and seconds.
-                numberOfMinutes = secondsCounter / 60;
-                numberOfSeconds = secondsCounter % 60;
-                mtLabel = (numberOfMinutes + " min " + numberOfSeconds + " sec");
+                int numberOfMinutes = secondsCounter / 60;
+                int numberOfSeconds = secondsCounter % 60;
+                String mtLabel = (numberOfMinutes + " min " + numberOfSeconds + " sec");
                 TripComputer.updateMovingTime(mtLabel);
             }
         }

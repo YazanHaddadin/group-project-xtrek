@@ -45,16 +45,16 @@ public class TripComputer extends Mode implements OnChangeDestinationListener, O
     public void minus(ButtonEvent evt) {
         tcModel.minus(evt);
     }
-    
-    public static void updateMovingTime(String mtText) {
+
+    static void updateMovingTime(String mtText) {
         tcView.movingTimeReading.setText(mtText);
     }
-    
-    public static void updateTripOdometer(String odoText) {
+
+    static void updateTripOdometer(String odoText) {
         tcView.odometerReading.setText(odoText + " KM");
     }
-    
-    public static void updateSpeed(String speedText) {
+
+    static void updateSpeed(String speedText) {
         tcView.speedReading.setText(speedText + " KM/H");
     }
 
