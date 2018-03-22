@@ -53,11 +53,11 @@ public class ControlLayout extends JPanel{
 
         //add the control buttons to the new panel created
         Dimension buttonSize = new Dimension(15, 40);
-        plus.setBounds(0, 100, 15, 40);
+        plus.setBounds(0, 70, 15, 40);
         plus.setPreferredSize(buttonSize);
         this.add(plus);
 
-        minus.setBounds(0, 140, 15, 40);
+        minus.setBounds(0, 110, 15, 40);
         minus.setPreferredSize(buttonSize);
         this.add(minus);
 
