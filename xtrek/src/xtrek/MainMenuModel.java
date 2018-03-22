@@ -96,7 +96,7 @@ public class MainMenuModel extends ModeModel{
         
         private void setStyle() {
             //set the display style of the operator buttons
-            setOpaque(true); 
+            setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(true);
             

@@ -53,6 +53,7 @@ class Xtrek extends JFrame {
         updateFrame(currentView);
 
         this.getContentPane().add(controlPanel.getPanel());
+        Xtrek.turnOff();
         this.pack();
 
         this.validate();
@@ -83,5 +84,11 @@ class Xtrek extends JFrame {
         this.validate();
     }
 
+    static void turnOff() {
+        Xtrek.hideCurrentView();
+        controlPanel.disableOPButton(); //disables all buttons but the power button
+        Xtrek.isOn = false;
+        Xtrek.satellite.turnOff();
+    }
 
 }

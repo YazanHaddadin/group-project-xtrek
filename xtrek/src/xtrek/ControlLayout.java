@@ -121,6 +121,13 @@ public class ControlLayout extends JPanel{
         return this;
     }
 
+    void disableOPButton() {
+        menu.setEnabled(false);
+        plus.setEnabled(false);
+        minus.setEnabled(false);
+        select.setEnabled(false);
+    }
+
     class ControlButton extends JButton {
         private final String control;
 
@@ -194,13 +201,6 @@ public class ControlLayout extends JPanel{
                     break;
             }
 
-        }
-        
-        private void disableOPButton(){
-            menu.setEnabled(false);
-            plus.setEnabled(false);
-            minus.setEnabled(false);
-            select.setEnabled(false);
         }
         
         private void enableOPButton(){

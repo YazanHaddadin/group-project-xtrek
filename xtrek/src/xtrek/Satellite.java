@@ -1,7 +1,6 @@
 package xtrek;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,7 +15,8 @@ import java.util.logging.Logger;
 public class Satellite extends Mode {
     private SatelliteView SView;
     private SatelliteModel SModel;
-    private Thread thread = new Thread(new Updater());
+    private Updater updater = new Updater();
+    private Thread thread = new Thread(updater);
 
     Satellite(JFrame frame) {
         model = new SatelliteModel();
@@ -32,8 +32,8 @@ public class Satellite extends Mode {
     void setListener(OnGPSUpdateListener listener) {
         SModel.setListener(listener);
     }
-    
-    public void updatePosition() {
+
+    private void updatePosition() {
         Double value1 = SModel.getLatitude();
         String direction1 = SModel.getLatitudeDirection();
         Double value2 = SModel.getLongitude();
@@ -45,19 +45,17 @@ public class Satellite extends Mode {
             SView.setPosition(value1, direction1, value2, direction2);
         }
     }
-    
-    public class Updater implements Runnable {
-        @Override
-        public void run() {
-            while(true){
-                updatePosition();
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Satellite.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+
+    void turnOff() {
+
+        updater.setIsTerminating(true);
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        SModel.turnOff();
     }
 
     @Override
@@ -70,6 +68,27 @@ public class Satellite extends Mode {
 
     @Override
     public void minus(ButtonEvent evt) {
+    }
+
+    public class Updater implements Runnable {
+
+        boolean stop = false;
+
+        void setIsTerminating(boolean stop) {
+            this.stop = stop;
+        }
+
+        @Override
+        public void run() {
+            while (!stop) {
+                updatePosition();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Satellite.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
     
 }
