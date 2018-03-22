@@ -6,13 +6,17 @@ import sun.audio.AudioPlayer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * TurnByTurn Model
+ * turnByTurn Model
  *
  * @author Sebastien Michel
  * @version Sprint 3
@@ -121,7 +125,7 @@ class TurnByTurnModel extends ModeModel {
         return sentence;
     }
 
-    private String translateSegment(String segment) {
+    private String translateSegment(String segment) throws IOException {
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", Constants.MICROSOFT_VOICE_API);
         HttpConnection conn = new HttpConnection(
@@ -140,7 +144,7 @@ class TurnByTurnModel extends ModeModel {
         return conn.parseXML(xml);
     }
 
-    private byte[] downloadNextSegment(String segment) {
+    private byte[] downloadNextSegment(String segment) throws IOException {
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", Constants.MICROSOFT_VOICE_API);
         HttpConnection conn = new HttpConnection(
@@ -156,16 +160,40 @@ class TurnByTurnModel extends ModeModel {
         return conn.getResponse();
     }
 
+    private byte[] noResource(String resource) {
+        try {
+            Path fileLocation = Paths.get(getClass().getResource("assets/" + resource).toURI());
+            return Files.readAllBytes(fileLocation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     void playAudio(String segment) {
-        final String normalisedSegment = normaliseSentence(segment);
-        System.out.println(segment);
-                byte[] audio = downloadNextSegment(translateSegment(normalisedSegment));
-                if (AudioPlayer.player.isAlive()) {
-                    AudioPlayer.player.stop(audioStream);
-                }
-                AudioData audioData = new AudioData(audio);
-                audioStream = new AudioDataStream(audioData);
-                AudioPlayer.player.start(audioStream);
+        String normalisedSegment = normaliseSentence(segment);
+        normalisedSegment = "There is currently no internet connection";
+        byte[] audio = null;
+        try {
+            audio = downloadNextSegment(translateSegment(normalisedSegment));
+        } catch (IOException e) {
+            audio = noResource("noInternet.wav");
+        }
+
+        /*try (FileOutputStream fos = new FileOutputStream("noInternet.wav")) {
+            fos.write(audio);
+            //fos.close(); There is no more need for this line since you had created the instance of "fos" inside the try. And this will automatically close the OutputStream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        if (AudioPlayer.player.isAlive()) {
+            AudioPlayer.player.stop(audioStream);
+        }
+        AudioData audioData = new AudioData(audio);
+        audioStream = new AudioDataStream(audioData);
+        AudioPlayer.player.start(audioStream);
     }
 
     private void stopAudio() {

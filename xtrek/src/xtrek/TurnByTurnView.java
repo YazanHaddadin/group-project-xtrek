@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * TurnByTurn View
+ * turnByTurn View
  *
  * @author Sebastien Michel
  * @version Sprint 3

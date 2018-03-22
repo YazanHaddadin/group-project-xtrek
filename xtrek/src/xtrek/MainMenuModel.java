@@ -36,7 +36,7 @@ public class MainMenuModel extends ModeModel{
         } else if(currentButton.currentClass == Map.class) {
             xtrek.updateFrame(Xtrek.MapMode);
         } else if(currentButton.currentClass == TurnByTurn.class) {
-            xtrek.updateFrame(Xtrek.TurnByTurn);
+            xtrek.updateFrame(Xtrek.turnByTurn);
         } else if(currentButton.currentClass == Satellite.class) {
             xtrek.updateFrame(Xtrek.satellite);
         } else if(currentButton.currentClass == About.class) {

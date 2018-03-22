@@ -11,7 +11,7 @@ package xtrek;
 import java.io.*;
 import java.util.ArrayList;
 
-public class SatelliteModel extends ModeModel {
+class SatelliteModel extends ModeModel {
 
     private Direction latitudeDirection;
     private Direction longitudeDirection;
@@ -74,7 +74,7 @@ public class SatelliteModel extends ModeModel {
     void selected(ButtonEvent evt) {
     }
 
-    public void turnOff() {
+    void turnOff() {
         reader.setIsTerminating(true);
         try {
             thread.join();

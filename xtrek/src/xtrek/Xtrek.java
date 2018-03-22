@@ -18,7 +18,7 @@ class Xtrek extends JFrame {
     static MainMenu MainMenu;
     static About AboutMode;
     static Map MapMode;
-    static TurnByTurn TurnByTurn;
+    static TurnByTurn turnByTurn;
     static WhereTo WhereTo;
     static TripComputer tripComputer;
     static Satellite satellite;
@@ -32,30 +32,6 @@ class Xtrek extends JFrame {
         Xtrek xtrek = new Xtrek();
     }
 
-    static void showCurrentView() {
-        currentView.show();
-    }
-
-    static void hideCurrentView() {
-        currentView.hide();
-    }
-
-
-    static void turnOff() {
-        Xtrek.hideCurrentView();
-        controlPanel.disableOPButton(); //disables all buttons but the power button
-        Xtrek.isOn = false;
-        Xtrek.satellite.turnOff();
-    }
-    
-    static void turnOn() {
-        //turns the SCREEN back on making the current view visible
-        Xtrek.showCurrentView();
-        controlPanel.enableOPButton(); //enables all disabled buttons
-        Xtrek.isOn = true;
-        Xtrek.satellite.turnOn();
-    }
-    
     private Xtrek() {
         this.setLocationRelativeTo(null);
 
@@ -69,11 +45,11 @@ class Xtrek extends JFrame {
         tripComputer = new TripComputer(this);
         AboutMode = new About(this);
         MapMode = new Map(this);
-        TurnByTurn = new TurnByTurn(this);
+        turnByTurn = new TurnByTurn(this);
         WhereTo = new WhereTo(this);
         satellite = new Satellite(this);
         Directions directions = new Directions();
-        directions.setListener(TurnByTurn);
+        directions.setListener(turnByTurn);
         WhereTo.setListener(directions);
         satellite.setListener(MapMode);
         satellite.setListener(directions);
@@ -89,6 +65,30 @@ class Xtrek extends JFrame {
 
         this.validate();
         this.setVisible(true);
+    }
+
+    private static void showCurrentView() {
+        currentView.show();
+    }
+
+
+    static void turnOff() {
+        Xtrek.hideCurrentView();
+        controlPanel.disableOPButton(); //disables all buttons but the power button
+        Xtrek.isOn = false;
+        Xtrek.satellite.turnOff();
+    }
+
+    static void turnOn() {
+        //turns the SCREEN back on making the current view visible
+        Xtrek.showCurrentView();
+        controlPanel.enableOPButton(); //enables all disabled buttons
+        Xtrek.isOn = true;
+        Xtrek.satellite.turnOn();
+    }
+
+    private static void hideCurrentView() {
+        currentView.hide();
     }
     void updateFrame(Mode view) {
         currentView.hide();

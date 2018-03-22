@@ -8,13 +8,14 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
 /**
  * HttpConnection Class
  * <p>
- * Provides an HTTP connection for the TurnByTurn, Map and Directions classes.
+ * Provides an HTTP connection for the turnByTurn, Map and Directions classes.
  *
  * @author sebltm
  * @version Sprint 3
@@ -27,7 +28,7 @@ class HttpConnection {
      * @param requestProp a Map of the request properties in key, value pairs
      * @param body        The body of the request
      */
-    public HttpConnection(String u, String method, Map<String, String> requestProp, String body) {
+    HttpConnection(String u, String method, Map<String, String> requestProp, String body) throws IOException {
         try {
             URL url = new URL(u);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
@@ -86,8 +87,7 @@ class HttpConnection {
                 }
 
             }
-
-        } catch (Exception e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
