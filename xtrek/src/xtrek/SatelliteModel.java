@@ -123,8 +123,6 @@ public class SatelliteModel extends ModeModel {
                     }
                     
                     if (line.startsWith("$GPGLL")) {
-                        
-                        System.out.println(line);
                         String[] splits = line.split(",");
                         if (splits[1].equals("") || splits[2].equals("") || splits[3].equals("") || splits[4].equals(""))
                             ;

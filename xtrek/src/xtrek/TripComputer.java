@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputer extends Mode {
+public class TripComputer extends Mode implements OnChangeDestinationListener, OnGPSUpdateListener {
     
     private static TripComputerView tcView;
     private static TripComputerModel tcModel;
@@ -22,11 +22,8 @@ public class TripComputer extends Mode {
 
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
-
-        SatelliteModel satModel = new SatelliteModel();
-
-        TripComputerModel.lastLatitude = satModel.getLatitude();
-        TripComputerModel.lastLongitude = satModel.getLongitude();
+        
+        tcModel.increaseMovingTime();
     }
     
     @Override
@@ -59,5 +56,15 @@ public class TripComputer extends Mode {
     
     public static void updateSpeed(String speedText) {
         tcView.speedReading.setText(speedText + " KM/H");
+    }
+
+    @Override
+    public void onGPSUpdate(Double latitude, Double longitude, SatelliteModel.Direction latitudeDirection, SatelliteModel.Direction longitudeDirection) {
+        tcModel.onGPSUpdate(latitude, longitude, latitudeDirection, longitudeDirection);
+    }
+
+    @Override
+    public void onChangeDestination(String destination) {
+        tcModel.onChangeDestination(destination);
     }
 }

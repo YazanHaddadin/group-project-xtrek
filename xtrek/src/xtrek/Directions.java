@@ -80,16 +80,12 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         }
 
         if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null) {
-
-            System.out.println(Map.calculateDistance(nextStep.getStart_lat(), 
-                    nextStep.getStart_lon(), this.latitude, this.longitude));
             
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
                 if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) < Constants.GPS_TOLERANCE) {
                     SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
-                    System.out.println(nextStep.getInstructions());
                     listener.speakNextSegment(evt);
                     
                     if (currentRoute != null) nextStep = currentRoute.getNextStep();
@@ -113,8 +109,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
         Route(String data) {
             try {
-                System.out.println(data);
-
                 JSONObject json = (JSONObject) new JSONParser().parse(data);
 
                 JSONArray routes = (JSONArray) json.get("routes");
@@ -141,7 +135,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
                     Step next_step = new Step(lon, lat, instructions);
                     Route.this.steps.add(next_step);
-                    System.out.println(instructions);
                 }
             } catch (ParseException e) {
                 e.printStackTrace();

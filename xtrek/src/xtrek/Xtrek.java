@@ -46,6 +46,7 @@ class Xtrek extends JFrame {
         WhereTo.setListener(directions);
         satellite.setListener(MapMode);
         satellite.setListener(directions);
+        satellite.setListener(tripComputer);
 
         currentView = MainMenu;
 
