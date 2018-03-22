@@ -123,5 +123,10 @@ public class WhereToModel extends ModeModel {
             button.giveFocus(buttons);
         }
         
+        @Override
+        void hide() {
+            controller.callListener();
+        }
+        
            
 }
