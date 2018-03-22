@@ -76,7 +76,6 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
             TripComputer.updateSpeed(Double.toString(speed));
             
             kmTravelled += distanceTravelled;
-            
             TripComputer.updateTripOdometer(Double.toString(kmTravelled));
  
             lastLatitude = latitude;
