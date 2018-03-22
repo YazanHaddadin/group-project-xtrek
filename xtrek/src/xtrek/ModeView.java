@@ -8,7 +8,7 @@ import java.awt.*;
  * <p>
  * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
  *
- * @author sebltm
+ * @author Sebastien Michel
  * @version Sprint 3
  * <p>
  * To use : extends ModeView

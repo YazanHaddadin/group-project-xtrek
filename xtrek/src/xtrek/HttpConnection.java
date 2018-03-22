@@ -17,7 +17,7 @@ import java.util.Map;
  * <p>
  * Provides an HTTP connection for the turnByTurn, Map and Directions classes.
  *
- * @author sebltm
+ * @author Sebatien Michel
  * @version Sprint 3
  */
 class HttpConnection {
