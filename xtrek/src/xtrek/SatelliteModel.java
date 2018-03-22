@@ -8,10 +8,7 @@
  */
 package xtrek;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class SatelliteModel extends ModeModel {
@@ -89,14 +86,18 @@ public class SatelliteModel extends ModeModel {
     public class Reader implements Runnable {
         @Override
         public void run() {
-            try{
+            String line;
+
+            try {
                 FileInputStream in = new FileInputStream(new File(Constants.DONGLE_LOCATION));
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                String line;
+                line = br.readLine();
+            } catch (IOException e) {
+                line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77"; //Default to location
+            }
 
+            try {
                 while (true) {
-                    line = br.readLine();
-                    line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77";
                     if (line == null) {
                         Thread.sleep(12000);
                     }

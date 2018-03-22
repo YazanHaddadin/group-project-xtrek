@@ -95,12 +95,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                 if (currentRoute != null) nextStep = currentRoute.getNextStep();
             }
         }
-
-        if (currentRoute == null && listener != null) {
-            String queryToMake = this.latitude + "," + this.longitude;
-            currentRoute = new Route(getDirections(queryToMake, dest));
-            nextStep = currentRoute.getNextStep();
-        }
     }
 
     @Override
