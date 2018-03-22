@@ -39,10 +39,10 @@ public class SatellitePanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font(Constants.SYSTEM_FONT, 0, 24));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font(Constants.SYSTEM_FONT, 0, 24));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
