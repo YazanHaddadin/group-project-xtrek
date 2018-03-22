@@ -55,6 +55,10 @@ public class TripComputer extends Mode {
     }
     
     public static void updateTripOdometer(String odoText) {
-        tcView.odometerReading.setText(odoText);
+        tcView.odometerReading.setText(odoText + " KM");
+    }
+    
+    public static void updateSpeed(String speedText) {
+        tcView.speedReading.setText(speedText + " KM/H");
     }
 }
