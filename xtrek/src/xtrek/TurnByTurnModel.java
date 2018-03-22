@@ -173,8 +173,7 @@ class TurnByTurnModel extends ModeModel {
 
     void playAudio(String segment) {
         String normalisedSegment = normaliseSentence(segment);
-        normalisedSegment = "There is currently no internet connection";
-        byte[] audio = null;
+        byte[] audio;
         try {
             audio = downloadNextSegment(translateSegment(normalisedSegment));
         } catch (IOException e) {
