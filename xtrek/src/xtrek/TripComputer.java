@@ -23,10 +23,10 @@ public class TripComputer extends Mode {
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
 
-        SatelliteModel stModel = (SatelliteModel) model;
+        SatelliteModel satModel = new SatelliteModel();
 
-        TripComputerModel.lastLatitude = stModel.getLatitude();
-        TripComputerModel.lastLongitude = stModel.getLongitude();
+        TripComputerModel.lastLatitude = satModel.getLatitude();
+        TripComputerModel.lastLongitude = satModel.getLongitude();
     }
     
     @Override
