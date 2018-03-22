@@ -78,7 +78,10 @@ class MapModel extends ModeModel {
     void selected(ButtonEvent evt) {
         //do nothing
     }
-
+    @Override
+    void hide() {
+        controller.mapView.hideView();
+    }
     private void downloadNewMap() {
         try {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
