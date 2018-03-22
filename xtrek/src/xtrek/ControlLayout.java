@@ -77,8 +77,10 @@ public class ControlLayout extends JPanel{
                 Image img = ImageIO.read(getClass().getResource("assets/power.png"))
                         .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
                 onOff.setIcon(new ImageIcon(img));
-            }   catch (Exception ex) {
-            ex.printStackTrace();
+            }   catch (IOException | IllegalArgumentException ex) {
+                System.out.println(ex);
+                onOff.setContentAreaFilled(true);
+                onOff.setBackground(Color.RED);
             }  
         
         this.add(onOff);
@@ -107,8 +109,9 @@ public class ControlLayout extends JPanel{
             overlay.setIcon(new ImageIcon(img));
             overlayPanel.add(overlay);
             this.add(overlayPanel);
-        } catch(IOException e) {
-            e.printStackTrace();
+        } catch(IOException | IllegalArgumentException ex) {
+            System.out.println(ex);
+            this.setBackground(Color.BLACK);
         }
 
         this.validate();
@@ -127,6 +130,7 @@ public class ControlLayout extends JPanel{
             setStyle();
 
             addMouseListener(new MouseAdapter() {
+                @Override
                 public void mouseClicked(MouseEvent me) {
                     //to add functionality depending on which button has been clicked
                     switch (control) {
@@ -171,11 +175,9 @@ public class ControlLayout extends JPanel{
         }
 
         private void setStyle() {
-            setOpaque(false);
+            setOpaque(true);
             setContentAreaFilled(false);
             setBorderPainted(false);
-            setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 5));
-            setHorizontalAlignment(SwingConstants.CENTER);
         }
 
         private void fireEvent() {

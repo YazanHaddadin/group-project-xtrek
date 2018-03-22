@@ -3,6 +3,7 @@ package xtrek;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +20,7 @@ public class MainMenuModel extends ModeModel{
     
     private OperatorButton currentButton;
     private int buttonIndex;
-    private Xtrek xtrek;
+    private final Xtrek xtrek;
 
     MainMenuModel(Xtrek xtrek) {
         this.xtrek = xtrek;
@@ -40,6 +41,8 @@ public class MainMenuModel extends ModeModel{
             xtrek.updateFrame(Xtrek.satellite);
         } else if(currentButton.currentClass == About.class) {
             xtrek.updateFrame(Xtrek.AboutMode);
+        } else{
+            xtrek.updateFrame(Xtrek.MainMenu);
         }
     }
     
@@ -77,8 +80,11 @@ public class MainMenuModel extends ModeModel{
                 Image img = ImageIO.read(getClass().getResource("assets/" + display + ".png"))
                         .getScaledInstance(88, 70, Image.SCALE_SMOOTH);
                 setIcon(new ImageIcon(img));
-            }   catch (Exception ex) {
+            }   catch (IOException | IllegalArgumentException ex) {
                 System.out.println(ex);
+                this.setText(display);
+                this.setContentAreaFilled(true);
+                this.setBackground(Color.WHITE);
             }  
             this.currentClass = currentClass;
             setStyle();
@@ -87,10 +93,9 @@ public class MainMenuModel extends ModeModel{
         private void setStyle() {
             //set the display style of the operator buttons
             setOpaque(true); 
-            setBackground(Color.BLACK);
-            setBorderPainted(false);
-            setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 14));
-            setHorizontalAlignment(SwingConstants.CENTER);
+            setBackground(Color.WHITE);
+            setBorderPainted(true);
+            
         }
 
         private void focusGained() {
@@ -100,7 +105,7 @@ public class MainMenuModel extends ModeModel{
 
         private void focusLost() {
             //when the focus is lost it reverts back to the orginal colour
-            setBackground(Color.BLACK);
+            setBackground(Color.WHITE);
         }
         
         String getDisplay() {

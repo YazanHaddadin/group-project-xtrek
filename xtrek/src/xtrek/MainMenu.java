@@ -12,8 +12,8 @@ import javax.swing.*;
  * @version Sprint 3
  */
 public class MainMenu extends Mode {
-    private MainMenuView MMView;
-    private MainMenuModel MMModel;
+    private final MainMenuView MMView;
+    private final MainMenuModel MMModel;
 
     MainMenu(Xtrek frame) {
         model = new MainMenuModel(frame);
