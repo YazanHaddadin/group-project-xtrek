@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -21,14 +22,11 @@ import java.util.HashMap;
  */
 public class Directions implements OnChangeDestinationListener, OnGPSUpdateListener {
     private static final HashMap<String, String> requestProperties = new HashMap<>();
-    static String dest = "University of Exeter, Exeter, UK";
-    private static String body;
     private OnDirectionsUpdateListener listener;
     private Route currentRoute = null;
     private Double latitude;
     private Double longitude;
     private Route.Step nextStep;
-
 
     /**
       * @param origin place where you are getting directions from
@@ -44,9 +42,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                     + "&" + "region" + "=" + Constants.DIRECTIONS_REGION
                     + "&" + "mode" + "=" + Constants.TRAVEL_MODE)
                     + "&key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
-            
-            
-            HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);
+
+
+            HttpConnection conn = new HttpConnection(url, "GET", requestProperties, "");
             
             byte[] response = conn.getResponse();
 
@@ -54,7 +52,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
-            return null;
+            return "";
+        } catch (IOException e) {
+            return "";
         }
         
     }
@@ -80,17 +80,19 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         }
 
         if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null) {
-            
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
                 if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) < Constants.GPS_TOLERANCE) {
                     SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
                     listener.speakNextSegment(evt);
-                    
+
                     if (currentRoute != null) nextStep = currentRoute.getNextStep();
                 }
             }
+        } else if (currentRoute != null && listener != null) {
+            SpeechEvent evt = new SpeechEvent(this, "");
+            listener.speakNextSegment(evt);
         }
     }
 

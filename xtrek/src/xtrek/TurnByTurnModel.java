@@ -172,20 +172,28 @@ class TurnByTurnModel extends ModeModel {
     }
 
     void playAudio(String segment) {
-        String normalisedSegment = normaliseSentence(segment);
+        if (currentButton.LANGUAGE == TurnByTurn.Language.OFF) {
+            return;
+        }
+
         byte[] audio;
+        if (segment.isEmpty()) {
+            audio = noResource("noGPS.wav");
+            if (AudioPlayer.player.isAlive()) {
+                AudioPlayer.player.stop(audioStream);
+            }
+            AudioData audioData = new AudioData(audio);
+            audioStream = new AudioDataStream(audioData);
+            AudioPlayer.player.start(audioStream);
+            return;
+        }
+
+        String normalisedSegment = normaliseSentence(segment);
         try {
             audio = downloadNextSegment(translateSegment(normalisedSegment));
         } catch (IOException e) {
             audio = noResource("noInternet.wav");
         }
-
-        /*try (FileOutputStream fos = new FileOutputStream("noInternet.wav")) {
-            fos.write(audio);
-            //fos.close(); There is no more need for this line since you had created the instance of "fos" inside the try. And this will automatically close the OutputStream
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
         if (AudioPlayer.player.isAlive()) {
             AudioPlayer.player.stop(audioStream);
@@ -207,10 +215,10 @@ class TurnByTurnModel extends ModeModel {
             this.playAudio("The language has been set to " + currentButton.getLanguage().getDisplay());
         } else {
             stopAudio();
+            this.playAudio("Speech function turned off");
             currentButton = (LangButton) buttons.get(0);
             language = currentButton.getLanguage();
             gender = currentButton.getGender();
-            this.playAudio("Speech function turned off");
         }
     }
 
