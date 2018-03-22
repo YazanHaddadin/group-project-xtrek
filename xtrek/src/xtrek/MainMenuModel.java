@@ -74,7 +74,7 @@ class MainMenuModel extends ModeModel {
 
     void initClass() {
         buttonIndex = 0;
-        if (currentButton == null) currentButton = (OperatorButton) buttons.get(0);
+        currentButton = (OperatorButton) buttons.get(0);
     }
 
     void emptyArray() {
