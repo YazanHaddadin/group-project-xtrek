@@ -27,6 +27,7 @@ public class MainMenu extends Mode {
     void displayMode() {
         MMView.setController(this);
         MMView.displayMode();
+        MMModel.initClass();
     }
 
     JButton addButton(String display, Class currentClass) {
