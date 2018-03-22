@@ -37,10 +37,10 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private static String getDirections(String origin, String dest) {
         try {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
-                    + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
-                    + "&" + "destination" + "=" + URLEncoder.encode(dest, "UTF-8")
-                    + "&" + "region" + "=" + Constants.DIRECTIONS_REGION
-                    + "&" + "mode" + "=" + Constants.TRAVEL_MODE)
+                    + "?origin=" + URLEncoder.encode(origin, "UTF-8")
+                    + "&destination=" + URLEncoder.encode(dest, "UTF-8")
+                    + "&region=" + Constants.DIRECTIONS_REGION
+                    + "&mode=" + Constants.TRAVEL_MODE)
                     + "&key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
 
 
