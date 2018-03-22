@@ -125,6 +125,10 @@ class SatelliteModel extends ModeModel {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                } else {
+                    System.out.println("GPS");
+                    callListener(null, null, null, null);
+                    continue;
                 }
 
                 if (line.startsWith("$GPGLL")) {
@@ -154,8 +158,6 @@ class SatelliteModel extends ModeModel {
 
                         callListener(latitude, longitude, latitudeDirection, longitudeDirection);
                     }
-                } else if (line == null) {
-                    callListener(null, null, null, null);
                 }
             }
         }

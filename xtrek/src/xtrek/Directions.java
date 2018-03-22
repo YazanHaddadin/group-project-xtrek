@@ -24,17 +24,17 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private static final HashMap<String, String> requestProperties = new HashMap<>();
     private OnDirectionsUpdateListener listener;
     private Route currentRoute = null;
+    private boolean routeSet = false;
     private Double latitude;
     private Double longitude;
     private Route.Step nextStep;
 
     /**
-      * @param origin place where you are getting directions from
-      * @param dest place where you want to get directions to
-     *
+     * @param origin place where you are getting directions from
+     * @param dest   place where you want to get directions to
      * @return byte array containing the directions from the API
-      */
-    private static String getDirections(String origin, String dest) {
+     */
+    private String getDirections(String origin, String dest) {
         try {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
@@ -45,18 +45,18 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
 
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, "");
-            
+
             byte[] response = conn.getResponse();
 
             return new String(response);
-            
+
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
             return "";
         } catch (IOException e) {
             return "";
         }
-        
+
     }
 
     void setListener(OnDirectionsUpdateListener listener) {
@@ -79,7 +79,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             this.longitude = -longitude;
         }
 
-        if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null) {
+        System.out.println(routeSet + ", " + currentRoute);
+
+        if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null && routeSet) {
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
@@ -90,7 +92,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                     if (currentRoute != null) nextStep = currentRoute.getNextStep();
                 }
             }
-        } else if (currentRoute != null && listener != null) {
+        } else if (routeSet && currentRoute == null) {
+            System.out.println("HERE");
             SpeechEvent evt = new SpeechEvent(this, "");
             listener.speakNextSegment(evt);
         }
@@ -98,6 +101,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
     @Override
     public void onChangeDestination(String destination) {
+        routeSet = true;
         String queryToMake = latitude + "," + longitude;
         //Default values, will be used if not overriden in the method call.
         currentRoute = new Route(getDirections(queryToMake, destination));
@@ -105,9 +109,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     }
 
     class Route {
-        private int i = 0;
         private final ArrayList<Step> steps = new ArrayList<>();
         private final ArrayList<String> warnings = new ArrayList<>();
+        private int i = 0;
 
         Route(String data) {
             try {
@@ -153,6 +157,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                 return steps.get(i++);
             } else {
                 step = steps.get(i);
+                routeSet = false;
                 currentRoute = null;
             }
 

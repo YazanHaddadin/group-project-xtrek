@@ -73,7 +73,7 @@ public class MainMenuModel extends ModeModel{
     }
 
     void initClass() {
-        currentButton = (OperatorButton) buttons.get(0);
+        if (currentButton == null) currentButton = (OperatorButton) buttons.get(0);
     }
     
     class OperatorButton extends JButton{
