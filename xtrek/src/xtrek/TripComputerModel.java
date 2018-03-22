@@ -84,7 +84,7 @@ class TripComputerModel extends ModeModel {
             return;
         }
 
-        if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.001) {
+        if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.002) {
             moving = true;
 
             double distanceTravelled;
