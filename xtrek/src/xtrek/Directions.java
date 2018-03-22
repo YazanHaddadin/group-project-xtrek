@@ -84,18 +84,16 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
-                if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) > Constants.GPS_TOLERANCE || true) {
+                if (Map.calculateDistance(nextLat, nextLong, this.latitude, this.longitude) < Constants.GPS_TOLERANCE) {
                     SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
+                    System.out.println(nextStep.getInstructions());
                     listener.speakNextSegment(evt);
-                }
-                nextStep = currentRoute.getNextStep();
-            }
-        }
 
-        if (currentRoute == null && listener != null) {
-            String queryToMake = this.latitude + "," + this.longitude;
-            currentRoute = new Route(getDirections(origin, dest));
-            nextStep = currentRoute.getNextStep();
+                }
+
+
+                if (currentRoute != null) nextStep = currentRoute.getNextStep();
+            }
         }
     }
 
@@ -156,6 +154,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                 return steps.get(i++);
             } else {
                 step = steps.get(i);
+                currentRoute = null;
             }
 
             return step;

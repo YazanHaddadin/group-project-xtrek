@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 /**
@@ -86,16 +87,16 @@ class MapModel extends ModeModel {
     private void downloadNewMap() {
 
         System.out.println("Downloaded new image");
-        HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
-                + "?center=" + latitude + "," + longitude
-                + "&zoom=" + zoom
-                + "&size=" + SIZE
-                + "&markers=" + latitude + "," + longitude
-                + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
-
-        ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
-
         try {
+            HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
+                    + "?center=" + latitude + "," + longitude
+                    + "&zoom=" + zoom
+                    + "&size=" + SIZE
+                    + "&markers=icon:" + URLEncoder.encode("https://sebastienmichel.me/red_dot_transparent.png", "UTF-8")
+                    + "|" + latitude + "," + longitude
+                    + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
+
+            ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
 
             BufferedImage myPicture = ImageIO.read(image);
             controller.setIcon(new ImageIcon(myPicture));
