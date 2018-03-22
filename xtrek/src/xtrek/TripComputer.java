@@ -6,7 +6,7 @@ import javax.swing.*;
  * TripComputer Controller Class
  * <p>
  * Provides for communication between the view and model of the Trip Computer
- * on the XTrek. Will provide information about the current trip.
+ * on the XTrek, showing information about the current trip.
  *
  * @author Caleb Blackmore
  * @version Sprint 3
