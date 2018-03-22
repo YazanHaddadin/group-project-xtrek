@@ -17,6 +17,8 @@ import java.io.IOException;
 public class MapView extends ModeView {
     private static JLabel label = new JLabel();
     private static BufferedImage image;
+    private BufferedImage noInternetImage;
+   
     MapView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
@@ -67,6 +69,16 @@ public class MapView extends ModeView {
         GridBagConstraints con = new GridBagConstraints();
         con.gridx = 0;
         con.gridy = 0;
+
+        try {
+            noInternetImage = ImageIO.read(getClass().getResource("assets/no_connection.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        setIcon(noInternetImage);
+        //makeVisible();
+        
         panel.add(label, con);
         panel.validate();
         panel.setVisible(true);
