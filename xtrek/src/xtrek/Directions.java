@@ -45,7 +45,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                     + "&" + "mode" + "=" + Constants.TRAVEL_MODE)
                     + "&key=AIzaSyCD60UxHwClSHYSCxMkhmMkluel7RZByx4";
             
+            
             HttpConnection conn = new HttpConnection(url, "GET", requestProperties, body);
+            
             byte[] response = conn.getResponse();
 
             return new String(response);
@@ -100,7 +102,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     public void onChangeDestination(String destination) {
         String queryToMake = latitude + "," + longitude;
         //Default values, will be used if not overriden in the method call.
-        System.out.println("Changed directions");
         currentRoute = new Route(getDirections(queryToMake, destination));
         nextStep = currentRoute.getNextStep();
     }
