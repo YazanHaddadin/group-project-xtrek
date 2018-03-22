@@ -16,6 +16,7 @@ public class TripComputer extends Mode {
     
     private static TripComputerView tcView;
     private static TripComputerModel tcModel;
+    private static SatelliteModel stModel;
     
     TripComputer(JFrame frame) {
         model = new TripComputerModel();
@@ -24,9 +25,10 @@ public class TripComputer extends Mode {
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
         
-        //Start the simulations of the moving time and odometer
-        tcModel.increaseMovingTime();
-        tcModel.increaseTripOdometer();
+        stModel = (SatelliteModel) model;
+        
+        tcModel.lastLatitude = stModel.getLatitude();
+        tcModel.lastLongitude = stModel.getLongitude();
     }
     
     @Override

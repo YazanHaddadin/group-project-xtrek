@@ -1,6 +1,5 @@
 package xtrek;
 
-import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -69,29 +68,18 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         //Determine if the device is moving or not.
         if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.005) {
             moving = true;
+            
+            double distanceTravelled = 0.00;
+            distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
+            
+            kmTravelled += distanceTravelled;
+            
+            TripComputer.updateTripOdometer(Double.toString(kmTravelled));
+ 
             lastLatitude = latitude;
             lastLongitude = longitude;
+            
         } else moving = false;
-    }
-
-    //If the satellite coordinates are changing, moving time will be increased.
-    static class IncreaseTripOdometer extends TimerTask {
-
-
-        public void run() {
-            kmTravelled = kmTravelled + 0.01;
-
-            //Ensure the distance is always exactly 2 decimal places in length
-            DecimalFormat df = new DecimalFormat("#########0.00");
-            odoLabel = df.format(kmTravelled) + " KM";
-
-            TripComputer.updateTripOdometer(odoLabel);
-        }
-    }
-
-    void increaseTripOdometer() {
-        Timer odoTimer = new Timer();
-        odoTimer.schedule(new TripComputerModel.IncreaseTripOdometer(), 0, 10000);
     }
 
     //Class for incrementing the number of seconds the DEVICE has been moving every second.

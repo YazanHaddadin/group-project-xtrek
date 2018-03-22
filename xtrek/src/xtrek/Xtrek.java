@@ -22,13 +22,8 @@ class Xtrek extends JFrame {
     static WhereTo WhereTo;
     static TripComputer tripComputer;
     static Satellite satellite;
-    static Directions directions;
-    static ControlLayout controlPanel;
-    /**
-     * @param args the command line arguments
-     */
-    private static Xtrek xtrek;
-    public static Mode currentView;
+    private static ControlLayout controlPanel;
+    private static Mode currentView;
 
     private Xtrek() {
         this.setLocationRelativeTo(null);
@@ -46,7 +41,7 @@ class Xtrek extends JFrame {
         TurnByTurn = new TurnByTurn(this);
         WhereTo = new WhereTo(this);
         satellite = new Satellite(this);
-        directions = new Directions();
+        Directions directions = new Directions();
         directions.setListener(TurnByTurn);
         satellite.setListener(MapMode);
         satellite.setListener(directions);
@@ -63,18 +58,20 @@ class Xtrek extends JFrame {
     }
 
     public static void main(String[] args) {
-        xtrek = new Xtrek();
+        /*
+         */
+        Xtrek xtrek = new Xtrek();
     }
 
-    public static void showCurrentView() {
+    static void showCurrentView() {
         currentView.show();
     }
 
-    public static void hideCurrentView() {
+    static void hideCurrentView() {
         currentView.hide();
     }
 
-    public void updateFrame(Mode view) {
+    void updateFrame(Mode view) {
         currentView.hide();
         currentView = view;
         this.getContentPane().removeAll();

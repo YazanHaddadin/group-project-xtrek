@@ -11,6 +11,6 @@ import java.util.EventListener;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public interface OnChangeDestinationListener extends EventListener{
+interface OnChangeDestinationListener extends EventListener {
     void onChangeDestination(String destination);
 }

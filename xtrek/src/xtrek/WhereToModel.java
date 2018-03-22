@@ -125,7 +125,7 @@ public class WhereToModel extends ModeModel {
         
         @Override
         void hide() {
-            controller.callListener();
+            WhereTo.callListener();
         }
         
            

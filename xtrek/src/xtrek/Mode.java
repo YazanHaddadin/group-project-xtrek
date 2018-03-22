@@ -8,7 +8,7 @@ import javax.swing.*;
  * @author Sebastien Michel
  * @version Sprint 3
  */
-public abstract class Mode implements ButtonListener {
+abstract class Mode implements ButtonListener {
     ModeView view;
     ModeModel model;
 

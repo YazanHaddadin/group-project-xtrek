@@ -8,7 +8,7 @@ import java.util.EventObject;
  * @author Sebastien Michel
  * @version Sprint 3
  */
-public class SpeechEvent extends EventObject {
+class SpeechEvent extends EventObject {
     String speech;
 
     public SpeechEvent(Object source, String speech) {
