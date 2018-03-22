@@ -1,11 +1,11 @@
 package xtrek;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
 /**
  * Control Layout Class
@@ -127,6 +127,13 @@ public class ControlLayout extends JPanel{
         minus.setEnabled(false);
         select.setEnabled(false);
     }
+    
+    void enableOPButton(){
+        menu.setEnabled(true);
+        plus.setEnabled(true);
+        minus.setEnabled(true);
+        select.setEnabled(true);
+    }
 
     class ControlButton extends JButton {
         private final String control;
@@ -143,15 +150,9 @@ public class ControlLayout extends JPanel{
                     switch (control) {
                         case "PWR":
                             if (Xtrek.isOn) {
-                                //turns the SCREEN back off making the current view invisible but leaving the operator buttons visible
-                                Xtrek.hideCurrentView();
-                                disableOPButton(); //disables all buttons but the power button
-                                Xtrek.isOn = false;
+                                Xtrek.turnOff();
                             } else if (!Xtrek.isOn) {
-                                //turns the SCREEN back on making the current view visible
-                                Xtrek.showCurrentView();
-                                enableOPButton(); //enables all disabled buttons
-                                Xtrek.isOn = true;
+                                Xtrek.turnOn();
                             }
                             break;
                         case "+":
@@ -201,13 +202,6 @@ public class ControlLayout extends JPanel{
                     break;
             }
 
-        }
-        
-        private void enableOPButton(){
-            menu.setEnabled(true);
-            plus.setEnabled(true);
-            minus.setEnabled(true);
-            select.setEnabled(true);
         }
     }
 }

@@ -24,9 +24,6 @@ public class Satellite extends Mode {
 
         SModel = (SatelliteModel) model;
         SView = (SatelliteView) view;
-        
-        thread.start();
-        SModel.startThread();
     }
 
     void setListener(OnGPSUpdateListener listener) {
@@ -56,6 +53,14 @@ public class Satellite extends Mode {
         }
 
         SModel.turnOff();
+    }
+    
+    void turnOn() {
+        SModel.turnOn();
+        
+        updater.setIsTerminating(false);
+        thread = new Thread(updater);
+        thread.start();
     }
 
     @Override
