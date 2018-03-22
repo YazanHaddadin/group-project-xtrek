@@ -6,9 +6,10 @@ import java.awt.*;
 /**
  * ModeView class
  * <p>
- * An abstract that ensure all our different panels are compatible with the main frame (same size and all)
+ * An abstract that defines the methods for all the views, 
+ * ensuring all our different panels are compatible with the main frame (same size and all)
  *
- * @author sebltm
+ * @author Sebastien Michel
  * @version Sprint 3
  * <p>
  * To use : extends ModeView

@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * turnByTurn View
+ * TurnByTurn View
+ * <p>
+ * View for the Turn By Turn menu mode of the device.
  *
  * @author Sebastien Michel
  * @version Sprint 3

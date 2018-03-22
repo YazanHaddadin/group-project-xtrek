@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * AboutView Class
+ * About View Class
  * <p>
  * Provides information about the DEVICE
  *

@@ -12,17 +12,23 @@ public class AboutModel extends ModeModel {
 
     @Override
     void plus(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+         * This button is not used in this mode.
+         */
     }
 
     @Override
     void minus(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+         * This button is not used in this mode.
+         */
     }
 
     @Override
     void selected(ButtonEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+         * This button is not used in this mode.
+         */
     }
     
 }

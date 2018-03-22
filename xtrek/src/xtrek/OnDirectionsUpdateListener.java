@@ -4,6 +4,8 @@ import java.util.EventListener;
 
 /**
  * Speech Listener Class
+ * <p>
+ * Event listener for when the directions are updated.
  * 
  * @author Sebastien Michel
  * @version Sprint 3

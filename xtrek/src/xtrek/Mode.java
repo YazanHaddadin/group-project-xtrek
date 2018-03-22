@@ -5,6 +5,8 @@ import javax.swing.*;
 /**
  * Mode abstract class
  * 
+ * Contains methods that are implemented in each controller of the device.
+ * 
  * @author Sebastien Michel
  * @version Sprint 3
  */

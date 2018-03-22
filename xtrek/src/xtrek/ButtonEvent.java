@@ -5,6 +5,7 @@ import java.util.EventObject;
 /**
  * ButtonEvent Class
  * <p>
+ * Event for when buttons are pressed.
  *
  * @author Sebastien Michel
  * @version Sprint 3
