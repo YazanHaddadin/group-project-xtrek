@@ -51,7 +51,7 @@ class MapModel extends ModeModel {
             return;
         }
 
-        if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) < Constants.GPS_TOLERANCE) {
+        if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) > Constants.GPS_TOLERANCE) {
             MapModel.bearing = getBearing(MapModel.latitude, MapModel.longitude, latitude, longitude); 
             MapModel.latitude = latitude;
             MapModel.longitude = longitude;
