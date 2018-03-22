@@ -157,16 +157,15 @@ class TurnByTurnModel extends ModeModel {
     }
 
     void playAudio(String segment) {
-        segment = normaliseSentence(segment);
+        final String normalisedSegment = normaliseSentence(segment);
         System.out.println(segment);
-        byte[] audio = downloadNextSegment(translateSegment(segment));
-
-        if (AudioPlayer.player.isAlive()) {
-            AudioPlayer.player.stop(audioStream);
-        }
-        AudioData audioData = new AudioData(audio);
-        audioStream = new AudioDataStream(audioData);
-        AudioPlayer.player.start(audioStream);
+                byte[] audio = downloadNextSegment(translateSegment(normalisedSegment));
+                if (AudioPlayer.player.isAlive()) {
+                    AudioPlayer.player.stop(audioStream);
+                }
+                AudioData audioData = new AudioData(audio);
+                audioStream = new AudioDataStream(audioData);
+                AudioPlayer.player.start(audioStream);
     }
 
     private void stopAudio() {

@@ -89,7 +89,7 @@ public class MainMenuModel extends ModeModel{
                 this.setText(display);
                 this.setContentAreaFilled(true);
                 this.setBackground(Color.WHITE);
-            }  
+            }
             this.currentClass = currentClass;
             setStyle();
         }

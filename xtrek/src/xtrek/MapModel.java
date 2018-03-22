@@ -40,6 +40,7 @@ class MapModel extends ModeModel {
 
         if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) < Constants.GPS_TOLERANCE) {
             MapModel.bearing = getBearing(MapModel.latitude, MapModel.longitude, latitude, longitude);
+            System.out.println(bearing);
             MapModel.latitude = latitude;
             MapModel.longitude = longitude;
             downloadNewMap();
