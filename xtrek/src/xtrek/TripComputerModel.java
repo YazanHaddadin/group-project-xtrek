@@ -12,13 +12,13 @@ import java.util.TimerTask;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputerModel extends ModeModel implements OnChangeDestinationListener, OnGPSUpdateListener {
+public class TripComputerModel extends ModeModel {
     
     static String mtLabel;
     static String odoLabel;
 
-    static Double lastLatitude = 0.00;
-    static Double lastLongitude = 0.00;
+    private static Double lastLatitude;
+    private static Double lastLongitude;
 
     static int secondsCounter = 0;
     static int numberOfMinutes = 0;
@@ -53,30 +53,49 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
 
     }
 
-    @Override
-    public void onChangeDestination(String destination) {
+    void onChangeDestination(String destination) {
         //Reset moving time and distance when destination is changed
         secondsCounter = 0;
         kmTravelled = 0;
+        increaseMovingTime();
     }
 
-    @Override
-    public void onGPSUpdate(Double latitude, Double longitude,
+    void onGPSUpdate(Double latitude, Double longitude,
                             SatelliteModel.Direction latitudeDirection,
                             SatelliteModel.Direction longitudeDirection) {
 
         //Determine if the device is moving or not.
-        if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.005) {
+        
+        if(latitudeDirection == SatelliteModel.Direction.SOUTH) {
+            latitude = -latitude;
+        }
+        
+        if(longitudeDirection == SatelliteModel.Direction.WEST) {
+            longitude = -longitude;
+        }
+        
+        if(lastLatitude == null) {
+            lastLatitude = latitude;
+        }
+        
+        if(lastLongitude == null) {
+            lastLongitude = longitude;
+        }
+        
+        System.out.println(Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude));
+        
+        if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.001) {
             moving = true;
 
             double distanceTravelled;
             distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
+            System.out.println(distanceTravelled);
             
-            double speed = distanceTravelled/3600;
+            double speed = Math.round(distanceTravelled*3600*100.00)/100D;
             TripComputer.updateSpeed(Double.toString(speed));
             
             kmTravelled += distanceTravelled;
-            TripComputer.updateTripOdometer(Double.toString(kmTravelled));
+            TripComputer.updateTripOdometer(Double.toString(Math.round(kmTravelled*100.00)/100D));
  
             lastLatitude = latitude;
             lastLongitude = longitude;
