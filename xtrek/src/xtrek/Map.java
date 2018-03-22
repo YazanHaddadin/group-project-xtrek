@@ -28,44 +28,6 @@ public class Map extends Mode implements OnGPSUpdateListener {
         mapView = (MapView) view;
     }
 
-    /**
-     * The main method is just for testing purposes, allowing me to test my class independently of others
-     * It will not be present in the final product
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        Container c = frame.getContentPane();
-        frame.setLocationRelativeTo(null);
-
-        //Dimensions are in pixels, need to be mm
-        frame.setPreferredSize(new Dimension(700, 850));
-        frame.setResizable(true);
-        frame.setLayout(new GridBagLayout());
-
-        GridBagConstraints con = new GridBagConstraints();
-
-        c.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        Mode currentView = new Map(frame);
-        ControlLayout controlPanel = new ControlLayout(frame, currentView);
-
-        currentView.displayMode();
-        currentView.show();
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        frame.getContentPane().add(controlPanel.getPanel(), con);
-
-        frame.pack();
-        frame.validate();
-        frame.setVisible(true);
-    }
-
     @Override
     void displayMode() {
         mapView.displayMode();
