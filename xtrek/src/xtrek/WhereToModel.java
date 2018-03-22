@@ -26,6 +26,7 @@ public class WhereToModel extends ModeModel {
     JButton addButton(String letter, WhereTo.buttonType type) {
             KeyboardButton button = new KeyboardButton(letter, type);
             buttons.add(button);
+            currentButton = (KeyboardButton) buttons.get(0);
             return button;
         } 
     

@@ -14,8 +14,8 @@ import java.util.ArrayList;
  */
 public class WhereTo extends Mode {
     
-    private static WhereToView whereView;
-    private static WhereToModel whereModel;
+    static WhereToView whereView;
+    static WhereToModel whereModel;
     static OnChangeDestinationListener listener;
     static final ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
     
@@ -145,6 +145,7 @@ public class WhereTo extends Mode {
         whereView.btnZ.setVisible(true);
         whereView.btnSpace.setVisible(true);
         whereView.btnNextPage.setVisible(true);
+        whereView.btnA.requestFocus();
     }
     
     static void showNumberButtons() {
@@ -161,6 +162,7 @@ public class WhereTo extends Mode {
         whereView.btn0.setVisible(true);
         whereView.btnDel.setVisible(true);
         whereView.btnBackPage.setVisible(true);
+        whereView.btn1.requestFocus();
     }
     
     static void hideNumberButtons() {
