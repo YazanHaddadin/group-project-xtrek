@@ -99,9 +99,8 @@ public class SatelliteModel extends ModeModel {
             try {
                 FileInputStream in = new FileInputStream(new File(Constants.DONGLE_LOCATION));
                 br = new BufferedReader(new InputStreamReader(in));
-                
+
             } catch (IOException e) {
-                e.printStackTrace();
                 br = null;
             }
 

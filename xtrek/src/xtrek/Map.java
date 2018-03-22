@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
  */
 public class Map extends Mode implements OnGPSUpdateListener {
 
-    private final MapView mapView;
+    final MapView mapView;
     private final MapModel mapModel;
 
 

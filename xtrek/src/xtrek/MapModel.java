@@ -16,8 +16,8 @@ import java.util.HashMap;
  * @version Sprint 3
  */
 class MapModel extends ModeModel {
-    private static Double latitude = 50.7184;     /* Inputted latitude - default Exeter - will be changed to current location  */
-    private static Double longitude = -3.5339;     /* Inputted Longitude - default Exeter - will be changed to current location */
+    private static Double latitude;    /* Inputted latitude - default Exeter - will be changed to current location  */
+    private static Double longitude;     /* Inputted Longitude - default Exeter - will be changed to current location */
     private static Double bearing = 0.0;
     private static String zoom = "10";           /* 0 .. 21           */
     private final Map controller;
@@ -38,8 +38,17 @@ class MapModel extends ModeModel {
             longitude = -longitude;
         }
 
+        if (MapModel.latitude == null) {
+            MapModel.latitude = latitude;
+        }
+
+        if (MapModel.longitude == null) {
+            MapModel.longitude = longitude;
+        }
+
         if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) < Constants.GPS_TOLERANCE) {
             MapModel.bearing = getBearing(MapModel.latitude, MapModel.longitude, latitude, longitude);
+            System.out.println(MapModel.latitude + ", " + MapModel.longitude);
             System.out.println(bearing);
             MapModel.latitude = latitude;
             MapModel.longitude = longitude;
@@ -79,7 +88,10 @@ class MapModel extends ModeModel {
     void selected(ButtonEvent evt) {
         //do nothing
     }
-
+    @Override
+    void hide() {
+        controller.mapView.hideView();
+    }
     private void downloadNewMap() {
         try {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
