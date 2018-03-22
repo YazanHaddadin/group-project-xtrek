@@ -79,8 +79,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
             this.longitude = -longitude;
         }
 
-        System.out.println(routeSet + ", " + currentRoute);
-
         if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null && routeSet) {
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
@@ -93,7 +91,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                 }
             }
         } else if (routeSet && currentRoute == null) {
-            System.out.println("HERE");
             SpeechEvent evt = new SpeechEvent(this, "");
             listener.speakNextSegment(evt);
         }

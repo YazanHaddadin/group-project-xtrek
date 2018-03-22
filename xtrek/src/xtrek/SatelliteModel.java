@@ -126,7 +126,6 @@ class SatelliteModel extends ModeModel {
                         e.printStackTrace();
                     }
                 } else {
-                    System.out.println("GPS");
                     callListener(null, null, null, null);
                     continue;
                 }

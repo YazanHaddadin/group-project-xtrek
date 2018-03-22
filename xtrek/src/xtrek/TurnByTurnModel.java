@@ -31,7 +31,10 @@ class TurnByTurnModel extends ModeModel {
     private int buttonIndex = 0;
 
     void initClass() {
+
         if (currentButton == null) currentButton = (LangButton) buttons.get(0);
+
+        System.out.println(currentButton);
     }
 
     private String normaliseSentence(String sentence) {
