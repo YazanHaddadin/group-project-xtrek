@@ -21,8 +21,10 @@ class Constants {
     static final int SCREEN_WIDTH = 220;
 
     static final Dimension SCREEN = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    static final int MAP_DIM = (int)Math.round(Math.sqrt(Math.pow(SCREEN_WIDTH, 2) + Math.pow(SCREEN_HEIGHT, 2)));
 
-    static final String SIZE_MAP = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
+    static final String SIZE_MAP = MAP_DIM + "x" + MAP_DIM;
 
     static final String SYSTEM_FONT = "Arial";
     
