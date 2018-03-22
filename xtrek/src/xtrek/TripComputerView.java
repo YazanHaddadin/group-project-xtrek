@@ -18,15 +18,9 @@ public class TripComputerView extends ModeView{
     private final JLabel odometerLabel = new JLabel("Trip Odometer:");
     final JLabel odometerReading = new JLabel("0.00 KM");
 
-<<<<<<< HEAD
-    final JPanel speedPanel = new JPanel();
-    final JLabel speedLabel = new JLabel("Speed:");
-    final JLabel speedReading = new JLabel("0.0 KM/H");
-=======
     private final JPanel speedPanel = new JPanel();
     private final JLabel speedLabel = new JLabel("Speed:");
-    private final JLabel speedReading = new JLabel("6.0 KM/H");
->>>>>>> 2ccecd3f6177aae10b7ee9efca32c539baec5db9
+    final JLabel speedReading = new JLabel("0.0 KM/H");
 
     private final JPanel movingTimePanel = new JPanel();
     private final JLabel movingTimeLabel = new JLabel("Moving Time:");
