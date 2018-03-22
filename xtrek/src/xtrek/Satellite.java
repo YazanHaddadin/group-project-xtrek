@@ -13,9 +13,9 @@ import java.util.logging.Logger;
  * @version Sprint 3
  */
 public class Satellite extends Mode {
-    private SatelliteView SView;
-    private SatelliteModel SModel;
-    private Updater updater = new Updater();
+    private final SatelliteView SView;
+    private final SatelliteModel SModel;
+    private final Updater updater = new Updater();
     private Thread thread = new Thread(updater);
 
     Satellite(JFrame frame) {
@@ -75,7 +75,7 @@ public class Satellite extends Mode {
     public void minus(ButtonEvent evt) {
     }
 
-    public class Updater implements Runnable {
+    class Updater implements Runnable {
 
         boolean stop = false;
 

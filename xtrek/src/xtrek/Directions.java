@@ -38,6 +38,10 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
       * @return byte array containing the directions from the API
       */
     private static String getDirections(String origin, String dest) {
+        if (dest.isEmpty()) {
+            return "";
+        }
+
         try {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
@@ -114,12 +118,14 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
     @Override
     public void onChangeDestination(String destination) {
-        routeSet = true;
         this.destination = destination;
         String queryToMake = latitude + "," + longitude;
         //Default values, will be used if not overriden in the method call.
-        currentRoute = new Route(getDirections(queryToMake, destination));
-        nextStep = currentRoute.getNextStep();
+        if (!destination.isEmpty()) {
+            routeSet = true;
+            currentRoute = new Route(getDirections(queryToMake, destination));
+            nextStep = currentRoute.getNextStep();
+        }
     }
 
     class Route {

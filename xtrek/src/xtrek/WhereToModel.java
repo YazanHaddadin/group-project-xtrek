@@ -14,24 +14,24 @@ import java.util.ArrayList;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class WhereToModel extends ModeModel {
+class WhereToModel extends ModeModel {
     private KeyboardButton currentButton;
     private int buttonIndex = 0;
-    
+
     private int startButtonIndex = 0;
     private int endButtonIndex = 27;
-    
+
     private WhereTo controller;
-    
+
     JButton addButton(String letter, WhereTo.buttonType type) {
-            KeyboardButton button = new KeyboardButton(letter, type);
-            buttons.add(button);
-            currentButton = (KeyboardButton) buttons.get(0);
-            return button;
-        } 
-    
+        KeyboardButton button = new KeyboardButton(letter, type);
+        buttons.add(button);
+        currentButton = (KeyboardButton) buttons.get(0);
+        return button;
+    }
+
     void selected(ButtonEvent evt) {
-        
+
         //Space button has been pressed
         if (currentButton.getButtonType() == WhereTo.buttonType.SPACE) {
             WhereTo.addToDestination(" ");
@@ -39,7 +39,6 @@ public class WhereToModel extends ModeModel {
 
         //Next page button pressed
         else if (currentButton.getButtonType() == WhereTo.buttonType.NEXT_PAGE) {
-            WhereTo.hideLetterButtons();
             WhereTo.showNumberButtons();
             startButtonIndex = 28;
             buttonIndex = 28;
@@ -55,7 +54,6 @@ public class WhereToModel extends ModeModel {
 
         //Previous page button has been pressed
         else if (currentButton.getButtonType() == WhereTo.buttonType.BACK_PAGE) {
-            WhereTo.hideNumberButtons();
             WhereTo.showLetterButtons();
             startButtonIndex = 0;
             buttonIndex = 0;
@@ -69,24 +67,55 @@ public class WhereToModel extends ModeModel {
             WhereTo.addToDestination(currentButton.getDisplayLabel());
         }
     }
-    
-    public class KeyboardButton extends JButton {
+
+    void plus(ButtonEvent evt) {
+        System.out.println(buttonIndex);
+        //Advance selected keyboard button if the + button is pressed
+        if (buttonIndex < endButtonIndex) buttonIndex++;
+        else buttonIndex = startButtonIndex;
+
+        currentButton = (KeyboardButton) buttons.get(buttonIndex);
+        currentButton.giveFocus(buttons);
+    }
+
+    void minus(ButtonEvent evt) {
+        //Go back 1 keyboard button if the - button is pressed
+        if (buttonIndex > startButtonIndex) buttonIndex--;
+        else buttonIndex = endButtonIndex;
+
+        currentButton = (KeyboardButton) buttons.get(buttonIndex);
+        currentButton.giveFocus(buttons);
+    }
+
+    void giveFocus(KeyboardButton button) {
+        button.giveFocus(buttons);
+    }
+
+    @Override
+    void hide() {
+        WhereTo.callListener();
+        buttons = new ArrayList<>();
+
+        startButtonIndex = 0;
+        endButtonIndex = 27;
+    }
+
+    class KeyboardButton extends JButton {
         private final String letter;
         private final WhereTo.buttonType TYPE;
 
-        public KeyboardButton(String letter, WhereTo.buttonType type) {
+        KeyboardButton(String letter, WhereTo.buttonType type) {
             super(letter);
             this.letter = letter;
             this.TYPE = type;
             applyKeyboardButtonStyling();
         }
-    
-        
-        public String getDisplayLabel() {
+
+        String getDisplayLabel() {
             return letter;
         }
-        
-        public WhereTo.buttonType getButtonType() {
+
+        WhereTo.buttonType getButtonType() {
             return TYPE;
         }
 
@@ -108,39 +137,12 @@ public class WhereToModel extends ModeModel {
         private void focusLost() {
             setBackground(Color.WHITE);
         }
-        
+
         void giveFocus(ArrayList<JButton> buttons) {
-            for (JButton randButton : buttons) ((KeyboardButton)randButton).focusLost();
-            this.focusGained();
+            for (JButton randButton : buttons) ((KeyboardButton) randButton).focusLost();
+            focusGained();
         }
     }
-        
-        void plus(ButtonEvent evt) {
-            //Advance selected keyboard button if the + button is pressed
-            if(buttonIndex < endButtonIndex) buttonIndex++;
-            else buttonIndex = startButtonIndex;
 
-            currentButton = (KeyboardButton) buttons.get(buttonIndex);
-            currentButton.giveFocus(buttons);
-        }
 
-        void minus(ButtonEvent evt) {
-            //Go back 1 keyboard button if the - button is pressed
-            if(buttonIndex > startButtonIndex) buttonIndex--;
-            else buttonIndex = endButtonIndex;
-
-            currentButton = (KeyboardButton) buttons.get(buttonIndex);
-            currentButton.giveFocus(buttons);
-        }
-        
-        void giveFocus(KeyboardButton button) {
-            button.giveFocus(buttons);
-        }
-        
-        @Override
-        void hide() {
-            WhereTo.callListener();
-        }
-        
-           
 }

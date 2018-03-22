@@ -18,9 +18,9 @@ class SatelliteModel extends ModeModel {
     private Double latitude;
     private Double longitude;
 
-    private Reader reader = new Reader();
+    private final Reader reader = new Reader();
     private Thread thread = new Thread(reader);
-    private ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
+    private final ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
 
     private void callListener(Double latitude, Double longitude, Direction latitudeDirection, Direction longitudeDirection) {
         for (OnGPSUpdateListener listener : listeners) {
@@ -86,18 +86,18 @@ class SatelliteModel extends ModeModel {
     enum Direction {
         NORTH("N"), SOUTH("S"), WEST("W"), EAST("E");
 
-        String direction;
+        final String direction;
 
         Direction(String direction) {
             this.direction = direction;
         }
 
-        public String getDirection() {
+        String getDirection() {
             return direction;
         }
     }
 
-    public class Reader implements Runnable {
+    class Reader implements Runnable {
 
         boolean stop = false;
 

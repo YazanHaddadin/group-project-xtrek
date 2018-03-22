@@ -6,7 +6,7 @@ package xtrek;
  * @author liamvinson
  * @version Sprint 3
  */
-public class AboutPanel extends javax.swing.JPanel {
+class AboutPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AboutPanel
@@ -24,7 +24,8 @@ public class AboutPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        // Variables declaration - do not modify//GEN-BEGIN:variables
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -82,8 +83,6 @@ public class AboutPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

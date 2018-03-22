@@ -88,9 +88,11 @@ class Xtrek extends JFrame {
     private static void hideCurrentView() {
         currentView.hide();
     }
+
     void updateFrame(Mode view) {
         currentView.hide();
         currentView = view;
+        currentView.show();
         this.getContentPane().removeAll();
         controlPanel = new ControlLayout(this, currentView);
         this.getContentPane().add(controlPanel.getPanel());

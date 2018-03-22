@@ -28,13 +28,15 @@ public class MainMenuView extends ModeView{
         //this is the actual display of the Main Menu mode
         frame.setTitle("XTrek");
 
+        panel.removeAll();
+        controller.emptyArray();
+
         JButton whereTo      = controller.addButton("whereto", WhereTo.class);
         JButton tripComputer = controller.addButton("tripcomputer", TripComputer.class);
         JButton map          = controller.addButton("map", Map.class);
         JButton speech       = controller.addButton("speech", TurnByTurn.class);
         JButton satellite    = controller.addButton("satellite", Satellite.class);
         JButton about        = controller.addButton("about", About.class);
-
 
         //using GridBagConstraints to adapt to different SCREEN sizes
         GridBagConstraints c = new GridBagConstraints();

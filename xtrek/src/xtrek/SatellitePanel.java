@@ -8,7 +8,7 @@ package xtrek;
  * @author Liam Vinson
  * @version Sprint 3
  */
-public class SatellitePanel extends javax.swing.JPanel {
+class SatellitePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SatellitePanel

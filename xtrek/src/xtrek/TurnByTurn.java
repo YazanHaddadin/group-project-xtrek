@@ -26,6 +26,7 @@ public class TurnByTurn extends Mode implements OnDirectionsUpdateListener {
     void displayMode() {
         TBTView.setController(this);
         TBTView.displayMode();
+        TBTModel.onDisplay();
     }
 
     JButton addButton(Language language, Gender gender) {

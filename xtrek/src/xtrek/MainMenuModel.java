@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Yazan Haddadin
  * @version Sprint 3
  */
-public class MainMenuModel extends ModeModel{
+class MainMenuModel extends ModeModel {
     private String display;
     ModeView view;
     
@@ -73,9 +73,14 @@ public class MainMenuModel extends ModeModel{
     }
 
     void initClass() {
+        buttonIndex = 0;
         if (currentButton == null) currentButton = (OperatorButton) buttons.get(0);
     }
-    
+
+    void emptyArray() {
+        buttons = new ArrayList<>();
+    }
+
     class OperatorButton extends JButton{
         private final Class currentClass;
         

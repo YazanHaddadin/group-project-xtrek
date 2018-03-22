@@ -15,7 +15,7 @@ import java.io.IOException;
  * @version Sprint 3
  */
 public class MapView extends ModeView {
-    private static JLabel label = new JLabel();
+    private static final JLabel label = new JLabel();
     private static BufferedImage image;
     private BufferedImage noInternetImage;
    

@@ -12,7 +12,7 @@ import java.awt.*;
  * @version Sprint 3
  */
 public class SatelliteView extends ModeView {
-    SatellitePanel sat = new SatellitePanel();
+    private final SatellitePanel sat = new SatellitePanel();
     
     SatelliteView(JFrame frame) {
         super(frame);

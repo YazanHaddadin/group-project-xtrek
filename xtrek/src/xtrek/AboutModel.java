@@ -8,7 +8,7 @@ package xtrek;
  * @author Liam Vinson
  * @version Sprint 3
  */
-public class AboutModel extends ModeModel {
+class AboutModel extends ModeModel {
 
     @Override
     void plus(ButtonEvent evt) {

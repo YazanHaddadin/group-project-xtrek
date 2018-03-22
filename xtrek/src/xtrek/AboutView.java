@@ -12,7 +12,7 @@ import java.awt.*;
  * @version Sprint 3
  */
 public class AboutView extends ModeView {
-    AboutPanel about = new AboutPanel();
+    private final AboutPanel about = new AboutPanel();
 
     public AboutView(JFrame frame) {
         super(frame);

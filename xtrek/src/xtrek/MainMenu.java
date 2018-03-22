@@ -30,6 +30,10 @@ public class MainMenu extends Mode {
         MMModel.initClass();
     }
 
+    void emptyArray() {
+        MMModel.emptyArray();
+    }
+
     JButton addButton(String display, Class currentClass) {
         return MMModel.addButton(display, currentClass);
     }

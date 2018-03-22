@@ -30,6 +30,12 @@ class TurnByTurnModel extends ModeModel {
     private LangButton currentButton;
     private int buttonIndex = 0;
 
+    @Override
+    void onDisplay() {
+        super.onDisplay();
+        buttonIndex = 0;
+    }
+
     private String normaliseSentence(String sentence) {
         LinkedHashMap<String, String> abb = new LinkedHashMap<>();
         abb.put("Aly", "Alley");

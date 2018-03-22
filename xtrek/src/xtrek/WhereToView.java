@@ -16,7 +16,7 @@ public class WhereToView extends ModeView{
     private WhereTo controller;
     
     // Text field where destination will go.
-    public static final JTextField destination = new JTextField("Exeter");
+    public static final JTextField destination = new JTextField();
 
     //Create each keyboard button
     public JButton btnA;
@@ -62,6 +62,10 @@ public class WhereToView extends ModeView{
     
     public JButton btnBackPage;
     public JButton btnDel;
+
+    JPanel letterPanel;
+    JPanel numberPanel;
+    JPanel destinationPanel;
     
     
     WhereToView (JFrame frame) {
@@ -77,6 +81,15 @@ public class WhereToView extends ModeView{
     @Override
     public void displayMode() {
         frame.setTitle("XTrek");
+
+        panel.removeAll();
+
+        letterPanel = new JPanel();
+        letterPanel.setLayout(new GridBagLayout());
+        letterPanel.setBackground(Color.BLACK);
+        numberPanel = new JPanel();
+        numberPanel.setLayout(new GridBagLayout());
+        numberPanel.setBackground(Color.BLACK);
         
         btnA = controller.addButton("A", WhereTo.buttonType.LETTER_NUMBER);
         btnB = controller.addButton("B", WhereTo.buttonType.LETTER_NUMBER);
@@ -128,8 +141,8 @@ public class WhereToView extends ModeView{
         destination.setBorder(null);
         destination.setOpaque(true);
         destination.setEditable(false);
-        
-        JPanel destinationPanel = new JPanel();
+
+        destinationPanel = new JPanel();
         
         destinationPanel.setLayout(new GridBagLayout());
         GridBagConstraints d = new GridBagConstraints();
@@ -146,162 +159,173 @@ public class WhereToView extends ModeView{
         
         destinationPanel.validate();
         destinationPanel.setVisible(true);
-        
-        
+
         GridBagConstraints c = new GridBagConstraints();
 
-        c.fill = GridBagConstraints.BOTH;
+        c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(1, 1, 1, 1);
         c.weightx = 1.0;
-        c.weighty = 1.0;
+        c.weighty = 0.1;
 
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 4;
+        c.gridwidth = 1;
+        c.gridheight = 1;
         panel.add(destinationPanel, c);
+
+        c.fill = GridBagConstraints.BOTH;
+
+        c.weightx = 1.0;
+        c.weighty = 1.0;
 
         //Add letter buttons to the grid
         c.gridwidth = 1;
         c.gridx = 0;
         c.gridy = 1;
-        panel.add(btnA, c);
+        letterPanel.add(btnA, c);
 
         c.gridx++;
-        panel.add(btnB, c);
+        letterPanel.add(btnB, c);
 
         c.gridx++;
-        panel.add(btnC, c);
+        letterPanel.add(btnC, c);
 
         c.gridx++;
-        panel.add(btnD, c);
+        letterPanel.add(btnD, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnE, c);
+        letterPanel.add(btnE, c);
 
         c.gridx++;
-        panel.add(btnF, c);
+        letterPanel.add(btnF, c);
 
         c.gridx++;
-        panel.add(btnG, c);
+        letterPanel.add(btnG, c);
 
         c.gridx++;
-        panel.add(btnH, c);
+        letterPanel.add(btnH, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnI, c);
+        letterPanel.add(btnI, c);
 
         c.gridx++;
-        panel.add(btnJ, c);
+        letterPanel.add(btnJ, c);
 
         c.gridx++;
-        panel.add(btnK, c);
+        letterPanel.add(btnK, c);
 
         c.gridx++;
-        panel.add(btnL, c);
+        letterPanel.add(btnL, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnM, c);
+        letterPanel.add(btnM, c);
 
         c.gridx++;
-        panel.add(btnN, c);
+        letterPanel.add(btnN, c);
 
         c.gridx++;
-        panel.add(btnO, c);
+        letterPanel.add(btnO, c);
 
         c.gridx++;
-        panel.add(btnP, c);
+        letterPanel.add(btnP, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnQ, c);
+        letterPanel.add(btnQ, c);
 
         c.gridx++;
-        panel.add(btnR, c);
+        letterPanel.add(btnR, c);
 
         c.gridx++;
-        panel.add(btnS, c);
+        letterPanel.add(btnS, c);
 
         c.gridx++;
-        panel.add(btnT, c);
+        letterPanel.add(btnT, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnU, c);
+        letterPanel.add(btnU, c);
 
         c.gridx++;
-        panel.add(btnV, c);
+        letterPanel.add(btnV, c);
 
         c.gridx++;
-        panel.add(btnW, c);
+        letterPanel.add(btnW, c);
 
         c.gridx++;
-        panel.add(btnX, c);
+        letterPanel.add(btnX, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnY, c);
+        letterPanel.add(btnY, c);
 
         c.gridx++;
-        panel.add(btnZ, c);
+        letterPanel.add(btnZ, c);
 
         c.gridx++;
-        panel.add(btnSpace, c);
+        letterPanel.add(btnSpace, c);
 
         c.gridx++;
-        panel.add(btnNextPage, c);
+        letterPanel.add(btnNextPage, c);
 
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        panel.add(letterPanel, c);
 
         //Add numerical keyboard buttons to the grid
         c.gridx = 0;
         c.gridy = 1;
-        panel.add(btn1, c);
+        numberPanel.add(btn1, c);
 
         c.gridx++;
-        panel.add(btn2, c);
+        numberPanel.add(btn2, c);
 
         c.gridx++;
-        panel.add(btn3, c);
+        numberPanel.add(btn3, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btn4, c);
+        numberPanel.add(btn4, c);
 
         c.gridx++;
-        panel.add(btn5, c);
+        numberPanel.add(btn5, c);
 
         c.gridx++;
-        panel.add(btn6, c);
+        numberPanel.add(btn6, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btn7, c);
+        numberPanel.add(btn7, c);
 
         c.gridx++;
-        panel.add(btn8, c);
+        numberPanel.add(btn8, c);
 
         c.gridx++;
-        panel.add(btn9, c);
+        numberPanel.add(btn9, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btn0, c);
+        numberPanel.add(btn0, c);
 
         c.gridx = 0;
         c.gridy++;
-        panel.add(btnBackPage, c);
+        numberPanel.add(btnBackPage, c);
 
         c.gridx++;
         c.gridy--;
         c.gridheight = 2;
         c.gridwidth = 2;
-        panel.add(btnDel, c);
-        
-        //Initial keyboard set up
-        WhereTo.showLetterButtons();
-        WhereTo.hideNumberButtons();
+        numberPanel.add(btnDel, c);
+
+        numberPanel.validate();
+        letterPanel.validate();
 
         panel.validate();
         panel.setVisible(true);
@@ -309,6 +333,70 @@ public class WhereToView extends ModeView{
         //Place cursor on the default button - A in this case
         frame.getRootPane().setDefaultButton(btnA);
         btnA.requestFocus();
-        controller.giveFocus(btnA);
+        controller.giveFocus((WhereToModel.KeyboardButton) btnA);
+    }
+
+    void showLetters() {
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 1, 1, 1);
+        c.weightx = 1.0;
+        c.weighty = 0.1;
+        c.gridwidth = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+
+        panel.removeAll();
+        panel.add(destinationPanel, c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        c.gridheight = 2;
+        c.gridwidth = 1;
+        c.fill = GridBagConstraints.BOTH;
+
+        letterPanel.setVisible(true);
+
+        panel.add(letterPanel, c);
+
+        frame.getRootPane().setDefaultButton(btnA);
+        btnA.requestFocus();
+        controller.giveFocus((WhereToModel.KeyboardButton) btnA);
+
+        panel.validate();
+        panel.repaint();
+    }
+
+    void showNumbers() {
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(1, 1, 1, 1);
+        c.weightx = 1.0;
+        c.weighty = 0.1;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+
+        panel.removeAll();
+        panel.add(destinationPanel, c);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        c.gridheight = 2;
+        c.gridwidth = 1;
+        c.fill = GridBagConstraints.BOTH;
+
+        numberPanel.setVisible(true);
+
+        panel.add(numberPanel, c);
+        panel.validate();
+        panel.repaint();
     }
 }

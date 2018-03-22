@@ -1,7 +1,6 @@
 package xtrek;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * About Class
@@ -12,15 +11,13 @@ import java.awt.*;
  * @version Sprint 3
  */
 public class About extends Mode {
-    private AboutView AView;
-    private AboutModel AModel;
 
     About(JFrame frame) {
         view = new AboutView(frame);
         model = new AboutModel();
 
-        AModel = (AboutModel) model;
-        AView = (AboutView) view;
+        AboutModel AModel = (AboutModel) model;
+        AboutView AView = (AboutView) view;
     }
 
     @Override

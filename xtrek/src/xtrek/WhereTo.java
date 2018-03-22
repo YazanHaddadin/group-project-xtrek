@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * @version Sprint 3
  */
 public class WhereTo extends Mode {
-    
-    static WhereToView whereView;
-    static WhereToModel whereModel;
-    static OnChangeDestinationListener listener;
+
+    private static WhereToView whereView;
+    private static WhereToModel whereModel;
+    private static OnChangeDestinationListener listener;
     static final ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
     
     WhereTo(JFrame frame) {
@@ -27,10 +27,8 @@ public class WhereTo extends Mode {
         whereView = (WhereToView) view;
     }
 
-    public static void callListener() {
-        if (WhereToView.destination.getText() != null) {
-            listener.onChangeDestination(WhereToView.destination.getText());
-        } 
+    static void callListener() {
+        listener.onChangeDestination(WhereToView.destination.getText());
     }
 
     static void addToDestination(String letter) {
@@ -44,7 +42,7 @@ public class WhereTo extends Mode {
         whereView.displayMode();
         showLetterButtons();
     }
-    
+
     @Override
     public void selected(ButtonEvent evt) {
         whereModel.selected(evt);
@@ -64,62 +62,10 @@ public class WhereTo extends Mode {
     JButton addButton(String letter, WhereTo.buttonType type) {
         return whereModel.addButton(letter, type);
     }
-    
-    void giveFocus(JButton button) {
-        whereModel.giveFocus((WhereToModel.KeyboardButton) button);
-    }
-    
-    static void deleteFromDestination() {
-        // Delete 1 character from the destination field
-        if (WhereToView.destination.getText().length() > 0) {
-            WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
-            callListener();
-        }
-    }
 
-    public static String getCurrentDestination() {
-        return WhereToView.destination.getText();
-    }
-
-    public void setListener(OnChangeDestinationListener listener) {
-        WhereTo.listener = listener;
-    }
-    
-    static void hideLetterButtons() {
-        //Hide all buttons for the main letter keyboard
-        whereView.btnA.setVisible(false);
-        whereView.btnB.setVisible(false);
-        whereView.btnC.setVisible(false);
-        whereView.btnD.setVisible(false);
-        whereView.btnE.setVisible(false);
-        whereView.btnF.setVisible(false);
-        whereView.btnG.setVisible(false);
-        whereView.btnH.setVisible(false);
-        whereView.btnI.setVisible(false);
-        whereView.btnJ.setVisible(false);
-        whereView.btnK.setVisible(false);
-        whereView.btnL.setVisible(false);
-        whereView.btnM.setVisible(false);
-        whereView.btnN.setVisible(false);
-        whereView.btnO.setVisible(false);
-        whereView.btnP.setVisible(false);
-        whereView.btnQ.setVisible(false);
-        whereView.btnR.setVisible(false);
-        whereView.btnS.setVisible(false);
-        whereView.btnT.setVisible(false);
-        whereView.btnU.setVisible(false);
-        whereView.btnV.setVisible(false);
-        whereView.btnW.setVisible(false);
-        whereView.btnX.setVisible(false);
-        whereView.btnY.setVisible(false);
-        whereView.btnZ.setVisible(false);
-        whereView.btnSpace.setVisible(false);
-        whereView.btnNextPage.setVisible(false);
-    }
-    
     static void showLetterButtons() {
         //Hide all buttons for the main letter keyboard
-        whereView.btnA.setVisible(true);
+        /*whereView.btnA.setVisible(true);
         whereView.btnB.setVisible(true);
         whereView.btnC.setVisible(true);
         whereView.btnD.setVisible(true);
@@ -146,12 +92,25 @@ public class WhereTo extends Mode {
         whereView.btnY.setVisible(true);
         whereView.btnZ.setVisible(true);
         whereView.btnSpace.setVisible(true);
-        whereView.btnNextPage.setVisible(true);
+        whereView.btnNextPage.setVisible(true);*/
         whereView.btnA.requestFocus();
+        whereView.showLetters();
         whereView.panel.revalidate();
         whereView.panel.repaint();
     }
-    
+
+    static void deleteFromDestination() {
+        // Delete 1 character from the destination field
+        if (WhereToView.destination.getText().length() > 0) {
+            WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
+            callListener();
+        }
+    }
+
+    public static String getCurrentDestination() {
+        return WhereToView.destination.getText();
+    }
+
     static void showNumberButtons() {
         //Show all buttons for the numerical keypad.
         whereView.btn1.setVisible(true);
@@ -166,25 +125,18 @@ public class WhereTo extends Mode {
         whereView.btn0.setVisible(true);
         whereView.btnDel.setVisible(true);
         whereView.btnBackPage.setVisible(true);
+        whereView.showNumbers();
         whereView.btn1.requestFocus();
         whereView.panel.revalidate();
         whereView.panel.repaint();
     }
-    
-    static void hideNumberButtons() {
-        //Hide all buttons on the numerical keypad.
-        whereView.btn1.setVisible(false);
-        whereView.btn2.setVisible(false);
-        whereView.btn3.setVisible(false);
-        whereView.btn4.setVisible(false);
-        whereView.btn5.setVisible(false);
-        whereView.btn6.setVisible(false);
-        whereView.btn7.setVisible(false);
-        whereView.btn8.setVisible(false);
-        whereView.btn9.setVisible(false);
-        whereView.btn0.setVisible(false);
-        whereView.btnDel.setVisible(false);
-        whereView.btnBackPage.setVisible(false);
+
+    void giveFocus(WhereToModel.KeyboardButton button) {
+        whereModel.giveFocus(button);
+    }
+
+    void setListener(OnChangeDestinationListener listener) {
+        WhereTo.listener = listener;
     }
 
     //Enumeration for the different types of keyboard button

@@ -1,11 +1,11 @@
 package xtrek;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 /**
  * Control Layout Class
@@ -19,9 +19,9 @@ import javax.swing.*;
  * @author Yazan Haddadin
  * @version Sprint 3
  */
-public class ControlLayout extends JPanel{
-    final JButton plus = new ControlButton("+");
-    final JButton minus = new ControlButton("-");
+class ControlLayout extends JPanel {
+    private final JButton plus = new ControlButton("+");
+    private final JButton minus = new ControlButton("-");
     private final JButton onOff = new ControlButton("PWR");
     private final JButton menu = new ControlButton("Menu");
     private final JButton select = new ControlButton("Select");
@@ -44,7 +44,7 @@ public class ControlLayout extends JPanel{
         displayMode();
     }
 
-    public void displayMode() {
+    private void displayMode() {
         frame.setTitle("XTrek");
 
         //seperate panel for the control buttons

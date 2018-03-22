@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @version Sprint 3
  */
 abstract class ModeModel {
-    final ArrayList<JButton> buttons = new ArrayList<>();
+    ArrayList<JButton> buttons = new ArrayList<>();
 
     abstract void plus(ButtonEvent evt);
 
