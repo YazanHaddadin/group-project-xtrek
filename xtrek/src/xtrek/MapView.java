@@ -77,7 +77,7 @@ public class MapView extends ModeView {
         }
 
         setIcon(noInternetImage);
-        //makeVisible();
+        makeVisible();
         
         panel.add(label, con);
         panel.validate();
