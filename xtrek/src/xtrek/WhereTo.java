@@ -28,7 +28,9 @@ public class WhereTo extends Mode {
     }
 
     public static void callListener() {
-        listener.onChangeDestination(WhereToView.destination.getText());
+        if (WhereToView.destination.getText() != null) {
+            listener.onChangeDestination(WhereToView.destination.getText());
+        } 
     }
 
     static void addToDestination(String letter) {
