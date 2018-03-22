@@ -16,6 +16,7 @@ public class TripComputer extends Mode {
     
     private static TripComputerView tcView;
     private static TripComputerModel tcModel;
+    private static SatelliteModel stModel;
     
     TripComputer(JFrame frame) {
         model = new TripComputerModel();
@@ -23,6 +24,11 @@ public class TripComputer extends Mode {
 
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
+        
+        stModel = (SatelliteModel) model;
+        
+        tcModel.lastLatitude = stModel.getLatitude();
+        tcModel.lastLongitude = stModel.getLongitude();
     }
     
     @Override
