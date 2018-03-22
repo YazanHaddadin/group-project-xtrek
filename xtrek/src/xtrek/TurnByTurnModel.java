@@ -111,6 +111,13 @@ class TurnByTurnModel extends ModeModel {
                     " " + entry.getValue().toLowerCase() + " ");
         }
 
+        System.out.println(sentence);
+
+        sentence = sentence.replaceAll("(\\w)(\\p{Upper})", "$1. $2");
+        sentence = sentence.replaceAll("/([AB]\\d{1,4})(\\p{Upper})", " $1. $2");
+
+        System.out.println(sentence);
+
         return sentence;
     }
 
