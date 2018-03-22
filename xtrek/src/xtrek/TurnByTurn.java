@@ -1,7 +1,6 @@
 package xtrek;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * TurnByTurn class, Controller
@@ -27,6 +26,7 @@ public class TurnByTurn extends Mode implements OnDirectionsUpdateListener {
     void displayMode() {
         TBTView.setController(this);
         TBTView.displayMode();
+        TBTModel.initClass();
     }
 
     JButton addButton(Language language, Gender gender) {
