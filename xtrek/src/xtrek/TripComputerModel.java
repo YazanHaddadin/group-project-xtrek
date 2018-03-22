@@ -71,27 +71,15 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
             moving = true;
             lastLatitude = latitude;
             lastLongitude = longitude;
+            
+            double distanceTravelled = 0.00;
+            distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
+            
+            kmTravelled += distanceTravelled;
+            
+            TripComputer.updateTripOdometer(Double.toString(kmTravelled));
+            
         } else moving = false;
-    }
-
-    //If the satellite coordinates are changing, moving time will be increased.
-    static class IncreaseTripOdometer extends TimerTask {
-
-
-        public void run() {
-            kmTravelled = kmTravelled + 0.01;
-
-            //Ensure the distance is always exactly 2 decimal places in length
-            DecimalFormat df = new DecimalFormat("#########0.00");
-            odoLabel = df.format(kmTravelled) + " KM";
-
-            TripComputer.updateTripOdometer(odoLabel);
-        }
-    }
-
-    void increaseTripOdometer() {
-        Timer odoTimer = new Timer();
-        odoTimer.schedule(new TripComputerModel.IncreaseTripOdometer(), 0, 10000);
     }
 
     //Class for incrementing the number of seconds the DEVICE has been moving every second.
