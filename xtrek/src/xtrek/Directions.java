@@ -30,11 +30,12 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private Route.Step nextStep;
 
     /**
-     * @param origin place where you are getting directions from
-     * @param dest   place where you want to get directions to
-     * @return byte array containing the directions from the API
-     */
-    private String getDirections(String origin, String dest) {
+      * @param origin place where you are getting directions from
+      * @param dest place where you want to get directions to
+      *
+      * @return byte array containing the directions from the API
+      */
+    private static String getDirections(String origin, String dest) {
         try {
             String url = ("https://maps.googleapis.com/maps/api/directions/json"
                     + "?" + "origin" + "=" + URLEncoder.encode(origin, "UTF-8")
