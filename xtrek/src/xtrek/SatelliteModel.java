@@ -45,12 +45,20 @@ public class SatelliteModel extends ModeModel {
         return longitude;
     }
 
-    Direction getLatitudeDirection() {
-        return latitudeDirection;
+    String getLatitudeDirection() {
+        if (latitudeDirection == null) {
+            return "";
+        } else {
+            return latitudeDirection.getDirection();
+        }
     }
 
-    Direction getLongitudeDirection() {
-        return longitudeDirection;
+    String getLongitudeDirection() {
+        if (longitudeDirection == null) {
+            return "";
+        } else {
+            return longitudeDirection.getDirection();
+        }
     }
 
     void setListener(OnGPSUpdateListener listener) {

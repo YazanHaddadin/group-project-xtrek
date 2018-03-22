@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class Satellite extends Mode {
     private SatelliteView SView;
     private SatelliteModel SModel;
+    private Thread thread = new Thread(new Updater());
 
     Satellite(JFrame frame) {
         model = new SatelliteModel();
@@ -23,62 +24,20 @@ public class Satellite extends Mode {
 
         SModel = (SatelliteModel) model;
         SView = (SatelliteView) view;
-
+        
+        thread.start();
         SModel.startThread();
     }
+
+    void setListener(OnGPSUpdateListener listener) {
+        SModel.setListener(listener);
+    }
     
-    public static void main(String[] argv) {
-
-        JFrame frame = new JFrame();
-        Container c = frame.getContentPane();
-        frame.setLocationRelativeTo(null);
-
-        //Dimensions are in pixels, need to be mm
-        frame.setResizable(false);
-        frame.setLayout(new GridBagLayout());
-
-        GridBagConstraints con = new GridBagConstraints();
-
-        c.setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        Satellite currentView = new Satellite(frame);
-        ControlLayout controlPanel = new ControlLayout(frame, currentView);
-
-        currentView.displayMode();
-        currentView.show();
-
-        con.gridx = 1;
-        con.gridy = 1;
-        con.weighty = 1.0;
-        con.weightx = 1.0;
-        frame.getContentPane().add(controlPanel.getPanel(), con);
-
-        frame.pack();
-        frame.validate();
-        frame.setVisible(true);
-
-        currentView.SModel.startThread();
-        while(true){
-            currentView.updatePosition();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Satellite.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
-    void loopUpdate() {
-        //do nothing
-    }
-
-    private void updatePosition() {
-        //TODO check that values are not empty to determine mad bants
+    public void updatePosition() {
         Double value1 = SModel.getLatitude();
-        String direction1 = SModel.getLatitudeDirection().getDirection();
+        String direction1 = SModel.getLatitudeDirection();
         Double value2 = SModel.getLongitude();
-        String direction2 = SModel.getLongitudeDirection().getDirection();
+        String direction2 = SModel.getLongitudeDirection();
 
         if (value1 == null) {
             SView.setNoSignal();
@@ -86,9 +45,19 @@ public class Satellite extends Mode {
             SView.setPosition(value1, direction1, value2, direction2);
         }
     }
-
-    void setListener(OnGPSUpdateListener listener) {
-        SModel.setListener(listener);
+    
+    public class Updater implements Runnable {
+        @Override
+        public void run() {
+            while(true){
+                updatePosition();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Satellite.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     @Override
