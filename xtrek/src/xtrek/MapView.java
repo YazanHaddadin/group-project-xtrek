@@ -3,8 +3,6 @@ package xtrek;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -42,6 +40,7 @@ public class MapView extends ModeView {
 
     @Override
     public void paintComponent(Graphics g){
+        //method to rotate the map given a bearing
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, getWidth(), getHeight());
