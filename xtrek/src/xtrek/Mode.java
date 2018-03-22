@@ -27,7 +27,7 @@ abstract class Mode implements ButtonListener {
     }
 
     void hide() {
-        view.hide();
+        view.hideView();
         model.hide();
     }
 

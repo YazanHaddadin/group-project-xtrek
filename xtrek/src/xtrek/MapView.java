@@ -26,7 +26,7 @@ public class MapView extends ModeView {
     }
 
     @Override
-    public void hide() {
+    public void hideView() {
         panel.setVisible(false);
     }
 

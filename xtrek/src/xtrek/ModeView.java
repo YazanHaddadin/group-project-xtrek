@@ -14,14 +14,14 @@ import java.awt.*;
  * To use : extends ModeView
  * Implement displayMode() which needs to include your buttons, text labels, images, etc
  */
-abstract class ModeView {
+abstract class ModeView extends JPanel {
     final JFrame frame;
     final JPanel panel;
 
     ModeView(JFrame frame) {
         this.frame = frame;
         //Dimensions are in pixels, need to be mm
-        panel = new JPanel();
+        panel = this;
         panel.setPreferredSize(Constants.SCREEN);
         panel.setBounds(50, 150, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         panel.setPreferredSize(Constants.SCREEN);
@@ -33,7 +33,7 @@ abstract class ModeView {
         panel.setVisible(true);
     }
 
-    void hide() {
+    void hideView() {
         panel.setVisible(false);
     }
 
