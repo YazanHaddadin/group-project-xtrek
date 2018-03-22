@@ -33,16 +33,17 @@ public class MapView extends ModeView {
 
     void setIcon(BufferedImage image) {
         MapView.image = image;
-        label.setIcon(image);
+        repaint();
     }
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, getWidth(), getHeight());
         g2d.rotate( MapModel.getBearing(), image.getWidth()/2, image.getHeight()/2 );
-        g2d.drawImage( image, 0, 0, this);
-        
+        g2d.drawImage(image, 0, 0, this);
+        label.paint(g2d);
     }
     @Override
     public void displayMode() {

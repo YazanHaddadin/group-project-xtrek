@@ -1,7 +1,6 @@
 package xtrek;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -100,7 +99,7 @@ class MapModel extends ModeModel {
             ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
 
             BufferedImage myPicture = ImageIO.read(image);
-            controller.setIcon(new ImageIcon(myPicture));
+            controller.setIcon(myPicture);
         } catch (IOException e) {
             e.printStackTrace();
         }

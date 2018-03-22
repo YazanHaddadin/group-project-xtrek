@@ -2,6 +2,7 @@ package xtrek;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Map Controller class
@@ -94,7 +95,8 @@ public class Map extends Mode implements OnGPSUpdateListener {
     void onDisplay() {
         mapModel.onDisplay();
     }
-    void setIcon(ImageIcon image) {
+
+    void setIcon(BufferedImage image) {
         mapView.setIcon(image);
     }
 
