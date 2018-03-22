@@ -18,6 +18,9 @@ public class WhereToModel extends ModeModel {
     private KeyboardButton currentButton;
     private int buttonIndex = 0;
     
+    private int startButtonIndex = 0;
+    private int endButtonIndex = 27;
+    
     private WhereTo controller;
     
     JButton addButton(String letter, WhereTo.buttonType type) {
@@ -37,6 +40,11 @@ public class WhereToModel extends ModeModel {
         else if (currentButton.getButtonType() == WhereTo.buttonType.NEXT_PAGE) {
             WhereTo.hideLetterButtons();
             WhereTo.showNumberButtons();
+            startButtonIndex = 28;
+            buttonIndex = 28;
+            currentButton = (KeyboardButton) buttons.get(buttonIndex);
+            currentButton.giveFocus(buttons);
+            endButtonIndex = 39;
         }
 
         //Delete button pressed
@@ -48,6 +56,11 @@ public class WhereToModel extends ModeModel {
         else if (currentButton.getButtonType() == WhereTo.buttonType.BACK_PAGE) {
             WhereTo.hideNumberButtons();
             WhereTo.showLetterButtons();
+            startButtonIndex = 0;
+            buttonIndex = 0;
+            currentButton = (KeyboardButton) buttons.get(buttonIndex);
+            currentButton.giveFocus(buttons);
+            endButtonIndex = 27;
         }
 
         //An ordinary letter or number button has been pressed
@@ -103,8 +116,8 @@ public class WhereToModel extends ModeModel {
         
         void plus(ButtonEvent evt) {
             //Advance selected keyboard button if the + button is pressed
-            if(buttonIndex < buttons.size()-1) buttonIndex++;
-            else buttonIndex = 0;
+            if(buttonIndex < endButtonIndex) buttonIndex++;
+            else buttonIndex = startButtonIndex;
 
             currentButton = (KeyboardButton) buttons.get(buttonIndex);
             currentButton.giveFocus(buttons);
@@ -112,8 +125,8 @@ public class WhereToModel extends ModeModel {
 
         void minus(ButtonEvent evt) {
             //Go back 1 keyboard button if the - button is pressed
-            if(buttonIndex > 0) buttonIndex--;
-            else buttonIndex = buttons.size()-1;
+            if(buttonIndex > startButtonIndex) buttonIndex--;
+            else buttonIndex = endButtonIndex;
 
             currentButton = (KeyboardButton) buttons.get(buttonIndex);
             currentButton.giveFocus(buttons);
