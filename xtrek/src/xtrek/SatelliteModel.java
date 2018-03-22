@@ -95,20 +95,24 @@ public class SatelliteModel extends ModeModel {
         @Override
         public void run() {
             String line;
-
+            BufferedReader br;
             try {
                 FileInputStream in = new FileInputStream(new File(Constants.DONGLE_LOCATION));
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                line = br.readLine();
+                br = new BufferedReader(new InputStreamReader(in));
+                
             } catch (IOException e) {
-                line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77"; //Default to location
+                e.printStackTrace();
+                br = null;
             }
 
             try {
                 while (true) {
-                    if (line == null) {
-                        Thread.sleep(12000);
+                    if(br != null) {
+                        line = br.readLine();
+                    } else {
+                        line = "$GPGLL,5015.74572,N,00504.57661,W,234108.00,A,A*77"; //Default to location
                     }
+                    
                     if (line.startsWith("$GPGLL")) {
                         String[] splits = line.split(",");
                         if (splits[1].equals("") || splits[2].equals("") || splits[3].equals("") || splits[4].equals(""))

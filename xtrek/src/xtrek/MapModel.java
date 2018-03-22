@@ -79,14 +79,7 @@ class MapModel extends ModeModel {
         //do nothing
     }
 
-    @Override
-    void hide() {
-        System.out.println("Stopped timer");
-    }
-
     private void downloadNewMap() {
-
-        System.out.println("Downloaded new image");
         try {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
                     + "?center=" + latitude + "," + longitude
@@ -97,7 +90,6 @@ class MapModel extends ModeModel {
                     + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");
 
             ByteArrayInputStream image = new ByteArrayInputStream(connect.getResponse());
-
             BufferedImage myPicture = ImageIO.read(image);
             controller.setIcon(myPicture);
         } catch (IOException e) {
@@ -111,7 +103,7 @@ class MapModel extends ModeModel {
         } else {
             Double y = Math.sin(lon2 - lon1) * Math.cos(lat2);
             Double x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
-            return Math.toDegrees(Math.atan2(y, x));
+            return Math.atan2(y, x);
         }
     }
     static Double getBearing(){

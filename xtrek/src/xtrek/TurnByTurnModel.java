@@ -158,6 +158,7 @@ class TurnByTurnModel extends ModeModel {
 
     void playAudio(String segment) {
         segment = normaliseSentence(segment);
+        System.out.println(segment);
         byte[] audio = downloadNextSegment(translateSegment(segment));
 
         if (AudioPlayer.player.isAlive()) {

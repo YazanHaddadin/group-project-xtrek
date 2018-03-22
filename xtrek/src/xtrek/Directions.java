@@ -79,6 +79,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
         if (currentRoute != null && listener != null && this.longitude != null && this.latitude != null) {
 
+            System.out.println(Map.calculateDistance(nextStep.getStart_lat(), 
+                    nextStep.getStart_lon(), this.latitude, this.longitude));
+            
             if (nextStep.getStart_lat() != null && nextStep.getStart_lon() != null) {
                 Double nextLat = nextStep.getStart_lat();
                 Double nextLong = nextStep.getStart_lon();
@@ -86,11 +89,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                     SpeechEvent evt = new SpeechEvent(this, nextStep.getInstructions());
                     System.out.println(nextStep.getInstructions());
                     listener.speakNextSegment(evt);
-
+                    
+                    if (currentRoute != null) nextStep = currentRoute.getNextStep();
                 }
-
-
-                if (currentRoute != null) nextStep = currentRoute.getNextStep();
             }
         }
     }
@@ -99,8 +100,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     public void onChangeDestination(String destination) {
         String queryToMake = latitude + "," + longitude;
         //Default values, will be used if not overriden in the method call.
-        String origin = "The Printworks, Exeter, UK";
-        currentRoute = new Route(getDirections(origin, destination));
+        System.out.println("Changed directions");
+        currentRoute = new Route(getDirections(queryToMake, destination));
+        nextStep = currentRoute.getNextStep();
     }
 
     class Route {
@@ -138,6 +140,7 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
                     Step next_step = new Step(lon, lat, instructions);
                     Route.this.steps.add(next_step);
+                    System.out.println(instructions);
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
