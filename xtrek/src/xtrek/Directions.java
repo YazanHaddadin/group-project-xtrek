@@ -22,8 +22,6 @@ import java.util.HashMap;
 public class Directions implements OnChangeDestinationListener, OnGPSUpdateListener {
     private static final HashMap<String, String> requestProperties = new HashMap<>();
     static String dest = "University of Exeter, Exeter, UK";
-    //Default values, will be used if not overriden in the method call.
-    private static String origin = "The Printworks, Exeter, UK";
     private static String body;
     private OnDirectionsUpdateListener listener;
     private Route currentRoute = null;
@@ -100,13 +98,15 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     @Override
     public void onChangeDestination(String destination) {
         String queryToMake = latitude + "," + longitude;
+        //Default values, will be used if not overriden in the method call.
+        String origin = "The Printworks, Exeter, UK";
         currentRoute = new Route(getDirections(origin, destination));
     }
 
     class Route {
         private int i = 0;
-        private ArrayList<Step> steps = new ArrayList<>();
-        private ArrayList<String> warnings = new ArrayList<>();
+        private final ArrayList<Step> steps = new ArrayList<>();
+        private final ArrayList<String> warnings = new ArrayList<>();
 
         Route(String data) {
             try {
@@ -161,9 +161,9 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         }
 
         class Step {
-            private Double start_lon;
-            private Double start_lat;
-            private String instructions;
+            private final Double start_lon;
+            private final Double start_lat;
+            private final String instructions;
 
             Step(Double lon, Double lat, String instructions) {
                 this.start_lon = lon;

@@ -1,7 +1,6 @@
 package xtrek;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * TripComputer Controller Class
@@ -16,19 +15,18 @@ public class TripComputer extends Mode {
     
     private static TripComputerView tcView;
     private static TripComputerModel tcModel;
-    private static SatelliteModel stModel;
-    
+
     TripComputer(JFrame frame) {
         model = new TripComputerModel();
         view = new TripComputerView(frame);
 
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
-        
-        stModel = (SatelliteModel) model;
-        
-        tcModel.lastLatitude = stModel.getLatitude();
-        tcModel.lastLongitude = stModel.getLongitude();
+
+        SatelliteModel stModel = (SatelliteModel) model;
+
+        TripComputerModel.lastLatitude = stModel.getLatitude();
+        TripComputerModel.lastLongitude = stModel.getLongitude();
     }
     
     @Override

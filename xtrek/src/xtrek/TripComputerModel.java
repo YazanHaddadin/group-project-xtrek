@@ -68,8 +68,8 @@ public class TripComputerModel extends ModeModel implements OnChangeDestinationL
         //Determine if the device is moving or not.
         if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.005) {
             moving = true;
-            
-            double distanceTravelled = 0.00;
+
+            double distanceTravelled;
             distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
             
             kmTravelled += distanceTravelled;

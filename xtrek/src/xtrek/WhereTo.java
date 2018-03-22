@@ -17,7 +17,7 @@ public class WhereTo extends Mode {
     private static WhereToView whereView;
     private static WhereToModel whereModel;
     static OnChangeDestinationListener listener;
-    static ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
+    static final ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
     
     WhereTo(JFrame frame) {
         model = new WhereToModel();

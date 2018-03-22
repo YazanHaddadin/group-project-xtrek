@@ -22,6 +22,8 @@ class Constants {
 
     static final Dimension SCREEN = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+    static final String SIZE_MAP = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
+
     static final String SYSTEM_FONT = "Arial";
     
     //Defaults for the Directions class

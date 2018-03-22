@@ -21,8 +21,7 @@ class MapModel extends ModeModel {
     private static Double longitude = -3.5339;     /* Inputted Longitude - default Exeter - will be changed to current location */
     private static Double bearing = 0.0;
     private static String zoom = "10";           /* 0 .. 21           */
-    private static String SIZE = Constants.SCREEN_WIDTH + "x" + Constants.SCREEN_HEIGHT;
-    private Map controller;
+    private final Map controller;
 
     MapModel(Map controller) {
         this.controller = controller;
@@ -93,7 +92,7 @@ class MapModel extends ModeModel {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
                     + "?center=" + latitude + "," + longitude
                     + "&zoom=" + zoom
-                    + "&size=" + SIZE
+                    + "&size=" + Constants.SIZE_MAP
                     + "&markers=icon:" + URLEncoder.encode("https://sebastienmichel.me/red_dot_transparent.png", "UTF-8")
                     + "|" + latitude + "," + longitude
                     + "&key=" + Constants.GOOGLE_MAP_API, "POST", new HashMap<>(), "");

@@ -13,21 +13,20 @@ import java.awt.*;
  * @version Sprint 3
  */
 public class TripComputerView extends ModeView{
-    private TripComputer controller;
-    
+
     private final int fontSize = 26;
-    
-    JPanel odometerPanel = new JPanel();
-    JLabel odometerLabel = new JLabel("Trip Odometer:");
-    JLabel odometerReading = new JLabel("0.00 KM");
 
-    JPanel speedPanel = new JPanel();
-    JLabel speedLabel = new JLabel("Speed:");
-    JLabel speedReading = new JLabel("6.0 KM/H");
+    final JPanel odometerPanel = new JPanel();
+    final JLabel odometerLabel = new JLabel("Trip Odometer:");
+    final JLabel odometerReading = new JLabel("0.00 KM");
 
-    JPanel movingTimePanel = new JPanel();
-    JLabel movingTimeLabel = new JLabel("Moving Time:");
-    JLabel movingTimeReading = new JLabel("0 min 0 sec");
+    final JPanel speedPanel = new JPanel();
+    final JLabel speedLabel = new JLabel("Speed:");
+    final JLabel speedReading = new JLabel("6.0 KM/H");
+
+    final JPanel movingTimePanel = new JPanel();
+    final JLabel movingTimeLabel = new JLabel("Moving Time:");
+    final JLabel movingTimeReading = new JLabel("0 min 0 sec");
     
     @Override
     public void displayMode() {
@@ -85,6 +84,6 @@ public class TripComputerView extends ModeView{
     }
     
     void setController(TripComputer controller) {
-        this.controller = controller;
+        TripComputer controller1 = controller;
     }
 }

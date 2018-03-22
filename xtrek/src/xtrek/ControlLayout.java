@@ -26,8 +26,8 @@ public class ControlLayout extends JPanel{
     private final JButton menu = new ControlButton("Menu");
     private final JButton select = new ControlButton("Select");
 
-    private Mode currentMode;
-    private JFrame frame;
+    private final Mode currentMode;
+    private final JFrame frame;
     private ButtonListener listener;
     private Xtrek xtrek;
 
@@ -122,7 +122,7 @@ public class ControlLayout extends JPanel{
     }
 
     class ControlButton extends JButton {
-        private String control;
+        private final String control;
 
         ControlButton(String control) {
             super("");

@@ -9,7 +9,7 @@ import java.util.EventObject;
  * @version Sprint 3
  */
 class SpeechEvent extends EventObject {
-    String speech;
+    final String speech;
 
     public SpeechEvent(Object source, String speech) {
         super(source);

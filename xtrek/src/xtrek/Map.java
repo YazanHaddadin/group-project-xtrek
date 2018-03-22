@@ -15,8 +15,8 @@ import java.awt.*;
  */
 public class Map extends Mode implements OnGPSUpdateListener {
 
-    private MapView mapView;
-    private MapModel mapModel;
+    private final MapView mapView;
+    private final MapModel mapModel;
 
 
     Map(JFrame frame) {
