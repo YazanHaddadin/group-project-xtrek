@@ -19,12 +19,12 @@ public class SatelliteView extends ModeView {
         panel.setLayout(new GridBagLayout());
     }
 
-    public void setPosition(String value1, String direction1, String value2, String direction2) {
+    void setPosition(String value1, String direction1, String value2, String direction2) {
         sat.setLabel1(value1 + " " + direction1);
         sat.setLabel2(value2 + " " + direction2);
     }
 
-    public void setNoSignal() {
+    void setNoSignal() {
         sat.setLabel1("No Signal");
         sat.setLabel2("");
     }

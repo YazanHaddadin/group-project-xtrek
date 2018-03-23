@@ -11,7 +11,7 @@ import java.util.EventObject;
 class SpeechEvent extends EventObject {
     final String speech;
 
-    public SpeechEvent(Object source, String speech) {
+    SpeechEvent(Object source, String speech) {
         super(source);
         this.speech = speech;
     }

@@ -14,8 +14,6 @@ import java.util.TimerTask;
  */
 class TripComputerModel extends ModeModel {
 
-    static String odoLabel;
-
     private static Double lastLatitude;
     private static Double lastLongitude;
 

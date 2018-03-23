@@ -17,15 +17,15 @@ class SatellitePanel extends javax.swing.JPanel {
     /**
      * Creates new form SatellitePanel
      */
-    public SatellitePanel() {
+    SatellitePanel() {
         initComponents();
     }
 
-    public void setLabel1(String text) {
+    void setLabel1(String text) {
         jLabel1.setText(text);
     }
 
-    public void setLabel2(String text) {
+    void setLabel2(String text) {
         jLabel2.setText(text);
     }
 

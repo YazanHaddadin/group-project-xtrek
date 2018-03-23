@@ -14,7 +14,7 @@ import java.awt.*;
 public class AboutView extends ModeView {
     private final AboutPanel about = new AboutPanel();
 
-    public AboutView(JFrame frame) {
+    AboutView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
     }

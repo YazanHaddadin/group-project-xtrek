@@ -116,14 +116,6 @@ class MainMenuModel extends ModeModel {
             setBackground(Color.WHITE);
         }
 
-        String getDisplay() {
-            return display;
-        }
-
-        Class getCurrentClass() {
-            return currentClass;
-        }
-
         void giveFocus(ArrayList<JButton> buttons) {
             for (JButton randButton : buttons) ((OperatorButton) randButton).focusLost();
             this.focusGained();

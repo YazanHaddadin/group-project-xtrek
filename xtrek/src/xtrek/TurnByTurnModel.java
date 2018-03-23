@@ -37,8 +37,8 @@ class TurnByTurnModel extends ModeModel {
     }
 
     /**
-     * @param String sentence : the sentence to normalise
-     * @return String sentence : the normalised sentence
+     * @param sentence : the sentence to normalise
+     * @return sentence : the normalised sentence
      * <p>
      * The normalisation process includes three steps:
      * 1. If the sentence contains any HTML tags, remove them while keeping
@@ -141,8 +141,8 @@ class TurnByTurnModel extends ModeModel {
     }
 
     /**
-     * @param String segment : the normalised sentence to translate
-     * @return String segment : the normalised translated sentence
+     * @param segment : the normalised sentence to translate
+     * @return segment : the normalised translated sentence
      * @throws IOException This process includes sending a request to the Microsoft Translator API
      *                     which returns a translated sentence from one language to another. This
      *                     API renews its own key as needed on the server.
@@ -167,7 +167,7 @@ class TurnByTurnModel extends ModeModel {
     }
 
     /**
-     * @param String segment : The normalised, translated sentence
+     * @param segment : The normalised, translated sentence
      * @return byte[] audio : The bytes of the audio file
      * @throws IOException Send a request to the Microsoft Translator API to speak a sentence
      *                     in a certain language. This API renews its own key as needed on the

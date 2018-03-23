@@ -92,21 +92,8 @@ class HttpConnection {
         }
     }
 
-    public byte[] getResponse() {
+    byte[] getResponse() {
         return response;
-    }
-
-    public void writeData(String fileName, byte[] buffer) {
-        try {
-            File file = new File(fileName);
-            FileOutputStream fos = new FileOutputStream(file);
-            DataOutputStream dos = new DataOutputStream(fos);
-            dos.write(buffer);
-            dos.flush();
-            dos.close();
-        } catch (Exception ex) {
-            System.exit(1);
-        }
     }
 
     String parseXML(String xml) {
