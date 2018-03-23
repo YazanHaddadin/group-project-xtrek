@@ -124,6 +124,13 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         if (!destination.isEmpty()) {
             routeSet = true;
             currentRoute = new Route(getDirections(queryToMake, destination));
+            
+            if(currentRoute.steps.isEmpty()) {
+                routeSet = false;
+                currentRoute = null;
+                return;
+            }
+            
             nextStep = currentRoute.getNextStep();
         }
     }
@@ -135,9 +142,18 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
 
         Route(String data) {
             try {
+                System.out.println(data);
+                
                 JSONObject json = (JSONObject) new JSONParser().parse(data);
 
                 JSONArray routes = (JSONArray) json.get("routes");
+                
+                if(routes.isEmpty()) {
+                    SpeechEvent evt = new SpeechEvent(this, "No route available");
+                    listener.speakNextSegment(evt);
+                    return;
+                }
+                
                 JSONObject route = (JSONObject) routes.get(0);
 
                 JSONArray legs = (JSONArray) route.get("legs");
@@ -163,7 +179,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
                     Route.this.steps.add(next_step);
                 }
             } catch (ParseException e) {
-                e.printStackTrace();
+                SpeechEvent evt = new SpeechEvent(this, "No route available");
+                listener.speakNextSegment(evt);
             }
         }
 

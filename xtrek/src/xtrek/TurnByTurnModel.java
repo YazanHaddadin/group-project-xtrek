@@ -7,6 +7,7 @@ import sun.audio.AudioPlayer;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,7 +18,6 @@ import java.util.Map;
 
 /**
  * TurnByTurn Model
- * <p>
  * Model for the turn by turn mode of the device.
  *
  * @author Sebastien Michel
@@ -36,6 +36,17 @@ class TurnByTurnModel extends ModeModel {
         buttonIndex = 0;
     }
 
+    /**
+     * @param String sentence : the sentence to normalise
+     * @return String sentence : the normalised sentence
+     * 
+     * The normalisation process includes three steps:
+     *  1. If the sentence contains any HTML tags, remove them while keeping 
+     *  the contents
+     * 2. If the sentence contains road abbreviations such as "Rd" or "Ln",
+     *  expand the abbreviations
+     * 3. Add punctuation
+    */
     private String normaliseSentence(String sentence) {
         LinkedHashMap<String, String> abb = new LinkedHashMap<>();
         abb.put("Aly", "Alley");
@@ -123,8 +134,6 @@ class TurnByTurnModel extends ModeModel {
                     " " + entry.getValue().toLowerCase() + " ");
         }
 
-        System.out.println(sentence);
-
         sentence = sentence.replaceAll("(\\w)(\\p{Upper})", "$1. $2");
         sentence = sentence.replaceAll("/([AB]\\d{1,4})(\\p{Upper})", " $1. $2");
 
@@ -133,6 +142,15 @@ class TurnByTurnModel extends ModeModel {
         return sentence;
     }
 
+    /**
+     * @param String segment : the normalised sentence to translate
+     * @return String segment : the normalised translated sentence
+     * @throws IOException 
+     * 
+     * This process includes sending a request to the Microsoft Translator API
+     * which returns a translated sentence from one language to another. This
+     * API renews its own key as needed on the server.
+     */
     private String translateSegment(String segment) throws IOException {
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", Constants.MICROSOFT_VOICE_API);
@@ -152,6 +170,15 @@ class TurnByTurnModel extends ModeModel {
         return conn.parseXML(xml);
     }
 
+    /**
+     * @param String segment : The normalised, translated sentence
+     * @return byte[] audio : The bytes of the audio file
+     * @throws IOException 
+     * 
+     * Send a request to the Microsoft Translator API to speak a sentence
+     * in a certain language. This API renews its own key as needed on the 
+     * server.
+     */
     private byte[] downloadNextSegment(String segment) throws IOException {
         HashMap<String, String> requestProp = new HashMap<>();
         requestProp.put("Ocp-Apim-Subscription-Key", Constants.MICROSOFT_VOICE_API);
@@ -168,22 +195,36 @@ class TurnByTurnModel extends ModeModel {
         return conn.getResponse();
     }
 
+    /**
+     * @param resource : name of the resource
+     * @return byte[] audio : bytes of the audio file
+     * 
+     * If a resource is not available (GPS/Internet), play the required file.
+     */
     private byte[] noResource(String resource) {
         try {
             Path fileLocation = Paths.get(getClass().getResource("assets/" + resource).toURI());
             return Files.readAllBytes(fileLocation);
-        } catch (Exception e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
+    /**
+     * @param segment : Sentence to translate and play
+     * 
+     * If the voice is set to off, do not do anything
+     * If the segment is empty, then there was no GPS data received,
+     *  play the file "noGPS"
+     * Otherwise, normalise the sentence, translate it and play it.
+     * If that fails, most likely an Internet exception : play "noInternet"
+     */
     void playAudio(String segment) {
         if (currentButton == null || currentButton.getLanguage() == TurnByTurn.Language.OFF) {
             return;
         }
-
+        
         byte[] audio;
         if (segment.isEmpty()) {
             audio = noResource("noGPS.wav");
@@ -215,6 +256,11 @@ class TurnByTurnModel extends ModeModel {
         if (AudioPlayer.player.isAlive()) AudioPlayer.player.stop(audioStream);
     }
 
+    /**
+     * @param evt 
+     * If a language is selected, set the variables to reflect the choice and
+     * play an audio file in the required language saying so
+     */
     void selected(ButtonEvent evt) {
         if (currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {
             language = currentButton.getLanguage();
@@ -256,6 +302,9 @@ class TurnByTurnModel extends ModeModel {
         return button;
     }
 
+    /**
+     * An extension of JButton that include Gender/Language state
+     */
     class LangButton extends JButton {
         private final TurnByTurn.Gender GENDER;
         private final TurnByTurn.Language LANGUAGE;
@@ -268,10 +317,12 @@ class TurnByTurnModel extends ModeModel {
             this.LANGUAGE = language;
         }
 
+        /* Focus = Orange background*/
         private void focusGained() {
             setBackground(Color.ORANGE);
         }
 
+        /* No focus = White background */
         private void focusLost() {
             setBackground(Color.WHITE);
         }
@@ -306,6 +357,7 @@ class TurnByTurnModel extends ModeModel {
             return GENDER;
         }
 
+        /* Take focus away for all buttons except "this" */
         void giveFocus(ArrayList<JButton> buttons) {
             for (JButton randButton : buttons) ((LangButton) randButton).focusLost();
             this.focusGained();

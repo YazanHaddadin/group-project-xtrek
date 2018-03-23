@@ -29,7 +29,7 @@ class Constants {
     static final String SYSTEM_FONT = "Arial";
     
     //Defaults for the Directions class
-    static final String TRAVEL_MODE = "WALKING";
+    static final String TRAVEL_MODE = "walking";
     static final String DIRECTIONS_REGION = "UK";
     
     //Defaults for the Satellite class

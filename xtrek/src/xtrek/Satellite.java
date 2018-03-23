@@ -1,5 +1,7 @@
 package xtrek;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +41,11 @@ public class Satellite extends Mode {
         if (value1 == null) {
             SView.setNoSignal();
         } else {
-            SView.setPosition(value1, direction1, value2, direction2);
+            DecimalFormat df = new DecimalFormat("###.#####");
+            df.setRoundingMode(RoundingMode.CEILING);
+            String lat = df.format(value1);
+            String lon = df.format(value2);
+            SView.setPosition(lat, direction1, lon, direction2);
         }
     }
 
