@@ -164,8 +164,6 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
          */
         Route(String data) {
             try {
-                System.out.println(data);
-                
                 JSONObject json = (JSONObject) new JSONParser().parse(data);
 
                 JSONArray routes = (JSONArray) json.get("routes");

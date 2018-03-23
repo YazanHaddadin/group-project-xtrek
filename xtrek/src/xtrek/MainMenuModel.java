@@ -90,7 +90,7 @@ class MainMenuModel extends ModeModel {
                         .getScaledInstance(88, 70, Image.SCALE_SMOOTH);
                 setIcon(new ImageIcon(img));
             }   catch (IOException | IllegalArgumentException ex) {
-                System.out.println(ex);
+                ex.printStackTrace();
                 this.setText(display);
                 this.setContentAreaFilled(true);
                 this.setBackground(Color.WHITE);

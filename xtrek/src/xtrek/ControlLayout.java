@@ -78,7 +78,7 @@ class ControlLayout extends JPanel {
                         .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
                 onOff.setIcon(new ImageIcon(img));
             }   catch (IOException | IllegalArgumentException ex) {
-                System.out.println(ex);
+                ex.printStackTrace();
                 onOff.setContentAreaFilled(true);
                 onOff.setBackground(Color.RED);
             }  
@@ -110,7 +110,7 @@ class ControlLayout extends JPanel {
             overlayPanel.add(overlay);
             this.add(overlayPanel);
         } catch(IOException | IllegalArgumentException ex) {
-            System.out.println(ex);
+            ex.printStackTrace();
             this.setBackground(Color.BLACK);
         }
 

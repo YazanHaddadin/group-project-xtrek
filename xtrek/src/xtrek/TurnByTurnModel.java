@@ -137,8 +137,6 @@ class TurnByTurnModel extends ModeModel {
         sentence = sentence.replaceAll("(\\w)(\\p{Upper})", "$1. $2");
         sentence = sentence.replaceAll("/([AB]\\d{1,4})(\\p{Upper})", " $1. $2");
 
-        System.out.println(sentence);
-
         return sentence;
     }
 
