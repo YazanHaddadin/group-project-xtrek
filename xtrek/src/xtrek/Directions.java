@@ -69,7 +69,20 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     void setListener(OnDirectionsUpdateListener listener) {
         this.listener = listener;
     }
-
+    
+    /**
+     * @param latitude
+     * @param longitude
+     * @param latitudeDirection
+     * @param longitudeDirection 
+     * 
+     * Set the sign on latitude and longitude
+     * If there is a current route and GPS signal, check how far away we
+     * are to the next step in the route and if close enough, play the
+     * instructions and get the next step
+     * 
+     * If we are >500m off course, get a new route from the current location
+     */
     @Override
     public void onGPSUpdate(Double latitude,
                             Double longitude,
@@ -116,11 +129,15 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         }
     }
 
+    /**
+     * @param destination 
+     * if there a new destination, create a new route from current location
+     * to destination
+     */
     @Override
     public void onChangeDestination(String destination) {
         this.destination = destination;
         String queryToMake = latitude + "," + longitude;
-        //Default values, will be used if not overriden in the method call.
         if (!destination.isEmpty()) {
             routeSet = true;
             currentRoute = new Route(getDirections(queryToMake, destination));
@@ -140,6 +157,11 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         private final ArrayList<String> warnings = new ArrayList<>();
         private int i = 0;
 
+        /**
+         * @param data 
+         * Parse through JSON direction data, or say "no route available" in
+         * case of an error
+         */
         Route(String data) {
             try {
                 System.out.println(data);

@@ -38,5 +38,5 @@ class Constants {
     static final String GOOGLE_MAP_API = "AIzaSyBlYfw7NDb9icLC-Ssq0EVi2d5EAjhqst0";
     static final String MICROSOFT_VOICE_API = "b496988cc4d34a69a1410c097a7e56ca";
 
-    static final Float GPS_TOLERANCE = 0.005f; //5 meters
+    static final Float GPS_TOLERANCE = 0.01f; //5 meters
 }

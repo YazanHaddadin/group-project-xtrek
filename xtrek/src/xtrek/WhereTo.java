@@ -75,7 +75,6 @@ public class WhereTo extends Mode {
         // Delete 1 character from the destination field
         if (WhereToView.destination.getText().length() > 0) {
             WhereToView.destination.setText(WhereToView.destination.getText().substring(0, WhereToView.destination.getText().length() - 1));
-            callListener();
         }
     }
 
