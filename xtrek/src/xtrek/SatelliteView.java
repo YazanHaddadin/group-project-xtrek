@@ -13,7 +13,7 @@ import java.awt.*;
  */
 public class SatelliteView extends ModeView {
     private final SatellitePanel sat = new SatellitePanel();
-    
+
     SatelliteView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
@@ -23,7 +23,7 @@ public class SatelliteView extends ModeView {
         sat.setLabel1(value1 + " " + direction1);
         sat.setLabel2(value2 + " " + direction2);
     }
-    
+
     public void setNoSignal() {
         sat.setLabel1("No Signal");
         sat.setLabel2("");
@@ -32,11 +32,11 @@ public class SatelliteView extends ModeView {
     @Override
     public void displayMode() {
         frame.setTitle("XTrek");
-        
+
         GridBagConstraints c = new GridBagConstraints();
-        
+
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(1,1,1,1);
+        c.insets = new Insets(1, 1, 1, 1);
         c.weightx = 1.0;
         c.weighty = 1.0;
         panel.add(sat, c);

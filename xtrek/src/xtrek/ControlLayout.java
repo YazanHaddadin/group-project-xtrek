@@ -71,18 +71,18 @@ class ControlLayout extends JPanel {
 
         onOff.setBounds(200, 100, 45, 45);
         onOff.setPreferredSize(new Dimension(45, 45));
-        
+
         //Style power button
         try {
-                Image img = ImageIO.read(getClass().getResource("assets/power.png"))
-                        .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
-                onOff.setIcon(new ImageIcon(img));
-            }   catch (IOException | IllegalArgumentException ex) {
-                ex.printStackTrace();
-                onOff.setContentAreaFilled(true);
-                onOff.setBackground(Color.RED);
-            }  
-        
+            Image img = ImageIO.read(getClass().getResource("assets/power.png"))
+                    .getScaledInstance(45, 45, Image.SCALE_SMOOTH);
+            onOff.setIcon(new ImageIcon(img));
+        } catch (IOException | IllegalArgumentException ex) {
+            ex.printStackTrace();
+            onOff.setContentAreaFilled(true);
+            onOff.setBackground(Color.RED);
+        }
+
         this.add(onOff);
 
         onOff.setVisible(true);
@@ -109,7 +109,7 @@ class ControlLayout extends JPanel {
             overlay.setIcon(new ImageIcon(img));
             overlayPanel.add(overlay);
             this.add(overlayPanel);
-        } catch(IOException | IllegalArgumentException ex) {
+        } catch (IOException | IllegalArgumentException ex) {
             ex.printStackTrace();
             this.setBackground(Color.BLACK);
         }
@@ -127,8 +127,8 @@ class ControlLayout extends JPanel {
         minus.setEnabled(false);
         select.setEnabled(false);
     }
-    
-    void enableOPButton(){
+
+    void enableOPButton() {
         menu.setEnabled(true);
         plus.setEnabled(true);
         minus.setEnabled(true);

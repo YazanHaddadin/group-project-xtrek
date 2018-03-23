@@ -12,7 +12,7 @@ import javax.swing.*;
  * @version Sprint 3
  */
 public class TripComputer extends Mode implements OnChangeDestinationListener, OnGPSUpdateListener {
-    
+
     private static TripComputerView tcView;
     private static TripComputerModel tcModel;
 
@@ -22,15 +22,27 @@ public class TripComputer extends Mode implements OnChangeDestinationListener, O
 
         tcModel = (TripComputerModel) model;
         tcView = (TripComputerView) view;
-        
+
         tcModel.increaseMovingTime();
     }
-    
+
+    static void updateMovingTime(String mtText) {
+        tcView.movingTimeReading.setText(mtText);
+    }
+
+    static void updateTripOdometer(String odoText) {
+        tcView.odometerReading.setText(odoText + " KM");
+    }
+
+    static void updateSpeed(String speedText) {
+        tcView.speedReading.setText(speedText + " KM/H");
+    }
+
     @Override
     void displayMode() {
         tcView.displayMode();
     }
-    
+
     @Override
     public void selected(ButtonEvent evt) {
         tcModel.selected(evt);
@@ -44,18 +56,6 @@ public class TripComputer extends Mode implements OnChangeDestinationListener, O
     @Override
     public void minus(ButtonEvent evt) {
         tcModel.minus(evt);
-    }
-
-    static void updateMovingTime(String mtText) {
-        tcView.movingTimeReading.setText(mtText);
-    }
-
-    static void updateTripOdometer(String odoText) {
-        tcView.odometerReading.setText(odoText + " KM");
-    }
-
-    static void updateSpeed(String speedText) {
-        tcView.speedReading.setText(speedText + " KM/H");
     }
 
     @Override

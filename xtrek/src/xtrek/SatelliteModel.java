@@ -13,14 +13,13 @@ import java.util.ArrayList;
  */
 class SatelliteModel extends ModeModel {
 
+    private final Reader reader = new Reader();
+    private final ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
     private Direction latitudeDirection;
     private Direction longitudeDirection;
     private Double latitude;
     private Double longitude;
-
-    private final Reader reader = new Reader();
     private Thread thread = new Thread(reader);
-    private final ArrayList<OnGPSUpdateListener> listeners = new ArrayList<>();
 
     private void callListener(Double latitude, Double longitude, Direction latitudeDirection, Direction longitudeDirection) {
         for (OnGPSUpdateListener listener : listeners) {
@@ -129,7 +128,7 @@ class SatelliteModel extends ModeModel {
                     callListener(null, null, null, null);
                     continue;
                 }
-                
+
                 if (line.startsWith("$GPGLL")) {
                     String[] splits = line.split(",");
                     if (!splits[1].equals("") && !splits[2].equals("") && !splits[3].equals("") && !splits[4].equals("")) {

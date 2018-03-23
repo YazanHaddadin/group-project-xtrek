@@ -32,11 +32,10 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     private String destination;
 
     /**
-      * @param origin place where you are getting directions from
-      * @param dest place where you want to get directions to
-      *
-      * @return byte array containing the directions from the API
-      */
+     * @param origin place where you are getting directions from
+     * @param dest   place where you want to get directions to
+     * @return byte array containing the directions from the API
+     */
     private static String getDirections(String origin, String dest) {
         if (dest.isEmpty()) {
             return "";
@@ -69,19 +68,17 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     void setListener(OnDirectionsUpdateListener listener) {
         this.listener = listener;
     }
-    
+
     /**
      * @param latitude
      * @param longitude
      * @param latitudeDirection
-     * @param longitudeDirection 
-     * 
-     * Set the sign on latitude and longitude
-     * If there is a current route and GPS signal, check how far away we
-     * are to the next step in the route and if close enough, play the
-     * instructions and get the next step
-     * 
-     * If we are >500m off course, get a new route from the current location
+     * @param longitudeDirection Set the sign on latitude and longitude
+     *                           If there is a current route and GPS signal, check how far away we
+     *                           are to the next step in the route and if close enough, play the
+     *                           instructions and get the next step
+     *                           <p>
+     *                           If we are >500m off course, get a new route from the current location
      */
     @Override
     public void onGPSUpdate(Double latitude,
@@ -130,9 +127,8 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
     }
 
     /**
-     * @param destination 
-     * if there a new destination, create a new route from current location
-     * to destination
+     * @param destination if there a new destination, create a new route from current location
+     *                    to destination
      */
     @Override
     public void onChangeDestination(String destination) {
@@ -141,13 +137,13 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         if (!destination.isEmpty()) {
             routeSet = true;
             currentRoute = new Route(getDirections(queryToMake, destination));
-            
-            if(currentRoute.steps.isEmpty()) {
+
+            if (currentRoute.steps.isEmpty()) {
                 routeSet = false;
                 currentRoute = null;
                 return;
             }
-            
+
             nextStep = currentRoute.getNextStep();
         }
     }
@@ -158,22 +154,21 @@ public class Directions implements OnChangeDestinationListener, OnGPSUpdateListe
         private int i = 0;
 
         /**
-         * @param data 
-         * Parse through JSON direction data, or say "no route available" in
-         * case of an error
+         * @param data Parse through JSON direction data, or say "no route available" in
+         *             case of an error
          */
         Route(String data) {
             try {
                 JSONObject json = (JSONObject) new JSONParser().parse(data);
 
                 JSONArray routes = (JSONArray) json.get("routes");
-                
-                if(routes.isEmpty()) {
+
+                if (routes.isEmpty()) {
                     SpeechEvent evt = new SpeechEvent(this, "No route available");
                     listener.speakNextSegment(evt);
                     return;
                 }
-                
+
                 JSONObject route = (JSONObject) routes.get(0);
 
                 JSONArray legs = (JSONArray) route.get("legs");

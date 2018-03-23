@@ -30,5 +30,5 @@ class AboutModel extends ModeModel {
          * This button is not used in this mode.
          */
     }
-    
+
 }

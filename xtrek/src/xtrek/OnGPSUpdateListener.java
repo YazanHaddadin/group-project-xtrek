@@ -6,7 +6,7 @@ import java.util.EventListener;
  * On GPS Update Listener Class
  * <p>
  * Event listener for when the GPS dongle gets updated coordinates.
- * 
+ *
  * @author Liam Vinson
  * @version Sprint 3
  */

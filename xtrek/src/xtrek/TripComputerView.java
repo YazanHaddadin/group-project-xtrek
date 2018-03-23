@@ -6,33 +6,31 @@ import java.awt.*;
 /**
  * TripComputer View Class
  * <p>
- * Provides the interface for the Trip Computer function of the XTrek, which 
+ * Provides the interface for the Trip Computer function of the XTrek, which
  * will provide information about the current trip.
  *
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class TripComputerView extends ModeView{
+public class TripComputerView extends ModeView {
 
+    final JLabel odometerReading = new JLabel("0.00 KM");
+    final JLabel speedReading = new JLabel("0.0 KM/H");
+    final JLabel movingTimeReading = new JLabel("0 min 0 sec");
     //Set up the display components for the trip computer.
     private final JPanel odometerPanel = new JPanel();
     private final JLabel odometerLabel = new JLabel("Trip Odometer:");
-    final JLabel odometerReading = new JLabel("0.00 KM");
-
     private final JPanel speedPanel = new JPanel();
     private final JLabel speedLabel = new JLabel("Speed:");
-    final JLabel speedReading = new JLabel("0.0 KM/H");
-
     private final JPanel movingTimePanel = new JPanel();
     private final JLabel movingTimeLabel = new JLabel("Moving Time:");
-    final JLabel movingTimeReading = new JLabel("0 min 0 sec");
 
     TripComputerView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
         displayMode();
     }
-    
+
     @Override
     public void displayMode() {
         frame.setTitle("XTrek");

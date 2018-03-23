@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * ModeView class
  * <p>
- * An abstract that defines the methods for all the views, 
+ * An abstract that defines the methods for all the views,
  * ensuring all our different panels are compatible with the main frame (same size and all)
  *
  * @author Sebastien Michel

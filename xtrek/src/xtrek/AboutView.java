@@ -22,14 +22,14 @@ public class AboutView extends ModeView {
     @Override
     public void displayMode() {
         frame.setTitle("XTrek");
-        
+
         GridBagConstraints c = new GridBagConstraints();
-        
+
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(1,1,1,1);
+        c.insets = new Insets(1, 1, 1, 1);
         c.weightx = 1.0;
         c.weighty = 1.0;
         panel.add(about, c);
     }
-    
+
 }

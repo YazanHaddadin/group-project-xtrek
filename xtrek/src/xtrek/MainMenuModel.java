@@ -15,12 +15,11 @@ import java.util.ArrayList;
  * @version Sprint 3
  */
 class MainMenuModel extends ModeModel {
-    private String display;
+    private final Xtrek xtrek;
     ModeView view;
-    
+    private String display;
     private OperatorButton currentButton;
     private int buttonIndex;
-    private final Xtrek xtrek;
 
     MainMenuModel(Xtrek xtrek) {
         this.xtrek = xtrek;
@@ -29,36 +28,36 @@ class MainMenuModel extends ModeModel {
     @Override
     void selected(ButtonEvent evt) {
         //when a button is selected the Main Menu view is hidden and the selected view is made visible
-        if(currentButton.currentClass == WhereTo.class) {
+        if (currentButton.currentClass == WhereTo.class) {
             xtrek.updateFrame(Xtrek.WhereTo);
-        } else if(currentButton.currentClass == TripComputer.class) {
+        } else if (currentButton.currentClass == TripComputer.class) {
             xtrek.updateFrame(Xtrek.tripComputer);
-        } else if(currentButton.currentClass == Map.class) {
+        } else if (currentButton.currentClass == Map.class) {
             xtrek.updateFrame(Xtrek.MapMode);
-        } else if(currentButton.currentClass == TurnByTurn.class) {
+        } else if (currentButton.currentClass == TurnByTurn.class) {
             xtrek.updateFrame(Xtrek.turnByTurn);
-        } else if(currentButton.currentClass == Satellite.class) {
+        } else if (currentButton.currentClass == Satellite.class) {
             xtrek.updateFrame(Xtrek.satellite);
-        } else if(currentButton.currentClass == About.class) {
+        } else if (currentButton.currentClass == About.class) {
             xtrek.updateFrame(Xtrek.AboutMode);
-        } else{
+        } else {
             xtrek.updateFrame(Xtrek.MainMenu);
         }
     }
-    
+
     void plus(ButtonEvent evt) {
-        if(buttonIndex < buttons.size()-1) buttonIndex++;
+        if (buttonIndex < buttons.size() - 1) buttonIndex++;
         else buttonIndex = 0;
 
-        currentButton = (OperatorButton)buttons.get(buttonIndex);
+        currentButton = (OperatorButton) buttons.get(buttonIndex);
         currentButton.giveFocus(buttons);
     }
 
     void minus(ButtonEvent evt) {
-        if(buttonIndex > 0) buttonIndex--;
-        else buttonIndex = buttons.size()-1;
+        if (buttonIndex > 0) buttonIndex--;
+        else buttonIndex = buttons.size() - 1;
 
-        currentButton = (OperatorButton)buttons.get(buttonIndex);
+        currentButton = (OperatorButton) buttons.get(buttonIndex);
         currentButton.giveFocus(buttons);
     }
 
@@ -81,15 +80,15 @@ class MainMenuModel extends ModeModel {
         buttons = new ArrayList<>();
     }
 
-    class OperatorButton extends JButton{
+    class OperatorButton extends JButton {
         private final Class currentClass;
-        
+
         OperatorButton(String display, Class currentClass) {
             try {
                 Image img = ImageIO.read(getClass().getResource("assets/" + display + ".png"))
                         .getScaledInstance(88, 70, Image.SCALE_SMOOTH);
                 setIcon(new ImageIcon(img));
-            }   catch (IOException | IllegalArgumentException ex) {
+            } catch (IOException | IllegalArgumentException ex) {
                 ex.printStackTrace();
                 this.setText(display);
                 this.setContentAreaFilled(true);
@@ -98,13 +97,13 @@ class MainMenuModel extends ModeModel {
             this.currentClass = currentClass;
             setStyle();
         }
-        
+
         private void setStyle() {
             //set the display style of the operator buttons
             setOpaque(true);
             setBackground(Color.WHITE);
             setBorderPainted(true);
-            
+
         }
 
         private void focusGained() {
@@ -116,7 +115,7 @@ class MainMenuModel extends ModeModel {
             //when the focus is lost it reverts back to the orginal colour
             setBackground(Color.WHITE);
         }
-        
+
         String getDisplay() {
             return display;
         }
@@ -126,7 +125,7 @@ class MainMenuModel extends ModeModel {
         }
 
         void giveFocus(ArrayList<JButton> buttons) {
-            for (JButton randButton : buttons) ((OperatorButton)randButton).focusLost();
+            for (JButton randButton : buttons) ((OperatorButton) randButton).focusLost();
             this.focusGained();
         }
     }

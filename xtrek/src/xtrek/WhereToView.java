@@ -12,12 +12,9 @@ import java.awt.*;
  * @author Caleb Blackmore
  * @version Sprint 3
  */
-public class WhereToView extends ModeView{
-    private WhereTo controller;
-    
+public class WhereToView extends ModeView {
     // Text field where destination will go.
     public static final JTextField destination = new JTextField();
-
     //Create each keyboard button
     public JButton btnA;
     public JButton btnB;
@@ -45,10 +42,8 @@ public class WhereToView extends ModeView{
     public JButton btnX;
     public JButton btnY;
     public JButton btnZ;
-    
     public JButton btnSpace;
     public JButton btnNextPage;
-    
     public JButton btn1;
     public JButton btn2;
     public JButton btn3;
@@ -59,25 +54,24 @@ public class WhereToView extends ModeView{
     public JButton btn8;
     public JButton btn9;
     public JButton btn0;
-    
     public JButton btnBackPage;
     public JButton btnDel;
-
     JPanel letterPanel;
     JPanel numberPanel;
     JPanel destinationPanel;
-    
-    
-    WhereToView (JFrame frame) {
+    private WhereTo controller;
+
+
+    WhereToView(JFrame frame) {
         super(frame);
         frame.pack();
         panel.setLayout(new GridBagLayout());
     }
-    
+
     void setController(WhereTo controller) {
         this.controller = controller;
     }
-    
+
     @Override
     public void displayMode() {
         frame.setTitle("XTrek");
@@ -91,7 +85,7 @@ public class WhereToView extends ModeView{
         numberPanel = new JPanel();
         numberPanel.setLayout(new GridBagLayout());
         numberPanel.setBackground(Color.BLACK);
-        
+
         //Add each button to the controller
         btnA = controller.addButton("A", WhereTo.buttonType.LETTER_NUMBER);
         btnB = controller.addButton("B", WhereTo.buttonType.LETTER_NUMBER);
@@ -119,10 +113,10 @@ public class WhereToView extends ModeView{
         btnX = controller.addButton("X", WhereTo.buttonType.LETTER_NUMBER);
         btnY = controller.addButton("Y", WhereTo.buttonType.LETTER_NUMBER);
         btnZ = controller.addButton("Z", WhereTo.buttonType.LETTER_NUMBER);
-        
+
         btnSpace = controller.addButton("_", WhereTo.buttonType.SPACE);
         btnNextPage = controller.addButton("\u2192", WhereTo.buttonType.NEXT_PAGE);
-        
+
         btn1 = controller.addButton("1", WhereTo.buttonType.LETTER_NUMBER);
         btn2 = controller.addButton("2", WhereTo.buttonType.LETTER_NUMBER);
         btn3 = controller.addButton("3", WhereTo.buttonType.LETTER_NUMBER);
@@ -133,10 +127,10 @@ public class WhereToView extends ModeView{
         btn8 = controller.addButton("8", WhereTo.buttonType.LETTER_NUMBER);
         btn9 = controller.addButton("9", WhereTo.buttonType.LETTER_NUMBER);
         btn0 = controller.addButton("0", WhereTo.buttonType.LETTER_NUMBER);
-        
+
         btnDel = controller.addButton("DEL", WhereTo.buttonType.DEL);
         btnBackPage = controller.addButton("\u2190", WhereTo.buttonType.BACK_PAGE);
-        
+
         //Add destination to its own JPanel
         destination.setBackground(Color.WHITE);
         destination.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, 22));
@@ -145,11 +139,11 @@ public class WhereToView extends ModeView{
         destination.setEditable(false);
 
         destinationPanel = new JPanel();
-        
+
         //Layout setup for the destination panel
         destinationPanel.setLayout(new GridBagLayout());
         GridBagConstraints d = new GridBagConstraints();
-        
+
         d.fill = GridBagConstraints.BOTH;
         d.insets = new Insets(1, 1, 1, 1);
         d.weightx = 1.0;
@@ -333,7 +327,7 @@ public class WhereToView extends ModeView{
 
         panel.validate();
         panel.setVisible(true);
-        
+
         //Place cursor on the default button - A in this case
         frame.getRootPane().setDefaultButton(btnA);
         btnA.requestFocus();

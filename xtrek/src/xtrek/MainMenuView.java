@@ -11,14 +11,14 @@ import java.awt.*;
  * @author Yazan Haddadin
  * @version Sprint 3
  */
-public class MainMenuView extends ModeView{
+public class MainMenuView extends ModeView {
     private MainMenu controller;
 
     MainMenuView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
     }
-    
+
     void setController(MainMenu controller) {
         this.controller = controller;
     }
@@ -31,12 +31,12 @@ public class MainMenuView extends ModeView{
         panel.removeAll();
         controller.emptyArray();
 
-        JButton whereTo      = controller.addButton("whereto", WhereTo.class);
+        JButton whereTo = controller.addButton("whereto", WhereTo.class);
         JButton tripComputer = controller.addButton("tripcomputer", TripComputer.class);
-        JButton map          = controller.addButton("map", Map.class);
-        JButton speech       = controller.addButton("speech", TurnByTurn.class);
-        JButton satellite    = controller.addButton("satellite", Satellite.class);
-        JButton about        = controller.addButton("about", About.class);
+        JButton map = controller.addButton("map", Map.class);
+        JButton speech = controller.addButton("speech", TurnByTurn.class);
+        JButton satellite = controller.addButton("satellite", Satellite.class);
+        JButton about = controller.addButton("about", About.class);
 
         //using GridBagConstraints to adapt to different SCREEN sizes
         GridBagConstraints c = new GridBagConstraints();
@@ -75,9 +75,9 @@ public class MainMenuView extends ModeView{
 
         panel.validate();
         panel.setVisible(true);
-        
+
         whereTo.setBackground(Color.ORANGE);
-        
+
         frame.getRootPane().setDefaultButton(whereTo);
         whereTo.requestFocus();
         controller.giveFocus(whereTo);

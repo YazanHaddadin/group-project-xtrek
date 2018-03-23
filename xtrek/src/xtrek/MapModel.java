@@ -16,14 +16,18 @@ import java.util.HashMap;
  * @version Sprint 3
  */
 class MapModel extends ModeModel {
-    private static Double latitude;    
-    private static Double longitude;     
+    private static Double latitude;
+    private static Double longitude;
     private static Double bearing = 0.0;
     private static String zoom = "10";           /* 0 .. 21           */
     private final Map controller;
 
     MapModel(Map controller) {
         this.controller = controller;
+    }
+
+    static Double getBearing() {
+        return bearing;
     }
 
     void onGPSUpdate(Double latitude, Double longitude,
@@ -52,7 +56,7 @@ class MapModel extends ModeModel {
         }
 
         if (Map.calculateDistance(MapModel.latitude, MapModel.longitude, latitude, longitude) > Constants.GPS_TOLERANCE) {
-            MapModel.bearing = getBearing(MapModel.latitude, MapModel.longitude, latitude, longitude); 
+            MapModel.bearing = getBearing(MapModel.latitude, MapModel.longitude, latitude, longitude);
             MapModel.latitude = latitude;
             MapModel.longitude = longitude;
             downloadNewMap();
@@ -91,11 +95,13 @@ class MapModel extends ModeModel {
     void selected(ButtonEvent evt) {
         //do nothing
     }
+
     @Override
     void hide() {
         //hides map whenever on/off button is pressed
         controller.mapView.hideView();
     }
+
     private void downloadNewMap() {
         try {
             HttpConnection connect = new HttpConnection("https://maps.googleapis.com/maps/api/staticmap"
@@ -124,9 +130,6 @@ class MapModel extends ModeModel {
             Double x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
             return Math.atan2(y, x);
         }
-    }
-    static Double getBearing(){
-        return bearing;
     }
 }
 

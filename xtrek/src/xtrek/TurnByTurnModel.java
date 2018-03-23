@@ -39,14 +39,14 @@ class TurnByTurnModel extends ModeModel {
     /**
      * @param String sentence : the sentence to normalise
      * @return String sentence : the normalised sentence
-     * 
+     * <p>
      * The normalisation process includes three steps:
-     *  1. If the sentence contains any HTML tags, remove them while keeping 
-     *  the contents
+     * 1. If the sentence contains any HTML tags, remove them while keeping
+     * the contents
      * 2. If the sentence contains road abbreviations such as "Rd" or "Ln",
-     *  expand the abbreviations
+     * expand the abbreviations
      * 3. Add punctuation
-    */
+     */
     private String normaliseSentence(String sentence) {
         LinkedHashMap<String, String> abb = new LinkedHashMap<>();
         abb.put("Aly", "Alley");
@@ -143,11 +143,9 @@ class TurnByTurnModel extends ModeModel {
     /**
      * @param String segment : the normalised sentence to translate
      * @return String segment : the normalised translated sentence
-     * @throws IOException 
-     * 
-     * This process includes sending a request to the Microsoft Translator API
-     * which returns a translated sentence from one language to another. This
-     * API renews its own key as needed on the server.
+     * @throws IOException This process includes sending a request to the Microsoft Translator API
+     *                     which returns a translated sentence from one language to another. This
+     *                     API renews its own key as needed on the server.
      */
     private String translateSegment(String segment) throws IOException {
         HashMap<String, String> requestProp = new HashMap<>();
@@ -171,11 +169,9 @@ class TurnByTurnModel extends ModeModel {
     /**
      * @param String segment : The normalised, translated sentence
      * @return byte[] audio : The bytes of the audio file
-     * @throws IOException 
-     * 
-     * Send a request to the Microsoft Translator API to speak a sentence
-     * in a certain language. This API renews its own key as needed on the 
-     * server.
+     * @throws IOException Send a request to the Microsoft Translator API to speak a sentence
+     *                     in a certain language. This API renews its own key as needed on the
+     *                     server.
      */
     private byte[] downloadNextSegment(String segment) throws IOException {
         HashMap<String, String> requestProp = new HashMap<>();
@@ -196,7 +192,7 @@ class TurnByTurnModel extends ModeModel {
     /**
      * @param resource : name of the resource
      * @return byte[] audio : bytes of the audio file
-     * 
+     * <p>
      * If a resource is not available (GPS/Internet), play the required file.
      */
     private byte[] noResource(String resource) {
@@ -211,18 +207,18 @@ class TurnByTurnModel extends ModeModel {
 
     /**
      * @param segment : Sentence to translate and play
-     * 
-     * If the voice is set to off, do not do anything
-     * If the segment is empty, then there was no GPS data received,
-     *  play the file "noGPS"
-     * Otherwise, normalise the sentence, translate it and play it.
-     * If that fails, most likely an Internet exception : play "noInternet"
+     *                <p>
+     *                If the voice is set to off, do not do anything
+     *                If the segment is empty, then there was no GPS data received,
+     *                play the file "noGPS"
+     *                Otherwise, normalise the sentence, translate it and play it.
+     *                If that fails, most likely an Internet exception : play "noInternet"
      */
     void playAudio(String segment) {
         if (currentButton == null || currentButton.getLanguage() == TurnByTurn.Language.OFF) {
             return;
         }
-        
+
         byte[] audio;
         if (segment.isEmpty()) {
             audio = noResource("noGPS.wav");
@@ -255,9 +251,8 @@ class TurnByTurnModel extends ModeModel {
     }
 
     /**
-     * @param evt 
-     * If a language is selected, set the variables to reflect the choice and
-     * play an audio file in the required language saying so
+     * @param evt If a language is selected, set the variables to reflect the choice and
+     *            play an audio file in the required language saying so
      */
     void selected(ButtonEvent evt) {
         if (currentButton != null && !currentButton.getLanguage().getDisplay().equals("Off")) {

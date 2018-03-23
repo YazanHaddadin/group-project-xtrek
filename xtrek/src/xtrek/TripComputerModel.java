@@ -6,7 +6,7 @@ import java.util.TimerTask;
 /**
  * TripComputer Model Class
  * <p>
- * Provides the logic and methods for the Trip Computer mode of the XTrek, 
+ * Provides the logic and methods for the Trip Computer mode of the XTrek,
  * which will provide real time information about the current trip.
  *
  * @author Caleb Blackmore
@@ -24,7 +24,7 @@ class TripComputerModel extends ModeModel {
     private static boolean moving = false;
 
     private static double kmTravelled = 0;
-    
+
     void plus(ButtonEvent evt) {
         /*
          * In this mode, the plus button is disabled.
@@ -36,7 +36,7 @@ class TripComputerModel extends ModeModel {
          * In this mode, the minus button is disabled.
          */
     }
-    
+
     void selected(ButtonEvent evt) {
         /*
          * In this mode, the select button is disabled.
@@ -58,23 +58,23 @@ class TripComputerModel extends ModeModel {
     }
 
     void onGPSUpdate(Double latitude, Double longitude,
-                            SatelliteModel.Direction latitudeDirection,
-                            SatelliteModel.Direction longitudeDirection) {
+                     SatelliteModel.Direction latitudeDirection,
+                     SatelliteModel.Direction longitudeDirection) {
 
         //Set last latitude and longitude values if they are 0.
-        if(latitudeDirection == SatelliteModel.Direction.SOUTH) {
+        if (latitudeDirection == SatelliteModel.Direction.SOUTH) {
             latitude = -latitude;
         }
-        
-        if(longitudeDirection == SatelliteModel.Direction.WEST) {
+
+        if (longitudeDirection == SatelliteModel.Direction.WEST) {
             longitude = -longitude;
         }
-        
-        if(lastLatitude == null) {
+
+        if (lastLatitude == null) {
             lastLatitude = latitude;
         }
-        
-        if(lastLongitude == null) {
+
+        if (lastLongitude == null) {
             lastLongitude = longitude;
         }
 
@@ -89,17 +89,17 @@ class TripComputerModel extends ModeModel {
 
             double distanceTravelled;
             distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude); //Determine the distance travelled
-            
-            double speed = Math.round(distanceTravelled*3600*100.00)/100D; //Convert moving speed from KM/S to KM/H.
+
+            double speed = Math.round(distanceTravelled * 3600 * 100.00) / 100D; //Convert moving speed from KM/S to KM/H.
             TripComputer.updateSpeed(Double.toString(speed));
-            
+
             kmTravelled += distanceTravelled;
-            TripComputer.updateTripOdometer(Double.toString(Math.round(kmTravelled*100.00)/100D));
- 
+            TripComputer.updateTripOdometer(Double.toString(Math.round(kmTravelled * 100.00) / 100D));
+
             //Store current position as last latitude and longitude.
             lastLatitude = latitude;
             lastLongitude = longitude;
-            
+
         } else moving = false;
     }
 
@@ -108,7 +108,7 @@ class TripComputerModel extends ModeModel {
         public void run() {
             if (moving) {
                 secondsCounter++;
-                
+
                 //Convert seconds to minutes and seconds.
                 int numberOfMinutes = secondsCounter / 60;
                 int numberOfSeconds = secondsCounter % 60;

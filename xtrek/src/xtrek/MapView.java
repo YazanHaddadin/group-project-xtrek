@@ -18,13 +18,13 @@ public class MapView extends ModeView {
     private static final JLabel label = new JLabel();
     private static BufferedImage image;
     private BufferedImage noInternetImage;
-   
+
     MapView(JFrame frame) {
         super(frame);
         panel.setLayout(new GridBagLayout());
         displayMode();
     }
-    
+
     @Override
     public void makeVisible() {
         panel.setVisible(true);
@@ -41,27 +41,28 @@ public class MapView extends ModeView {
     }
 
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         //method to rotate the map given a bearing
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, Constants.MAP_DIM, Constants.MAP_DIM);
-        
-        if(image == null) {
+
+        if (image == null) {
             try {
                 image = ImageIO.read(getClass().getResource("assets/map.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        
-       g2d.translate((Constants.SCREEN_WIDTH-Constants.MAP_DIM)/2, 
-               (Constants.SCREEN_HEIGHT-Constants.MAP_DIM)/2);
-        g2d.rotate( MapModel.getBearing(), Constants.MAP_DIM/2, Constants.MAP_DIM/2 );
+
+        g2d.translate((Constants.SCREEN_WIDTH - Constants.MAP_DIM) / 2,
+                (Constants.SCREEN_HEIGHT - Constants.MAP_DIM) / 2);
+        g2d.rotate(MapModel.getBearing(), Constants.MAP_DIM / 2, Constants.MAP_DIM / 2);
         g2d.drawImage(image, 0, 0,
                 this);
         label.paint(g2d);
     }
+
     @Override
     public void displayMode() {
         frame.setTitle("Map");
@@ -78,9 +79,9 @@ public class MapView extends ModeView {
 
         setIcon(noInternetImage);
         makeVisible();
-        
+
         panel.add(label, con);
         panel.validate();
         panel.setVisible(true);
-    }    
+    }
 }

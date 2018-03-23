@@ -1,8 +1,8 @@
 package xtrek;
 
+import javax.swing.*;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,10 +60,10 @@ public class Satellite extends Mode {
 
         SModel.turnOff();
     }
-    
+
     void turnOn() {
         SModel.turnOn();
-        
+
         updater.setIsTerminating(false);
         thread = new Thread(updater);
         thread.start();
@@ -101,5 +101,5 @@ public class Satellite extends Mode {
             }
         }
     }
-    
+
 }

@@ -26,10 +26,6 @@ class Xtrek extends JFrame {
     private static Mode currentView;
 
 
-    public static void main(String[] args) {
-        Xtrek xtrek = new Xtrek();
-    }
-
     private Xtrek() {
         this.setLocationRelativeTo(null);
 
@@ -63,6 +59,10 @@ class Xtrek extends JFrame {
 
         this.validate();
         this.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        Xtrek xtrek = new Xtrek();
     }
 
     private static void showCurrentView() {

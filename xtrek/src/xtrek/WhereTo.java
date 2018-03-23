@@ -14,11 +14,11 @@ import java.util.ArrayList;
  */
 public class WhereTo extends Mode {
 
+    static final ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
     private static WhereToView whereView;
     private static WhereToModel whereModel;
     private static OnChangeDestinationListener listener;
-    static final ArrayList<OnChangeDestinationListener> listeners = new ArrayList<>();
-    
+
     WhereTo(JFrame frame) {
         model = new WhereToModel();
         view = new WhereToView(frame);
@@ -34,33 +34,6 @@ public class WhereTo extends Mode {
     static void addToDestination(String letter) {
         //Add the typed letter to the destination field
         WhereToView.destination.setText(WhereToView.destination.getText() + letter);
-    }
-    
-    @Override
-    void displayMode() {
-        whereView.setController(this);
-        whereView.displayMode();
-        showLetterButtons();
-    }
-
-    @Override
-    public void selected(ButtonEvent evt) {
-        whereModel.selected(evt);
-    }
-
-    @Override
-    public void plus(ButtonEvent evt) {
-        whereModel.plus(evt);
-    }
-
-    @Override
-    public void minus(ButtonEvent evt) {
-        whereModel.minus(evt);
-    }
-    
-    //Add a button to the model.
-    JButton addButton(String letter, WhereTo.buttonType type) {
-        return whereModel.addButton(letter, type);
     }
 
     static void showLetterButtons() {
@@ -88,6 +61,33 @@ public class WhereTo extends Mode {
         whereView.btn1.requestFocus();
         whereView.panel.revalidate();
         whereView.panel.repaint();
+    }
+
+    @Override
+    void displayMode() {
+        whereView.setController(this);
+        whereView.displayMode();
+        showLetterButtons();
+    }
+
+    @Override
+    public void selected(ButtonEvent evt) {
+        whereModel.selected(evt);
+    }
+
+    @Override
+    public void plus(ButtonEvent evt) {
+        whereModel.plus(evt);
+    }
+
+    @Override
+    public void minus(ButtonEvent evt) {
+        whereModel.minus(evt);
+    }
+
+    //Add a button to the model.
+    JButton addButton(String letter, WhereTo.buttonType type) {
+        return whereModel.addButton(letter, type);
     }
 
     void giveFocus(WhereToModel.KeyboardButton button) {

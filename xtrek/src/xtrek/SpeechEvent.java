@@ -4,7 +4,7 @@ import java.util.EventObject;
 
 /**
  * Speech Event Class
- * 
+ *
  * @author Sebastien Michel
  * @version Sprint 3
  */

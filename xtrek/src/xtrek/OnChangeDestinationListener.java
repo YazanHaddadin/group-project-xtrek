@@ -7,7 +7,7 @@ import java.util.EventListener;
  * <p>
  * Event listener for when the destination of the device is changes in Where To
  * mode.
- * 
+ *
  * @author Caleb Blackmore
  * @version Sprint 3
  */
