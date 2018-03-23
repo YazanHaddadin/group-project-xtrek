@@ -64,7 +64,7 @@ class HttpConnection {
                 DataInputStream is = new DataInputStream(conn.getInputStream());
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-                byte[] buffer = new byte[1000000]; //Maybe too much ?
+                byte[] buffer = new byte[1000000];
                 while (true) {
                     int n = is.read(buffer);
                     if (n > 0) {
