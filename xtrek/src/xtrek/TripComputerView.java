@@ -14,6 +14,7 @@ import java.awt.*;
  */
 public class TripComputerView extends ModeView{
 
+    //Set up the display components for the trip computer.
     private final JPanel odometerPanel = new JPanel();
     private final JLabel odometerLabel = new JLabel("Trip Odometer:");
     final JLabel odometerReading = new JLabel("0.00 KM");
@@ -36,6 +37,7 @@ public class TripComputerView extends ModeView{
     public void displayMode() {
         frame.setTitle("XTrek");
 
+        //Set up grid bag constraints.
         GridBagConstraints c = new GridBagConstraints();
 
         c.fill = GridBagConstraints.BOTH;
@@ -64,7 +66,6 @@ public class TripComputerView extends ModeView{
         odometerLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, FONT_SIZE));
         speedLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, FONT_SIZE));
         movingTimeLabel.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, FONT_SIZE));
-
         odometerReading.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, FONT_SIZE));
         speedReading.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, FONT_SIZE));
         movingTimeReading.setFont(new Font(Constants.SYSTEM_FONT, Font.BOLD, FONT_SIZE));

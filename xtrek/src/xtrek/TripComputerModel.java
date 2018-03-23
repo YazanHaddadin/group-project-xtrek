@@ -43,7 +43,7 @@ class TripComputerModel extends ModeModel {
          */
     }
 
-    //Increment timer for the journey every second
+    //Increment timer for the journey every second, providing the device is moving
     void increaseMovingTime() {
         Timer movingTimer = new Timer();
         movingTimer.schedule(new TripComputerModel.IncreaseMovingTime(), 0, 1000);
@@ -61,8 +61,7 @@ class TripComputerModel extends ModeModel {
                             SatelliteModel.Direction latitudeDirection,
                             SatelliteModel.Direction longitudeDirection) {
 
-        //Determine if the device is moving or not.
-        
+        //Set last latitude and longitude values if they are 0.
         if(latitudeDirection == SatelliteModel.Direction.SOUTH) {
             latitude = -latitude;
         }
@@ -84,18 +83,20 @@ class TripComputerModel extends ModeModel {
             return;
         }
 
+        //Determine if the device is moving
         if (Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude) > 0.002) {
             moving = true;
 
             double distanceTravelled;
-            distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude);
+            distanceTravelled = Map.calculateDistance(lastLatitude, lastLongitude, latitude, longitude); //Determine the distance travelled
             
-            double speed = Math.round(distanceTravelled*3600*100.00)/100D;
+            double speed = Math.round(distanceTravelled*3600*100.00)/100D; //Convert moving speed from KM/S to KM/H.
             TripComputer.updateSpeed(Double.toString(speed));
             
             kmTravelled += distanceTravelled;
             TripComputer.updateTripOdometer(Double.toString(Math.round(kmTravelled*100.00)/100D));
  
+            //Store current position as last latitude and longitude.
             lastLatitude = latitude;
             lastLongitude = longitude;
             
